@@ -15,15 +15,11 @@ class Emprestado implements State {
 	}
 
 	@Override
-	public void emprestar() {
+	public void disponibilizar() {
 		
 	}
 
 
-	@Override
-	public void reservar() {
-
-	}
 
 	@Override
 	public State getState() {
