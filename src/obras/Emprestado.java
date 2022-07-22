@@ -19,10 +19,6 @@ class Emprestado implements State {
 		
 	}
 
-	@Override
-	public void disponibilizar() {
-
-	}
 
 	@Override
 	public void reservar() {
