@@ -20,6 +20,16 @@ class Reservado implements State {
 	}
 
 	@Override
+	public void disponibilizar() {
+
+	}
+
+	@Override
+	public void reservar() {
+
+	}
+
+	@Override
 	public void cancelar() {
 
 	}

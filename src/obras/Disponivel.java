@@ -1,6 +1,6 @@
 package obras;
 
-class Disponivel implements State {
+public class Disponivel implements State {
 	private static Disponivel instancia;
 	private Disponivel() {
 		Disponivel.instancia = new Disponivel();
@@ -21,7 +21,17 @@ class Disponivel implements State {
 
 
 	@Override
+	public void disponibilizar() {
+
+	}
+
+	@Override
 	public void reservar() {
+
+	}
+
+	@Override
+	public void cancelar() {
 
 	}
 
