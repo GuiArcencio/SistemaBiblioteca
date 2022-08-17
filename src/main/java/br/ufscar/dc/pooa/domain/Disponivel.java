@@ -1,4 +1,4 @@
-package obras;
+package main.java.br.ufscar.dc.pooa.domain;
 
 public class Disponivel implements State {
 	private static Disponivel instancia;

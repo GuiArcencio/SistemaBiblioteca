@@ -1,4 +1,4 @@
-package obras;
+package main.java.br.ufscar.dc.pooa.domain;
 
 class Autor {
 	String nome;
