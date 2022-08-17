@@ -2,7 +2,7 @@ package main.java.br.ufscar.dc.pooa.domain;
 
 public class Disponivel implements State {
 	private static Disponivel instancia;
-	private Disponivel() {
+	public Disponivel() {
 		Disponivel.instancia = new Disponivel();
 	}
 	

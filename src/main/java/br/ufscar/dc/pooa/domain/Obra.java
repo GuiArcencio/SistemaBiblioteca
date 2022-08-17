@@ -3,7 +3,9 @@ package main.java.br.ufscar.dc.pooa.domain;
 import java.util.Date;
 import java.util.List;
 
-public class Obra {
+import main.java.br.ufscar.dc.pooa.Interface.InterfaceObra;
+
+public class Obra implements InterfaceObra {
 	int codigo;
 	int isbn;
 	CategoriaObra categoria;
@@ -13,7 +15,7 @@ public class Obra {
 	int numeroEdicao;
 	String editora;
 	int numeroPaginas;
-	Copia[] copias;
+	List<Copia> copias;
 	
 	public Obra(
 		int codigo,
@@ -37,6 +39,7 @@ public class Obra {
 		this.numeroPaginas = numeroPaginas;
 	}
 	
+	@Override
 	public void adicionarAutor(String autor) {
 		String iniciais = "";
 		String[] nomesAutor = autor.split(" ");
@@ -47,15 +50,45 @@ public class Obra {
 		this.autores.add(new Autor(autor, iniciais));
 	}
 	
+	@Override
 	public void removerAutor(int indice) {
 		this.autores.remove(indice);
 	}
 	
+	@Override
 	public void adicionarPalavraChave(String palavra) {
 		this.palavrasChave.add(palavra);
 	}
 	
+	@Override
 	public void removerPalavraChave(int indice) {
 		this.palavrasChave.remove(indice);
+	}
+
+	@Override
+	public void adicionarCopia(int idCopia){
+		State state = new Disponivel();
+		Copia copia = new Copia(idCopia, state);
+		this.copias.add(copia);
+	}
+
+	@Override
+	public void removerCopia(int idCopia){
+		
+	}
+
+	@Override
+	public void marcarEmprestadoCopia(int idCopia){
+
+	}
+
+	@Override
+	public void marcarDevolverCopia(int idCopia){
+
+	}
+	
+	@Override
+	public void marcarDisponivelCopia(int idCopia){
+
 	}
 }
