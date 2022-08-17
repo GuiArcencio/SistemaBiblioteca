@@ -1,4 +1,4 @@
-package obras;
+package main.java.br.ufscar.dc.pooa.domain;
 
 class Emprestado implements State {
 	private static Emprestado instancia;
@@ -15,11 +15,24 @@ class Emprestado implements State {
 	}
 
 	@Override
+	public void emprestar() {
+
+	}
+
+	@Override
 	public void disponibilizar() {
 		
 	}
 
+	@Override
+	public void reservar() {
 
+	}
+
+	@Override
+	public void cancelar() {
+
+	}
 
 	@Override
 	public State getState() {
