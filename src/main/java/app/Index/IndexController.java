@@ -1,4 +1,4 @@
-package main.java.pooa.app.Index;
+package app.Index;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;

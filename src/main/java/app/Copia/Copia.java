@@ -1,5 +1,5 @@
-package main.java.pooa.app.Copia;
-import main.java.pooa.app.Estados.*;
+package app.Copia;
+import app.Estados.*;
 
 public class Copia {
 	int id;

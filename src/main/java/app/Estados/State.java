@@ -1,4 +1,4 @@
-package main.java.pooa.app.Estados;
+package app.Estados;
 
 public interface State {
 	public void emprestar();

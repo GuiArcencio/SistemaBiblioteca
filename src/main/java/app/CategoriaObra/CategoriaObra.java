@@ -1,4 +1,4 @@
-package main.java.pooa.app.CategoriaObra;
+package app.CategoriaObra;
 
 public class CategoriaObra {
 	int codigo;

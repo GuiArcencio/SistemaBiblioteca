@@ -1,4 +1,4 @@
-package main.java.pooa.app.Autor;
+package app.Autor;
 
 public class Autor {
 	String nome;

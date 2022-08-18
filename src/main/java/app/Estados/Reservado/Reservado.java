@@ -1,6 +1,6 @@
-package main.java.pooa.app.Estados.Reservado;
+package app.Estados.Reservado;
 
-import main.java.pooa.app.Estados.*;
+import app.Estados.*;
 
 public class Reservado implements State {
 	private static Reservado instancia;
