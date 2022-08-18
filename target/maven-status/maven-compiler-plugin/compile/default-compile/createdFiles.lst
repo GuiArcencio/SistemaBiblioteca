@@ -1,0 +1,11 @@
+main/java/br/ufscar/dc/pooa/domain/CategoriaObra.class
+main/java/br/ufscar/dc/pooa/domain/State.class
+main/java/br/ufscar/dc/pooa/domain/Disponivel.class
+main/java/br/ufscar/dc/pooa/Interface/InterfaceObra.class
+main/java/br/ufscar/dc/pooa/domain/Autor.class
+br/ufscar/dc/pooa/App.class
+main/java/br/ufscar/dc/pooa/controller/IndexController.class
+main/java/br/ufscar/dc/pooa/domain/Reservado.class
+main/java/br/ufscar/dc/pooa/domain/Emprestado.class
+main/java/br/ufscar/dc/pooa/domain/Copia.class
+main/java/br/ufscar/dc/pooa/domain/Obra.class
