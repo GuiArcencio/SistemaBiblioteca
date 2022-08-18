@@ -1,4 +1,4 @@
-package main.java.pooa.Interface;
+package main.java.pooa.app.Obra;
 
 public interface InterfaceObra {
     public void adicionarAutor(String autor);

@@ -1,5 +1,7 @@
 package main.java.pooa.app.Estados.Disponivel;
 
+import main.java.pooa.app.Estados.*;
+
 public class Disponivel implements State {
 	private static Disponivel instancia;
 	public Disponivel() {

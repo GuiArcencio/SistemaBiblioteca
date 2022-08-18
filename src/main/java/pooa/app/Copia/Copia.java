@@ -1,7 +1,7 @@
 package main.java.pooa.app.Copia;
 import main.java.pooa.app.Estados.*;
 
-class Copia {
+public class Copia {
 	int id;
 	State state;
 	

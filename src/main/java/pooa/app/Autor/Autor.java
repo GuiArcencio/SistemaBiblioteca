@@ -1,6 +1,6 @@
 package main.java.pooa.app.Autor;
 
-class Autor {
+public class Autor {
 	String nome;
 	String iniciais;
 	

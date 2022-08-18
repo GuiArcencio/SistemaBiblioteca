@@ -3,7 +3,11 @@ package main.java.pooa.app.Obra;
 import java.util.Date;
 import java.util.List;
 
-import main.java.pooa.app.Obra.InterfaceObra;
+import main.java.pooa.app.Estados.Disponivel.*;
+import main.java.pooa.app.CategoriaObra.*;
+import main.java.pooa.app.Autor.*;
+import main.java.pooa.app.Copia.*;
+import main.java.pooa.app.Estados.*;
 
 public class Obra implements InterfaceObra {
 	int codigo;

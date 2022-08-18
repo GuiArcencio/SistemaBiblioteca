@@ -1,6 +1,6 @@
 package main.java.pooa.app.CategoriaObra;
 
-class CategoriaObra {
+public class CategoriaObra {
 	int codigo;
 	String descricao;
 	int maximoDiasEmprestimo;

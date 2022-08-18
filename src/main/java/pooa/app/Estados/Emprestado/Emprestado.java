@@ -1,6 +1,8 @@
 package main.java.pooa.app.Estados.Emprestado;
 
-class Emprestado implements State {
+import main.java.pooa.app.Estados.*;
+
+public class Emprestado implements State {
 	private static Emprestado instancia;
 	private Emprestado() {
 		Emprestado.instancia = new Emprestado();
