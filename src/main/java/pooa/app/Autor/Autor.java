@@ -1,4 +1,4 @@
-package main.java.br.ufscar.dc.pooa.domain;
+package main.java.pooa.app.Autor;
 
 class Autor {
 	String nome;

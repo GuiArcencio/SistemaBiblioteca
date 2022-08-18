@@ -1,4 +1,4 @@
-package main.java.br.ufscar.dc.pooa.domain;
+package main.java.pooa.app.Estados.Reservado;
 
 class Reservado implements State {
 	private static Reservado instancia;

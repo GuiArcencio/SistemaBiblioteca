@@ -1,4 +1,4 @@
-package main.java.br.ufscar.dc.pooa;
+package main.java.pooa;
 import static spark.Spark.*;
 
 public class App {

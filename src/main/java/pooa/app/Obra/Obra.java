@@ -1,9 +1,9 @@
-package main.java.br.ufscar.dc.pooa.domain;
+package main.java.pooa.app.Obra;
 
 import java.util.Date;
 import java.util.List;
 
-import main.java.br.ufscar.dc.pooa.Interface.InterfaceObra;
+import main.java.pooa.app.Obra.InterfaceObra;
 
 public class Obra implements InterfaceObra {
 	int codigo;

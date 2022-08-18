@@ -1,4 +1,5 @@
-package main.java.br.ufscar.dc.pooa.domain;
+package main.java.pooa.app.Copia;
+import main.java.pooa.app.Estados.*;
 
 class Copia {
 	int id;
