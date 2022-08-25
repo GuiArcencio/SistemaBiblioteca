@@ -1,4 +1,4 @@
-package app.Estados;
+package main.java.app.Estados;
 
 public interface State {
 	public void emprestar();

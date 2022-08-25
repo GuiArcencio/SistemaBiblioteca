@@ -1,24 +1,36 @@
-package app.Obra;
+package main.java.app.Obra;
 
 import java.util.Date;
 import java.util.List;
+import lombok.*;
+//import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+//import javax.persistence.Inheritance;
+//import javax.persistence.InheritanceType;
+//import javax.persistence.Table;
 
-import app.Estados.Disponivel.*;
-import app.CategoriaObra.*;
-import app.Autor.*;
-import app.Copia.*;
-import app.Estados.*;
+import main.java.app.Estados.Disponivel.*;
+import main.java.app.CategoriaObra.*;
+import main.java.app.Autor.*;
+import main.java.app.Copia.*;
+import main.java.app.Estados.*;
 
+@Entity
+@NoArgsConstructor @AllArgsConstructor
 public class Obra implements InterfaceObra {
-	int codigo;
-	int isbn;
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) 
+	@Getter int codigo;
+	@Getter @Setter int isbn;
 	CategoriaObra categoria;
 	List<Autor> autores;
 	List<String> palavrasChave;
-	Date dataPublicacao;
-	int numeroEdicao;
-	String editora;
-	int numeroPaginas;
+	@Getter @Setter Date dataPublicacao;
+	@Getter @Setter int numeroEdicao;
+	@Getter @Setter String editora;
+	@Getter @Setter int numeroPaginas;
 	List<Copia> copias;
 	
 	public Obra(

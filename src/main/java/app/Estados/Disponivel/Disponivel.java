@@ -1,6 +1,6 @@
-package app.Estados.Disponivel;
+package main.java.app.Estados.Disponivel;
 
-import app.Estados.*;
+import main.java.app.Estados.*;
 
 public class Disponivel implements State {
 	private static Disponivel instancia;

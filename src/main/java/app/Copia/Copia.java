@@ -1,5 +1,5 @@
-package app.Copia;
-import app.Estados.*;
+package main.java.app.Copia;
+import main.java.app.Estados.*;
 
 public class Copia {
 	int id;

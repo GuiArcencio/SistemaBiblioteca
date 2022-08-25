@@ -1,7 +1,7 @@
-package app;
+package main.java.app;
 import static spark.Spark.*;
 
-public class Aplication {
+public class Application {
     public static void main(String[] args) {
         get("/hello", (req, res) -> "Hello Spark!");
     }

@@ -1,4 +1,4 @@
-package app.CategoriaObra;
+package main.java.app.CategoriaObra;
 
 public class CategoriaObra {
 	int codigo;

@@ -1,4 +1,4 @@
-package app.Obra;
+package main.java.app.Obra;
 
 public interface InterfaceObra {
     public void adicionarAutor(String autor);

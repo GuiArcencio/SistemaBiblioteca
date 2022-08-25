@@ -1,6 +1,6 @@
-package app.Estados.Emprestado;
+package main.java.app.Estados.Emprestado;
 
-import app.Estados.*;
+import main.java.app.Estados.*;
 
 public class Emprestado implements State {
 	private static Emprestado instancia;

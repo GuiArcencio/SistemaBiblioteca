@@ -1,6 +1,6 @@
-package app.Estados.Reservado;
+package main.java.app.Estados.Reservado;
 
-import app.Estados.*;
+import main.java.app.Estados.*;
 
 public class Reservado implements State {
 	private static Reservado instancia;

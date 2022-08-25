@@ -1,4 +1,4 @@
-package app.Index;
+package main.java.app.Index;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;

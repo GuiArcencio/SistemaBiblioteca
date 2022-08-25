@@ -4,7 +4,7 @@ create database Biblioteca;
 
 use Biblioteca;
 
-
+/*
 CREATE TABLE Obra(
     codigo bigint not NULL auto_increment,
     isbn bigint not NULL,
@@ -78,3 +78,4 @@ CREATE TABLE Reserva(
     CONSTRAINT emprestimo_pk PRIMARY KEY(id)
 );
 
+*/

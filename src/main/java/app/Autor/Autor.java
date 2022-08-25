@@ -1,4 +1,4 @@
-package app.Autor;
+package main.java.app.Autor;
 
 public class Autor {
 	String nome;
