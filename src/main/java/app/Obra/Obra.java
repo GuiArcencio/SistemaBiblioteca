@@ -3,48 +3,66 @@ package main.java.app.Obra;
 import java.util.Date;
 import java.util.List;
 import lombok.*;
-//import javax.persistence.Column;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 //import javax.persistence.Inheritance;
 //import javax.persistence.InheritanceType;
-//import javax.persistence.Table;
+import javax.persistence.Table;
 
 import main.java.app.Estados.Disponivel.*;
 import main.java.app.CategoriaObra.*;
 import main.java.app.Autor.*;
 import main.java.app.Copia.*;
 import main.java.app.Estados.*;
+import main.java.app.Editora.*;
 
 @Entity
+@Table(name="Obra")
 @NoArgsConstructor @AllArgsConstructor
 public class Obra implements InterfaceObra {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) 
-	@Getter int codigo;
+	@Getter int idObra;
+	
+	@Column(nullable = false, unique = false)
 	@Getter @Setter int isbn;
+
+	@Column(nullable = false, unique = false, length = 256)
+	@Getter @Setter String titulo;
+
 	CategoriaObra categoria;
 	List<Autor> autores;
 	List<String> palavrasChave;
+
+	@Column(nullable = false, unique = false)
 	@Getter @Setter Date dataPublicacao;
+
+	@Column(nullable = false, unique = false)
 	@Getter @Setter int numeroEdicao;
-	@Getter @Setter String editora;
+
+	Editora editora;
+
+	@Column(nullable = false, unique = false)
 	@Getter @Setter int numeroPaginas;
+
 	List<Copia> copias;
 	
 	public Obra(
-		int codigo,
+		int idObra,
 		int isbn,
+		String titulo,
 		CategoriaObra categoria,
 		List<Autor> autores,
 		List<String> palavrasChave,
 		Date dataPublicacao,
 		int numeroEdicao,
-		String editora,
+		Editora editora,
 		int numeroPaginas
 	) {
-		this.codigo = codigo;
+		this.idObra = idObra;
+		this.titulo = titulo;
 		this.isbn = isbn;
 		this.categoria = categoria;
 		this.autores = autores;
