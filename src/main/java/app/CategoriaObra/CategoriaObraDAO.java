@@ -1,4 +1,4 @@
-package main.java.app.Obra;
+package main.java.app.CategoriaObra;
 
 import java.util.List;
 
@@ -7,48 +7,48 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import main.java.app.util.*;
 
-public class ObraDAO extends GenericDAO<Obra> {
+public class CategoriaObraDAO extends GenericDAO<CategoriaObra> {
 
     @Override
-	public Obra find(Long id) {
+	public CategoriaObra find(Long id) {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		Obra obra = em.find(Obra.class, id);
+		CategoriaObra categoriaObra = em.find(CategoriaObra.class, id);
 		tx.commit();
 		em.close();
-		return obra;
+		return categoriaObra;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Obra> findAll() {
+	public List<CategoriaObra> findAll() {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		Query q = em.createQuery("SELECT d FROM Obra d");
-		List<Obra> lista = q.getResultList();
+		Query q = em.createQuery("SELECT d FROM CategoriaObra d");
+		List<CategoriaObra> lista = q.getResultList();
 		tx.commit();
 		em.close();
 		return lista;
 	}
 
 	@Override
-	public void save(Obra obra) {
+	public void save(CategoriaObra categoriaObra) {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		em.persist(obra);
+		em.persist(categoriaObra);
 		tx.commit();
 		em.close();
 	}
 
 	@Override
-	public void update(Obra obra) {
+	public void update(CategoriaObra categoriaObra) {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		em.merge(obra);
+		em.merge(categoriaObra);
 		tx.commit();
 		em.close();
 	}
@@ -57,9 +57,9 @@ public class ObraDAO extends GenericDAO<Obra> {
 	public void delete(Long id) {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
-		Obra obra = em.getReference(Obra.class, id);
+		CategoriaObra categoriaObra = em.getReference(CategoriaObra.class, id);
 		tx.begin();
-		em.remove(obra);
+		em.remove(categoriaObra);
 		tx.commit();
 		em.close();
 	}

@@ -1,4 +1,4 @@
-package main.java.app.Obra;
+package main.java.app.Editora;
 
 import java.util.List;
 
@@ -7,48 +7,48 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import main.java.app.util.*;
 
-public class ObraDAO extends GenericDAO<Obra> {
+public class EditoraDAO extends GenericDAO<Editora> {
 
     @Override
-	public Obra find(Long id) {
+	public Editora find(Long id) {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		Obra obra = em.find(Obra.class, id);
+		Editora editora = em.find(Editora.class, id);
 		tx.commit();
 		em.close();
-		return obra;
+		return editora;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Obra> findAll() {
+	public List<Editora> findAll() {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		Query q = em.createQuery("SELECT d FROM Obra d");
-		List<Obra> lista = q.getResultList();
+		Query q = em.createQuery("SELECT d FROM Editora d");
+		List<Editora> lista = q.getResultList();
 		tx.commit();
 		em.close();
 		return lista;
 	}
 
 	@Override
-	public void save(Obra obra) {
+	public void save(Editora editora) {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		em.persist(obra);
+		em.persist(editora);
 		tx.commit();
 		em.close();
 	}
 
 	@Override
-	public void update(Obra obra) {
+	public void update(Editora editora) {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		em.merge(obra);
+		em.merge(editora);
 		tx.commit();
 		em.close();
 	}
@@ -57,9 +57,9 @@ public class ObraDAO extends GenericDAO<Obra> {
 	public void delete(Long id) {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
-		Obra obra = em.getReference(Obra.class, id);
+		Editora editora = em.getReference(Editora.class, id);
 		tx.begin();
-		em.remove(obra);
+		em.remove(editora);
 		tx.commit();
 		em.close();
 	}

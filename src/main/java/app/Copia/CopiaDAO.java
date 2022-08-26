@@ -1,4 +1,4 @@
-package main.java.app.Obra;
+package main.java.app.Copia;
 
 import java.util.List;
 
@@ -7,48 +7,48 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import main.java.app.util.*;
 
-public class ObraDAO extends GenericDAO<Obra> {
+public class CopiaDAO extends GenericDAO<Copia> {
 
     @Override
-	public Obra find(Long id) {
+	public Copia find(Long id) {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		Obra obra = em.find(Obra.class, id);
+		Copia copia = em.find(Copia.class, id);
 		tx.commit();
 		em.close();
-		return obra;
+		return copia;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Obra> findAll() {
+	public List<Copia> findAll() {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		Query q = em.createQuery("SELECT d FROM Obra d");
-		List<Obra> lista = q.getResultList();
+		Query q = em.createQuery("SELECT d FROM Copia d");
+		List<Copia> lista = q.getResultList();
 		tx.commit();
 		em.close();
 		return lista;
 	}
 
 	@Override
-	public void save(Obra obra) {
+	public void save(Copia copia) {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		em.persist(obra);
+		em.persist(copia);
 		tx.commit();
 		em.close();
 	}
 
 	@Override
-	public void update(Obra obra) {
+	public void update(Copia copia) {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		em.merge(obra);
+		em.merge(copia);
 		tx.commit();
 		em.close();
 	}
@@ -57,9 +57,9 @@ public class ObraDAO extends GenericDAO<Obra> {
 	public void delete(Long id) {
 		EntityManager em = this.getEntityManager();
 		EntityTransaction tx = em.getTransaction();
-		Obra obra = em.getReference(Obra.class, id);
+		Copia copia = em.getReference(Copia.class, id);
 		tx.begin();
-		em.remove(obra);
+		em.remove(copia);
 		tx.commit();
 		em.close();
 	}
