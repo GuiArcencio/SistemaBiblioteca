@@ -73,6 +73,11 @@ public class Obra implements InterfaceObra {
 		this.numeroPaginas = numeroPaginas;
 	}
 	
+	public Obra(String titulo, int isbn){
+		this.titulo = titulo;
+		this.isbn = isbn;
+	}
+
 	@Override
 	public void adicionarAutor(String autor) {
 		String iniciais = "";

@@ -1,0 +1,14 @@
+#parse("/velocity/layout.vm")
+#@mainLayout()
+    #if($obra)
+    <h1>$obra.getTitulo()</h1>
+    <h2>$obra.getIsbn()</h2>
+    <div class="obra">
+        <div class="obraCover">
+           
+        </div>
+    </div>
+    #else
+    <h1>$msg.get("OBRAS_OBRA_NOT_FOUND")</h1>
+    #end
+#end
