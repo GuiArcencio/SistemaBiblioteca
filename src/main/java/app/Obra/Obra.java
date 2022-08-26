@@ -11,6 +11,7 @@ import javax.persistence.Id;
 //import javax.persistence.Inheritance;
 //import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import main.java.app.Estados.Disponivel.*;
 import main.java.app.CategoriaObra.*;
@@ -32,8 +33,11 @@ public class Obra implements InterfaceObra {
 	@Column(nullable = false, unique = false, length = 256)
 	@Getter @Setter String titulo;
 
+	@Transient
 	CategoriaObra categoria;
+	@Transient
 	List<Autor> autores;
+	@Transient
 	List<String> palavrasChave;
 
 	@Column(nullable = false, unique = false)
@@ -42,11 +46,13 @@ public class Obra implements InterfaceObra {
 	@Column(nullable = false, unique = false)
 	@Getter @Setter int numeroEdicao;
 
+	@Transient
 	Editora editora;
 
 	@Column(nullable = false, unique = false)
 	@Getter @Setter int numeroPaginas;
 
+	@Transient
 	List<Copia> copias;
 	
 	public Obra(

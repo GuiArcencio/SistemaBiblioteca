@@ -16,7 +16,7 @@ public class Path {
 
     public static class Template {
         public final static String INDEX = "/velocity/index/index.vm";
-        public final static String LOGIN = "/velocity/login/login.vm";
+        public final static String LOGIN = "main/resources/velocity/login/login.vm";
         public final static String OBRAS_ALL = "/velocity/obra/all.vm";
         public static final String OBRAS_ONE = "/velocity/obra/one.vm";
         public static final String NOT_FOUND = "/velocity/notFound.vm";
