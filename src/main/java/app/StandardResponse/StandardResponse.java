@@ -1,6 +1,11 @@
 package app.StandardResponse;
 import com.google.gson.JsonElement;
 
+/*
+ * Status indica se a requisição foi um sucesso ou fracasso
+ * A mensagem é usada no caso de fracasso
+ * Os dados são enviados para as requisições que precisem
+ */
 public class StandardResponse {
     
     private StatusResponse status;
