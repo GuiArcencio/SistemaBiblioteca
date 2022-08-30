@@ -10,29 +10,21 @@ public class Aplication {
 
         path("/api", () -> {
             before("/*", (q, a) -> System.out.println("Chamada API recebida"));
-            
+
             // Essas rotas foram utilizadas para teste
-            post("/autor",      ControllerAutor.insere);
-            get("/autor",       ControllerAutor.getAutores);
-            get("/autor/:nome", ControllerAutor.getAutor);
+            post("/autor",         ControllerAutor.insere);
+            get("/autor",          ControllerAutor.getAutores);
+            get("/autor/:nome",    ControllerAutor.getAutor);
 
             // Rotas do ControllerObras
-            // // Busca todas as Obras
-            // get("/obra", ControllerObras.buscaObras);
-            // // Busca uma obra por ISBN
-            // get("/obra/:isbn", ControllerObras.buscaObra);
-            // // Adiciona uma obra
-            // post("/obra", ControllerObras.adicionarObra);
-            // // Remove uma obra por ISBN
-            // delete("/obra/:isbn", ControllerObras.removerObra);
-            // // Adiciona um autor
-            // post("/autor", ControllerObras.adicionarAutor);
-            // // Altera um autor
-            // put("/autor/:nome", ControllerObras.alterarAutor);
-            // // Remove um autor por nome
-            // delete("/autor/:nome", ControllerObras.removerAutor);
-            // // Altera disponibilidade de uma cópia por código
-            // put("/copia/:codigo/disponibilidade", ControllerObras.mudarDisponibilidadeCopia);
+            get("/obra",           ControllerObras.buscaObras);
+            get("/obra/:isbn",     ControllerObras.buscaObra);
+            post("/obra",          ControllerObras.adicionarObra);
+            delete("/obra/:isbn",  ControllerObras.removerObra);
+            post("/autor",         ControllerObras.adicionarAutor);
+            put("/autor/:nome",    ControllerObras.alterarAutor);
+            delete("/autor/:nome", ControllerObras.removerAutor);
+            put("/copia/:codigo/disponibilidade", ControllerObras.mudarDisponibilidadeCopia);
         });
     }
 }
