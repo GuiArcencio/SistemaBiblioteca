@@ -1,9 +1,9 @@
 package app.Estados;
 
-public interface State {
-	public void emprestar();
-	public void disponibilizar();
-	public void reservar();
-	public void cancelar();
-	public State getState();
+public abstract class State {
+	public abstract State emprestar();
+	public abstract State disponibilizar();
+	public abstract State reservar();
+	public abstract State cancelar();
+	public abstract State getState();
 }

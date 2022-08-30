@@ -2,6 +2,7 @@ package app.Obra;
 
 import java.util.Date;
 import java.util.List;
+import app.Subject.Subject;
 
 import app.Estados.Disponivel.*;
 import app.CategoriaObra.*;
@@ -9,7 +10,7 @@ import app.Autor.*;
 import app.Copia.*;
 import app.Estados.*;
 
-public class Obra implements InterfaceObra {
+public class Obra extends Subject implements InterfaceObra {
 	int codigo;
 	int isbn;
 	CategoriaObra categoria;
@@ -71,9 +72,10 @@ public class Obra implements InterfaceObra {
 
 	@Override
 	public void adicionarCopia(int idCopia){
-		State state = new Disponivel();
+		State state = Disponivel.getInstancia();
 		Copia copia = new Copia(idCopia, state);
 		this.copias.add(copia);
+        this.notifyAllObservers();
 	}
 
 	@Override
@@ -88,11 +90,11 @@ public class Obra implements InterfaceObra {
 
 	@Override
 	public void marcarDevolverCopia(int idCopia){
-
+        this.notifyAllObservers();
 	}
 	
 	@Override
 	public void marcarDisponivelCopia(int idCopia){
-
+        this.notifyAllObservers();
 	}
 }
