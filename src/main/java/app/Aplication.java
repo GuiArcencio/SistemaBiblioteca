@@ -62,6 +62,8 @@ public class Aplication {
             );
         });
 
+        // TODO: Implementar REST
+
         // put("/autor/:id", (request, response) -> {
         //     //...
         // });
