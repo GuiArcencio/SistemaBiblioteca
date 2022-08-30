@@ -14,17 +14,13 @@ import spark.Route;
 
 public class ControllerObras {
 
-    
-
     /*
      * Busca todas as Obras
      */
     public static Route buscaObras = (Request req, Response res) -> {
         // TODO: Implementar
         res.status(501);
-        return new Gson().toJson(
-            new StandardResponse(StatusResponse.ERROR, "Não Implementado")
-        );
+        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
     };
 
     /*
@@ -33,9 +29,7 @@ public class ControllerObras {
     public static Route buscaObra = (Request req, Response res) -> {
         // TODO: Implementar
         res.status(501);
-        return new Gson().toJson(
-            new StandardResponse(StatusResponse.ERROR, "Não Implementado")
-        );
+        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
     };
 
     /*
@@ -44,9 +38,7 @@ public class ControllerObras {
     public static Route adicionarObra = (Request req, Response res) -> {
         // TODO: Implementar
         res.status(501);
-        return new Gson().toJson(
-            new StandardResponse(StatusResponse.ERROR, "Não Implementado")
-        );
+        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
     };
 
     /*
@@ -55,9 +47,7 @@ public class ControllerObras {
     public static Route removerObra = (Request req, Response res) -> {
         // TODO: Implementar
         res.status(501);
-        return new Gson().toJson(
-            new StandardResponse(StatusResponse.ERROR, "Não Implementado")
-        );
+        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
     };
 
     /*
@@ -66,9 +56,7 @@ public class ControllerObras {
     public static Route adicionarAutor = (Request req, Response res) -> {
         // TODO: Implementar
         res.status(501);
-        return new Gson().toJson(
-            new StandardResponse(StatusResponse.ERROR, "Não Implementado")
-        );
+        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
     };
     
     /*
@@ -77,9 +65,7 @@ public class ControllerObras {
     public static Route alterarAutor = (Request req, Response res) -> {
         // TODO: Implementar
         res.status(501);
-        return new Gson().toJson(
-            new StandardResponse(StatusResponse.ERROR, "Não Implementado")
-        );
+        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
     };
 
     /*
@@ -88,9 +74,7 @@ public class ControllerObras {
     public static Route removerAutor = (Request req, Response res) -> {
         // TODO: Implementar
         res.status(501);
-        return new Gson().toJson(
-            new StandardResponse(StatusResponse.ERROR, "Não Implementado")
-        );
+        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
     };
 
     /*
@@ -99,8 +83,6 @@ public class ControllerObras {
     public static Route mudarDisponibilidadeCopia = (Request req, Response res) -> {
         // TODO: Implementar
         res.status(501);
-        return new Gson().toJson(
-            new StandardResponse(StatusResponse.ERROR, "Não Implementado")
-        );
+        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
     };
 }

@@ -20,8 +20,7 @@ public class ControllerAutor {
         // TODO: Autor Service, DAO e tudo mais
         // autorService.addAutor(autor);
 
-        return new Gson()
-            .toJson(new StandardResponse(StatusResponse.SUCCESS));
+        return new StandardResponse(StatusResponse.SUCCESS);
     };
 
     public static Route getAutores = (Request request, Response response) -> {
@@ -33,11 +32,9 @@ public class ControllerAutor {
         autores.add(new Autor("Francisco Morato", "FM"));
         // Testando sem um banco de dados //
 
-        return new Gson().toJson(
-            new StandardResponse(StatusResponse.SUCCESS, new Gson()
+        return new StandardResponse(StatusResponse.SUCCESS, new Gson()
                 // .toJsonTree(autorService.getAutores())
                 .toJsonTree(autores)
-            )
         );
     };
 
@@ -48,11 +45,9 @@ public class ControllerAutor {
         Autor autor1 = new Autor("Cláudio Vanesso", "CV");
         // Testando sem um banco de dados
 
-        return new Gson().toJson(
-            new StandardResponse(StatusResponse.SUCCESS, new Gson()
+        return new StandardResponse(StatusResponse.SUCCESS, new Gson()
                 // .toJsonTree(autorService.getAutor(request.params(":nome")))
                 .toJsonTree(autor1)
-            )
         );
     };
 
