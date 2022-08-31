@@ -40,7 +40,7 @@ public class CopiaDAO extends GenericDAO{
 
             statement.setString(1, copia.getState().getState());
             statement.setLong(2, copia.getObraId());
-            statement.setInt(3, copia.getId());
+            statement.setLong(3, copia.getId());
             statement.executeUpdate();
 
             statement.close();
@@ -58,7 +58,7 @@ public class CopiaDAO extends GenericDAO{
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1, copia.getId());
+            statement.setLong(1, copia.getId());
             statement.executeUpdate();
 
             statement.close();
@@ -69,7 +69,7 @@ public class CopiaDAO extends GenericDAO{
     }
 
 
-    public Copia getById(int id){
+    public Copia getById(Long id){
         Copia copia = null;
 
         String sql = "SELECT * from Copia WHERE id = ?";
@@ -78,7 +78,7 @@ public class CopiaDAO extends GenericDAO{
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1, id);
+            statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
                 String statestr = resultSet.getString("state");

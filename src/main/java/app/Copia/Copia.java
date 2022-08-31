@@ -2,25 +2,25 @@ package app.Copia;
 import app.Estados.*;
 
 public class Copia {
-	private int id;
+	private Long id;
 	private State state;
     private Long obraId;
 	
-	public Copia(int id, State state) {
-		this.id = id;
+	public Copia(State state, Long obraId) {
 		this.state = state;
+        this.obraId = obraId;
 	}
 
-    public Copia(int id, State state, Long obraId) {
-        this(id, state);
-        this.obraId = obraId;
-    }
-
-    public void setId(int id){
+    public Copia(Long id, State state, Long obraId) {
+        this(state, obraId);
         this.id = id;
     }
 
-    public int getId() {
+    public void setId(Long id){
+        this.id = id;
+    }
+
+    public Long getId() {
         return this.id;
     }
 

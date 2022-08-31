@@ -66,26 +66,26 @@ public class Obra extends Subject {
 		this.palavrasChave.remove(indice);
 	}
 
-	public void adicionarCopia(int idCopia){
+	public void adicionarCopia(Long idCopia){
 		State state = Disponivel.getInstancia();
-		Copia copia = new Copia(idCopia, state);
+		Copia copia = new Copia(state, idCopia);
 		this.copias.add(copia);
         this.notifyAllObservers();
 	}
 
-	public void removerCopia(int idCopia){
+	public void removerCopia(Long idCopia){
 		
 	}
 
-	public void marcarEmprestadoCopia(int idCopia){
+	public void marcarEmprestadoCopia(Long idCopia){
 
 	}
 
-	public void marcarDevolverCopia(int idCopia){
+	public void marcarDevolverCopia(Long idCopia){
         this.notifyAllObservers();
 	}
 	
-	public void marcarDisponivelCopia(int idCopia){
+	public void marcarDisponivelCopia(Long idCopia){
         this.notifyAllObservers();
 	}
 }
