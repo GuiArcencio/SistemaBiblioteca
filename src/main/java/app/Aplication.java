@@ -2,6 +2,7 @@ package app;
 import static spark.Spark.*;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
 import app.Controllers.ControllerEmprestimo;
@@ -46,6 +47,7 @@ public class Aplication {
             // Exceptions
             exception(NumberFormatException.class, ControllerException.numberFormatException);
             exception(JsonSyntaxException.class, ControllerException.jsonSyntaxException);
+            exception(JsonParseException.class, ControllerException.jsonParseException);
         });
     }
 }

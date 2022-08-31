@@ -3,8 +3,10 @@ package app.Controllers;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import app.Domain.PacoteUsuarios.CategoriaLeitor;
+import app.Exception.AnnotatedDeserializer;
 import app.Service.impl.CategoriaLeitorService;
 import app.Service.spec.ICategoriaLeitorService;
 import app.StandardResponse.StandardResponse;
@@ -16,6 +18,12 @@ import spark.Route;
 public class ControllerCategoriaLeitor {
     
     private static ICategoriaLeitorService service = new CategoriaLeitorService();
+
+    private static Gson gsonCategoriaLeitor() {
+        return new GsonBuilder()
+        .registerTypeAdapter(CategoriaLeitor.class, new AnnotatedDeserializer<CategoriaLeitor>())
+        .create();
+    }
 
     /*
      * Retorna todas as categorias de leitor existentes
@@ -30,8 +38,9 @@ public class ControllerCategoriaLeitor {
      * Cria uma nova categoria de leitor
      */
     public static Route criarCategoria = (Request req, Response res) -> {
-        res.type("application/json");
-        CategoriaLeitor categoria = new Gson().fromJson(req.body(), CategoriaLeitor.class);
+        res.type("application/json"); 
+        Gson gson = gsonCategoriaLeitor();
+        CategoriaLeitor categoria = gson.fromJson(req.body(), CategoriaLeitor.class);
         if (service.insereCategoria(categoria)) {
             System.out.println("Categoria nova inserida:");
             System.out.println(new Gson().toJsonTree(categoria));

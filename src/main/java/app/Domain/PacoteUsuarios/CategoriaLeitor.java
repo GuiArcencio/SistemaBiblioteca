@@ -1,8 +1,14 @@
 package app.Domain.PacoteUsuarios;
 
+import app.Exception.AnnotatedDeserializer.JsonRequired;
+
 public class CategoriaLeitor {
     private Long id;
+
+    @JsonRequired
     private int maximoDiasEmprestimo;
+
+    @JsonRequired
     private String descricao;
 
     public CategoriaLeitor(Long id, int maximoDiasEmprestimo, String descricao){

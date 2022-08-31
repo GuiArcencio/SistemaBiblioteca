@@ -37,11 +37,11 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "e495e304-b02e-4437-a8bc-2080c54eb9ed",
     "name": "Deleta categoria",
-    "url": "localhost:4567/api/categoria/leitor/5",
+    "url": "localhost:4567/api/categoria/leitor/9",
     "method": "DELETE",
     "sortNum": 30000,
     "created": "2022-08-31T20:17:57.897Z",
-    "modified": "2022-08-31T20:29:01.287Z",
+    "modified": "2022-08-31T21:11:09.085Z",
     "headers": [],
     "params": [],
     "body": {
