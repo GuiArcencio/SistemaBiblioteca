@@ -8,6 +8,7 @@ import java.util.List;
 
 import app.Autor.Autor;
 import app.CategoriaObra.CategoriaObra;
+import app.Copia.Copia;
 
 public class ObraService implements IObraService{
     private ObraDAO dao;
@@ -16,10 +17,7 @@ public class ObraService implements IObraService{
         this.dao = new ObraDAO();
     }
 
-    // TODO: Potencialmente nessas funções de adicionar e tudo mais, colocar um retorno para indicar para o usuário
-    // Se por exemplo, ele está tentando inserir uma obra que já existe
-
-    // TODO: Substituir métodos pelo uso do dao
+    // TODO: Função de teste enquanto dao não está pronto
     @Override
     public Obra buscaObra(BigInteger isbn) {
         List<Autor> autores = new ArrayList<Autor>();
@@ -51,47 +49,98 @@ public class ObraService implements IObraService{
     }
 
     @Override
-    public void adicionarAutor(String autor) {
+    public void adicionarObra(Obra obra) {
+        // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void removerAutor(int indice) {
+    public List<Autor> buscarAutores() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void adicionarAutor(BigInteger isbn, Autor autor) {
+        // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void adicionarPalavraChave(String palavra) {
+    public void removerAutor(BigInteger isbn, Autor autor) {
+        // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void removerPalavraChave(int indice) {
+    public List<String> buscarPalavrasChave() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void adicionarPalavraChave(BigInteger isbn, String palavra) {
+        // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void adicionarCopia(int idCopia) {
+    public void removerPalavraChave(BigInteger isbn, String palavra) {
+        // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void removerCopia(int indice) {
+    public Copia buscarCopias(BigInteger isbn) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Copia buscarCopia(int idCopia) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void adicionarCopia(BigInteger isbn, Copia copia) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void removerCopia(BigInteger isbn, Copia copia) {
+        // TODO Auto-generated method stub
         
     }
 
     @Override
     public void marcarEmprestadoCopia(int idCopia) {
+        // TODO Auto-generated method stub
         
     }
 
     @Override
     public void marcarDevolverCopia(int idCopia) {
+        // TODO Auto-generated method stub
         
     }
 
     @Override
     public void marcarDisponivelCopia(int idCopia) {
+        // TODO Auto-generated method stub
         
     }
+
+    @Override
+    public void removerObra(Obra obra) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    // TODO: Potencialmente nessas funções de adicionar e tudo mais, colocar um retorno para indicar para o usuário
+    // Se por exemplo, ele está tentando inserir uma obra que já existe
+
+    // TODO: Substituir métodos pelo uso do dao
+    
 }

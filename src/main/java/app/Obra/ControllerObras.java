@@ -1,12 +1,10 @@
 package app.Obra;
-import static spark.Spark.*;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.google.gson.Gson;
 
+import app.Autor.Autor;
 import app.StandardResponse.StandardResponse;
 import app.StandardResponse.StatusResponse;
 import spark.Request;
@@ -18,80 +16,85 @@ public class ControllerObras {
     private static IObraService service = new ObraService();
 
     /*
-     * Busca todas as Obras
-     */
-    public static Route buscaObras = (Request req, Response res) -> {
-        // TODO: Implementar
-        res.status(501);
-        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
-    };
-
-    /*
      * Busca uma obra por ISBN
      */
     public static Route buscaObra = (Request req, Response res) -> {
-        try {
-            BigInteger isbn = new BigInteger(req.params(":isbn"));
-            Obra obra = service.buscaObra(isbn);
-            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
-        } catch (NumberFormatException e) {
-            System.out.println("Erro ao converter \"" + req.params(":isbn") + "\" em bigint");
-            res.status(400);
-            return new StandardResponse(StatusResponse.ERROR, "ISBN inválido");
-        }
+        res.type("application/json");
+        BigInteger isbn = new BigInteger(req.params(":isbn"));
+        Obra obra = service.buscaObra(isbn);
+        return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
     };
 
     /*
      * Adiciona uma obra
      */
     public static Route adicionarObra = (Request req, Response res) -> {
-        // TODO: Implementar
-        res.status(501);
-        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
+        res.type("application/json");
+        Obra obra = new Gson().fromJson(req.body(), Obra.class);
+        service.adicionarObra(obra);
+        return new StandardResponse(StatusResponse.SUCCESS);
     };
 
     /*
      * Remove uma obra por ISBN
      */
     public static Route removerObra = (Request req, Response res) -> {
-        // TODO: Implementar
-        res.status(501);
-        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
+        res.type("application/json");
+        BigInteger isbn = new BigInteger(req.params(":isbn"));
+        Obra obra = service.buscaObra(isbn);
+        service.removerObra(obra);
+        return new StandardResponse(StatusResponse.SUCCESS);
     };
 
     /*
      * Adiciona um autor
      */
     public static Route adicionarAutor = (Request req, Response res) -> {
-        // TODO: Implementar
-        res.status(501);
-        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
-    };
-    
-    /*
-     * Altera um autor
-     */
-    public static Route alterarAutor = (Request req, Response res) -> {
-        // TODO: Implementar
-        res.status(501);
-        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
+        res.type("application/json");
+        Autor autor = new Gson().fromJson(req.body(), Autor.class);
+        BigInteger isbn = new BigInteger(req.params(":isbn"));
+        service.adicionarAutor(isbn, autor);
+        return new StandardResponse(StatusResponse.SUCCESS);
     };
 
     /*
      * Remove um autor por nome
      */
     public static Route removerAutor = (Request req, Response res) -> {
-        // TODO: Implementar
-        res.status(501);
-        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
+        res.type("application/json");
+        BigInteger isbn = new BigInteger(req.params(":isbn"));
+        Autor autor = new Gson().fromJson(req.body(), Autor.class);
+        service.removerAutor(isbn, autor);
+        return new StandardResponse(StatusResponse.SUCCESS);
+    };
+
+    /*
+     * Adiciona uma palavra chave a uma obra
+     */
+    public static Route adicionarPalavraChave = (Request req, Response res) -> {
+        res.type("application/json");
+        String palavra = new Gson().fromJson(req.body(), String.class);
+        BigInteger isbn = new BigInteger(req.params(":isbn"));
+        service.adicionarPalavraChave(isbn, palavra);
+        return new StandardResponse(StatusResponse.SUCCESS);
+    };
+
+    /*
+     * Remove uma palavra chave a uma obra
+     */
+    public static Route removerPalavraChave = (Request req, Response res) -> {
+        res.type("application/json");
+        String palavra = new Gson().fromJson(req.body(), String.class);
+        BigInteger isbn = new BigInteger(req.params(":isbn"));
+        service.removerPalavraChave(isbn, palavra);
+        return new StandardResponse(StatusResponse.SUCCESS);
     };
 
     /*
      * Altera disponibilidade de uma cópia por código
      */
-    public static Route mudarDisponibilidadeCopia = (Request req, Response res) -> {
-        // TODO: Implementar
-        res.status(501);
-        return new StandardResponse(StatusResponse.ERROR, "Não Implementado");
-    };
+    // TODO: Faz como aqui?
+    // public static Route mudarDisponibilidadeCopia = (Request req, Response res) -> {
+    //     res.type("application/json");
+    // };
 }
