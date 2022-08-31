@@ -1,7 +1,7 @@
 package app.Leitor;
 
 import app.Usuario.Usuario;
-import app.CategoriaLeitor.CategoriaLeitor;
+//import app.CategoriaLeitor.CategoriaLeitor;
 //import app.Disciplina;
 
 
@@ -12,6 +12,10 @@ public class Leitor extends Usuario {
     //private Disciplina disciplina;
     private boolean grupoAcademico;
     private CategoriaLeitor categoria;
+
+    public Leitor(Long id){
+        this.id = id;
+    }
 
     public Leitor(Long id, String email, String documentoId, boolean grupoAcademico, CategoriaLeitor categoria){
         this.id = id;

@@ -32,7 +32,7 @@ public class LeitorDAO extends GenericDAO {
     }
 
     public void update(Leitor leitor) {
-        String sql = "UPDATE Leitor SET email = ?, documentoId = ?, grupoAcademico = ? WHERE id = ?";
+        String sql = "UPDATE Leitor SET email = ?, documentoId = ?, grupoAcademico = ?, categoria_id = ? WHERE id = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -41,7 +41,8 @@ public class LeitorDAO extends GenericDAO {
             statement.setString(1, leitor.getEmail());
             statement.setString(2, leitor.getDocumentoId());
             statement.setBoolean(3, leitor.getGrupoAcademico());
-            statement.setLong(4, leitor.getId());
+            statement.setLong(4, leitor.getCategori().getId());
+            statement.setLong(5, leitor.getId());
             statement.executeUpdate();
 
             statement.close();
@@ -70,7 +71,7 @@ public class LeitorDAO extends GenericDAO {
 
 
     public Leitor getById(Long id){
-        Leitor Leitor = null;
+        Leitor leitor = null;
 
         String sql = "SELECT * from Leitor WHERE id = ?";
 
@@ -97,7 +98,7 @@ public class LeitorDAO extends GenericDAO {
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
-        return Leitor;
+        return leitor;
 
     }
 }

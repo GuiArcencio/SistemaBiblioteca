@@ -4,12 +4,29 @@ import app.Endereco.Endereco;
 import java.util.Date;
 
 public class Usuario {
+    private Long id;
     private String nome;
     private String telefone;
     private Date dataNascimento;
     private Endereco endereco;
     private String role;
 
+    public Usuario(Long id, String nome, String telefone, Date dataNascimento, Endereco endereco, String role){
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.dataNascimento = dataNascimento;
+        this.endereco = endereco;
+        this.role = role;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return this.nome;

@@ -82,6 +82,7 @@ CREATE TABLE Usuario(
     id bigint not NULL auto_increment,
     nome varchar(50) not NULL,
     telefone varchar(20) not NULL,
+    dataNascimento date not null,
     endereco_id bigint,
     role varchar(20) not NULL,
     CONSTRAINT usuario_pk PRIMARY KEY(id)
