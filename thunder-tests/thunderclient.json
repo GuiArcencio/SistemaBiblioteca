@@ -37,11 +37,11 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "e495e304-b02e-4437-a8bc-2080c54eb9ed",
     "name": "Deleta categoria",
-    "url": "localhost:4567/api/categoria/leitor/6",
+    "url": "localhost:4567/api/categoria/leitor/5",
     "method": "DELETE",
     "sortNum": 30000,
     "created": "2022-08-31T20:17:57.897Z",
-    "modified": "2022-08-31T20:17:57.897Z",
+    "modified": "2022-08-31T20:29:01.287Z",
     "headers": [],
     "params": [],
     "body": {
@@ -56,16 +56,16 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "e495e304-b02e-4437-a8bc-2080c54eb9ed",
     "name": "Altera categoria",
-    "url": "localhost:4567/api/categoria/leitor/7",
+    "url": "localhost:4567/api/categoria/leitor/4",
     "method": "PUT",
     "sortNum": 40000,
     "created": "2022-08-31T20:19:00.842Z",
-    "modified": "2022-08-31T20:19:00.842Z",
+    "modified": "2022-08-31T20:29:48.505Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"maximoDiasEmprestimo\": 80,\n  \"descricao\": \"Docente\"\n}",
+      "raw": "{\n  \"maximoDiasEmprestimo\": 10000,\n  \"descricao\": \"Leitor Amigo da Direção\"\n}",
       "form": []
     },
     "tests": []
