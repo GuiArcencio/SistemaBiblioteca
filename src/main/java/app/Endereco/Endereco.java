@@ -33,7 +33,7 @@ public class Endereco {
         return this.logradouro;
     }
 
-    public void setNumero() {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
@@ -46,7 +46,7 @@ public class Endereco {
     }
 
     public int getCep() {
-        return this.numero;
+        return this.cep;
     }
 
     public void setCidade(String cidade) {
