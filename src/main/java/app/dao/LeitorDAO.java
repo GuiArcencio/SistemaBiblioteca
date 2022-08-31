@@ -10,7 +10,7 @@ import app.Leitor.Leitor;
 public class LeitorDAO extends GenericDAO {
     
     public void insert(Leitor leitor){
-        String sql = "INSERT INTO Leitor (email, documentoId, grupoAcademico) VALUES (?, ?, ?, ?, ?) ";
+        String sql = "INSERT INTO Leitor (email, documentoId, grupoAcademico, categoria) VALUES (?, ?, ?, ?) ";
 
         try{
             Connection conn = this.getConnection();
@@ -20,6 +20,7 @@ public class LeitorDAO extends GenericDAO {
             statement.setString(1, leitor.getEmail());
             statement.setString(2, leitor.getDocumentoId());
             statement.setBoolean(3, leitor.getGrupoAcademico());
+            statement.setLong(4, leitor.getCategoria().getId())
             statement.executeUpdate();
 
             statement.close();

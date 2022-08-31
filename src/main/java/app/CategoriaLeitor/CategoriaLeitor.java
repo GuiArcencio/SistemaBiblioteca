@@ -1,16 +1,16 @@
 package app.CategoriaLeitor;
 
 public class CategoriaLeitor {
-    private int codigo;
+    private Long id;
     private int maximoDiasEmprestimo;
     private String descricao;
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public int getCodigo() {
-        return this.codigo;
+    public Long getId() {
+        return this.id;
     }
 
     public void setMaximoDiasEmprestimo(int maximoDiasEmprestimo) {
