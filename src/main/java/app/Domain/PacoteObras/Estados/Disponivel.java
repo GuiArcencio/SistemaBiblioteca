@@ -1,6 +1,5 @@
-package app.Estados;
+package app.Domain.PacoteObras.Estados;
 
-import app.Estados.State;
 
 public class Disponivel extends State {
 

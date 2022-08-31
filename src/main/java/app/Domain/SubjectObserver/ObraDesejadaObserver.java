@@ -1,8 +1,8 @@
-package app.Observer;
+package app.Domain.SubjectObserver;
 
 
-import app.Leitor.Leitor;
-import app.Subject.Subject;
+import app.Domain.PacoteUsuarios.Leitor;
+import app.Domain.SubjectObserver.Subject;
 
 public class ObraDesejadaObserver extends Observer {
     private Leitor leitorInteressado;

@@ -4,10 +4,10 @@ import static spark.Spark.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
-import app.Autor.ControllerAutor;
+//import app.Controllers.ControllerAutor;
 import app.Controllers.ControllerEmprestimo;
 import app.Exception.ControllerException;
-import app.Obra.ControllerObras;
+import app.Controllers.ControllerObras;
 
 public class Aplication {
 
@@ -19,9 +19,9 @@ public class Aplication {
             before("/*", (q, a) -> System.out.println("Chamada API recebida"));
 
             // Essas rotas foram utilizadas para teste
-            post("/autor",       ControllerAutor.insere, gson::toJson);
-            get("/autor",        ControllerAutor.getAutores, gson::toJson);
-            get("/autor/:nome",  ControllerAutor.getAutor, gson::toJson);
+//            post("/autor",       ControllerAutor.insere, gson::toJson);
+//            get("/autor",        ControllerAutor.getAutores, gson::toJson);
+//            get("/autor/:nome",  ControllerAutor.getAutor, gson::toJson);
 
             // Rotas do ControllerObras
             get("/obra/:isbn",             ControllerObras.buscaObra, gson::toJson);

@@ -1,6 +1,6 @@
-package app.Usuario;
+package app.Domain.PacoteUsuarios;
 
-import app.Endereco.Endereco;
+import app.Domain.PacoteUsuarios.Endereco;
 import java.util.Date;
 
 public class Usuario {

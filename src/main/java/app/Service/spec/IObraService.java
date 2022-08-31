@@ -3,9 +3,9 @@ package app.Service.spec;
 import java.math.BigInteger;
 import java.util.List;
 
-import app.Autor.Autor;
-import app.Copia.Copia;
-import app.Domain.Obra;
+import app.Domain.PacoteObras.Autor;
+import app.Domain.PacoteObras.Copia;
+import app.Domain.PacoteObras.Obra;
 
 public interface IObraService {
     Obra buscaObra(BigInteger isbn);

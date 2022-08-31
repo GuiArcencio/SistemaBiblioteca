@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 
 
-import app.Editora.Editora;
+import app.Domain.PacoteObras.Editora;
 
 
 public class EditoraDAO extends GenericDAO{

@@ -1,14 +1,13 @@
-package app.Domain;
+package app.Domain.PacoteObras;
 
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
-import app.Subject.Subject;
-
-import app.CategoriaObra.*;
-import app.Autor.*;
-import app.Copia.*;
-import app.Estados.*;
+import app.Domain.SubjectObserver.Subject;
+import app.Domain.PacoteObras.CategoriaObra;
+import app.Domain.PacoteObras.Autor;
+import app.Domain.PacoteObras.Copia;
+import app.Domain.PacoteObras.Estados.*;
 
 public class Obra extends Subject {
 	int codigo;

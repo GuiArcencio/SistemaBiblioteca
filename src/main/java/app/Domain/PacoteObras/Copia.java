@@ -1,5 +1,6 @@
-package app.Copia;
-import app.Estados.*;
+package app.Domain.PacoteObras;
+
+import app.Domain.PacoteObras.Estados.*;
 
 public class Copia {
 	private Long id;

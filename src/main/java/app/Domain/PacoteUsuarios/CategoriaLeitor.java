@@ -1,4 +1,4 @@
-package app.CategoriaLeitor;
+package app.Domain.PacoteUsuarios;
 
 public class CategoriaLeitor {
     private Long id;

@@ -8,9 +8,9 @@ import java.sql.ResultSet;
 import java.util.Date;
 
 //import app.Funcionario.Funcionario;
-import app.Leitor.Leitor;
-import app.Copia.Copia;
-import app.EntradaSaidaObras.Emprestimo;
+import app.Domain.PacoteUsuarios.Leitor;
+import app.Domain.PacoteObras.Copia;
+import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
 
 public class EmprestimoDAO extends GenericDAO {
 

@@ -1,4 +1,4 @@
-package app.Autor;
+package app.Domain.PacoteObras;
 
 public class Autor {
     private Long id;

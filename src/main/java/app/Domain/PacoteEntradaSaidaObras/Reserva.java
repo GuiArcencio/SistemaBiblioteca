@@ -1,9 +1,9 @@
-package app.EntradaSaidaObras;
+package app.Domain.PacoteEntradaSaidaObras;
 
 import java.util.Date;
-import app.Subject.Subject;
-import app.Copia.Copia;
-import app.Leitor.Leitor;
+import app.Domain.SubjectObserver.Subject;
+import app.Domain.PacoteObras.Copia;
+import app.Domain.PacoteUsuarios.Leitor;
 //import app.Funcionario.Funcionario;
 
 public class Reserva extends Subject {

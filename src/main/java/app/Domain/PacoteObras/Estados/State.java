@@ -1,4 +1,4 @@
-package app.Estados;
+package app.Domain.PacoteObras.Estados;
 
 public abstract class State {
 	public abstract State emprestar();
