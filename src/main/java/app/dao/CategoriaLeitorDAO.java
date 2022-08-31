@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import app.Leitor.Leitor;
 import app.CategoriaLeitor.CategoriaLeitor;
 
@@ -102,8 +105,9 @@ public class CategoriaLeitorDAO extends GenericDAO {
 
 
         try {
+
             Connection conn = this.getConnection();
-            Statement statement = conn.createStatement();
+            PreparedStatement statement = conn.prepareStatement(sql);
 
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {

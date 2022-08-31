@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
+import java.util.Date;
+
 import app.Usuario.Usuario;
+import app.Endereco.Endereco;
 
 public class UsuarioDAO extends GenericDAO {
     
@@ -19,7 +22,8 @@ public class UsuarioDAO extends GenericDAO {
             statement = conn.prepareStatement(sql);
             statement.setString(1, usuario.getNome());
             statement.setString(2, usuario.getTelefone());
-            statement.setDate(3, usuario.getDataNascimento());
+            java.sql.Date mySQLDate = new java.sql.Date(usuario.getDataNascimento().getTime());
+            statement.setDate(3, mySQLDate);
             statement.setLong(4, usuario.getEndereco().getId());
             statement.setString(5, usuario.getRole());
             statement.executeUpdate();
@@ -40,7 +44,8 @@ public class UsuarioDAO extends GenericDAO {
 
             statement.setString(1, usuario.getNome());
             statement.setString(2, usuario.getTelefone());
-            statement.setDate(3, usuario.getDataNascimento());
+            java.sql.Date mySQLDate = new java.sql.Date(usuario.getDataNascimento().getTime());
+            statement.setDate(3, mySQLDate);
             statement.setString(4, usuario.getRole());
             statement.setLong(5, usuario.getId());
             statement.executeUpdate();
@@ -59,7 +64,7 @@ public class UsuarioDAO extends GenericDAO {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setLong(1, Usuario.getId());
+            statement.setLong(1, usuario.getId());
             statement.executeUpdate();
 
             statement.close();
@@ -84,14 +89,14 @@ public class UsuarioDAO extends GenericDAO {
             if(resultSet.next()){
                 String nome = resultSet.getString("nome");
                 String telefone = resultSet.getString("telefone");
-                boolean dataNascimento = resultSet.getDate("dataNascimento");
+                Date dataNascimento = resultSet.getDate("dataNascimento");
                 String role = resultSet.getString("role");
 
                 Long enderecoId = resultSet.getLong("id");
                 Endereco endereco = new EnderecoDAO().getById(enderecoId);
 
 
-                Usuario = new Usuario(id, nome, telefone, dataNascimento, endereco, role);
+                usuario = new Usuario(id, nome, telefone, dataNascimento, endereco, role);
             }
             resultSet.close();
             statement.close();

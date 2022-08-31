@@ -4,12 +4,16 @@ import app.Endereco.Endereco;
 import java.util.Date;
 
 public class Usuario {
-    private Long id;
+    protected Long id;
     private String nome;
     private String telefone;
     private Date dataNascimento;
     private Endereco endereco;
     private String role;
+
+    public Usuario() {
+
+    }
 
     public Usuario(Long id, String nome, String telefone, Date dataNascimento, Endereco endereco, String role){
         this.id = id;
