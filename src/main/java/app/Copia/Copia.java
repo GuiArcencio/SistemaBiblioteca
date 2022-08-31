@@ -33,7 +33,7 @@ public class Copia {
     }
 
     public void setObraId(Long obraID){
-        this.obraId = obraId;
+        this.obraId = obraID;
     }
 
     public Long getObraId() {

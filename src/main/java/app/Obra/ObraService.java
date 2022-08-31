@@ -9,6 +9,7 @@ import java.util.List;
 import app.Autor.Autor;
 import app.CategoriaObra.CategoriaObra;
 import app.Copia.Copia;
+import app.dao.ObraDAO;
 
 public class ObraService implements IObraService{
     private ObraDAO dao;

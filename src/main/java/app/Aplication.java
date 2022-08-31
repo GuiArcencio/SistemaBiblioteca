@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 import app.Autor.ControllerAutor;
+import app.Controllers.ControllerEmprestimo;
 import app.Exception.ControllerException;
 import app.Obra.ControllerObras;
 
@@ -31,6 +32,13 @@ public class Aplication {
             post("/obra/:isbn/palavras",   ControllerObras.adicionarPalavraChave, gson::toJson);
             delete("/obra/:isbn/palavras", ControllerObras.removerPalavraChave, gson::toJson);
             // put("/copia/:codigo/disp",     ControllerObras.mudarDisponibilidadeCopia, gson::toJson);
+
+            // Rotas de ControllerEmprestimo
+            get("/usuario/:id/emprestimo",        ControllerEmprestimo.consultarEmprestimo, gson::toJson);
+            get("/usuario/:id/devolucao",         ControllerEmprestimo.consultarDevolucao, gson::toJson);
+            patch("/usuario/:id/emprestimo/:isbn",ControllerEmprestimo.emprestarObra, gson::toJson);
+            patch("/usuario/:id/reserva/:isbn",   ControllerEmprestimo.reservarObra, gson::toJson);
+            patch("/usuario/:id/devolucao/:isbn", ControllerEmprestimo.devolverObra, gson::toJson);
 
             // get("/usuario/:ra/dependencias", ControllerUsuario.buscaDependencia);
             
