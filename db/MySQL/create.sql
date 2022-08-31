@@ -13,7 +13,7 @@ CREATE TABLE Obra(
     palavraChave varchar(256),
     dataPublicacao date not NULL,
     numEdicao int not NULL,
-    editora varchar(256) not NULL,
+    editora_id bigint not NULL,
     numPaginas bigint not NULL,
     CONSTRAINT obra_pk PRIMARY KEY (codigo)
 );
@@ -31,6 +31,12 @@ CREATE TABLE RelObraAutor(
     codigo_autor bigint not NULL,
     codigo_obra bigint not NULL,
     CONSTRAINT obraAutor_pk PRIMARY KEY(id)
+);
+
+CREATE TABLE Editora(
+    id bigint not NULL auto_increment,
+    nome varchar(100) not NULL,
+    CONSTRAINT editora_pk PRIMARY KEY(id)
 );
 
 CREATE TABLE CategoriaObra(
