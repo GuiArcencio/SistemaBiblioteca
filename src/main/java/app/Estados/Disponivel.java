@@ -42,8 +42,8 @@ public class Disponivel extends State {
 	}
 
 	@Override
-	public State getState() {
-		return this;
+	public String getState() {
+		return "Disponivel";
 	}
 
 }

@@ -41,8 +41,8 @@ public class Reservado extends State {
 
 
 	@Override
-	public State getState() {
-		return this;
+	public String getState() {
+		return "Reservado";
 	}
 
 }
