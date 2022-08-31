@@ -3,13 +3,23 @@ package app.Domain.PacoteUsuarios;
 
 import app.Domain.PacoteUsuarios.CategoriaLeitor;
 //import app.Disciplina;
+import app.Exception.AnnotatedDeserializer.JsonRequired;
 
 
 public class Leitor extends Usuario {
+    @JsonRequired
     private String email;
+
+    @JsonRequired
     private String documentoId;
+
+    // @JsonRequired
     //private Disciplina disciplina;
+
+    @JsonRequired
     private boolean grupoAcademico;
+
+    @JsonRequired
     private CategoriaLeitor categoria;
 
     public Leitor(Long id){

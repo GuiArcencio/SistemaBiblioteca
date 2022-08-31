@@ -3,8 +3,11 @@ package app.Domain.SubjectObserver;
 
 import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.SubjectObserver.Subject;
+import app.Exception.AnnotatedDeserializer.JsonRequired;
 
 public class ObraDesejadaObserver extends Observer {
+
+    @JsonRequired
     private Leitor leitorInteressado;
 
     public ObraDesejadaObserver(Subject subject, Leitor leitor){

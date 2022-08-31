@@ -3,9 +3,11 @@ package app.Controllers;
 import java.math.BigInteger;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import app.Domain.PacoteObras.Autor;
 import app.Domain.PacoteObras.Obra;
+import app.Exception.AnnotatedDeserializer;
 import app.Service.impl.ObraService;
 import app.Service.spec.IObraService;
 import app.StandardResponse.StandardResponse;
@@ -17,6 +19,18 @@ import spark.Route;
 public class ControllerObras {
 
     private static IObraService service = new ObraService();
+
+    private static Gson gsonObra() {
+        return new GsonBuilder()
+        .registerTypeAdapter(Obra.class, new AnnotatedDeserializer<Obra>())
+        .create();
+    }
+
+    private static Gson gsonAutor() {
+        return new GsonBuilder()
+        .registerTypeAdapter(Autor.class, new AnnotatedDeserializer<Autor>())
+        .create();
+    }
 
     /*
      * Busca uma obra por ISBN
@@ -33,7 +47,8 @@ public class ControllerObras {
      */
     public static Route adicionarObra = (Request req, Response res) -> {
         res.type("application/json");
-        Obra obra = new Gson().fromJson(req.body(), Obra.class);
+        Gson gson = gsonObra();
+        Obra obra = gson.fromJson(req.body(), Obra.class);
         service.adicionarObra(obra);
         return new StandardResponse(StatusResponse.SUCCESS);
     };
@@ -54,7 +69,8 @@ public class ControllerObras {
      */
     public static Route adicionarAutor = (Request req, Response res) -> {
         res.type("application/json");
-        Autor autor = new Gson().fromJson(req.body(), Autor.class);
+        Gson gson = gsonAutor();
+        Autor autor = gson.fromJson(req.body(), Autor.class);
         BigInteger isbn = new BigInteger(req.params(":isbn"));
         service.adicionarAutor(isbn, autor);
         return new StandardResponse(StatusResponse.SUCCESS);

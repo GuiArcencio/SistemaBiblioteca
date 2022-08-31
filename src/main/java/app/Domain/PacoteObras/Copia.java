@@ -1,10 +1,15 @@
 package app.Domain.PacoteObras;
 
 import app.Domain.PacoteObras.Estados.*;
+import app.Exception.AnnotatedDeserializer.JsonRequired;
 
 public class Copia {
 	private Long id;
+
+    @JsonRequired
 	private State state;
+
+    @JsonRequired
     private Long obraId;
 	
 	public Copia(State state, Long obraId) {

@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 import app.Domain.SubjectObserver.Subject;
+import app.Exception.AnnotatedDeserializer.JsonRequired;
 import app.Domain.PacoteObras.CategoriaObra;
 import app.Domain.PacoteObras.Autor;
 import app.Domain.PacoteObras.Copia;
@@ -11,14 +12,32 @@ import app.Domain.PacoteObras.Estados.*;
 
 public class Obra extends Subject {
 	int codigo;
+
+	@JsonRequired
 	BigInteger isbn;
+
+	@JsonRequired
 	CategoriaObra categoria;
+
+	@JsonRequired
 	List<Autor> autores;
+
+	@JsonRequired
 	List<String> palavrasChave;
+
+	@JsonRequired
 	Date dataPublicacao;
+
+	@JsonRequired
 	String Edicao;
+
+	@JsonRequired
 	String editora;
+
+	@JsonRequired
 	int numeroPaginas;
+
+	@JsonRequired
 	List<Copia> copias;
 	
 	public Obra(

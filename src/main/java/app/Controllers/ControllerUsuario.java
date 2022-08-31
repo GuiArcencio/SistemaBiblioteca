@@ -3,10 +3,13 @@ package app.Controllers;
 import java.math.BigInteger;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-import app.Leitor.*;
-import app.Usuario.*;
-import app.dao.UsuairoDAO;
+import app.Domain.PacoteUsuarios.Usuario;
+import app.Exception.AnnotatedDeserializer;
+import app.Domain.PacoteUsuarios.Leitor;
+import app.Domain.PacoteUsuarios.Usuario;
+import app.dao.UsuarioDAO;
 import app.dao.LeitorDAO;
 import app.StandardResponse.StandardResponse;
 import app.StandardResponse.StatusResponse;
@@ -19,6 +22,17 @@ public class ControllerUsuario {
     private UsuarioDAO uDAO;
     private LeitorDAO lDAO;
 
+    private static Gson gsonUsuario() {
+        return new GsonBuilder()
+        .registerTypeAdapter(Usuario.class, new AnnotatedDeserializer<Usuario>())
+        .create();
+    }
+
+    private static Gson gsonLeitor() {
+        return new GsonBuilder()
+        .registerTypeAdapter(Leitor.class, new AnnotatedDeserializer<Leitor>())
+        .create();
+    }
     
     public void init() {
         uDAO = new UsuarioDAO();
@@ -30,7 +44,8 @@ public class ControllerUsuario {
      */
     public static Route criarLeitor = (Request req, Response res) -> {
         res.type("application/json");
-        Leitor leitor = new Gson().fromJson(req.body(), Leitor.class);
+        Gson gson = gsonLeitor();
+        Leitor leitor = gson.fromJson(req.body(), Leitor.class);
         lDAO.insert(leitor);
         return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
     };
@@ -40,7 +55,8 @@ public class ControllerUsuario {
      */
     public static Route criarLeitor = (Request req, Response res) -> {
         res.type("application/json");
-        Leitor leitor = new Gson().fromJson(req.body(), Leitor.class);
+        Gson gson = gsonLeitor();
+        Leitor leitor = gson.fromJson(req.body(), Leitor.class);
         lDAO.insert(leitor);
         return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
     };
@@ -50,7 +66,8 @@ public class ControllerUsuario {
      */
     public static Route criarLeitor = (Request req, Response res) -> {
         res.type("application/json");
-        Leitor leitor = new Gson().fromJson(req.body(), Leitor.class);
+        Gson gson = gsonLeitor();
+        Leitor leitor = gson.fromJson(req.body(), Leitor.class);
         lDAO.insert(leitor);
         return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
     };

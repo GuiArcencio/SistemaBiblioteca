@@ -1,11 +1,23 @@
 package app.Domain.PacoteUsuarios;
 
+import app.Exception.AnnotatedDeserializer.JsonRequired;
+
 public class Endereco {
     private Long id;
+
+    @JsonRequired
     private String logradouro;
+
+    @JsonRequired
     private int numero;
+
+    @JsonRequired
     private int cep;
+
+    @JsonRequired
     private String cidade;
+
+    @JsonRequired
     private String estado;
 
     public Endereco(Long id, String logradouro, int numero, int cep, String cidade, String estado) {

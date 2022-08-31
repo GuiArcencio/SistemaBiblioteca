@@ -4,7 +4,11 @@ import java.math.BigInteger;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
+import app.Domain.PacoteObras.Estados.Emprestado;
+import app.Exception.AnnotatedDeserializer;
 import app.Service.impl.EmprestimoService;
 import app.Service.spec.IEmprestimoService;
 import app.StandardResponse.StandardResponse;
@@ -16,6 +20,12 @@ import spark.Route;
 public class ControllerEmprestimo {
     
     private static IEmprestimoService service = new EmprestimoService();
+
+    private static Gson gsonEmprestimo() {
+        return new GsonBuilder()
+        .registerTypeAdapter(Emprestimo.class, new AnnotatedDeserializer<Emprestimo>())
+        .create();
+    }
 
     // /*
     //  * Recebe Usuário

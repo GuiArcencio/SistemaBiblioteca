@@ -2,17 +2,30 @@ package app.Domain.PacoteEntradaSaidaObras;
 
 import java.util.Date;
 import app.Domain.SubjectObserver.Subject;
+import app.Exception.AnnotatedDeserializer.JsonRequired;
 import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteUsuarios.Leitor;
 //import app.Funcionario.Funcionario
 
 public class Emprestimo extends Subject{
     private Long id;
+
+    @JsonRequired
     private Date dataEmprestimo;
+
+    @JsonRequired
     private Date dataPrevistaDevolucao;
+
+    //@JsonRequired
     //private Funcionario funcionarioResponsavel;
+
+    @JsonRequired
     private Copia copia;
+
+    @JsonRequired
     private Leitor leitor;
+
+    @JsonRequired
     private boolean atrasado;
     
     public Emprestimo(Long id, Date dataEmprestimo, Date dataPrevistaDevolucao, Copia copia, Leitor leitor, boolean atrasado) {

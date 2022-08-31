@@ -1,7 +1,11 @@
 package app.Domain.PacoteObras;
 
+import app.Exception.AnnotatedDeserializer.JsonRequired;
+
 public class Editora {
     private Long id;
+
+    @JsonRequired
     private String nome;
 
     public Editora(Long id, String nome) {

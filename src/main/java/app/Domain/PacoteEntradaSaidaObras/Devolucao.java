@@ -2,11 +2,18 @@ package app.Domain.PacoteEntradaSaidaObras;
 
 import java.util.Date;
 import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
+import app.Exception.AnnotatedDeserializer.JsonRequired;
 
 public class Devolucao {
     private Long id;
+
+    @JsonRequired
     private Date dataDevolucao;
+
+    @JsonRequired
     private double multaTotal;
+
+    @JsonRequired
     private Emprestimo emprestimoCorrespondente;
 
     public Devolucao(Long id, Date dataDevolucao, double multaTotal, Emprestimo emprestimoCorrespondente) {

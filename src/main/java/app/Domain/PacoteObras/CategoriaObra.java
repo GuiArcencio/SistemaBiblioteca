@@ -1,9 +1,17 @@
 package app.Domain.PacoteObras;
 
+import app.Exception.AnnotatedDeserializer.JsonRequired;
+
 public class CategoriaObra {
 	int codigo;
+
+    @JsonRequired
 	String descricao;
+
+    @JsonRequired
 	int maximoDiasEmprestimo;
+
+    @JsonRequired
 	double taxaMulta;
 	
 	public CategoriaObra(int codigo, String descricao, int maximoDiasEmprestimo, double taxaMulta) {

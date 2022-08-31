@@ -1,14 +1,26 @@
 package app.Domain.PacoteUsuarios;
 
 import app.Domain.PacoteUsuarios.Endereco;
+import app.Exception.AnnotatedDeserializer.JsonRequired;
+
 import java.util.Date;
 
 public class Usuario {
     protected Long id;
+
+    @JsonRequired
     private String nome;
+
+    @JsonRequired
     private String telefone;
+
+    @JsonRequired
     private Date dataNascimento;
+
+    @JsonRequired
     private Endereco endereco;
+
+    @JsonRequired
     private String role;
 
     public Usuario() {

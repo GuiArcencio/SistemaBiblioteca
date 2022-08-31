@@ -2,17 +2,30 @@ package app.Domain.PacoteEntradaSaidaObras;
 
 import java.util.Date;
 import app.Domain.SubjectObserver.Subject;
+import app.Exception.AnnotatedDeserializer.JsonRequired;
 import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteUsuarios.Leitor;
 //import app.Funcionario.Funcionario;
 
 public class Reserva extends Subject {
     private Long id;
+
+    @JsonRequired
     private Date dataReserva;
+
+    @JsonRequired
     private Date dataPrevistaRetirada;
+
+    @JsonRequired
     private Date dataPrevistaDevolucao;
+
+    // @JsonRequired
     //private Funcionario funcionarioResponsavel
+
+    @JsonRequired
     private Leitor leitor;
+
+    @JsonRequired
     private Copia copiaReservada;
 
     public Reserva(Long id, Date dataReserva, Date dataPrevistaRetirada, Date dataPrevistaDevolucao, Leitor leitor, Copia copiaReservada) {

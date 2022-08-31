@@ -1,8 +1,14 @@
 package app.Domain.PacoteObras;
 
+import app.Exception.AnnotatedDeserializer.JsonRequired;
+
 public class Autor {
     private Long id;
+
+    @JsonRequired
 	private String nome;
+
+    @JsonRequired
 	private String iniciais;
 	
 	public Autor(String nome, String iniciais) {
