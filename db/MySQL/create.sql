@@ -78,3 +78,36 @@ CREATE TABLE Reserva(
     CONSTRAINT emprestimo_pk PRIMARY KEY(id)
 );
 
+CREATE TABLE Usuario(
+    id bigint not NULL auto_increment,
+    nome varchar(50) not NULL,
+    telefone varchar(20) not NULL,
+    endereco_id bigint,
+    role varchar(20) not NULL,
+    CONSTRAINT usuario_pk PRIMARY KEY(id)
+);
+
+CREATE TABLE Endereco(
+    id bigint not NULL auto_increment,
+    logradouro varchar(50) not NULL,
+    numero int not NULL,
+    cep int not NULL,
+    cidade varchar(20),
+    estado varchar(20),
+    CONSTRAINT endereco_pk PRIMARY KEY(id)
+);
+
+CREATE TABLE Leitor(
+    id bigint not NULL auto_increment,
+    email varchar(50) not NULL,
+    categoria_id bigint,
+    grupoAcademico boolean not NULL,
+    CONSTRAINT leitor_pk PRIMARY KEY(id)
+);
+
+CREATE TABLE CategoriaLeitor(
+    codigo bigint not NULL auto_increment,
+    maximoDiasEmprestimo int not NULL,
+    descricao varchar(50),
+    CONSTRAINT categoriaLeitor_pk PRIMARY KEY(codigo)
+);

@@ -1,11 +1,29 @@
 package app.Endereco;
 
 public class Endereco {
+    private Long id;
     private String logradouro;
     private int numero;
     private int cep;
     private String cidade;
     private String estado;
+
+    public Endereco(Long id, String logradouro, int numero, int cep, String cidade, String estado) {
+        this.id = id;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.cep = cep;
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
 
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;

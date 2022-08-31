@@ -5,10 +5,19 @@ import app.CategoriaLeitor.CategoriaLeitor;
 //import app.Disciplina;
 
 public class Leitor extends Usuario {
+    private Long id;
     private String email;
     private String documentoId;
     //private Disciplina disciplina;
     private boolean grupoAcademico;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
 
     public void setEmail(String email) {
         this.email = email;

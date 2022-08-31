@@ -8,6 +8,7 @@ public class Usuario {
     private String telefone;
     private Date dataNascimento;
     private Endereco endereco;
+    private String role;
 
 
     public String getNome() {
@@ -40,5 +41,13 @@ public class Usuario {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public String getRole() {
+        return this.role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
