@@ -20,7 +20,7 @@ public class LeitorDAO extends GenericDAO {
             statement.setString(1, leitor.getEmail());
             statement.setString(2, leitor.getDocumentoId());
             statement.setBoolean(3, leitor.getGrupoAcademico());
-            statement.setLong(4, leitor.getCategoria().getId())
+            statement.setLong(4, leitor.getCategoria().getId());
             statement.executeUpdate();
 
             statement.close();

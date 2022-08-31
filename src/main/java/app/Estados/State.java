@@ -5,5 +5,5 @@ public abstract class State {
 	public abstract State disponibilizar();
 	public abstract State reservar();
 	public abstract State cancelar();
-	public abstract State getState();
+	public abstract String getState();
 }

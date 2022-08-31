@@ -23,6 +23,6 @@ public class Copia {
 	}
 	
 	public State estadoAtual() {
-		return this.state.getState();
+		return this.state;
 	}
 }

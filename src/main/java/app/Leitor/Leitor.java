@@ -13,7 +13,7 @@ public class Leitor extends Usuario {
     //private Disciplina disciplina;
     private boolean grupoAcademico;
     //@Getter @Setter 
-    //private CategoriaLeitor categoria;
+    private CategoriaLeitor categoria;
 
     public Leitor(Long id, String email, String documentoId, boolean grupoAcademico){//, CategoriaLeitor categoria){
         this.id = id;
@@ -65,7 +65,7 @@ public class Leitor extends Usuario {
         this.grupoAcademico = grupoAcademico;
     }
 
-    /*
+    
     public void setCategoria(CategoriaLeitor categoria) {
         this.categoria = categoria;
     }
@@ -73,5 +73,4 @@ public class Leitor extends Usuario {
     public CategoriaLeitor getCategoria() {
         return this.categoria;
     }
-    */
 }
