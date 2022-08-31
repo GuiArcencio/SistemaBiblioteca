@@ -34,8 +34,7 @@ CREATE TABLE RelObraAutor(
 );
 
 CREATE TABLE CategoriaObra(
-    codigo bigint not NULL auto_increment,
-    nome varchar(256),
+    codigo int not NULL auto_increment,
     descricao varchar(256),
     maximoDiasEmprestado bigint not null,
     taxaMulta decimal(10,6) not NULL,
@@ -45,6 +44,7 @@ CREATE TABLE CategoriaObra(
 CREATE TABLE Copia(
     id bigint not NULL auto_increment,
     state varchar(50) not NULL,
+    obra_id bigint,
     CONSTRAINT copia_pk PRIMARY KEY(id)
 );
 

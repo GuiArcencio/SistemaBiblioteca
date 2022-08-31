@@ -12,4 +12,36 @@ public class CategoriaObra {
 		this.maximoDiasEmprestimo = maximoDiasEmprestimo;
 		this.taxaMulta = taxaMulta;
 	}
+    
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public int getCodigo() {
+        return this.codigo;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getDescricao() {
+        return this.descricao;
+    }
+
+    public void setMaximoDiasEmprestimo(int dias) {
+        this.maximoDiasEmprestimo = dias;
+    }
+
+    public int getMaximoDiasEmprestimo() {
+        return this.maximoDiasEmprestimo;
+    }
+
+    public void setTaxaMulta(double taxaMulta) {
+        this.taxaMulta = taxaMulta;
+    }
+
+    public double getTaxaMulta() {
+        return this.taxaMulta;
+    }
 }
