@@ -106,8 +106,8 @@ CREATE TABLE Leitor(
 );
 
 CREATE TABLE CategoriaLeitor(
-    codigo bigint not NULL auto_increment,
+    id bigint not NULL auto_increment,
     maximoDiasEmprestimo int not NULL,
     descricao varchar(50),
-    CONSTRAINT categoriaLeitor_pk PRIMARY KEY(codigo)
+    CONSTRAINT categoriaLeitor_pk PRIMARY KEY(id)
 );

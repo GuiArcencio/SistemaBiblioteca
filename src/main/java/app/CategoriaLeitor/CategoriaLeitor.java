@@ -5,6 +5,12 @@ public class CategoriaLeitor {
     private int maximoDiasEmprestimo;
     private String descricao;
 
+    public CategoriaLeitor(Long id, int maximoDiasEmprestimo, String descricao){
+        this.id = id;
+        this.maximoDiasEmprestimo = maximoDiasEmprestimo;
+        this.descricao = descricao;
+    }
+    
     public void setId(Long id) {
         this.id = id;
     }
