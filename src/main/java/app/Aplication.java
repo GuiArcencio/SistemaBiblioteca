@@ -29,6 +29,8 @@ public class Aplication {
             put("/autor/:nome",    ControllerObras.alterarAutor, gson::toJson);
             delete("/autor/:nome", ControllerObras.removerAutor, gson::toJson);
             put("/copia/:codigo/disponibilidade", ControllerObras.mudarDisponibilidadeCopia, gson::toJson);
+
+            // get("/usuario/:ra/dependencias", ControllerUsuario.buscaDependencia);
         });
     }
 }
