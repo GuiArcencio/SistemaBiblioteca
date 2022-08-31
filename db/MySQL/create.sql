@@ -44,7 +44,7 @@ CREATE TABLE CategoriaObra(
 CREATE TABLE Copia(
     id bigint not NULL auto_increment,
     state varchar(50) not NULL,
-    obra_id bigint,
+    obra_id bigint not NULL,
     CONSTRAINT copia_pk PRIMARY KEY(id)
 );
 
