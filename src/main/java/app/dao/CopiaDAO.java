@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 
 
-import app.Copia.Copia;
-import app.Estados.*;
+import app.Domain.PacoteObras.Copia;
+import app.Domain.PacoteObras.Estados.*;
 
 
 public class CopiaDAO extends GenericDAO{

@@ -1,4 +1,4 @@
-package app.Editora;
+package app.Domain.PacoteObras;
 
 public class Editora {
     private Long id;

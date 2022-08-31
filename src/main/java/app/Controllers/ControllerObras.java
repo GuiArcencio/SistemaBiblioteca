@@ -4,8 +4,8 @@ import java.math.BigInteger;
 
 import com.google.gson.Gson;
 
-import app.Autor.Autor;
-import app.Domain.Obra;
+import app.Domain.PacoteObras.Autor;
+import app.Domain.PacoteObras.Obra;
 import app.Service.impl.ObraService;
 import app.Service.spec.IObraService;
 import app.StandardResponse.StandardResponse;

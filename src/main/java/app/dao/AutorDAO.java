@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 
 
-import app.Autor.Autor;
+import app.Domain.PacoteObras.Autor;
 
 
 public class AutorDAO extends GenericDAO{

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 
 
-import app.Endereco.Endereco;
+import app.Domain.PacoteUsuarios.Endereco;
 
 public class EnderecoDAO extends GenericDAO{
 

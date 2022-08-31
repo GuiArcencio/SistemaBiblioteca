@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 
 import java.util.Date;
 
-import app.Usuario.Usuario;
-import app.Endereco.Endereco;
+import app.Domain.PacoteUsuarios.Usuario;
+import app.Domain.PacoteUsuarios.Endereco;
 
 public class UsuarioDAO extends GenericDAO {
     

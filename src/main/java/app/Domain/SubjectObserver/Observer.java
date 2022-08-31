@@ -1,6 +1,6 @@
-package app.Observer;
+package app.Domain.SubjectObserver;
 
-import app.Subject.Subject;
+import app.Domain.SubjectObserver.Subject;
 
 public abstract class Observer {
    protected Subject subject;

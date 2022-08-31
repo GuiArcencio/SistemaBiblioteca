@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
-import app.Leitor.Leitor;
-import app.CategoriaLeitor.CategoriaLeitor;
+import app.Domain.PacoteUsuarios.Leitor;
+import app.Domain.PacoteUsuarios.CategoriaLeitor;
 
 public class LeitorDAO extends GenericDAO {
     

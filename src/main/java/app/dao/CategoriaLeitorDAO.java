@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.ArrayList;
 
+import app.Leitor.Leitor;
 import app.CategoriaLeitor.CategoriaLeitor;
 
 public class CategoriaLeitorDAO extends GenericDAO {
@@ -89,16 +90,16 @@ public class CategoriaLeitorDAO extends GenericDAO {
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
 
-        ResultSet resultSet = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                Long id = resultSet.getLong("id");
+                int maximoDiasEmprestimo = resultSet.getInt("maximoDiasEmprestimo");
+                String descricao = resultSet.getString("p.descricao");
 
-        while (resultSet.next()) {
-            Long id = resultSet.getLong("id");
-            int maximoDiasEmprestimo = resultSet.getInt("maximoDiasEmprestimo");
-            String descricao = resultSet.getString("descricao");
-  
-            CategoriaLeitor categoriaLeitor = new CategoriaLeitor(id, maximoDiasEmprestimo, descricao);
-            listaCategoriasLeitor.add(categoriaLeitor);
-        }
+               
+                CategoriaLeitor categoriaLeitor = new CategoriaLeitor(id, maximoDiasEmprestimo, descricao);
+                listaCategoriasLeitor.add(categoriaLeitor);
+            }
 
         resultSet.close();
         statement.close();

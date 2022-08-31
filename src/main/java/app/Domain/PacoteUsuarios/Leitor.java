@@ -1,7 +1,7 @@
-package app.Leitor;
+package app.Domain.PacoteUsuarios;
 
-import app.Usuario.Usuario;
-import app.CategoriaLeitor.CategoriaLeitor;
+
+import app.Domain.PacoteUsuarios.CategoriaLeitor;
 //import app.Disciplina;
 
 

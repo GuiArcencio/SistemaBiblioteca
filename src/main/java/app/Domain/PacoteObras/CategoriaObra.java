@@ -1,4 +1,4 @@
-package app.CategoriaObra;
+package app.Domain.PacoteObras;
 
 public class CategoriaObra {
 	int codigo;

@@ -1,4 +1,4 @@
-package app.Endereco;
+package app.Domain.PacoteUsuarios;
 
 public class Endereco {
     private Long id;

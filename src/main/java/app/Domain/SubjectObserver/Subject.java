@@ -1,8 +1,8 @@
-package app.Subject;
+package app.Domain.SubjectObserver;
 
 import java.util.ArrayList;
 import java.util.List;
-import app.Observer.Observer;
+import app.Domain.SubjectObserver.Observer;
 
 
 public class Subject {

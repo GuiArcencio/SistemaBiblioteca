@@ -1,7 +1,7 @@
-package app.EntradaSaidaObras;
+package app.Domain.PacoteEntradaSaidaObras;
 
 import java.util.Date;
-import app.EntradaSaidaObras.Emprestimo;
+import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
 
 public class Devolucao {
     private Long id;

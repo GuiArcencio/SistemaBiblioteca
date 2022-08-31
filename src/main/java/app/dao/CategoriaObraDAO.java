@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 
 
-import app.CategoriaObra.CategoriaObra;
+import app.Domain.PacoteObras.CategoriaObra;
 
 public class CategoriaObraDAO extends GenericDAO{
 
