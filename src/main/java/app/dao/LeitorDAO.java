@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 
 import app.Leitor.Leitor;
+import app.CategoriaLeitor.CategoriaLeitor;
 
 public class LeitorDAO extends GenericDAO {
     
@@ -84,7 +85,11 @@ public class LeitorDAO extends GenericDAO {
                 String documentoId = resultSet.getString("documentoId");
                 boolean grupoAcademico = resultSet.getBoolean("grupoAcademico");
 
-                Leitor = new Leitor(id, email, documentoId, grupoAcademico);
+                Long categoriaId = resultSet.getLong("id");
+                CategoriaLeitor categoria = new CategoriaLeitorDAO().getById(categoriaId);
+
+
+                Leitor = new Leitor(id, email, documentoId, grupoAcademico, categoria);
             }
             resultSet.close();
             statement.close();
