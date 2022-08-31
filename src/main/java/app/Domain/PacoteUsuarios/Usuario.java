@@ -1,27 +1,32 @@
 package app.Domain.PacoteUsuarios;
 
-import app.Domain.PacoteUsuarios.Endereco;
+
+//import app.Domain.PacoteUsuarios.Endereco;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
 
 import java.util.Date;
 
-public class Usuario {
+public abstract class Usuario {
     protected Long id;
 
-    @JsonRequired
-    private String nome;
 
     @JsonRequired
-    private String telefone;
+    protected String nome;
 
     @JsonRequired
-    private Date dataNascimento;
+    protected String telefone;
 
     @JsonRequired
-    private Endereco endereco;
+    protected Date dataNascimento;
 
     @JsonRequired
-    private String role;
+    protected Endereco endereco;
+
+    @JsonRequired
+    protected String role;
+
+    
+
 
     public Usuario() {
 
