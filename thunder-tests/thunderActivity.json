@@ -1,0 +1,59 @@
+[
+  {
+    "_id": "5696f0a5-6f87-4388-9389-91501800ac85",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:4567/api/categoria/leitor",
+    "url": "localhost:4567/api/categoria/leitor/7",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-08-31T20:14:18.938Z",
+    "modified": "2022-08-31T20:18:39.921Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"maximoDiasEmprestimo\": 80,\n  \"descricao\": \"Docente\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "8150c8dd-c461-41d5-807d-1ab67dd13363",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:4567/api/categoria/leitor",
+    "url": "localhost:4567/api/categoria/leitor",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-08-31T20:15:36.021Z",
+    "modified": "2022-08-31T20:15:36.102Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"maximoDiasEmprestimo\": 50,\n  \"descricao\": \"Leitor Comum\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "94684d8b-1be2-45e5-93aa-6c574941dbc0",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:4567/api/categoria/leitor/6",
+    "url": "localhost:4567/api/categoria/leitor/6",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2022-08-31T20:17:46.117Z",
+    "modified": "2022-08-31T20:17:46.302Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"maximoDiasEmprestimo\": 50,\n  \"descricao\": \"Leitor Comum\"\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]

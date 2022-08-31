@@ -1,0 +1,73 @@
+[
+  {
+    "_id": "fe822340-0977-4caa-b794-a192663c3f85",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "e495e304-b02e-4437-a8bc-2080c54eb9ed",
+    "name": "Busca todas as categorias",
+    "url": "localhost:4567/api/categoria/leitor",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-08-31T20:14:49.303Z",
+    "modified": "2022-08-31T20:14:58.195Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "11fe3efe-ce2b-4d2f-a85c-bbc076ac95d3",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "e495e304-b02e-4437-a8bc-2080c54eb9ed",
+    "name": "Insere categoria",
+    "url": "localhost:4567/api/categoria/leitor",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-08-31T20:16:39.363Z",
+    "modified": "2022-08-31T20:16:39.363Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"maximoDiasEmprestimo\": 50,\n  \"descricao\": \"Leitor Comum\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "99a29faf-608c-4718-836b-4ea24e95a7de",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "e495e304-b02e-4437-a8bc-2080c54eb9ed",
+    "name": "Deleta categoria",
+    "url": "localhost:4567/api/categoria/leitor/6",
+    "method": "DELETE",
+    "sortNum": 30000,
+    "created": "2022-08-31T20:17:57.897Z",
+    "modified": "2022-08-31T20:17:57.897Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"maximoDiasEmprestimo\": 50,\n  \"descricao\": \"Leitor Comum\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "567f0a5a-906e-423f-af63-c78f13efc917",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "e495e304-b02e-4437-a8bc-2080c54eb9ed",
+    "name": "Altera categoria",
+    "url": "localhost:4567/api/categoria/leitor/7",
+    "method": "PUT",
+    "sortNum": 40000,
+    "created": "2022-08-31T20:19:00.842Z",
+    "modified": "2022-08-31T20:19:00.842Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"maximoDiasEmprestimo\": 80,\n  \"descricao\": \"Docente\"\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]

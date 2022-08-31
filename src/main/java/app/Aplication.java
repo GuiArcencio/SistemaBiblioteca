@@ -5,9 +5,10 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 import app.Autor.ControllerAutor;
+import app.Controllers.ControllerCategoriaLeitor;
 import app.Controllers.ControllerEmprestimo;
+import app.Controllers.ControllerObras;
 import app.Exception.ControllerException;
-import app.Obra.ControllerObras;
 
 public class Aplication {
 
@@ -34,11 +35,17 @@ public class Aplication {
             // put("/copia/:codigo/disp",     ControllerObras.mudarDisponibilidadeCopia, gson::toJson);
 
             // Rotas de ControllerEmprestimo
-            get("/usuario/:id/emprestimo",        ControllerEmprestimo.consultarEmprestimo, gson::toJson);
-            get("/usuario/:id/devolucao",         ControllerEmprestimo.consultarDevolucao, gson::toJson);
-            patch("/usuario/:id/emprestimo/:isbn",ControllerEmprestimo.emprestarObra, gson::toJson);
-            patch("/usuario/:id/reserva/:isbn",   ControllerEmprestimo.reservarObra, gson::toJson);
-            patch("/usuario/:id/devolucao/:isbn", ControllerEmprestimo.devolverObra, gson::toJson);
+            // get("/usuario/:id/emprestimo",        ControllerEmprestimo.consultarEmprestimo, gson::toJson);
+            // get("/usuario/:id/devolucao",         ControllerEmprestimo.consultarDevolucao, gson::toJson);
+            // patch("/usuario/:id/emprestimo/:isbn",ControllerEmprestimo.emprestarObra, gson::toJson);
+            // patch("/usuario/:id/reserva/:isbn",   ControllerEmprestimo.reservarObra, gson::toJson);
+            // patch("/usuario/:id/devolucao/:isbn", ControllerEmprestimo.devolverObra, gson::toJson);
+
+            // Rotas de ControllerCategoriaLeitor
+            get("/categoria/leitor",      ControllerCategoriaLeitor.getCategorias, gson::toJson);
+            post("/categoria/leitor",     ControllerCategoriaLeitor.criarCategoria, gson::toJson);
+            delete("/categoria/leitor/:id", ControllerCategoriaLeitor.removerCategoria, gson::toJson);
+            put("/categoria/leitor/:id",  ControllerCategoriaLeitor.alterarCategoria, gson::toJson);
 
             // get("/usuario/:ra/dependencias", ControllerUsuario.buscaDependencia);
             

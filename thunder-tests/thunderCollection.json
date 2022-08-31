@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "colName": "Sistema Biblioteca",
+    "created": "2022-08-31T20:14:49.298Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "e495e304-b02e-4437-a8bc-2080c54eb9ed",
+        "name": "Categoria Leitor",
+        "containerId": "",
+        "created": "2022-08-31T20:14:56.555Z",
+        "sortNum": 10000
+      }
+    ]
+  }
+]
