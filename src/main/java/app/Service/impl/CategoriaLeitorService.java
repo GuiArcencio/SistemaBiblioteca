@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.CategoriaLeitor.CategoriaLeitor;
+import app.Domain.PacoteUsuarios.CategoriaLeitor;
 import app.Service.spec.ICategoriaLeitorService;
 import app.dao.CategoriaLeitorDAO;
 

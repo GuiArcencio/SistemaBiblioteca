@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import app.CategoriaLeitor.CategoriaLeitor;
+import app.Domain.PacoteUsuarios.CategoriaLeitor;
 import app.Service.impl.CategoriaLeitorService;
 import app.Service.spec.ICategoriaLeitorService;
 import app.StandardResponse.StandardResponse;

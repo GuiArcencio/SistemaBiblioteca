@@ -1,9 +1,8 @@
 package app.Service.spec;
 
-import java.math.BigInteger;
 import java.util.List;
 
-import app.CategoriaLeitor.CategoriaLeitor;
+import app.Domain.PacoteUsuarios.CategoriaLeitor;
 
 public interface ICategoriaLeitorService {
     List<CategoriaLeitor> buscaCategorias();
