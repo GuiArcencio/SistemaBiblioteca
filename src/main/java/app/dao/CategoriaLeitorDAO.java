@@ -19,10 +19,7 @@ public class CategoriaLeitorDAO extends GenericDAO {
 
             statement = conn.prepareStatement(sql);
             statement.setInt(1, categoriaLeitor.getMaximoDiasEmprestimo());
-            statement.setString(1, categoriaLeitor.getEmail());
-            statement.setString(2, categoriaLeitor.getDocumentoId());
-            statement.setBoolean(3, categoriaLeitor.getGrupoAcademico());
-            statement.setLong(4, categoriaLeitor.getCategoria().getId());
+            statement.setString(2, categoriaLeitor.getDescricao());
             statement.executeUpdate();
 
             statement.close();
