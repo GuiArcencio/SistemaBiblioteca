@@ -1,4 +1,4 @@
-package app.Obra;
+package app.Service.impl;
 
 import java.math.BigInteger;
 import java.text.ParseException;
@@ -9,6 +9,8 @@ import java.util.List;
 import app.Autor.Autor;
 import app.CategoriaObra.CategoriaObra;
 import app.Copia.Copia;
+import app.Domain.Obra;
+import app.Service.spec.IObraService;
 import app.dao.ObraDAO;
 
 public class ObraService implements IObraService{

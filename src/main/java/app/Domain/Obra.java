@@ -1,4 +1,4 @@
-package app.Obra;
+package app.Domain;
 
 import java.math.BigInteger;
 import java.util.Date;
