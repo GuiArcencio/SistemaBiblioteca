@@ -23,12 +23,9 @@ public interface IObraService {
     boolean adicionarPalavraChave(Long codigo, String palavra);
     boolean removerPalavraChave(Long codigo, String palavra);
 
-    Copia buscarCopias(Long isbn);
-    Copia buscarCopia(int idCopia);
-    boolean adicionarCopia(Long isbn, Copia copia);
-    boolean removerCopia(Long isbn, Copia copia);
+    List<Copia> buscarCopias(Long codigo);
+    Copia buscarCopia(Long idCopia);
+    boolean adicionarCopia(Long codigo, Copia copia);
+    boolean removerCopia(Copia copia);
 
-    boolean marcarEmprestadoCopia(int idCopia);
-    boolean marcarDevolverCopia(int idCopia);
-    boolean marcarDisponivelCopia(int idCopia);
 }

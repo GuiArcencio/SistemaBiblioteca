@@ -1,35 +1,33 @@
 package app.Service.impl;
 
 import java.util.List;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
 import app.Domain.PacoteObras.Autor;
-import app.Domain.PacoteObras.CategoriaObra;
 import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.Obra;
-import app.Domain.PacoteObras.Editora;
 import app.Service.spec.IObraService;
 import app.dao.ObraDAO;
 import app.dao.AutorDAO;
+import app.dao.CopiaDAO;
+
 
 public class ObraService implements IObraService{
     private ObraDAO odao;
     private AutorDAO adao;
-
+    private CopiaDAO cdao;
 
     public ObraService() {
         this.odao = new ObraDAO();
         this.adao = new AutorDAO();
+        this.cdao = new CopiaDAO();
     }
 
-    // TODO: Função de teste enquanto dao não está pronto
     @Override
     public List<Obra> buscaObra(Long isbn) {
        try{
-        return odao.getByIsbn(isbn);
+        return odao.getAllByIsbn(isbn);
        } catch(Exception e){
         System.out.println("Obra(s) não encontrada! Retornando null.");
         return null;
@@ -58,6 +56,16 @@ public class ObraService implements IObraService{
     public boolean adicionarObra(Obra obra) {
         try {
             odao.insert(obra);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean removerObra(Obra obra) {
+        try {
+            odao.delete(obra);
             return true;
         } catch (Exception e) {
             return false;
@@ -168,52 +176,46 @@ public class ObraService implements IObraService{
     }
 
     @Override
-    public Copia buscarCopias(Long isbn) {
+    public List<Copia> buscarCopias(Long codigo) {
         try{
-            cdao
+            return cdao.getAllByObraId(codigo);
+        }catch(Exception e){
+            System.out.println("[ERRO] Não foram encontradas nenhuma cópia desta obra! Verifique o código informado.");
+            return null;
         }
     }
 
     @Override
-    public Copia buscarCopia(int idCopia) {
-        // TODO Auto-generated method stub
-        return null;
+    public Copia buscarCopia(Long idCopia) {
+        try{
+            return cdao.getById(idCopia);
+        }catch(Exception e){
+            System.out.println("[ERRO] Cópia não encontrada! Verifique o id informado.");
+            return null;
+        }
+       
     }
 
     @Override
-    public boolean adicionarCopia(Long isbn, Copia copia) {
-        // TODO Auto-generated method stub
-        
+    public boolean adicionarCopia(Long codigo, Copia copia) {
+        Obra obra = buscaObraByCodigo(codigo);
+        if(obra == null){
+            System.out.println("[ERRO] Obra não encontrada! Verifique o codigo informado.");
+            return false;
+        }
+        copia.setObraId(codigo);
+        cdao.insert(copia);
+        return true; 
     }
 
     @Override
-    public boolean removerCopia(Long isbn, Copia copia) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public boolean marcarEmprestadoCopia(int idCopia) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public boolean marcarDevolverCopia(int idCopia) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public boolean marcarDisponivelCopia(int idCopia) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public boolean removerObra(Obra obra) {
-        // TODO Auto-generated method stub
-        
+    public boolean removerCopia(Copia copia) {
+        if(buscarCopia(copia.getId())==null){
+            System.out.println("[ERRO] Copia não encontrada! Verifique o id informado.");
+            return false;
+        }
+        cdao.delete(copia);
+        return true; 
     }
 
     // TODO: Potencialmente nessas funções de adicionar e tudo mais, colocar um retorno para indicar para o usuário
