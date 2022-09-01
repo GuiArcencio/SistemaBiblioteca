@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 
 import java.util.Date;
 
-//import app.Funcionario.Funcionario;
+import app.Domain.PacoteUsuarios.Funcionario;
 import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
@@ -16,6 +16,7 @@ public class EmprestimoDAO extends GenericDAO {
 
     private CopiaDAO cdao;
     private LeitorDAO ldao;
+    private FuncionarioDAO fdao;
 
     public void insert(Emprestimo emprestimo){
         String sql = "INSERT INTO Emprestimo (dataEmprestimo, dataPrevistaDevolucao, funcionarioResponsavel, leitor, codigoCopia, atrasado) VALUES (?, ?, ?, ?, ?, ?) ";
@@ -30,11 +31,11 @@ public class EmprestimoDAO extends GenericDAO {
             statement.setDate(2, mySQLDate2);
             
             //ATENCAO: Substituir pelo metodo getFuncionario().getId() quando este for implementado
-            //statement.setLong(3, emprestimo.getFuncionario().getId());
-            statement.setLong(3, emprestimo.getId());
-            statement.setLong(4, emprestimo.getLeitor().getId());
-            statement.setLong(5, emprestimo.getCopia().getId());
-            statement.setBoolean(6, emprestimo.getAtrasado());
+            statement.setLong(3, emprestimo.getFuncionarioResponsavel().getId());
+            statement.setLong(4, emprestimo.getId());
+            statement.setLong(5, emprestimo.getLeitor().getId());
+            statement.setLong(6, emprestimo.getCopia().getId());
+            statement.setBoolean(7, emprestimo.getAtrasado());
             statement.executeUpdate();
 
             statement.close();
@@ -57,12 +58,12 @@ public class EmprestimoDAO extends GenericDAO {
             statement.setDate(2, mySQLDate2);
 
             //ATENCAO: Substituir pelo metodo getFuncionario().getId() quando este for implementado
-            //statement.setLong(3, emprestimo.getFuncionario().getId());
-            statement.setLong(3, emprestimo.getId());
-            statement.setLong(4, emprestimo.getLeitor().getId());
-            statement.setLong(5, emprestimo.getCopia().getId());
-            statement.setBoolean(6, emprestimo.getAtrasado());
-            statement.setLong(7, emprestimo.getId());
+            statement.setLong(3, emprestimo.getFuncionarioResponsavel().getId());
+            statement.setLong(4, emprestimo.getId());
+            statement.setLong(5, emprestimo.getLeitor().getId());
+            statement.setLong(6, emprestimo.getCopia().getId());
+            statement.setBoolean(7, emprestimo.getAtrasado());
+            statement.setLong(8, emprestimo.getId());
             statement.executeUpdate();
             
             statement.close();
@@ -108,14 +109,14 @@ public class EmprestimoDAO extends GenericDAO {
                 //ATENCAO: Adicionar quando funcionario for implementado
                 //Funcionario funcionarioResponsavel = new Funcionario(resultSet.getLong("funcionarioResponsavel");
                 //ou adicione 
-                //Funcionario funcionario = funcionarioDAO.getById(resultSet.getLong("funcionarioResponsavel"));
+                Funcionario funcionarioResponsavel = fdao.getById(resultSet.getLong("funcionarioResponsavel"));
 
                 
                 Leitor leitor = ldao.getById(resultSet.getLong("leitor"));
                 Copia copia = cdao.getById(resultSet.getLong("codigoCopia"));
                 boolean atrasado = resultSet.getBoolean("atrasado");
 
-                emprestimo = new Emprestimo(id, dataEmprestimo, dataPrevistaDevolucao, copia, leitor, atrasado);
+                emprestimo = new Emprestimo(id, dataEmprestimo, dataPrevistaDevolucao, funcionarioResponsavel, copia, leitor, atrasado);
 
             }
             resultSet.close();
