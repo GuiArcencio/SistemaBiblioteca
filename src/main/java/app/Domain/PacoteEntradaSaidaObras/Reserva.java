@@ -5,7 +5,7 @@ import app.Domain.SubjectObserver.Subject;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
 import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteUsuarios.Leitor;
-//import app.Funcionario.Funcionario;
+import app.Domain.PacoteUsuarios.Funcionario;
 
 public class Reserva extends Subject {
     private Long id;
@@ -19,8 +19,8 @@ public class Reserva extends Subject {
     @JsonRequired
     private Date dataPrevistaDevolucao;
 
-    // @JsonRequired
-    //private Funcionario funcionarioResponsavel
+    @JsonRequired
+    private Funcionario funcionarioResponsavel;
 
     @JsonRequired
     private Leitor leitor;
@@ -28,11 +28,12 @@ public class Reserva extends Subject {
     @JsonRequired
     private Copia copiaReservada;
 
-    public Reserva(Long id, Date dataReserva, Date dataPrevistaRetirada, Date dataPrevistaDevolucao, Leitor leitor, Copia copiaReservada) {
+    public Reserva(Long id, Date dataReserva, Date dataPrevistaRetirada, Date dataPrevistaDevolucao, Funcionario fr, Leitor leitor, Copia copiaReservada) {
         this.id = id;
         this.dataReserva = dataReserva;
         this.dataPrevistaRetirada = dataPrevistaRetirada;
         this.dataPrevistaDevolucao = dataPrevistaDevolucao;
+        this.funcionarioResponsavel = fr;
         this.leitor = leitor;
         this.copiaReservada = copiaReservada;
     }
@@ -67,6 +68,14 @@ public class Reserva extends Subject {
 
     public Date getDataPrevistaDevolucao() {
         return this.dataPrevistaDevolucao;
+    }
+
+    public void setFuncionarioResponsavel(Funcionario fr) {
+        this.funcionarioResponsavel = fr;
+    }
+
+    public Funcionario getFuncionarioResponsavel() {
+        return this.funcionarioResponsavel;
     }
 
     public void setCopia(Copia copia) {

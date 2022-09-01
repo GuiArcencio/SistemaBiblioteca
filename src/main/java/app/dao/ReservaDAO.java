@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 
 import java.util.Date;
 
-//import app.Domain.PacoteUsuarios.Funcionario;
+import app.Domain.PacoteUsuarios.Funcionario;
 import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteEntradaSaidaObras.Reserva;
@@ -16,6 +16,7 @@ public class ReservaDAO extends GenericDAO {
 
     private CopiaDAO cdao;
     private LeitorDAO ldao;
+    private FuncionarioDAO fdao;
 
     public void insert(Reserva reserva){
         String sql = "INSERT INTO Reserva (dataReserva, dataPrevistaRetirada, dataPrevistaDevolucao, funcionarioResponsavel, leitor, copiaReservada) VALUES (?, ?, ?, ?, ?, ?) ";
@@ -29,14 +30,14 @@ public class ReservaDAO extends GenericDAO {
             java.sql.Date mySQLDate2 = new java.sql.Date(reserva.getDataPrevistaRetirada().getTime());
             statement.setDate(2, mySQLDate2);
             java.sql.Date mySQLDate3 = new java.sql.Date(reserva.getDataPrevistaDevolucao().getTime());
-            statement.setDate(3, mySQLDate2);
+            statement.setDate(3, mySQLDate3);
             
             //ATENCAO: Substituir pelo metodo getFuncionario().getId() quando este for implementado
-            //statement.setLong(4, reserva.getFuncionario().getId());
-            statement.setLong(4, reserva.getId());
+            statement.setLong(4, reserva.getFuncionarioResponsavel().getId());
+            statement.setLong(5, reserva.getId());
 
-            statement.setLong(5, reserva.getLeitor().getId());
-            statement.setLong(6, reserva.getCopia().getId());
+            statement.setLong(6, reserva.getLeitor().getId());
+            statement.setLong(7, reserva.getCopia().getId());
             statement.executeUpdate();
 
             statement.close();
@@ -58,15 +59,15 @@ public class ReservaDAO extends GenericDAO {
             java.sql.Date mySQLDate2 = new java.sql.Date(reserva.getDataPrevistaRetirada().getTime());
             statement.setDate(2, mySQLDate2);
             java.sql.Date mySQLDate3 = new java.sql.Date(reserva.getDataPrevistaDevolucao().getTime());
-            statement.setDate(3, mySQLDate2);
+            statement.setDate(3, mySQLDate3);
 
             //ATENCAO: Substituir pelo metodo getFuncionario().getId() quando este for implementado
-            //statement.setLong(4, reserva.getFuncionario().getId());
-            statement.setLong(4, reserva.getId());
+            statement.setLong(4, reserva.getFuncionarioResponsavel().getId());
+            statement.setLong(5, reserva.getId());
 
-            statement.setLong(5, reserva.getLeitor().getId());
-            statement.setLong(6, reserva.getCopia().getId());
-            statement.setLong(7, reserva.getId());
+            statement.setLong(6, reserva.getLeitor().getId());
+            statement.setLong(7, reserva.getCopia().getId());
+            statement.setLong(8, reserva.getId());
             statement.executeUpdate();
             
             statement.close();
@@ -115,13 +116,13 @@ public class ReservaDAO extends GenericDAO {
                 //ATENCAO: Adicionar quando funcionario for implementado
                 //Funcionario funcionarioResponsavel = new Funcionario(resultSet.getLong("funcionarioResponsavel");
                 //ou adicione 
-                //Funcionario funcionario = funcionarioDAO.getById(resultSet.getLong("funcionarioResponsavel"));
+                Funcionario funcionarioResponsavel = fdao.getById(resultSet.getLong("funcionarioResponsavel"));
 
                 
                 Leitor leitor = ldao.getById(resultSet.getLong("leitor"));
                 Copia copia = cdao.getById(resultSet.getLong("codigoCopia"));
 
-                reserva = new Reserva(id, dataReserva, dataPrevistaRetirada, dataPrevistaDevolucao, leitor, copia);
+                reserva = new Reserva(id, dataReserva, dataPrevistaRetirada, dataPrevistaDevolucao, funcionarioResponsavel, leitor, copia);
 
             }
             resultSet.close();
