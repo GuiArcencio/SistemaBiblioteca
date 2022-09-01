@@ -25,7 +25,7 @@ public class UsuarioService implements IUsuarioService{
         try{
             ldao.insert(leitor);
             return true;
-        }catch (SQLException e){
+        }catch (Exception e){
             return false;
         }
     }
@@ -34,7 +34,7 @@ public class UsuarioService implements IUsuarioService{
         try{
             fdao.insert(funcionario);
             return true;
-        }catch (SQLException e){
+        }catch (Exception e){
             return false;
         }
     }
@@ -45,7 +45,7 @@ public class UsuarioService implements IUsuarioService{
             Funcionario funcionario = fdao.getById(id);
             fdao.delete(funcionario);
             return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             return false;
         }
     }
@@ -55,7 +55,7 @@ public class UsuarioService implements IUsuarioService{
             Leitor leitor = ldao.getById(id);
             ldao.delete(leitor);
             return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             return false;
         }
     }
@@ -73,7 +73,7 @@ public class UsuarioService implements IUsuarioService{
 
             ldao.update(leitor);
             return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             return false;
         }
     }
@@ -90,7 +90,7 @@ public class UsuarioService implements IUsuarioService{
 
             fdao.update(funcionario);
             return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             return false;
         }
     }
