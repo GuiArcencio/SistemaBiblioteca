@@ -93,6 +93,9 @@ public class Emprestimo extends Subject{
 
     public void setAtrasado(boolean atrasado) {
         this.atrasado = atrasado;
+        if (atrasado = true){
+            this.notifyAllObservers();
+        }
     }
 
     public boolean getAtrasado() {

@@ -27,6 +27,9 @@ public class Reserva extends Subject {
 
     @JsonRequired
     private Copia copiaReservada;
+    
+    @JsonRequired
+    boolean expirada;
 
     public Reserva(Long id, Date dataReserva, Date dataPrevistaRetirada, Date dataPrevistaDevolucao, Funcionario fr, Leitor leitor, Copia copiaReservada) {
         this.id = id;
@@ -36,6 +39,7 @@ public class Reserva extends Subject {
         this.funcionarioResponsavel = fr;
         this.leitor = leitor;
         this.copiaReservada = copiaReservada;
+        this.expirada = false;
     }
 
     public void setId(Long id) {
@@ -92,6 +96,17 @@ public class Reserva extends Subject {
 
     public Leitor getLeitor() {
         return this.leitor;
+    }
+
+    public void setExpirada(boolean expirada){
+        this.expirada = expirada;
+            if(this.expirada == true) {
+                this.notifyAllObservers();
+            }
+    }
+
+    public boolean getExpirada() {
+        return this.expirada;
     }
 
 }
