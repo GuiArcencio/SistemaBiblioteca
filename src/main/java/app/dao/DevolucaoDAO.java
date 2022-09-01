@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 
 import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
 import app.Domain.PacoteEntradaSaidaObras.Devolucao;
@@ -105,5 +107,36 @@ public class DevolucaoDAO extends GenericDAO {
 
     }
 
+
+    public List<Devolucao> getAllByLeitorId(Long leitorId){
+        List<Devolucao> listaDevolucao = new ArrayList<>();
+
+        String sql = "SELECT * from Devolucao WHERE codigo_emprestimo in (SELECT id FROM Emprestimo WHERE leitor = ?)";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setLong(1, leitorId);
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                Long id = resultSet.getLong("id"); 
+                Date dataDevolucao = resultSet.getDate("dataDevolucao");
+                double multaTotal = resultSet.getDouble("multaTotal");
+                Emprestimo emprestimo = edao.getById(resultSet.getLong("codigo_emprestimo"));
+
+                Devolucao devolucao = new Devolucao(id, dataDevolucao, multaTotal, emprestimo);
+
+                listaDevolucao.add(devolucao);
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return listaDevolucao;
+
+    }
 }
 

@@ -108,14 +108,11 @@ public class ReservaDAO extends GenericDAO {
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
 
-                Date dataReserva = resultSet.getDate("dataEmprestimo");
+                Date dataReserva = resultSet.getDate("dataReserva");
                 Date dataPrevistaRetirada = resultSet.getDate("dataPrevistaRetirada");
                 Date dataPrevistaDevolucao = resultSet.getDate("dataPrevistaDevolucao");
 
                 
-                //ATENCAO: Adicionar quando funcionario for implementado
-                //Funcionario funcionarioResponsavel = new Funcionario(resultSet.getLong("funcionarioResponsavel");
-                //ou adicione 
                 Funcionario funcionarioResponsavel = fdao.getById(resultSet.getLong("funcionarioResponsavel"));
 
                 
@@ -134,6 +131,45 @@ public class ReservaDAO extends GenericDAO {
         return reserva;
 
     }
+
+        public Reserva getByLeitorCopia(Long leitorId, Long copiaId){
+        Reserva reserva = null; 
+
+        String sql = "SELECT * from Reserva WHERE leitor = ?, copiaReservada = ?";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            
+            statement.setLong(1, leitorId);
+            statement.setLong(2, copiaId);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){ 
+
+                Date dataReserva = resultSet.getDate("dataReserva");
+                Date dataPrevistaRetirada = resultSet.getDate("dataPrevistaRetirada");
+                Date dataPrevistaDevolucao = resultSet.getDate("dataPrevistaDevolucao");
+
+
+                Funcionario funcionarioResponsavel = fdao.getById(resultSet.getLong("funcionarioResponsavel"));
+
+
+                Leitor leitor = ldao.getById(resultSet.getLong("leitor"));
+                Copia copia = cdao.getById(resultSet.getLong("codigoCopia"));
+
+                reserva = new Reserva(id, dataReserva, dataPrevistaRetirada, dataPrevistaDevolucao, funcionarioResponsavel, leitor, copia);
+
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }   
+        return reserva;
+
+    }
+
 
 }
 
