@@ -9,6 +9,7 @@ import app.Controllers.ControllerEmprestimo;
 import app.Controllers.ControllerObras;
 import app.Exception.ControllerException;
 import app.Controllers.ControllerCategoriaLeitor;
+import app.Controllers.ControllerUsuario;
 
 public class Aplication {
 
@@ -42,8 +43,13 @@ public class Aplication {
             delete("/categoria/leitor/:id", ControllerCategoriaLeitor.removerCategoria, gson::toJson);
             put("/categoria/leitor/:id",  ControllerCategoriaLeitor.alterarCategoria, gson::toJson);
 
-            // get("/usuario/:ra/dependencias", ControllerUsuario.buscaDependencia);
-            
+            //Rotas de ControllerUsuario
+            post("/usuario/:id/leitor", ControllerUsuario.criarLeitor, gson::toJson);
+            post("/usuario/:id/funcionario", ControllerUsuario.criarFuncionario, gson::toJson);
+            delete("/usuario/:id/leitor", ControllerUsuario.removerLeitor, gson::toJson);
+            delete("/usuario/:id/funcionario", ControllerUsuario.removerFuncionario, gson::toJson);
+            put("/usuario/:id/leitor", ControllerUsuario.alterarLeitor, gson::toJson);
+            put("/usuario/:id/leitor", ControllerUsuario.alterarFuncionario, gson::toJson);
             // Exceptions
             exception(NumberFormatException.class, ControllerException.numberFormatException);
             exception(JsonSyntaxException.class, ControllerException.jsonSyntaxException);

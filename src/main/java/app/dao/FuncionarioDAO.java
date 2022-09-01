@@ -9,11 +9,11 @@ import java.util.Date;
 
 import app.Domain.PacoteUsuarios.Funcionario;
 import app.Domain.PacoteUsuarios.Endereco;
-import app.Domain.PacoteUsuarios.Usuario;
+//import app.Domain.PacoteUsuarios.Usuario;
 
 public class FuncionarioDAO extends GenericDAO {
     
-    public void insert(Usuario funcionario){
+    public void insert(Funcionario funcionario){
         String sql = "INSERT INTO Usuario (nome, telefone, dataNascimento, endereco, role) VALUES (?, ?, ?, ?, funcionario) ";
 
         try{
@@ -35,7 +35,7 @@ public class FuncionarioDAO extends GenericDAO {
         }
     }
 
-    public void update(Usuario funcionario) {
+    public void update(Funcionario funcionario) {
         String sql = "UPDATE Usuario SET nome = ?, telefone = ?, dataNascimento = ? WHERE id = ?";
 
         try {
@@ -56,7 +56,7 @@ public class FuncionarioDAO extends GenericDAO {
         }
     }
 
-    public void delete(Usuario funcionario){
+    public void delete(Funcionario funcionario){
         String sql = "DELETE FROM Usuario where id = ?";
 
         try{
@@ -74,8 +74,8 @@ public class FuncionarioDAO extends GenericDAO {
     }
 
 
-    public Usuario getById(Long id){
-        Usuario funcionario = null;
+    public Funcionario getById(Long id){
+        Funcionario funcionario = null;
 
         String sql = "SELECT * from Usuario WHERE id = ?";
 

@@ -5,8 +5,8 @@ import app.Service.spec.IUsuarioService;
 import java.sql.SQLException;
 
 import app.Domain.PacoteUsuarios.Leitor;
-//import app.Domain.PacoteUsuarios.Funcionario;
-import app.Domain.PacoteUsuarios.Usuario;
+import app.Domain.PacoteUsuarios.Funcionario;
+//import app.Domain.PacoteUsuarios.Usuario;
 import app.dao.LeitorDAO;
 import app.dao.FuncionarioDAO;
 
@@ -30,7 +30,7 @@ public class UsuarioService implements IUsuarioService{
         }
     }
     @Override
-    public boolean insereFuncionario(Usuario funcionario){
+    public boolean insereFuncionario(Funcionario funcionario){
         try{
             fdao.insert(funcionario);
             return true;
@@ -42,7 +42,7 @@ public class UsuarioService implements IUsuarioService{
     @Override
     public boolean removeFuncionario(Long id) {
         try {
-            Usuario funcionario = fdao.getById(id);
+            Funcionario funcionario = fdao.getById(id);
             fdao.delete(funcionario);
             return true;
         } catch (SQLException e) {
@@ -78,7 +78,7 @@ public class UsuarioService implements IUsuarioService{
         }
     }
     @Override
-    public boolean alteraFuncionario(Long id, Usuario funcionario) {
+    public boolean alteraFuncionario(Long id, Funcionario funcionario) {
         try {
             // Verificando se existe 
             if(fdao.getById(id) == null){
