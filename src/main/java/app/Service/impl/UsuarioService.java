@@ -2,7 +2,7 @@ package app.Service.impl;
 
 import app.Service.spec.IUsuarioService;
 
-import java.sql.SQLException;
+//import java.sql.SQLException;
 
 import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.PacoteUsuarios.Funcionario;

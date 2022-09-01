@@ -12,11 +12,11 @@ import app.dao.UsuarioDAO;
 
 public class EmprestimoService implements IEmprestimoService {
 
-    private EmprestimoDAO eDao;
-    private UsuarioDAO uDao;
+    private EmprestimoDAO edao;
+    private UsuarioDAO udao;
 
     public EmprestimoService() {
-        this.dao = new EmprestimoDAO();
+        this.edao = new EmprestimoDAO();
     }
 
     @Override

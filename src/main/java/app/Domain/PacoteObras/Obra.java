@@ -90,7 +90,7 @@ public class Obra extends Subject {
     }
     
     public CategoriaObra getCategoria() {
-        return this.categoria = categoria;
+        return this.categoria;
     }
 
     public void setAutores(List<Autor> autores) {

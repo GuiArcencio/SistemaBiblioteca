@@ -5,7 +5,7 @@ import app.Domain.SubjectObserver.Subject;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
 import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteUsuarios.Leitor;
-//import app.Funcionario.Funcionario
+import app.Domain.PacoteUsuarios.Funcionario;
 
 public class Emprestimo extends Subject{
     private Long id;
@@ -16,8 +16,8 @@ public class Emprestimo extends Subject{
     @JsonRequired
     private Date dataPrevistaDevolucao;
 
-    //@JsonRequired
-    //private Funcionario funcionarioResponsavel;
+    @JsonRequired
+    private Funcionario funcionarioResponsavel;
 
     @JsonRequired
     private Copia copia;
@@ -27,11 +27,16 @@ public class Emprestimo extends Subject{
 
     @JsonRequired
     private boolean atrasado;
+
+    public Emprestimo(Long id){
+        this.id = id;
+    }
     
-    public Emprestimo(Long id, Date dataEmprestimo, Date dataPrevistaDevolucao, Copia copia, Leitor leitor, boolean atrasado) {
+    public Emprestimo(Long id, Date dataEmprestimo, Date dataPrevistaDevolucao, Funcionario funcionarioResponsavel, Copia copia, Leitor leitor, boolean atrasado) {
         this.id = id;
         this.dataEmprestimo = dataEmprestimo; 
         this.dataPrevistaDevolucao = dataPrevistaDevolucao;
+        this.funcionarioResponsavel = funcionarioResponsavel;
         this.copia = copia;
         this.leitor = leitor;
         this.atrasado = atrasado;
@@ -60,6 +65,14 @@ public class Emprestimo extends Subject{
 
     public Date getDataPrevistaDevolucao() {
         return this.dataPrevistaDevolucao;
+    }
+
+    public void setFuncionarioResponsavel(Funcionario fr) {
+        this.funcionarioResponsavel = fr;
+    }
+
+    public Funcionario getFuncionarioResponsavel() {
+        return this.funcionarioResponsavel;
     }
 
     public void setCopia(Copia copia) {
