@@ -135,5 +135,38 @@ public class ReservaDAO extends GenericDAO {
 
     }
 
+    public Reserva getByLeitorAndCopia(Long idLeitor, Long idCopia){
+        Reserva reserva = null;
+
+        String sql = "SELECT * from Reserva WHERE leitor = ? AND copiaReservada = ?";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setLong(1, idLeitor);
+            statement.setLong(2, idCopia);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                Long id = resultSet.getLong("id");
+                Date dataReserva = resultSet.getDate("dataEmprestimo");
+                Date dataPrevistaRetirada = resultSet.getDate("dataPrevistaRetirada");
+                Date dataPrevistaDevolucao = resultSet.getDate("dataPrevistaDevolucao");
+                Funcionario funcionarioResponsavel = fdao.getById(resultSet.getLong("funcionarioResponsavel"));
+
+                Leitor leitor = ldao.getById(idLeitor);
+                Copia copia = cdao.getById(idCopia);
+                reserva = new Reserva(id, dataReserva, dataPrevistaRetirada, dataPrevistaDevolucao, funcionarioResponsavel, leitor, copia);
+                
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return reserva;
+    }
+
 }
 
