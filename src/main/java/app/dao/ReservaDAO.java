@@ -132,42 +132,14 @@ public class ReservaDAO extends GenericDAO {
 
     }
 
-<<<<<<< HEAD
-        public Reserva getByLeitorCopia(Long leitorId, Long copiaId){
-        Reserva reserva = null; 
-
-        String sql = "SELECT * from Reserva WHERE leitor = ?, copiaReservada = ?";
-=======
-    public Reserva getByLeitorAndCopia(Long idLeitor, Long idCopia){
+     public Reserva getByLeitorAndCopia(Long idLeitor, Long idCopia){
         Reserva reserva = null;
 
         String sql = "SELECT * from Reserva WHERE leitor = ? AND copiaReservada = ?";
->>>>>>> 70e06d574cc50512ae63263fba56e2c559cc8d91
 
         try{
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-<<<<<<< HEAD
-            
-            statement.setLong(1, leitorId);
-            statement.setLong(2, copiaId);
-            ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next()){ 
-
-                Date dataReserva = resultSet.getDate("dataReserva");
-                Date dataPrevistaRetirada = resultSet.getDate("dataPrevistaRetirada");
-                Date dataPrevistaDevolucao = resultSet.getDate("dataPrevistaDevolucao");
-
-
-                Funcionario funcionarioResponsavel = fdao.getById(resultSet.getLong("funcionarioResponsavel"));
-
-
-                Leitor leitor = ldao.getById(resultSet.getLong("leitor"));
-                Copia copia = cdao.getById(resultSet.getLong("codigoCopia"));
-
-                reserva = new Reserva(id, dataReserva, dataPrevistaRetirada, dataPrevistaDevolucao, funcionarioResponsavel, leitor, copia);
-
-=======
 
             statement.setLong(1, idLeitor);
             statement.setLong(2, idCopia);
@@ -182,26 +154,15 @@ public class ReservaDAO extends GenericDAO {
                 Leitor leitor = ldao.getById(idLeitor);
                 Copia copia = cdao.getById(idCopia);
                 reserva = new Reserva(id, dataReserva, dataPrevistaRetirada, dataPrevistaDevolucao, funcionarioResponsavel, leitor, copia);
-                
->>>>>>> 70e06d574cc50512ae63263fba56e2c559cc8d91
+
             }
             resultSet.close();
             statement.close();
             conn.close();
         }catch (SQLException e){
             throw new RuntimeException(e);
-<<<<<<< HEAD
-        }   
-        return reserva;
-
-    }
-
-
-=======
         }
         return reserva;
     }
-
->>>>>>> 70e06d574cc50512ae63263fba56e2c559cc8d91
 }
 

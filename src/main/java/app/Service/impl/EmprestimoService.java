@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.lang.Math;
 
 import app.Domain.PacoteEntradaSaidaObras.Devolucao;
 import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
@@ -76,7 +77,7 @@ public class EmprestimoService implements IEmprestimoService {
         Reserva reserva = null;
         //percorre todas as copias por uma reserva, se nao achar, o emprestimo é feito com a ultima copia achada
         for (Copia copia_i : obra.getCopias()) {
-            reserva = rdao.getByLeitorCopia(idUsuario, copia.getId());
+            reserva = rdao.getByLeitorAndCopia(idUsuario, copia.getId());
             if (reserva != null) {
                 copia = copia_i;
                 break;
@@ -122,7 +123,7 @@ public class EmprestimoService implements IEmprestimoService {
     }
 
     @Override
-    public Copia reservarObra(Long idUsuario, Long isbn, Date dataRetirada) {
+    public Copia reservarObra(Long idUsuario, Long isbn, java.util.Date dataRetirada, Funcionario funcionarioResponsavel) {
         Obra obra = odao.getByIsbn(isbn);
         if (obra == null) {
             //não há obras com esse isbn
@@ -135,23 +136,35 @@ public class EmprestimoService implements IEmprestimoService {
 
         java.util.Date dataReserva = java.util.Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-        long daysBetween = DAYS.between(dataReserva, dateRetirada);
+        /*
+        long diffInMillies = Math.abs(dataRetirada.getTime() - dataReserva.getTime());
+        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS)   
+
+        long daysBetween = ChronoUnit.DAYS.between(dataReserva, dataRetirada);
         if (daysBetween < 0 && daysBetween > 7) {
             System.out.println("[ERRO] data de Retirada deve ser em até 1 semana depois de hoje , retornando null");
             return null;
         }
-
-        LocalDate dataDevolucao = obra.getCategoria().calculaDataDevolucao().plusDays(daysBetween);
+        */
+    
+        
+        LocalDate dataDevolucao = obra.getCategoria().calculaDataDevolucao().plusDays(0L);
         java.util.Date dataPrevistaDevolucao = java.util.Date.from(dataDevolucao.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-        
+        Copia copia = null;
         //percorre todas as copias por uma disponivel
         for (Copia copia_i : obra.getCopias()) {
+            Reserva reserva = rdao.getByLeitorAndCopia(idUsuario, copia_i.getId());
+
+            if (reserva != null){
+                System.out.println("[Erro] Já há uma reserva feita para esse usuário e ess obra");
+                return null;
+            }
             if (copia_i.getState().getState() == "Disponivel") {
                 copia = copia_i;
-                break;
             }
         }
+ 
 
         if(copia == null){
             //não há copias disponiveis
@@ -170,7 +183,7 @@ public class EmprestimoService implements IEmprestimoService {
         }
 
         //obs o id da reserva nao é usado, o bd gera um
-        Reserva reserva = new Reserva(1L, dataReserva, dataPrevistaRetirada, dataPrevistaDevolucao, funcionarioResponsavel, leitor, copia);
+        Reserva reserva = new Reserva(1L, dataReserva, dataRetirada, dataPrevistaDevolucao, funcionarioResponsavel, leitor, copia);
 
         new ReservaExpirada(reserva, leitor);
 
