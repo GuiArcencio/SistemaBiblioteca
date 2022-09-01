@@ -22,8 +22,20 @@ public class Leitor extends Usuario {
     @JsonRequired
     private CategoriaLeitor categoria;
 
+    public Leitor(){
+        
+    }
+
     public Leitor(Long id){
         this.setId(id);
+    }
+
+    public Leitor(String nome, String telefone, Date dataNascimento, Endereco endereco, String role){
+        this.nome = nome;
+        this.telefone = telefone;
+        this.dataNascimento = dataNascimento;
+        this.endereco = endereco;
+        this.role = role;
     }
 
     public Leitor(Long id, String nome, String telefone, Date dataNascimento, Endereco endereco, String role){

@@ -2,6 +2,7 @@ package app.Service.spec;
 
 import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.PacoteUsuarios.Funcionario;
+//import app.Domain.PacoteUsuarios.Usuario;
 
 public interface IUsuarioService {
 
@@ -13,5 +14,13 @@ public interface IUsuarioService {
 
     boolean alteraLeitor(Long id, Leitor leitor);
     boolean alteraFuncionario(Long id, Funcionario funcionario);
+
+    /*
+    boolean uinsereLeitor(Usuario leitor);
+    boolean uinsereFuncionario(Usuario funcionario);
+
+    boolean ualteraLeitor(Long id, Usuario leitor);
+    boolean ualteraFuncionario(Long id, Usuario funcionario);
+    */
     
 }
