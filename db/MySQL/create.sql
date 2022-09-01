@@ -31,7 +31,11 @@ CREATE TABLE RelObraAutor(
     id bigint not NULL auto_increment,
     codigo_autor bigint not NULL,
     codigo_obra bigint not NULL,
-    CONSTRAINT obraAutor_pk PRIMARY KEY(id)
+    CONSTRAINT obraAutor_pk PRIMARY KEY(id),
+    CONSTRAINT relAutor_fk FOREIGN KEY (codigo_autor) REFERENCES Autor(codigo),
+    CONSTRAINT relObra_fk FOREIGN KEY (codigo_obra) REFERENCES Obra(codigo)
+
+
 );
 
 CREATE TABLE Editora(

@@ -1,6 +1,6 @@
 package app.Domain.PacoteObras;
 
-import java.math.BigInteger;
+
 import java.util.Date;
 import java.util.List;
 import app.Domain.SubjectObserver.Subject;
@@ -44,7 +44,10 @@ public class Obra extends Subject {
 	@JsonRequired
 	List<Copia> copias;
 	
-	
+	public Obra(){
+
+	}
+
 	public Obra(
 		Long codigo,
 		Long isbn,
@@ -167,8 +170,8 @@ public class Obra extends Subject {
 		this.autores.add(new Autor(autor, iniciais));
 	}
 	
-	public void removerAutor(int indice) {
-		this.autores.remove(indice);
+	public void removerAutor(Autor autor) {
+		this.autores.remove(autor);
 	}
 	
 	public void adicionarPalavraChave(String palavra) {

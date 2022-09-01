@@ -154,5 +154,36 @@ public class AutorDAO extends GenericDAO{
         return lista;
     }
 
+    public List<Autor> getAll(){
+
+    	List<Autor>  listaAutores = new ArrayList<>();
+
+        String sql = "SELECT * from Autor";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+                ResultSet resultSet = statement.executeQuery();
+                while (resultSet.next()) {
+                    Long codigo = resultSet.getLong("codigo");
+                    String nome = resultSet.getString("nome");
+                    String iniciais = resultSet.getString("iniciais");
+
+                
+                    Autor autor = new Autor(codigo, nome, iniciais);
+                    listaAutores.add(autor);
+                }
+
+            resultSet.close();
+            statement.close();
+            conn.close();
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+
+        return listaAutores;
+    }
+
 }
 

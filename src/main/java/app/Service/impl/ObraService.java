@@ -1,10 +1,10 @@
 package app.Service.impl;
 
-import java.math.BigInteger;
+import java.util.List;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+
 
 import app.Domain.PacoteObras.Autor;
 import app.Domain.PacoteObras.CategoriaObra;
@@ -13,92 +13,165 @@ import app.Domain.PacoteObras.Obra;
 import app.Domain.PacoteObras.Editora;
 import app.Service.spec.IObraService;
 import app.dao.ObraDAO;
+import app.dao.AutorDAO;
 
 public class ObraService implements IObraService{
-    private ObraDAO dao;
+    private ObraDAO odao;
+    private AutorDAO adao;
+
 
     public ObraService() {
-        this.dao = new ObraDAO();
+        this.odao = new ObraDAO();
+        this.adao = new AutorDAO();
     }
 
     // TODO: Função de teste enquanto dao não está pronto
     @Override
-    public Obra buscaObra(BigInteger isbn) {
-        List<Autor> autores = new ArrayList<Autor>();
-        autores.add(new Autor("Douglas Adams", "D.A"));
+    public List<Obra> buscaObra(Long isbn) {
+       try{
+        return odao.getByIsbn(isbn);
+       } catch(Exception e){
+        System.out.println("Obra(s) não encontrada! Retornando null.");
+        return null;
+       }
+    }
+    @Override
+    public Obra buscaObra(String titulo) {
+       try{
+        return odao.getByTitulo(titulo);
+       } catch(Exception e){
+        System.out.println("Obra não encontrada! Retornando NULL.");
+        return null;
+       }
+    }
+    @Override
+    public Obra buscaObraByCodigo(Long codigo) {
+       try{
+        return odao.getByCodigo(codigo);
+       } catch(Exception e){
+        System.out.println("Obra não encontrada! Retornando NULL.");
+        return null;
+       }
+    }
 
-        List<String> palavras_chave = new ArrayList<String>();
-        palavras_chave.add("hitchiker");
-        palavras_chave.add("42");
-        palavras_chave.add("universe");
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-yyyy");
-
+    @Override
+    public boolean adicionarObra(Obra obra) {
         try {
-            return new Obra(
-                1L,
-                9780345391827L,
-                new CategoriaObra(1, "Ficção Científica", 30, 1.4),
-                autores,
-                palavras_chave,
-                dateFormat.parse("12-1995"),
-                "Later Printing",
-                new Editora(1L, "Editora"),
-                "The Hitchhiker's Guide to the Galaxy",
-                240
-            );
-        } catch (ParseException e) {
-            e.printStackTrace();
+            odao.insert(obra);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public List<Autor> buscarAutores() {
+        try {
+            return adao.getAll();
+        } catch (Exception e) {
+            // Retorna lista vazia no caso de erro
+            System.out.println("[ERRO] A busca de todos os autores falhou, retornando lista vazia");
+            return new ArrayList<Autor>();
+        }
+    }
+
+    @Override
+    public Autor buscarAutor(Long id){
+        try{
+            return adao.getById(id);
+        } catch(Exception e){
+            System.out.println("[ERRO] Autor não encontrado! Retornando NULL");
             return null;
         }
     }
 
     @Override
-    public void adicionarObra(Obra obra) {
-        // TODO Auto-generated method stub
+    public boolean adicionarAutor(Long codigo, Autor autor) {
+        try {
+            Obra obra = buscaObraByCodigo(codigo);
+            if(obra==null){
+                System.out.println("[ERRO] Obra não contrada! Verifique o código informado. Se for uma nova Obra, adicione-a primeiro.");
+                return false;
+            }
+            if(buscarAutor(autor.getId())==null){
+                adao.insert(autor, obra);
+            }
+            obra.adicionarAutor(autor.getNome());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }  
+    }
+
+    @Override
+    public boolean removerAutor(Long codigo, Autor autor) {
+        try {
+            Obra obra = buscaObraByCodigo(codigo);
+            if(obra==null){
+                System.out.println("[ERRO] Obra não contrada! Verifique o código informado.");
+                return false;
+            }
+            if(buscarAutor(autor.getId())==null){
+                System.out.println("[ERRO] Autor não contrado! Verifique o id informado.");
+                return false;
+            }
+            obra.removerAutor(autor);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }  
         
     }
 
     @Override
-    public List<Autor> buscarAutores() {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Obra> buscarObrasPPC(String palavra) {
+        try{
+            return odao.getAllByKeyWord(palavra);
+           } catch(Exception e){
+            System.out.println("Nenhuma obra equivalente à palavra-chave informada foi encontrada! Retornando null.");
+            return null;
+           }
     }
 
     @Override
-    public void adicionarAutor(BigInteger isbn, Autor autor) {
-        // TODO Auto-generated method stub
+    public boolean adicionarPalavraChave(Long codigo, String palavra) {
+        Obra obra = buscaObraByCodigo(codigo);
+        if(obra == null){
+            System.out.println("[ERRO] Obra não encontrada! Verifique o código informado.");
+            return false;
+        }
+        List<String> palavrasChave = new ArrayList<>();
+        palavrasChave = obra.getPalavrasChave();
+        palavrasChave.add(palavra);
+        obra.setPalavrasChave(palavrasChave);
+        return true;
         
     }
 
     @Override
-    public void removerAutor(BigInteger isbn, Autor autor) {
-        // TODO Auto-generated method stub
+    public boolean removerPalavraChave(Long codigo, String palavra) {
+        Obra obra = buscaObraByCodigo(codigo);
+        if(obra == null){
+            System.out.println("[ERRO] Obra não encontrada! Verifique o código informado.");
+            return false;
+        }
+        List<String> palavrasChave = new ArrayList<>();
+        palavrasChave = obra.getPalavrasChave();
+        if(!palavrasChave.contains(palavra)){
+            System.out.println("[ERRO] Palvra chave não encontrada! Verifique se não é erros de ortografia.");
+            return false;
+        }
+        palavrasChave.remove(palavra);
+        obra.setPalavrasChave(palavrasChave);
+        return true;
         
     }
 
     @Override
-    public List<String> buscarPalavrasChave() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void adicionarPalavraChave(BigInteger isbn, String palavra) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void removerPalavraChave(BigInteger isbn, String palavra) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public Copia buscarCopias(BigInteger isbn) {
-        // TODO Auto-generated method stub
-        return null;
+    public Copia buscarCopias(Long isbn) {
+        try{
+            cdao
+        }
     }
 
     @Override
@@ -108,37 +181,37 @@ public class ObraService implements IObraService{
     }
 
     @Override
-    public void adicionarCopia(BigInteger isbn, Copia copia) {
+    public boolean adicionarCopia(Long isbn, Copia copia) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void removerCopia(BigInteger isbn, Copia copia) {
+    public boolean removerCopia(Long isbn, Copia copia) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void marcarEmprestadoCopia(int idCopia) {
+    public boolean marcarEmprestadoCopia(int idCopia) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void marcarDevolverCopia(int idCopia) {
+    public boolean marcarDevolverCopia(int idCopia) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void marcarDisponivelCopia(int idCopia) {
+    public boolean marcarDisponivelCopia(int idCopia) {
         // TODO Auto-generated method stub
         
     }
 
     @Override
-    public void removerObra(Obra obra) {
+    public boolean removerObra(Obra obra) {
         // TODO Auto-generated method stub
         
     }
