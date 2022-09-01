@@ -9,14 +9,15 @@ CREATE TABLE Obra(
     codigo bigint not NULL auto_increment,
     isbn bigint not NULL,
     titulo varchar(256) not NULL,
-    categoria bigint,
+    categoria int,
     palavraChave varchar(256),
     dataPublicacao date not NULL,
-    numEdicao int not NULL,
+    Edicao varchar(50) not NULL,
     editora_id bigint not NULL,
     numPaginas bigint not NULL,
     CONSTRAINT obra_pk PRIMARY KEY (codigo)
 );
+
 
 CREATE TABLE Autor(
     codigo bigint not NULL auto_increment,

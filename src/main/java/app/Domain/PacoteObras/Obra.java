@@ -9,12 +9,13 @@ import app.Domain.PacoteObras.CategoriaObra;
 import app.Domain.PacoteObras.Autor;
 import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.Estados.*;
+import app.Domain.PacoteObras.Editora;
 
 public class Obra extends Subject {
-	int codigo;
+	Long codigo;
 
 	@JsonRequired
-	BigInteger isbn;
+	Long isbn;
 
 	@JsonRequired
 	CategoriaObra categoria;
@@ -27,12 +28,15 @@ public class Obra extends Subject {
 
 	@JsonRequired
 	Date dataPublicacao;
+	
+	@JsonRequired
+	String titulo;
 
 	@JsonRequired
 	String Edicao;
 
 	@JsonRequired
-	String editora;
+	Editora editora;
 
 	@JsonRequired
 	int numeroPaginas;
@@ -40,15 +44,17 @@ public class Obra extends Subject {
 	@JsonRequired
 	List<Copia> copias;
 	
+	
 	public Obra(
-		int codigo,
-		BigInteger isbn,
+		Long codigo,
+		Long isbn,
 		CategoriaObra categoria,
 		List<Autor> autores,
 		List<String> palavrasChave,
 		Date dataPublicacao,
 		String Edicao,
-		String editora,
+		Editora editora,
+        String titulo,
 		int numeroPaginas
 	) {
 		this.codigo = codigo;
@@ -59,8 +65,97 @@ public class Obra extends Subject {
 		this.dataPublicacao = dataPublicacao;
 		this.Edicao = Edicao;
 		this.editora = editora;
+        this.titulo = titulo;
 		this.numeroPaginas = numeroPaginas;
 	}
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public Long getCodigo() {
+        return this.codigo;
+    }
+
+    public void setIsbn(Long isbn) {
+        this.isbn = isbn;
+    }
+
+    public Long getIsbn() {
+        return this.isbn;
+    }
+
+    public void setCategoria(CategoriaObra categoria) {
+        this.categoria = categoria;
+    }
+    
+    public CategoriaObra getCategoria() {
+        return this.categoria = categoria;
+    }
+
+    public void setAutores(List<Autor> autores) {
+        this.autores = autores;
+    }
+    
+    public List<Autor> getAutores() {
+        return this.autores;
+    }
+
+    public void setPalavrasChave(List<String> palavrasChave) {
+        this.palavrasChave = palavrasChave;
+    }
+    
+    public List<String> getPalavrasChave() {
+        return this.palavrasChave;
+    }
+
+    public void setDataPublicacao(Date dataPublicacao) {
+        this.dataPublicacao = dataPublicacao;
+    }
+    
+    public Date getDataPublicacao() {
+        return this.dataPublicacao;
+    }
+
+    public void setEdicao(String Edicao) {
+        this.Edicao = Edicao;
+    }
+    
+    public String getEdicao() {
+        return this.Edicao;
+    }
+
+    public void setEditora(Editora editora) {
+        this.editora = editora;
+    }
+    
+    public Editora getEditora() {
+        return this.editora;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+    
+    public String getTitulo() {
+        return this.titulo;
+    }
+
+    public void setNumeroPaginas(int numeroPaginas) {
+        this.numeroPaginas = numeroPaginas;
+    }
+
+    public int getNumeroPaginas() {
+        return this.numeroPaginas;
+    }
+
+    public void setCopias(List<Copia> copias) {
+        this.copias = copias;
+    }
+
+    public List<Copia> getCopias() {
+        return this.copias;
+    }
 	
 	public void adicionarAutor(String autor) {
 		String iniciais = "";

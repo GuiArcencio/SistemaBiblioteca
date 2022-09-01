@@ -18,7 +18,6 @@ public class EditoraDAO extends GenericDAO{
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement = conn.prepareStatement(sql);
             statement.setString(1, editora.getNome());
             statement.executeUpdate();
 

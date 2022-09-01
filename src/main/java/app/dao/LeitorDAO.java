@@ -86,7 +86,7 @@ public class LeitorDAO extends GenericDAO {
     }
 
 
-    public Usuario getById(Long id){
+    public Leitor getById(Long id){
 
         Leitor leitor = null;
 
@@ -116,7 +116,7 @@ public class LeitorDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
 
-        Usuario leitorF = new Leitor(dao.getById(id), leitor);
+        Leitor leitorF = new Leitor(dao.getById(id), leitor);
 
         return leitorF;
 
