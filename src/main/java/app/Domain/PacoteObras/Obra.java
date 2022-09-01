@@ -1,15 +1,12 @@
 package app.Domain.PacoteObras;
 
-import java.math.BigInteger;
+
 import java.util.Date;
 import java.util.List;
 import app.Domain.SubjectObserver.Subject;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
-import app.Domain.PacoteObras.CategoriaObra;
-import app.Domain.PacoteObras.Autor;
-import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.Estados.*;
-import app.Domain.PacoteObras.Editora;
+
 
 public class Obra extends Subject {
 	Long codigo;
@@ -44,7 +41,10 @@ public class Obra extends Subject {
 	@JsonRequired
 	List<Copia> copias;
 	
-	
+	public Obra(){
+
+	}
+
 	public Obra(
 		Long codigo,
 		Long isbn,
@@ -156,49 +156,6 @@ public class Obra extends Subject {
     public List<Copia> getCopias() {
         return this.copias;
     }
-	
-	public void adicionarAutor(String autor) {
-		String iniciais = "";
-		String[] nomesAutor = autor.split(" ");
-		for (int i = 0; i < nomesAutor.length; i++) {
-			iniciais = iniciais.concat(nomesAutor[i].substring(0, 1));
-		}
-		
-		this.autores.add(new Autor(autor, iniciais));
-	}
-	
-	public void removerAutor(int indice) {
-		this.autores.remove(indice);
-	}
-	
-	public void adicionarPalavraChave(String palavra) {
-		this.palavrasChave.add(palavra);
-	}
-	
-	public void removerPalavraChave(int indice) {
-		this.palavrasChave.remove(indice);
-	}
 
-	public void adicionarCopia(Long idCopia){
-		State state = Disponivel.getInstancia();
-		Copia copia = new Copia(state, idCopia);
-		this.copias.add(copia);
-        this.notifyAllObservers();
-	}
-
-	public void removerCopia(Long idCopia){
-		
-	}
-
-	public void marcarEmprestadoCopia(Long idCopia){
-
-	}
-
-	public void marcarDevolverCopia(Long idCopia){
-        this.notifyAllObservers();
-	}
 	
-	public void marcarDisponivelCopia(Long idCopia){
-        this.notifyAllObservers();
-	}
 }

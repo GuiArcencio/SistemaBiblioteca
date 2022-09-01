@@ -104,7 +104,35 @@ public class DevolucaoDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
         return devolucao;
+    }
 
+    public Devolucao getByEmprestimoId(Long idEmprestimo){
+        Devolucao devolucao = null;
+
+        String sql = "SELECT * from Devolucao WHERE codigo_emprestimo = ?";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setLong(1, idEmprestimo);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                Long id = resultSet.getLong("id");
+                Date dataDevolucao = resultSet.getDate("dataDevolucao");
+                double multaTotal = resultSet.getDouble("multaTotal");
+                Emprestimo emprestimo = edao.getById(idEmprestimo);
+
+                devolucao = new Devolucao(id, dataDevolucao, multaTotal, emprestimo);
+
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return devolucao;
     }
 
 

@@ -31,7 +31,9 @@ CREATE TABLE RelObraAutor(
     id bigint not NULL auto_increment,
     codigo_autor bigint not NULL,
     codigo_obra bigint not NULL,
-    CONSTRAINT obraAutor_pk PRIMARY KEY(id)
+    CONSTRAINT obraAutor_pk PRIMARY KEY(id),
+    CONSTRAINT relAutor_fk FOREIGN KEY (codigo_autor) REFERENCES Autor(codigo),
+    CONSTRAINT relObra_fk FOREIGN KEY (codigo_obra) REFERENCES Obra(codigo)
 );
 
 CREATE TABLE Editora(
@@ -55,25 +57,6 @@ CREATE TABLE Copia(
     CONSTRAINT copia_pk PRIMARY KEY(id)
 );
 
-CREATE TABLE Emprestimo(
-    id bigint not NULL auto_increment,
-    dataEmprestimo date not NULL,
-    dataPrevistaDevolucao date not NULL,
-    funcionarioResponsavel bigint not NULL,
-    leitor bigint not NULL,
-    codigoCopia bigint not NULL,
-    atrasado boolean not NULL,
-    CONSTRAINT emprestimo_pk PRIMARY KEY(id)
-);
-
-CREATE TABLE Devolucao(
-    id bigint not NULL auto_increment,
-    dataDevolucao date not NULL,
-    multaTotal decimal(10,6) not NULL,
-    codigo_emprestimo bigint not NULL,
-    CONSTRAINT devolucao_pk PRIMARY KEY(id)
-);
-
 CREATE TABLE Reserva(
     id bigint not NULL auto_increment,
     dataReserva date not NULL,
@@ -82,7 +65,7 @@ CREATE TABLE Reserva(
     funcionarioResponsavel bigint not NULL,
     leitor bigint not NULL,
     copiaReservada bigint not NULL,
-    CONSTRAINT emprestimo_pk PRIMARY KEY(id)
+    CONSTRAINT reserva_pk PRIMARY KEY(id)
 );
 
 CREATE TABLE Usuario(
@@ -120,4 +103,25 @@ CREATE TABLE CategoriaLeitor(
     maximoDiasEmprestimo int not NULL,
     descricao varchar(50),
     CONSTRAINT categoriaLeitor_pk PRIMARY KEY(id)
+);
+
+CREATE TABLE Emprestimo(
+    id bigint not NULL auto_increment,
+    dataEmprestimo date not NULL,
+    dataPrevistaDevolucao date not NULL,
+    funcionarioResponsavel bigint not NULL,
+    leitor bigint not NULL,
+    codigoCopia bigint not NULL,
+    atrasado boolean not NULL,
+    CONSTRAINT emprestimo_pk PRIMARY KEY(id),
+    CONSTRAINT emprestmo_leitor_fk FOREIGN KEY (leitor) REFERENCES Leitor(idUsuario),
+    CONSTRAINT emrestimo_copia_fk FOREIGN KEY (codigoCopia) REFERENCES Copia(id)
+);
+
+CREATE TABLE Devolucao(
+    id bigint not NULL auto_increment,
+    dataDevolucao date not NULL,
+    multaTotal decimal(10,6) not NULL,
+    codigo_emprestimo bigint not NULL,
+    CONSTRAINT devolucao_pk PRIMARY KEY(id)
 );

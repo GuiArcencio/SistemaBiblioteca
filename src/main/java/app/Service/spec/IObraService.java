@@ -1,6 +1,6 @@
 package app.Service.spec;
 
-import java.math.BigInteger;
+
 import java.util.List;
 
 import app.Domain.PacoteObras.Autor;
@@ -8,24 +8,24 @@ import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.Obra;
 
 public interface IObraService {
-    Obra buscaObra(BigInteger isbn);
-    void adicionarObra(Obra obra);
-    void removerObra(Obra obra);
+    List<Obra> buscaObra(Long isbn);
+    Obra buscaObraByCodigo(Long codigo);
+    Obra buscaObra(String titulo);
+    boolean adicionarObra(Obra obra);
+    boolean removerObra(Obra obra);
     
     List<Autor> buscarAutores();
-    void adicionarAutor(BigInteger isbn, Autor autor);
-    void removerAutor(BigInteger isbn, Autor autor);
+    Autor buscarAutor(Long id);
+    boolean adicionarAutor(Long isbn, Autor autor);
+    boolean removerAutor(Long isbn, Autor autor);
 
-    List<String> buscarPalavrasChave();
-    void adicionarPalavraChave(BigInteger isbn, String palavra);
-    void removerPalavraChave(BigInteger isbn, String palavra);
+    List<Obra> buscarObrasPPC(String palavra);
+    boolean adicionarPalavraChave(Long codigo, String palavra);
+    boolean removerPalavraChave(Long codigo, String palavra);
 
-    Copia buscarCopias(BigInteger isbn);
-    Copia buscarCopia(int idCopia);
-    void adicionarCopia(BigInteger isbn, Copia copia);
-    void removerCopia(BigInteger isbn, Copia copia);
+    List<Copia> buscarCopias(Long codigo);
+    Copia buscarCopia(Long idCopia);
+    boolean adicionarCopia(Long codigo, Copia copia);
+    boolean removerCopia(Copia copia);
 
-    void marcarEmprestadoCopia(int idCopia);
-    void marcarDevolverCopia(int idCopia);
-    void marcarDisponivelCopia(int idCopia);
 }

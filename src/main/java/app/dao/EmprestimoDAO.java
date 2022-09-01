@@ -128,7 +128,7 @@ public class EmprestimoDAO extends GenericDAO {
 
     }
 
-    public List<Emprestimo> getByLeitor(Long id){
+    public List<Emprestimo> getByLeitor(Long idLeitor){
         List<Emprestimo> listaEmprestimo = new ArrayList<>();
         Emprestimo emprestimo = null;
 
@@ -138,19 +138,15 @@ public class EmprestimoDAO extends GenericDAO {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setLong(1, id);
+            statement.setLong(1, idLeitor);
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
+                Long id = resultSet.getLong("id");
                 Date dataEmprestimo = resultSet.getDate("dataEmprestimo");
                 Date dataPrevistaDevolucao = resultSet.getDate("dataPrevistaDevolucao");
-
-                //ATENCAO: Adicionar quando funcionario for implementado
-                //Funcionario funcionarioResponsavel = new Funcionario(resultSet.getLong("funcionarioResponsavel");
-                //ou adicione 
                 Funcionario funcionarioResponsavel = fdao.getById(resultSet.getLong("funcionarioResponsavel"));
 
-
-                Leitor leitor = ldao.getById(resultSet.getLong("leitor"));
+                Leitor leitor = ldao.getById(idLeitor);
                 Copia copia = cdao.getById(resultSet.getLong("codigoCopia"));
                 boolean atrasado = resultSet.getBoolean("atrasado");
 
@@ -166,7 +162,40 @@ public class EmprestimoDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
         return listaEmprestimo;
+    }
 
+    public Emprestimo getByLeitorAndCopia(Long idLeitor, Long idCopia){
+        Emprestimo emprestimo = null;
+
+        String sql = "SELECT * from Emprestimo WHERE leitor = ? AND codigoCopia = ?";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setLong(1, idLeitor);
+            statement.setLong(2, idCopia);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                Long id = resultSet.getLong("id");
+                Date dataEmprestimo = resultSet.getDate("dataEmprestimo");
+                Date dataPrevistaDevolucao = resultSet.getDate("dataPrevistaDevolucao");
+                Funcionario funcionarioResponsavel = fdao.getById(resultSet.getLong("funcionarioResponsavel"));
+
+                Leitor leitor = ldao.getById(idLeitor);
+                Copia copia = cdao.getById(idCopia);
+                boolean atrasado = resultSet.getBoolean("atrasado");
+
+                emprestimo = new Emprestimo(id, dataEmprestimo, dataPrevistaDevolucao, funcionarioResponsavel, copia, leitor, atrasado);
+
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return emprestimo;
     }
 
 }
