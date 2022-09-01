@@ -21,13 +21,13 @@ public class Aplication {
             before("/*", (q, a) -> System.out.println("Chamada API recebida"));
 
             // Rotas do ControllerObras
-            get("/obra/:isbn",             ControllerObras.buscaObra, gson::toJson);
+            get("/obra/:codigo",             ControllerObras.buscaObra, gson::toJson);
             post("/obra",                  ControllerObras.adicionarObra, gson::toJson);
-            delete("/obra/:isbn",          ControllerObras.removerObra, gson::toJson);
-            post("/obra/:isbn/autor",      ControllerObras.adicionarAutor, gson::toJson);
-            delete("/obra/:isbn/autor",    ControllerObras.removerAutor, gson::toJson);
-            post("/obra/:isbn/palavras",   ControllerObras.adicionarPalavraChave, gson::toJson);
-            delete("/obra/:isbn/palavras", ControllerObras.removerPalavraChave, gson::toJson);
+            delete("/obra/:codigo",          ControllerObras.removerObra, gson::toJson);
+            post("/obra/:codigo/autor",      ControllerObras.adicionarAutor, gson::toJson);
+            delete("/obra/:codigo/autor",    ControllerObras.removerAutor, gson::toJson);
+            post("/obra/:codigo/palavras",   ControllerObras.adicionarPalavraChave, gson::toJson);
+            delete("/obra/:codigo/palavras", ControllerObras.removerPalavraChave, gson::toJson);
             // put("/copia/:codigo/disp",     ControllerObras.mudarDisponibilidadeCopia, gson::toJson);
 
             // Rotas de ControllerEmprestimo
@@ -50,6 +50,8 @@ public class Aplication {
             delete("/usuario/:id/funcionario", ControllerUsuario.removerFuncionario, gson::toJson);
             put("/usuario/:id/leitor", ControllerUsuario.alterarLeitor, gson::toJson);
             put("/usuario/:id/leitor", ControllerUsuario.alterarFuncionario, gson::toJson);
+
+            
             // Exceptions
             exception(NumberFormatException.class, ControllerException.numberFormatException);
             exception(JsonSyntaxException.class, ControllerException.jsonSyntaxException);

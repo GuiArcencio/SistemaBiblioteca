@@ -33,12 +33,12 @@ public class ControllerObras {
     }
 
     /*
-     * Busca uma obra por ISBN
+     * Busca uma obra por codigo
      */
     public static Route buscaObra = (Request req, Response res) -> {
         res.type("application/json");
-        BigInteger isbn = new BigInteger(req.params(":isbn"));
-        Obra obra = service.buscaObra(isbn);
+        Long codigo = Long.parseLong(req.params(":codigo"));
+        Obra obra = service.buscaObraByCodigo(codigo);
         return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
     };
 
@@ -54,12 +54,12 @@ public class ControllerObras {
     };
 
     /*
-     * Remove uma obra por ISBN
+     * Remove uma obra por codigo
      */
     public static Route removerObra = (Request req, Response res) -> {
         res.type("application/json");
-        BigInteger isbn = new BigInteger(req.params(":isbn"));
-        Obra obra = service.buscaObra(isbn);
+        Long codigo = Long.parseLong(req.params(":codigo"));
+        Obra obra = service.buscaObraByCodigo(codigo);
         service.removerObra(obra);
         return new StandardResponse(StatusResponse.SUCCESS);
     };
@@ -71,8 +71,8 @@ public class ControllerObras {
         res.type("application/json");
         Gson gson = gsonAutor();
         Autor autor = gson.fromJson(req.body(), Autor.class);
-        BigInteger isbn = new BigInteger(req.params(":isbn"));
-        service.adicionarAutor(isbn, autor);
+        Long codigo = Long.parseLong(req.params(":codigo"));
+        service.adicionarAutor(codigo, autor);
         return new StandardResponse(StatusResponse.SUCCESS);
     };
 
@@ -81,9 +81,9 @@ public class ControllerObras {
      */
     public static Route removerAutor = (Request req, Response res) -> {
         res.type("application/json");
-        BigInteger isbn = new BigInteger(req.params(":isbn"));
+        Long codigo = Long.parseLong(req.params(":codigo"));
         Autor autor = new Gson().fromJson(req.body(), Autor.class);
-        service.removerAutor(isbn, autor);
+        service.removerAutor(codigo, autor);
         return new StandardResponse(StatusResponse.SUCCESS);
     };
 
@@ -93,8 +93,8 @@ public class ControllerObras {
     public static Route adicionarPalavraChave = (Request req, Response res) -> {
         res.type("application/json");
         String palavra = new Gson().fromJson(req.body(), String.class);
-        BigInteger isbn = new BigInteger(req.params(":isbn"));
-        service.adicionarPalavraChave(isbn, palavra);
+        Long codigo = Long.parseLong(req.params(":codigo"));
+        service.adicionarPalavraChave(codigo, palavra);
         return new StandardResponse(StatusResponse.SUCCESS);
     };
 
@@ -104,8 +104,8 @@ public class ControllerObras {
     public static Route removerPalavraChave = (Request req, Response res) -> {
         res.type("application/json");
         String palavra = new Gson().fromJson(req.body(), String.class);
-        BigInteger isbn = new BigInteger(req.params(":isbn"));
-        service.removerPalavraChave(isbn, palavra);
+        Long codigo = Long.parseLong(req.params(":codigo"));
+        service.removerPalavraChave(codigo, palavra);
         return new StandardResponse(StatusResponse.SUCCESS);
     };
 

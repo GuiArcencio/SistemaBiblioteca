@@ -16,8 +16,8 @@ public interface IObraService {
     
     List<Autor> buscarAutores();
     Autor buscarAutor(Long id);
-    boolean adicionarAutor(Long isbn, Autor autor);
-    boolean removerAutor(Long isbn, Autor autor);
+    boolean adicionarAutor(Long codigo, Autor autor);
+    boolean removerAutor(Long codigo, Autor autor);
 
     List<Obra> buscarObrasPPC(String palavra);
     boolean adicionarPalavraChave(Long codigo, String palavra);
