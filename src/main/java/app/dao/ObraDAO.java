@@ -149,6 +149,44 @@ public class ObraDAO extends GenericDAO{
 
     }
 
+    public Obra getByIsbn(Long isbn){
+        Obra obra = null;
+
+        String sql = "SELECT * from Obra WHERE isbn = ?";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setLong(1, isbn);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                Long codigo = resultSet.getLong("codigo");
+                CategoriaObra categoria = catdao.getByCodigo(resultSet.getInt("categoria"));
+                List<Autor> lista = adao.getAllByObraId(codigo);
+
+                List<String> palavrasChave = new ArrayList<String>(Arrays.asList(resultSet.getString("palavraChave").split(";")));
+                Date dataPublicacao = resultSet.getDate("dataPublicacao");
+                String Edicao = resultSet.getString("Edicao");
+                Editora editora = edao.getById(resultSet.getLong("editora_id"));
+                String titulo = resultSet.getString("titulo");
+                int numPaginas = resultSet.getInt("numPaginas");
+
+                obra = new Obra(codigo, isbn, categoria, lista, palavrasChave, dataPublicacao, Edicao, editora, titulo, numPaginas);
+
+
+
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return obra;
+
+    }
+
 }
 
 

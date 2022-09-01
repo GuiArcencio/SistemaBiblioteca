@@ -1,5 +1,8 @@
 package app.dao;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -110,5 +113,46 @@ public class CopiaDAO extends GenericDAO{
 
     }
 
+    public List<Copia> getAllByObraId(Long obraId){
+        List<Copia> copias = new ArrayList<>();
+
+        String sql = "SELECT * from Copia WHERE obra_id = ?";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setLong(1, obraId);
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                String statestr = resultSet.getString("state");
+                Long id = resultSet.getLong("id");
+
+                State state = null;
+
+                if (statestr == "Emprestado"){
+                    state = Emprestado.getInstancia();
+                }
+
+                else if(statestr == "Reservado") {
+                    state = Reservado.getInstancia();
+                }
+
+                else {
+                    state = Disponivel.getInstancia();
+                }
+
+                Copia copia = new Copia(id, state, obraId);
+                copias.add(copia);
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return copias;
+
+    }
 }
 

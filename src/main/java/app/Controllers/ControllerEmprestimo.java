@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 
 import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
 import app.Domain.PacoteObras.Estados.Emprestado;
+import app.Domain.PacoteUsuarios.Funcionario;
 import app.Exception.AnnotatedDeserializer;
 import app.Service.impl.EmprestimoService;
 import app.Service.spec.IEmprestimoService;
@@ -33,7 +34,7 @@ public class ControllerEmprestimo {
      */
     public static Route consultarEmprestimo = (Request req, Response res) -> {
         res.type("application/json");
-        BigInteger id = new BigInteger(req.params(":id"));
+        Long id = new Long(req.params(":id"));
         return new StandardResponse(StatusResponse.SUCCESS, new Gson()
             .toJsonTree(service.buscaEmprestimos(id)));
     };
@@ -44,7 +45,7 @@ public class ControllerEmprestimo {
      */
     public static Route consultarDevolucao = (Request req, Response res) -> {
         res.type("application/json");
-        BigInteger id = new BigInteger(req.params(":id"));
+        Long id = new Long(req.params(":id"));
         return new StandardResponse(StatusResponse.SUCCESS, new Gson()
             .toJsonTree(service.buscaDevolucoes(id)));
     };
@@ -56,10 +57,12 @@ public class ControllerEmprestimo {
      */
     public static Route emprestarObra = (Request req, Response res) -> {
         res.type("application/json");
-        BigInteger id = new BigInteger(req.params(":id"));
-        BigInteger isbn = new BigInteger(req.params(":isbn"));
+        Long id = new Long(req.params(":id"));
+        Long isbn = new Long(req.params(":isbn"));
+        //codigo de exemplo
+        Funcionario f = new Funcionario(1L);
         return new StandardResponse(StatusResponse.SUCCESS, new Gson()
-            .toJsonTree(service.emprestarObra(id, isbn)));
+            .toJsonTree(service.emprestarObra(id, isbn, f)));
     };
 
     /*
@@ -68,8 +71,8 @@ public class ControllerEmprestimo {
      */
     public static Route devolverObra = (Request req, Response res) -> {
         res.type("application/json");
-        BigInteger id = new BigInteger(req.params(":id"));
-        BigInteger isbn = new BigInteger(req.params(":isbn"));
+        Long id = new Long(req.params(":id"));
+        Long isbn = new Long(req.params(":isbn"));
         return new StandardResponse(StatusResponse.SUCCESS, new Gson()
             .toJsonTree(service.devolverObra(id, isbn)));
     };
@@ -80,9 +83,11 @@ public class ControllerEmprestimo {
      */
     public static Route reservarObra = (Request req, Response res) -> {
         res.type("application/json");
-        BigInteger id = new BigInteger(req.params(":id"));
-        BigInteger isbn = new BigInteger(req.params(":isbn"));
+        Long id = new Long(req.params(":id"));
+        Long isbn = new Long(req.params(":isbn"));
+        //codigo de exemplo
+        Funcionario f = new Funcionario(1L);
         return new StandardResponse(StatusResponse.SUCCESS, new Gson()
-            .toJsonTree(service.emprestarObra(id, isbn)));
+            .toJsonTree(service.emprestarObra(id, isbn, f)));
     };
 }
