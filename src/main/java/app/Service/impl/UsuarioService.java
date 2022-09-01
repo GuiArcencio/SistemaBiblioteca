@@ -5,7 +5,7 @@ import app.Service.spec.IUsuarioService;
 import java.sql.SQLException;
 
 import app.Domain.PacoteUsuarios.Leitor;
-import app.Domain.PacoteUsuarios.Funcionario;
+//import app.Domain.PacoteUsuarios.Funcionario;
 import app.Domain.PacoteUsuarios.Usuario;
 import app.dao.LeitorDAO;
 import app.dao.FuncionarioDAO;

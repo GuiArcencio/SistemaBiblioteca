@@ -9,8 +9,8 @@ import app.Domain.PacoteUsuarios.Usuario;
 import app.Exception.AnnotatedDeserializer;
 import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.PacoteUsuarios.Usuario;
-import app.dao.UsuarioDAO;
-import app.dao.LeitorDAO;
+import app.Service.impl.UsuarioService;
+import app.Service.spec.IUsuarioService;
 import app.StandardResponse.StandardResponse;
 import app.StandardResponse.StatusResponse;
 import spark.Request;
@@ -19,8 +19,8 @@ import spark.Route;
 
 public class ControllerUsuario {
 
-    private UsuarioDAO uDAO;
-    private LeitorDAO lDAO;
+    private static IUsuarioService service = new UsuarioService();
+
 
     private static Gson gsonUsuario() {
         return new GsonBuilder()
@@ -34,10 +34,22 @@ public class ControllerUsuario {
         .create();
     }
     
-    public void init() {
-        uDAO = new UsuarioDAO();
-        lDAO = new LeitorDAO();
-    }
+
+    /*
+     * Cria um Funcionario
+     */
+    public static Route criarFuncionario = (Request req, Response res) -> {
+        res.type("application/json");
+        Gson gson = gsonUsuario();
+        Funcionario funcionario = gson.fromJson(req.body(), Leitor.class);
+        if(service.insereLeitor(leitor)){
+            System.out.println("Novo Leitor inserido:");
+            System.out.println(new Gson().toJsonTree(leitor));
+            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
+        }else{
+            return new StandardResponse(StatusResponse.ERROR, "Erro na inserção do leitor");
+        }
+    };
 
     /*
      * Cria um Leitor
@@ -46,19 +58,13 @@ public class ControllerUsuario {
         res.type("application/json");
         Gson gson = gsonLeitor();
         Leitor leitor = gson.fromJson(req.body(), Leitor.class);
-        lDAO.insert(leitor);
-        return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
-    };
-
-    /*
-     * Cria um Funcionario
-     */
-    public static Route criarLeitor = (Request req, Response res) -> {
-        res.type("application/json");
-        Gson gson = gsonLeitor();
-        Leitor leitor = gson.fromJson(req.body(), Leitor.class);
-        lDAO.insert(leitor);
-        return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
+        if(service.insereLeitor(leitor)){
+            System.out.println("Novo Leitor inserido:");
+            System.out.println(new Gson().toJsonTree(leitor));
+            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
+        }else{
+            return new StandardResponse(StatusResponse.ERROR, "Erro na inserção do leitor");
+        }
     };
 
     /*
