@@ -1,7 +1,7 @@
 package app.Domain.PacoteUsuarios;
 
-
-import app.Domain.PacoteUsuarios.CategoriaLeitor;
+import java.util.Date;
+//import app.Domain.PacoteUsuarios.CategoriaLeitor;
 //import app.Disciplina;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
 
@@ -26,12 +26,34 @@ public class Leitor extends Usuario {
         this.setId(id);
     }
 
+    public Leitor(Long id, String nome, String telefone, Date dataNascimento, Endereco endereco, String role){
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.dataNascimento = dataNascimento;
+        this.endereco = endereco;
+        this.role = role;
+    }
+
     public Leitor(Long id, String email, String documentoId, boolean grupoAcademico, CategoriaLeitor categoria){
         this.id = id;
         this.email = email;
         this.documentoId = documentoId;
         this.grupoAcademico = grupoAcademico;
         this.categoria = categoria;
+    }
+
+    public Leitor(Usuario usuario, Leitor leitor){
+        this.id = usuario.getId();
+        this.nome = usuario.getNome();
+        this.telefone = usuario.getTelefone();
+        this.dataNascimento = usuario.getDataNascimento();
+        this.endereco = usuario.getEndereco();
+        this.role = usuario.getRole();
+        this.email = leitor.getEmail();
+        this.documentoId = leitor.getDocumentoId();
+        this.grupoAcademico = leitor.getGrupoAcademico();
+        this.categoria = leitor.getCategoria();
     }
 
 

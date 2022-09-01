@@ -7,21 +7,33 @@ import java.sql.ResultSet;
 
 import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.PacoteUsuarios.CategoriaLeitor;
+import app.Domain.PacoteUsuarios.Usuario;
+
 
 public class LeitorDAO extends GenericDAO {
+
+    private UsuarioDAO dao;
+
+    public void init() {
+        dao = new UsuarioDAO();
+    }   
     
-    public void insert(Leitor leitor){
-        String sql = "INSERT INTO Leitor (email, documentoId, grupoAcademico, categoria) VALUES (?, ?, ?, ?) ";
+    public void insert(Usuario usuario, Leitor leitor){
+
+        dao.insert(usuario);
+        String sql = "INSERT INTO Leitor (idUsuario, email, documentoId, grupoAcademico, categoria) VALUES (?, ?, ?, ?, ?) ";
 
         try{
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement = conn.prepareStatement(sql);
-            statement.setString(1, leitor.getEmail());
-            statement.setString(2, leitor.getDocumentoId());
-            statement.setBoolean(3, leitor.getGrupoAcademico());
-            statement.setLong(4, leitor.getCategoria().getId());
+            Long idUsuario = usuario.getId();
+            statement.setLong(1, idUsuario);
+            statement.setString(2, leitor.getEmail());
+            statement.setString(3, leitor.getDocumentoId());
+            statement.setBoolean(4, leitor.getGrupoAcademico());
+            statement.setLong(5, leitor.getCategoria().getId());
             statement.executeUpdate();
 
             statement.close();
@@ -31,7 +43,9 @@ public class LeitorDAO extends GenericDAO {
         }
     }
 
-    public void update(Leitor leitor) {
+    public void update(Usuario usuario, Leitor leitor) {
+
+        dao.update(usuario);
         String sql = "UPDATE Leitor SET email = ?, documentoId = ?, grupoAcademico = ?, categoria_id = ? WHERE id = ?";
 
         try {
@@ -52,8 +66,10 @@ public class LeitorDAO extends GenericDAO {
         }
     }
 
-    public void delete(Leitor leitor){
-        String sql = "DELETE FROM Leitor where id = ?";
+    public void delete(Usuario usuario, Leitor leitor){
+
+        dao.delete(usuario);
+        String sql = "DELETE FROM Leitor where idUsuario = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -70,10 +86,11 @@ public class LeitorDAO extends GenericDAO {
     }
 
 
-    public Leitor getById(Long id){
+    public Usuario getById(Long id){
+
         Leitor leitor = null;
 
-        String sql = "SELECT * from Leitor WHERE id = ?";
+        String sql = "SELECT * from Leitor WHERE idUsuario = ?";
 
         try{   
             Connection conn = this.getConnection();
@@ -98,7 +115,10 @@ public class LeitorDAO extends GenericDAO {
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
-        return leitor;
+
+        Usuario leitorF = new Leitor(dao.getById(id), leitor);
+
+        return leitorF;
 
     }
 }

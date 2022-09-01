@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.util.Date;
 
 import app.Domain.PacoteUsuarios.Usuario;
+import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.PacoteUsuarios.Endereco;
 
 public class UsuarioDAO extends GenericDAO {
@@ -96,7 +97,7 @@ public class UsuarioDAO extends GenericDAO {
                 Endereco endereco = new EnderecoDAO().getById(enderecoId);
 
 
-                usuario = new Usuario(id, nome, telefone, dataNascimento, endereco, role);
+                usuario = new Leitor(id, nome, telefone, dataNascimento, endereco, role);
             }
             resultSet.close();
             statement.close();

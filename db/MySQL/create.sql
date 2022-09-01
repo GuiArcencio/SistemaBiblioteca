@@ -106,9 +106,11 @@ CREATE TABLE Endereco(
 
 CREATE TABLE Leitor(
     id bigint not NULL auto_increment,
+    idUsuario bigint not null,
     email varchar(50) not NULL,
     categoria_id bigint,
     grupoAcademico boolean not NULL,
+    CONSTRAINT leitor_fk FOREIGN KEY (idUsuario) REFERENCES Usario(id),
     CONSTRAINT leitor_pk PRIMARY KEY(id)
 );
 
