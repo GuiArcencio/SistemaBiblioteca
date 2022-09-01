@@ -10,6 +10,7 @@ import app.Domain.PacoteObras.Autor;
 import app.Domain.PacoteObras.CategoriaObra;
 import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.Obra;
+import app.Domain.PacoteObras.Editora;
 import app.Service.spec.IObraService;
 import app.dao.ObraDAO;
 
@@ -35,14 +36,15 @@ public class ObraService implements IObraService{
 
         try {
             return new Obra(
-                1,
-                new BigInteger("9780345391827"),
+                1L,
+                9780345391827L,
                 new CategoriaObra(1, "Ficção Científica", 30, 1.4),
                 autores,
                 palavras_chave,
                 dateFormat.parse("12-1995"),
                 "Later Printing",
-                "Del Rey",
+                new Editora(1L, "Editora"),
+                "The Hitchhiker's Guide to the Galaxy",
                 240
             );
         } catch (ParseException e) {
