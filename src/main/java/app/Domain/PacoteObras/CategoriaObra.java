@@ -2,6 +2,8 @@ package app.Domain.PacoteObras;
 
 import app.Exception.AnnotatedDeserializer.JsonRequired;
 
+import java.time.LocalDate;
+
 public class CategoriaObra {
 	int codigo;
 
@@ -51,5 +53,11 @@ public class CategoriaObra {
 
     public double getTaxaMulta() {
         return this.taxaMulta;
+    }
+
+    public LocalDate calculaDataDevolucao(){
+        LocalDate dataAtual = LocalDate.now();
+        dataAtual = dataAtual.plusDays(maximoDiasEmprestimo);
+        return dataAtual;
     }
 }
