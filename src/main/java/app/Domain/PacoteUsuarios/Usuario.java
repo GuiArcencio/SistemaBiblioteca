@@ -1,39 +1,32 @@
 package app.Domain.PacoteUsuarios;
 
-<<<<<<< Updated upstream
-import app.Domain.PacoteUsuarios.Endereco;
+
+//import app.Domain.PacoteUsuarios.Endereco;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
 
-=======
-//import app.Domain.PacoteUsuarios.Endereco;
->>>>>>> Stashed changes
 import java.util.Date;
 
 public abstract class Usuario {
     protected Long id;
-<<<<<<< Updated upstream
+
 
     @JsonRequired
-    private String nome;
-
-    @JsonRequired
-    private String telefone;
-
-    @JsonRequired
-    private Date dataNascimento;
-
-    @JsonRequired
-    private Endereco endereco;
-
-    @JsonRequired
-    private String role;
-=======
     protected String nome;
+
+    @JsonRequired
     protected String telefone;
+
+    @JsonRequired
     protected Date dataNascimento;
+
+    @JsonRequired
     protected Endereco endereco;
+
+    @JsonRequired
     protected String role;
->>>>>>> Stashed changes
+
+    
+
 
     public Usuario() {
 
