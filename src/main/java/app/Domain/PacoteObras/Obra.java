@@ -156,36 +156,6 @@ public class Obra extends Subject {
     public List<Copia> getCopias() {
         return this.copias;
     }
+
 	
-	
-	public void adicionarPalavraChave(String palavra) {
-		this.palavrasChave.add(palavra);
-	}
-	
-	public void removerPalavraChave(int indice) {
-		this.palavrasChave.remove(indice);
-	}
-
-	public void adicionarCopia(Long idCopia){
-		State state = Disponivel.getInstancia();
-		Copia copia = new Copia(state, idCopia);
-		this.copias.add(copia);
-        this.notifyAllObservers();
-	}
-
-	public void removerCopia(Long idCopia){
-		
-	}
-
-	public void marcarEmprestadoCopia(Long idCopia){
-
-	}
-
-	public void marcarDevolverCopia(Long idCopia){
-        this.notifyAllObservers();
-	}
-	
-	public void marcarDisponivelCopia(Long idCopia){
-        this.notifyAllObservers();
-	}
 }

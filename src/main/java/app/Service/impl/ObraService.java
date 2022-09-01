@@ -27,28 +27,28 @@ public class ObraService implements IObraService{
     @Override
     public List<Obra> buscaObra(Long isbn) {
        try{
-        return odao.getAllByIsbn(isbn);
+            return odao.getAllByIsbn(isbn);
        } catch(Exception e){
-        System.out.println("Obra(s) não encontrada! Retornando null.");
-        return null;
+            System.out.println("Obra(s) não encontrada! Retornando null.");
+            return null;
        }
     }
     @Override
     public Obra buscaObra(String titulo) {
        try{
-        return odao.getByTitulo(titulo);
+            return odao.getByTitulo(titulo);
        } catch(Exception e){
-        System.out.println("Obra não encontrada! Retornando NULL.");
-        return null;
+            System.out.println("Obra não encontrada! Retornando NULL.");
+            return null;
        }
     }
     @Override
     public Obra buscaObraByCodigo(Long codigo) {
        try{
-        return odao.getByCodigo(codigo);
+            return odao.getByCodigo(codigo);
        } catch(Exception e){
-        System.out.println("Obra não encontrada! Retornando NULL.");
-        return null;
+            System.out.println("Obra não encontrada! Retornando NULL.");
+            return null;
        }
     }
 
@@ -142,42 +142,50 @@ public class ObraService implements IObraService{
         try{
             return odao.getAllByKeyWord(palavra);
            } catch(Exception e){
-            System.out.println("Nenhuma obra equivalente à palavra-chave informada foi encontrada! Retornando null.");
-            return null;
+                System.out.println("Nenhuma obra equivalente à palavra-chave informada foi encontrada! Retornando null.");
+                return null;
            }
     }
 
     @Override
     public boolean adicionarPalavraChave(Long codigo, String palavra) {
-        Obra obra = buscaObraByCodigo(codigo);
-        if(obra == null){
-            System.out.println("[ERRO] Obra não encontrada! Verifique o código informado.");
+       try{
+            Obra obra = buscaObraByCodigo(codigo);
+            if(obra == null){
+                System.out.println("[ERRO] Obra não encontrada! Verifique o código informado.");
+                return false;
+            }
+            List<String> palavrasChave = new ArrayList<>();
+            palavrasChave = obra.getPalavrasChave();
+            palavrasChave.add(palavra);
+            obra.setPalavrasChave(palavrasChave);
+            return true;
+       }catch(Exception e){
             return false;
-        }
-        List<String> palavrasChave = new ArrayList<>();
-        palavrasChave = obra.getPalavrasChave();
-        palavrasChave.add(palavra);
-        obra.setPalavrasChave(palavrasChave);
-        return true;
+       }
         
     }
 
     @Override
     public boolean removerPalavraChave(Long codigo, String palavra) {
-        Obra obra = buscaObraByCodigo(codigo);
-        if(obra == null){
-            System.out.println("[ERRO] Obra não encontrada! Verifique o código informado.");
+        try{
+            Obra obra = buscaObraByCodigo(codigo);
+            if(obra == null){
+                System.out.println("[ERRO] Obra não encontrada! Verifique o código informado.");
+                return false;
+            }
+            List<String> palavrasChave = new ArrayList<>();
+            palavrasChave = obra.getPalavrasChave();
+            if(!palavrasChave.contains(palavra)){
+                System.out.println("[ERRO] Palvra chave não encontrada! Verifique se não é erros de ortografia.");
+                return false;
+            }
+            palavrasChave.remove(palavra);
+            obra.setPalavrasChave(palavrasChave);
+            return true;
+        }catch(Exception e){
             return false;
         }
-        List<String> palavrasChave = new ArrayList<>();
-        palavrasChave = obra.getPalavrasChave();
-        if(!palavrasChave.contains(palavra)){
-            System.out.println("[ERRO] Palvra chave não encontrada! Verifique se não é erros de ortografia.");
-            return false;
-        }
-        palavrasChave.remove(palavra);
-        obra.setPalavrasChave(palavrasChave);
-        return true;
         
     }
 
@@ -204,24 +212,39 @@ public class ObraService implements IObraService{
 
     @Override
     public boolean adicionarCopia(Long codigo, Copia copia) {
-        Obra obra = buscaObraByCodigo(codigo);
-        if(obra == null){
-            System.out.println("[ERRO] Obra não encontrada! Verifique o codigo informado.");
+        try{
+            Obra obra = buscaObraByCodigo(codigo);
+            if(obra == null){
+                System.out.println("[ERRO] Obra não encontrada! Verifique o codigo informado.");
+                return false;
+            }
+            if(buscarCopia(copia.getId())==null){
+                copia.setObraId(codigo);
+                cdao.insert(copia);
+            }
+            List<Copia> listaCopias = new ArrayList<>();
+            listaCopias = obra.getCopias();
+            listaCopias.add(copia);
+            obra.setCopias(listaCopias);
+            obra.notifyAllObservers();
+            return true; 
+        }catch(Exception e){
             return false;
         }
-        copia.setObraId(codigo);
-        cdao.insert(copia);
-        return true; 
     }
 
     @Override
     public boolean removerCopia(Copia copia) {
-        if(buscarCopia(copia.getId())==null){
-            System.out.println("[ERRO] Copia não encontrada! Verifique o id informado.");
+        try{
+            if(buscarCopia(copia.getId())==null){
+                System.out.println("[ERRO] Copia não encontrada! Verifique o id informado.");
+                return false;
+            }
+            cdao.delete(copia);
+            return true; 
+        }catch(Exception e){
             return false;
         }
-        cdao.delete(copia);
-        return true; 
     }
 
     // TODO: Potencialmente nessas funções de adicionar e tudo mais, colocar um retorno para indicar para o usuário
