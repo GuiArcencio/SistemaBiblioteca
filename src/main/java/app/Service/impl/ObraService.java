@@ -104,7 +104,10 @@ public class ObraService implements IObraService{
             if(buscarAutor(autor.getId())==null){
                 adao.insert(autor, obra);
             }
-            obra.adicionarAutor(autor.getNome());
+            List<Autor> listaAutores = new ArrayList<>();
+            listaAutores = obra.getAutores();
+            listaAutores.add(autor);
+            obra.setAutores(listaAutores);
             return true;
         } catch (Exception e) {
             return false;
@@ -123,7 +126,10 @@ public class ObraService implements IObraService{
                 System.out.println("[ERRO] Autor não contrado! Verifique o id informado.");
                 return false;
             }
-            obra.removerAutor(autor);
+            List<Autor> listaAutores = new ArrayList<>();
+            listaAutores = obra.getAutores();
+            listaAutores.remove(autor);
+            obra.setAutores(listaAutores);
             return true;
         } catch (Exception e) {
             return false;

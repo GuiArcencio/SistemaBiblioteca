@@ -5,11 +5,8 @@ import java.util.Date;
 import java.util.List;
 import app.Domain.SubjectObserver.Subject;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
-import app.Domain.PacoteObras.CategoriaObra;
-import app.Domain.PacoteObras.Autor;
-import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.Estados.*;
-import app.Domain.PacoteObras.Editora;
+
 
 public class Obra extends Subject {
 	Long codigo;
@@ -160,19 +157,6 @@ public class Obra extends Subject {
         return this.copias;
     }
 	
-	public void adicionarAutor(String autor) {
-		String iniciais = "";
-		String[] nomesAutor = autor.split(" ");
-		for (int i = 0; i < nomesAutor.length; i++) {
-			iniciais = iniciais.concat(nomesAutor[i].substring(0, 1));
-		}
-		
-		this.autores.add(new Autor(autor, iniciais));
-	}
-	
-	public void removerAutor(Autor autor) {
-		this.autores.remove(autor);
-	}
 	
 	public void adicionarPalavraChave(String palavra) {
 		this.palavrasChave.add(palavra);
