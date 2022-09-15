@@ -4,7 +4,6 @@ create database Biblioteca;
 
 use Biblioteca;
 
-
 CREATE TABLE Obra(
     codigo bigint not NULL auto_increment,
     isbn bigint not NULL,
@@ -89,7 +88,6 @@ CREATE TABLE Endereco(
 );
 
 CREATE TABLE Leitor(
-    --id bigint not NULL auto_increment,
     idUsuario bigint not null,
     email varchar(50) not NULL,
     categoria_id bigint,

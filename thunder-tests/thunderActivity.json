@@ -27,12 +27,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-08-31T20:15:36.021Z",
-    "modified": "2022-08-31T20:15:36.102Z",
+    "modified": "2022-09-15T12:01:15.752Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"maximoDiasEmprestimo\": 50,\n  \"descricao\": \"Leitor Comum\"\n}",
+      "raw": "{\n  \"maximoDiasEmprestimo\": 60,\n  \"descricao\": \"Leitor SUPER\"\n}",
       "form": []
     },
     "tests": []

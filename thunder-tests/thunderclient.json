@@ -22,12 +22,12 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-08-31T20:16:39.363Z",
-    "modified": "2022-08-31T20:16:39.363Z",
+    "modified": "2022-09-15T11:51:54.101Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"maximoDiasEmprestimo\": 50,\n  \"descricao\": \"Leitor Comum\"\n}",
+      "raw": "{\n  \"maximoDiasEmprestimo\": 20,\n  \"descricao\": \"Fernando\"\n}",
       "form": []
     },
     "tests": []
@@ -37,13 +37,19 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "e495e304-b02e-4437-a8bc-2080c54eb9ed",
     "name": "Deleta categoria",
-    "url": "localhost:4567/api/categoria/leitor/9",
+    "url": "localhost:4567/api/categoria/leitor/{id}",
     "method": "DELETE",
     "sortNum": 30000,
     "created": "2022-08-31T20:17:57.897Z",
-    "modified": "2022-08-31T21:11:09.085Z",
+    "modified": "2022-09-15T11:45:29.349Z",
     "headers": [],
-    "params": [],
+    "params": [
+      {
+        "name": "id",
+        "value": "2",
+        "isPath": true
+      }
+    ],
     "body": {
       "type": "json",
       "raw": "{\n  \"maximoDiasEmprestimo\": 50,\n  \"descricao\": \"Leitor Comum\"\n}",

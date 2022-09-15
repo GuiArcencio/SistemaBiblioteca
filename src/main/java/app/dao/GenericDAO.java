@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 abstract public class GenericDAO {
     public GenericDAO() {
         try{
@@ -16,6 +18,10 @@ abstract public class GenericDAO {
     protected Connection getConnection() throws SQLException{
         String url = "jdbc:mysql://localhost:3306/Biblioteca";
 
-        return DriverManager.getConnection(url, "dini", "6422");
+        Dotenv dotenv = Dotenv.load();
+        String user = dotenv.get("MYSQL_USER");
+        String pass = dotenv.get("MYSQL_PASS");
+
+        return DriverManager.getConnection(url, user, pass);
     }
 }
