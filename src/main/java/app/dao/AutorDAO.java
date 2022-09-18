@@ -90,6 +90,24 @@ public class AutorDAO extends GenericDAO{
         }
     }
 
+    public void deleteAutorInObra(Autor autor, Obra obra){
+        String sql = "DELETE FROM RelObraAutor where codigo_autor = ? and codigo_obra = ?";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setLong(1, autor.getId());
+            statement.setLong(2, obra.getCodigo());
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public Autor getById(Long id){
         Autor autor = null;

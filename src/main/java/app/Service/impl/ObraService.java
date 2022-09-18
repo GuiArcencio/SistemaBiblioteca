@@ -127,6 +127,7 @@ public class ObraService implements IObraService{
                 System.out.println("[ERRO] Autor não contrado! Verifique o id informado.");
                 return false;
             }
+            adao.deleteAutorInObra(autor, obra);
             List<Autor> listaAutores = new ArrayList<>();
             listaAutores = obra.getAutores();
             listaAutores.remove(autor);
