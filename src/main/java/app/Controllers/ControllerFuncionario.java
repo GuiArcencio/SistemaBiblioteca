@@ -64,22 +64,6 @@ public class ControllerFuncionario {
         }
     };
 
-    /*
-     * Cria um Leitor
-     */
-    public static Route criarLeitor = (Request req, Response res) -> {
-        res.type("application/json");
-        Gson gson = gsonLeitor();
-        Leitor leitor = gson.fromJson(req.body(), Leitor.class);
-        if(service.insereLeitor(leitor)){
-            System.out.println("Novo Leitor inserido:");
-            System.out.println(new Gson().toJsonTree(leitor));
-            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(leitor));
-        }else{
-            return new StandardResponse(StatusResponse.ERROR, "Erro na inserção do leitor");
-        }
-    };
-
 
     /*
      * Remove um Funcionario
