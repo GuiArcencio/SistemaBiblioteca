@@ -102,8 +102,9 @@ public class ObraService implements IObraService{
                 return false;
             }
             if(buscarAutor(autor.getId())==null){
-                adao.insert(autor, obra);
+                adao.insert(autor);
             }
+            adao.insertAutorInObra(autor, obra);
             List<Autor> listaAutores = new ArrayList<>();
             listaAutores = obra.getAutores();
             listaAutores.add(autor);

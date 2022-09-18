@@ -10,6 +10,7 @@ import app.Controllers.ControllerFuncionario;
 import app.Controllers.ControllerLeitor;
 import app.Controllers.ControllerObras;
 import app.Exception.ControllerException;
+import app.Controllers.ControllerAutor;
 import app.Controllers.ControllerCategoriaLeitor;
 
 public class Aplication {
@@ -44,6 +45,12 @@ public class Aplication {
             delete("/categoria/leitor/:id", ControllerCategoriaLeitor.removerCategoria, gson::toJson);
             put("/categoria/leitor/:id",  ControllerCategoriaLeitor.alterarCategoria, gson::toJson);
             
+            // Rotas de ControllerAutor
+            get("/autor",      ControllerAutor.getAutores, gson::toJson);
+            post("/autor",     ControllerAutor.criarAutor, gson::toJson);
+            delete("/autor/:id", ControllerAutor.removerAutor, gson::toJson);
+            put("/autor/:id",  ControllerAutor.alterarAutor, gson::toJson);
+
             // TODO: 
             // Rotas de ControllerLeitor
             post("/usuario/leitor", ControllerLeitor.criarLeitor, gson::toJson);
