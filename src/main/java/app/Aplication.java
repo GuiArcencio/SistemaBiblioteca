@@ -42,14 +42,17 @@ public class Aplication {
             post("/categoria/leitor",     ControllerCategoriaLeitor.criarCategoria, gson::toJson);
             delete("/categoria/leitor/:id", ControllerCategoriaLeitor.removerCategoria, gson::toJson);
             put("/categoria/leitor/:id",  ControllerCategoriaLeitor.alterarCategoria, gson::toJson);
+            
+            // TODO: 
+            // Rotas de ControllerLeitor
+            post("/usuario/leitor", ControllerUsuario.criarLeitor, gson::toJson);
+            delete("/usuario/leitor/:id", ControllerUsuario.removerLeitor, gson::toJson);
+            put("/usuario/leitor/:id", ControllerUsuario.alterarLeitor, gson::toJson);
 
-            //Rotas de ControllerUsuario
-            post("/usuario/:id/leitor", ControllerUsuario.criarLeitor, gson::toJson);
-            post("/usuario/:id/funcionario", ControllerUsuario.criarFuncionario, gson::toJson);
-            delete("/usuario/:id/leitor", ControllerUsuario.removerLeitor, gson::toJson);
-            delete("/usuario/:id/funcionario", ControllerUsuario.removerFuncionario, gson::toJson);
-            put("/usuario/:id/leitor", ControllerUsuario.alterarLeitor, gson::toJson);
-            put("/usuario/:id/leitor", ControllerUsuario.alterarFuncionario, gson::toJson);
+            // Rotas de ControllerFuncionario
+            post("/usuario/funcionario", ControllerUsuario.criarFuncionario, gson::toJson);
+            delete("/usuario/funcionario/:id", ControllerUsuario.removerFuncionario, gson::toJson);
+            put("/usuario/funcionario/:id", ControllerUsuario.alterarFuncionario, gson::toJson);
 
             
             // Exceptions

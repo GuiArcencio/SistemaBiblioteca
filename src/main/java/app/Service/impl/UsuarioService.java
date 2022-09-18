@@ -5,19 +5,28 @@ import app.Service.spec.IUsuarioService;
 //import java.sql.SQLException;
 
 import app.Domain.PacoteUsuarios.Leitor;
+import app.Domain.PacoteUsuarios.Usuario;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import app.Domain.PacoteUsuarios.Funcionario;
 //import app.Domain.PacoteUsuarios.Usuario;
 import app.dao.LeitorDAO;
+import app.dao.UsuarioDAO;
 import app.dao.FuncionarioDAO;
 
 public class UsuarioService implements IUsuarioService{
     
     private FuncionarioDAO fdao;
     private LeitorDAO ldao;
+    private UsuarioDAO udao;
 
     public UsuarioService(){
         this.fdao = new FuncionarioDAO();
         this.ldao = new LeitorDAO();
+        this.udao = new UsuarioDAO();
     }
 
     @Override
@@ -93,5 +102,26 @@ public class UsuarioService implements IUsuarioService{
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public List<Usuario> getUsuarios() {
+        try{
+            List<Usuario> u = udao.getAll();
+            if(u.isEmpty()){
+                System.out.println("Nenhum usuário encontrado");
+            }
+            return u;
+        } catch (Exception e){
+            System.out.println("Serviço: Erro retornado do SQL");
+            System.out.println(e.getMessage());
+            return new ArrayList<Usuario>();
+        }
+    }
+
+    @Override
+    public Usuario getUsuario(Long id) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }
