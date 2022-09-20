@@ -97,7 +97,7 @@ public class UsuarioDAO extends GenericDAO {
                 Long enderecoId = resultSet.getLong("id");
                 Endereco endereco = new EnderecoDAO().getById(enderecoId);
 
-                usuario = new Leitor(id, nome, telefone, dataNascimento, endereco, role);
+                usuario = new Leitor(id, nome, telefone, dataNascimento, endereco);
                 listaUsuarios.add(usuario);
             }
             resultSet.close();
@@ -131,7 +131,7 @@ public class UsuarioDAO extends GenericDAO {
                 Endereco endereco = new EnderecoDAO().getById(enderecoId);
 
 
-                usuario = new Leitor(id, nome, telefone, dataNascimento, endereco, role);
+                usuario = new Leitor(id, nome, telefone, dataNascimento, endereco);
             }
             resultSet.close();
             statement.close();

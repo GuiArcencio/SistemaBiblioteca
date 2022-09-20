@@ -72,8 +72,13 @@ public class FuncionarioService implements IFuncionarioService {
 
     @Override
     public Funcionario getFuncionario(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        try{
+            Funcionario f = fdao.getById(id);
+            return f;
+        } catch (Exception e){
+            System.out.println("[FuncionarioService] Funcionário de ID " + id + " não encontrado");
+            return null;
+        }
     }
 
     @Override

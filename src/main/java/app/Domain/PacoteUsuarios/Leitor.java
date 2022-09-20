@@ -30,21 +30,21 @@ public class Leitor extends Usuario {
         this.setId(id);
     }
 
-    public Leitor(String nome, String telefone, Date dataNascimento, Endereco endereco, String role){
+    public Leitor(String nome, String telefone, Date dataNascimento, Endereco endereco){
         this.nome = nome;
         this.telefone = telefone;
         this.dataNascimento = dataNascimento;
         this.endereco = endereco;
-        this.role = role;
+        this.role = "LEITOR";
     }
 
-    public Leitor(Long id, String nome, String telefone, Date dataNascimento, Endereco endereco, String role){
+    public Leitor(Long id, String nome, String telefone, Date dataNascimento, Endereco endereco){
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.dataNascimento = dataNascimento;
         this.endereco = endereco;
-        this.role = role;
+        this.role = "LEITOR";
     }
 
     public Leitor(Long id, String email, String documentoId, boolean grupoAcademico, CategoriaLeitor categoria){
@@ -53,6 +53,7 @@ public class Leitor extends Usuario {
         this.documentoId = documentoId;
         this.grupoAcademico = grupoAcademico;
         this.categoria = categoria;
+        this.role = "LEITOR";
     }
 
     public Leitor(Usuario usuario, Leitor leitor){
@@ -61,11 +62,11 @@ public class Leitor extends Usuario {
         this.telefone = usuario.getTelefone();
         this.dataNascimento = usuario.getDataNascimento();
         this.endereco = usuario.getEndereco();
-        this.role = usuario.getRole();
         this.email = leitor.getEmail();
         this.documentoId = leitor.getDocumentoId();
         this.grupoAcademico = leitor.getGrupoAcademico();
         this.categoria = leitor.getCategoria();
+        this.role = "LEITOR";
     }
 
 

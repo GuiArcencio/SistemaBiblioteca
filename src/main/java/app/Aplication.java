@@ -5,15 +5,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
-import app.Controllers.ControllerEmprestimo;
 import app.Controllers.ControllerFuncionario;
 import app.Controllers.ControllerLeitor;
 import app.Controllers.ControllerObras;
 import app.Exception.ControllerException;
 import app.Controllers.ControllerAutor;
 import app.Controllers.ControllerCategoriaLeitor;
-import app.Controllers.ControllerUsuario;
-import app.Controllers.ControllerEndereco;
 import app.Controllers.*;
 
 public class Aplication {

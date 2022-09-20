@@ -63,7 +63,6 @@ public class ControllerFuncionario {
         }
     };
 
-
     /*
      * Remove um Funcionario
      */
@@ -77,20 +76,6 @@ public class ControllerFuncionario {
             return new StandardResponse(StatusResponse.ERROR, "Erro na remoção do funcionário, o ID é válido?");
         }
     };
-     /*
-     * Remove um Leitor
-     */
-    public static Route removerLeitor = (Request req, Response res) -> {
-        res.type("application/json");
-        Long id = Long.parseLong(req.params(":id"));
-        System.out.println("Removendo Leitor de ID: " + id);
-        if (service.removeLeitor(id)) {
-            return new StandardResponse(StatusResponse.SUCCESS);
-        } else {
-            return new StandardResponse(StatusResponse.ERROR, "Erro na remoção do leitor, o ID é válido?");
-        }
-    };
-
 
     /*
      * Altera um Funcionario
@@ -105,18 +90,5 @@ public class ControllerFuncionario {
             return new StandardResponse(StatusResponse.ERROR, "Erro na alteração do funcionário. o ID é válido?");
         }
     };
-    /*
-     * Altera um Leitor
-     */
-    public static Route alterarLeitor = (Request req, Response res) -> {
-        res.type("application/json");
-        Leitor leitor = new Gson().fromJson(req.body(), Leitor.class);
-        Long id = Long.parseLong(req.params(":id"));
-        if (service.alteraLeitor(id, leitor)) {
-            return new StandardResponse(StatusResponse.SUCCESS);
-        } else {
-            return new StandardResponse(StatusResponse.ERROR, "Erro na alteração do leitor. o ID é válido?");
-        }
-    };
-    
+
 }
