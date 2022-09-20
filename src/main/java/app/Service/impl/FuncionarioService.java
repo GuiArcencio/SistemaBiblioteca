@@ -3,21 +3,28 @@ package app.Service.impl;
 import app.Service.spec.IFuncionarioService;
 import app.dao.DevolucaoDAO;
 import app.dao.EmprestimoDAO;
+import app.dao.FuncionarioDAO;
 import app.dao.ReservaDAO;
+
+import java.util.List;
+
 import app.Domain.PacoteEntradaSaidaObras.Devolucao;
 import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
 import app.Domain.PacoteEntradaSaidaObras.Reserva;
+import app.Domain.PacoteUsuarios.Funcionario;
 import app.Domain.PacoteUsuarios.Leitor;
 
 public class FuncionarioService implements IFuncionarioService {
     private EmprestimoDAO edao;
     private DevolucaoDAO ddao;
     private ReservaDAO rdao;
+    private FuncionarioDAO fdao;
 
     public FuncionarioService(){
         this.edao = new EmprestimoDAO();
         this.ddao = new DevolucaoDAO();
         this.rdao = new ReservaDAO();
+        this.fdao = new FuncionarioDAO();
     }
 
     @Override
@@ -53,6 +60,57 @@ public class FuncionarioService implements IFuncionarioService {
             return true;
         }catch(Exception e){
             System.out.println("[ERRO] Leitor ou Copia não encontrados.");
+            return false;
+        }
+    }
+
+    @Override
+    public List<Funcionario> getFuncionarios() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Funcionario getFuncionario(Long id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public boolean insereFuncionario(Funcionario funcionario){
+        try{
+            fdao.insert(funcionario);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public boolean removeFuncionario(Long id) {
+        try {
+            Funcionario funcionario = fdao.getById(id);
+            fdao.delete(funcionario);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean alteraFuncionario(Long id, Funcionario funcionario) {
+        try {
+            // Verificando se existe 
+            if(fdao.getById(id) == null){
+                System.out.println("Funcionario de id: " + id + " não foi encontrado");
+                return false;
+            }
+            
+            funcionario.setId(id);
+
+            fdao.update(funcionario);
+            return true;
+        } catch (Exception e) {
             return false;
         }
     }

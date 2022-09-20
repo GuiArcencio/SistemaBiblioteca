@@ -9,8 +9,8 @@ import app.Domain.PacoteUsuarios.Usuario;
 import app.Exception.AnnotatedDeserializer;
 import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.PacoteUsuarios.Funcionario;
-import app.Service.impl.UsuarioService;
-import app.Service.spec.IUsuarioService;
+import app.Service.impl.FuncionarioService;
+import app.Service.spec.IFuncionarioService;
 import app.StandardResponse.StandardResponse;
 import app.StandardResponse.StatusResponse;
 import spark.Request;
@@ -19,8 +19,7 @@ import spark.Route;
 
 public class ControllerFuncionario {
 
-    // TODO: Alterar para usar service específico
-    private static IUsuarioService service = new UsuarioService();
+    private static IFuncionarioService service = new FuncionarioService();
 
     private static Gson gsonFuncionario() {
         return new GsonBuilder()
