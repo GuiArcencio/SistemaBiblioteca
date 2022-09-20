@@ -2,6 +2,8 @@ package app.Controllers;
 
 import java.util.List;
 
+import javax.net.ssl.SSLEngineResult.Status;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -28,13 +30,16 @@ public class ControllerFuncionario {
     }
 
     /*
-     * Busca um Funcionarios
+     * Busca Funcionarios
      */
-    // TODO: Implementar
     public static Route buscaFuncionarios = (Request req, Response res) -> {
         res.type("application/json");
-        res.status(501);
-        return new StandardResponse(StatusResponse.ERROR, "Implementar");
+        List<Funcionario> funcionarios = service.getFuncionarios();
+        if (funcionarios != null){
+            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(funcionarios));
+        } else {
+            return new StandardResponse(StatusResponse.ERROR, "Erro ao obter funcionários");
+        }
     };
 
     /*

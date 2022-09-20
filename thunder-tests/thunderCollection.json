@@ -39,6 +39,13 @@
         "containerId": "",
         "created": "2022-09-17T21:26:40.250Z",
         "sortNum": 50000
+      },
+      {
+        "_id": "b9b283ee-63e4-442f-b619-2734197dd334",
+        "name": "Funcionário",
+        "containerId": "",
+        "created": "2022-09-20T22:44:13.883Z",
+        "sortNum": 60000
       }
     ]
   }

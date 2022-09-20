@@ -19,7 +19,7 @@ public class LeitorDAO extends GenericDAO {
     }   
     
     public void insert(Leitor leitor){
-        Usuario usuario = new Leitor(leitor.getNome(), leitor.getTelefone(), leitor.getDataNascimento(), leitor.getEndereco(), leitor.getRole());
+        Usuario usuario = new Leitor(leitor.getNome(), leitor.getTelefone(), leitor.getDataNascimento(), leitor.getEndereco());
         dao.insert(usuario);
         String sql = "INSERT INTO Leitor (idUsuario, email, documentoId, grupoAcademico, categoria) VALUES (?, ?, ?, ?, ?) ";
 
@@ -44,7 +44,7 @@ public class LeitorDAO extends GenericDAO {
     }
 
     public void update(Leitor leitor) {
-        Usuario usuario = new Leitor(leitor.getNome(), leitor.getTelefone(), leitor.getDataNascimento(), leitor.getEndereco(), leitor.getRole());
+        Usuario usuario = new Leitor(leitor.getNome(), leitor.getTelefone(), leitor.getDataNascimento(), leitor.getEndereco());
         dao.update(usuario);
         String sql = "UPDATE Leitor SET email = ?, documentoId = ?, grupoAcademico = ?, categoria_id = ? WHERE id = ?";
 
@@ -67,7 +67,7 @@ public class LeitorDAO extends GenericDAO {
     }
 
     public void delete(Leitor leitor){
-        Usuario usuario = new Leitor(leitor.getNome(), leitor.getTelefone(), leitor.getDataNascimento(), leitor.getEndereco(), leitor.getRole());
+        Usuario usuario = new Leitor(leitor.getNome(), leitor.getTelefone(), leitor.getDataNascimento(), leitor.getEndereco());
 
         dao.delete(usuario);
         String sql = "DELETE FROM Leitor where idUsuario = ?";

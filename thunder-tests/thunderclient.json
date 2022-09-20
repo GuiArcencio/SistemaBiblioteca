@@ -359,5 +359,19 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "27d0c4b1-6ab2-428a-9d37-e1931a096b12",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "b9b283ee-63e4-442f-b619-2734197dd334",
+    "name": "Busca todos os funcionários",
+    "url": "localhost:4567/api/usuario/funcionario",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-20T22:44:18.670Z",
+    "modified": "2022-09-20T23:05:20.863Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

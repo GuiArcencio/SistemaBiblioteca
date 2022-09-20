@@ -60,11 +60,13 @@ public class Aplication {
 
             // TODO: 
             // Rotas de ControllerLeitor
+            get("/usuario/leitor", ControllerLeitor.buscaLeitores, gson::toJson);
             post("/usuario/leitor", ControllerLeitor.criarLeitor, gson::toJson);
             delete("/usuario/leitor/:id", ControllerLeitor.removerLeitor, gson::toJson);
             put("/usuario/leitor/:id", ControllerLeitor.alterarLeitor, gson::toJson);
 
             // Rotas de ControllerFuncionario
+            get("/usuario/funcionario", ControllerFuncionario.buscaFuncionarios, gson::toJson);
             post("/usuario/funcionario", ControllerFuncionario.criarFuncionario, gson::toJson);
             delete("/usuario/funcionario/:id", ControllerFuncionario.removerFuncionario, gson::toJson);
             put("/usuario/funcionario/:id", ControllerFuncionario.alterarFuncionario, gson::toJson);

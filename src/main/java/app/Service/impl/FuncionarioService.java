@@ -66,8 +66,12 @@ public class FuncionarioService implements IFuncionarioService {
 
     @Override
     public List<Funcionario> getFuncionarios() {
-        // TODO Auto-generated method stub
-        return null;
+        try{
+            return fdao.getAll();
+        } catch (Exception e){
+            System.out.println("[FuncionarioService] Erro ao buscar funcionários");
+            return null;
+        }
     }
 
     @Override
