@@ -1,4 +1,4 @@
-package app.Controllers;
+/*package app.Controllers;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -31,7 +31,7 @@ public class ControllerEmprestimo {
     /*
      * Recebe Usuário
      * Retorna empréstimos ligados a ele
-     */
+     *
     public static Route consultarEmprestimo = (Request req, Response res) -> {
         res.type("application/json");
         Long id = new Long(req.params(":id"));
@@ -42,7 +42,7 @@ public class ControllerEmprestimo {
     /*
      * Recebe Usuário
      * Retorna devoluções ligadas a ele
-     */
+     *
     public static Route consultarDevolucao = (Request req, Response res) -> {
         res.type("application/json");
         Long id = new Long(req.params(":id"));
@@ -54,7 +54,7 @@ public class ControllerEmprestimo {
      * Recebe Usuário e Obra
      * Se existir uma cópia disponível da obra, empresta ela
      * Prioridade de empréstimos segue: Cópias Reservadas, Cópias Disponíveis
-     */
+     *
     public static Route emprestarObra = (Request req, Response res) -> {
         res.type("application/json");
         Long id = new Long(req.params(":id"));
@@ -68,7 +68,7 @@ public class ControllerEmprestimo {
     /*
      * Recebe Usuário e Obra
      * Se existir uma cópia emprestada da obra com o usuário, devolve ela
-     */
+     *
     public static Route devolverObra = (Request req, Response res) -> {
         res.type("application/json");
         Long id = new Long(req.params(":id"));
@@ -80,7 +80,7 @@ public class ControllerEmprestimo {
     /*
      * Recebe Usuário e Obra
      * Se existir uma cópia disponível da obra, reserva ela
-     */
+     *
     public static Route reservarObra = (Request req, Response res) -> {
         res.type("application/json");
         Long id = new Long(req.params(":id"));
@@ -91,3 +91,4 @@ public class ControllerEmprestimo {
             .toJsonTree(service.emprestarObra(id, isbn, f)));
     };
 }
+*/

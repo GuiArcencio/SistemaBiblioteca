@@ -29,6 +29,11 @@ public class Endereco {
         this.estado = estado;
     }
 
+    
+    public Endereco() {
+    }
+
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -36,6 +41,7 @@ public class Endereco {
     public Long getId() {
         return this.id;
     }
+    
 
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;

@@ -13,6 +13,9 @@ public class Editora {
         this.nome = nome;
     }
 
+    public Editora() {
+    }
+
     public void setId(Long id)  {
         this.id = id;
     }

@@ -11,6 +11,34 @@
         "containerId": "",
         "created": "2022-08-31T20:14:56.555Z",
         "sortNum": 10000
+      },
+      {
+        "_id": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
+        "name": "Obra",
+        "containerId": "",
+        "created": "2022-09-15T12:31:08.999Z",
+        "sortNum": 20000
+      },
+      {
+        "_id": "6663859a-5579-4ba4-a56a-e2bfc8fbf41e",
+        "name": "Endereço",
+        "containerId": "",
+        "created": "2022-09-17T19:34:59.209Z",
+        "sortNum": 30000
+      },
+      {
+        "_id": "c5ccd157-6c01-4413-831e-990090556061",
+        "name": "Editora",
+        "containerId": "",
+        "created": "2022-09-17T20:20:20.662Z",
+        "sortNum": 40000
+      },
+      {
+        "_id": "9a631dc4-6e6f-4547-9996-e9330c554f52",
+        "name": "Categoria Obra",
+        "containerId": "",
+        "created": "2022-09-17T21:26:40.250Z",
+        "sortNum": 50000
       }
     ]
   }

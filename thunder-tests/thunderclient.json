@@ -75,5 +75,289 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "f98fa5d2-0cd1-4d4d-ac32-32faf14bb6ef",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
+    "name": "Insere Obra",
+    "url": "localhost:4567/api/obra",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-09-15T12:30:34.688Z",
+    "modified": "2022-09-15T12:31:11.915Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "29e21b24-4507-425d-8443-5e11a8649e33",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
+    "name": "Insere Obra Copy",
+    "url": "localhost:4567/api/obra/{codigo}",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2022-09-15T12:31:24.487Z",
+    "modified": "2022-09-15T12:46:32.813Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "codigo",
+        "value": "1",
+        "isPath": true
+      }
+    ],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "468d850b-97ce-4005-beec-e6a0a3043ffb",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "6663859a-5579-4ba4-a56a-e2bfc8fbf41e",
+    "name": "Busca todos Endereços",
+    "url": "localhost:4567/api/enderecos",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-09-17T19:35:47.678Z",
+    "modified": "2022-09-17T19:36:24.921Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "345cb76a-eac0-43af-a096-34d627c832d6",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "6663859a-5579-4ba4-a56a-e2bfc8fbf41e",
+    "name": "Insere Endereço",
+    "url": "localhost:4567/api/endereco",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-09-17T19:37:04.282Z",
+    "modified": "2022-09-17T19:52:35.137Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"logradouro\": \"Rua Sartre\",\n  \"numero\": 402,\n  \"cep\": 35702183,\n  \"cidade\": \"Sete Lagoas\",\n  \"estado\": \"MG\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "3be8a71d-0129-4520-a123-c50256bed968",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "6663859a-5579-4ba4-a56a-e2bfc8fbf41e",
+    "name": "Busca Endereço por Id",
+    "url": "localhost:4567/api/endereco/1",
+    "method": "GET",
+    "sortNum": 65000,
+    "created": "2022-09-17T19:46:58.257Z",
+    "modified": "2022-09-17T19:51:34.576Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "ff68c358-0fb5-42c4-9c58-f6d5ac308066",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "6663859a-5579-4ba4-a56a-e2bfc8fbf41e",
+    "name": "Atualiza Endereço",
+    "url": "localhost:4567/api/endereco/1",
+    "method": "PUT",
+    "sortNum": 67500,
+    "created": "2022-09-17T19:52:41.960Z",
+    "modified": "2022-09-17T19:54:56.842Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"logradouro\": \"Rua Dos Bobos\",\n  \"numero\": 0,\n  \"cep\": 35700001,\n  \"cidade\": \"Nada\",\n  \"estado\": \"NT\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "8faea4f5-9e2f-41c7-b41b-ea21d4b2ce01",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "6663859a-5579-4ba4-a56a-e2bfc8fbf41e",
+    "name": "Remove Endereço",
+    "url": "localhost:4567/api/endereco/2",
+    "method": "DELETE",
+    "sortNum": 80000,
+    "created": "2022-09-17T19:56:41.329Z",
+    "modified": "2022-09-17T19:59:10.933Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "7a3d9a74-5877-45a8-90cd-bfb7ee052529",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "c5ccd157-6c01-4413-831e-990090556061",
+    "name": "Busca todas Editoras",
+    "url": "localhost:4567/api/editoras",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-09-17T20:20:20.662Z",
+    "modified": "2022-09-17T20:41:06.419Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "80bf74ed-6e1c-4fee-b84b-8322d02b180c",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "c5ccd157-6c01-4413-831e-990090556061",
+    "name": "Busca Editora por Id",
+    "url": "localhost:4567/api/editora/1",
+    "method": "GET",
+    "sortNum": 65000,
+    "created": "2022-09-17T20:20:20.663Z",
+    "modified": "2022-09-17T20:41:31.989Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "6bb1520e-6f8c-474f-954b-6c62672b9ec5",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "c5ccd157-6c01-4413-831e-990090556061",
+    "name": "Atualiza Editora",
+    "url": "localhost:4567/api/editora/1",
+    "method": "PUT",
+    "sortNum": 67500,
+    "created": "2022-09-17T20:20:20.664Z",
+    "modified": "2022-09-17T20:42:26.006Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"nome\": \"Arqueira\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "6c9eb6bd-8be2-4fa4-a65f-ae72e8e6d476",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "c5ccd157-6c01-4413-831e-990090556061",
+    "name": "Insere Editora",
+    "url": "localhost:4567/api/editora",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-09-17T20:20:20.666Z",
+    "modified": "2022-09-17T20:44:41.847Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"nome\": \"Aleph\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "73d53d7d-8122-43f5-9932-f94939650499",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "c5ccd157-6c01-4413-831e-990090556061",
+    "name": "Remove Endereço",
+    "url": "localhost:4567/api/editora/2",
+    "method": "DELETE",
+    "sortNum": 80000,
+    "created": "2022-09-17T20:20:20.667Z",
+    "modified": "2022-09-17T20:43:50.557Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "c9328fc9-e814-4781-a980-e18a8422efa1",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "9a631dc4-6e6f-4547-9996-e9330c554f52",
+    "name": "Busca todas Categorias",
+    "url": "localhost:4567/api/categoriasObra",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-09-17T21:26:40.250Z",
+    "modified": "2022-09-17T21:27:16.590Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "64d63e6e-6954-486e-9939-1a022918484d",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "9a631dc4-6e6f-4547-9996-e9330c554f52",
+    "name": "Busca Categoria por Id",
+    "url": "localhost:4567/api/categoriaObra/1",
+    "method": "GET",
+    "sortNum": 65000,
+    "created": "2022-09-17T21:26:40.251Z",
+    "modified": "2022-09-17T21:27:35.723Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "b5991f09-ea75-4b5b-84a9-947cb8e2c8e8",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "9a631dc4-6e6f-4547-9996-e9330c554f52",
+    "name": "Atualiza Categoria",
+    "url": "localhost:4567/api/categoriaObra/1",
+    "method": "PUT",
+    "sortNum": 67500,
+    "created": "2022-09-17T21:26:40.252Z",
+    "modified": "2022-09-17T21:30:04.729Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"descricao\": \"Jornal\",\n  \"maximoDiasEmprestimo\": 10,\n  \"taxaMulta\": 5.00\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "3cddc9cb-c31c-422b-b69b-74050f7abb9f",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "9a631dc4-6e6f-4547-9996-e9330c554f52",
+    "name": "Insere Categoria",
+    "url": "localhost:4567/api/categoriaObra",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-09-17T21:26:40.254Z",
+    "modified": "2022-09-18T05:25:24.881Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"descricao\": \"Livro\",\n  \"maximoDiasEmprestimo\": 10,\n  \"taxaMulta\": 5.00\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "eaf7e0b0-459e-45a8-8c86-cd6a750ef900",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "9a631dc4-6e6f-4547-9996-e9330c554f52",
+    "name": "Remove Categoria",
+    "url": "localhost:4567/api/categoriaObra/2",
+    "method": "DELETE",
+    "sortNum": 80000,
+    "created": "2022-09-17T21:26:40.255Z",
+    "modified": "2022-09-17T21:29:44.697Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
