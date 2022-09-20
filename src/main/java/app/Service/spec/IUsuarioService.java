@@ -1,10 +1,17 @@
 package app.Service.spec;
 
 import app.Domain.PacoteUsuarios.Leitor;
+import app.Domain.PacoteUsuarios.Usuario;
+
+import java.util.List;
+
 import app.Domain.PacoteUsuarios.Funcionario;
 //import app.Domain.PacoteUsuarios.Usuario;
 
 public interface IUsuarioService {
+
+    List<Usuario> getUsuarios();
+    Usuario getUsuario(Long id);
 
     boolean insereLeitor(Leitor leitor);
     boolean insereFuncionario(Funcionario funcionario);

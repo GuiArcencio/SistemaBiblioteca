@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import app.Domain.PacoteUsuarios.Usuario;
 import app.Domain.PacoteUsuarios.Leitor;
@@ -75,6 +76,39 @@ public class UsuarioDAO extends GenericDAO {
         }
     }
 
+    public List<Usuario> getAll(){
+        Usuario usuario = null;
+
+        String sql = "SELECT * from Usuario";
+        List<Usuario> listaUsuarios = new ArrayList<>();
+
+        try{   
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                Long id = resultSet.getLong("id");
+                String nome = resultSet.getString("nome");
+                String telefone = resultSet.getString("telefone");
+                Date dataNascimento = resultSet.getDate("dataNascimento");
+                String role = resultSet.getString("role");
+
+                Long enderecoId = resultSet.getLong("id");
+                Endereco endereco = new EnderecoDAO().getById(enderecoId);
+
+                usuario = new Leitor(id, nome, telefone, dataNascimento, endereco, role);
+                listaUsuarios.add(usuario);
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+        return listaUsuarios;
+    }
 
     public Usuario getById(Long id){
         Usuario usuario = null;

@@ -14,8 +14,8 @@ import app.Domain.PacoteObras.Obra;
 
 public class AutorDAO extends GenericDAO{
 
-    public void insert(Autor autor, Obra obra){
-        String sql = "INSERT INTO Autor (nome, iniciais) VALUES (?, ?) ";
+    public void insert(Autor autor){
+        String sql = "INSERT INTO Autor (nome, iniciais) VALUES (?, ?)";
 
         try{
             Connection conn = this.getConnection();
@@ -31,8 +31,10 @@ public class AutorDAO extends GenericDAO{
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
-        
-        sql = "INSERT INTO RelObraAutor (codigo_autor, codigo_obra) VALUES (SELECT codigo FROM Autor WHERE nome = ?, ?) ";
+    }
+
+    public void insertAutorInObra(Autor autor, Obra obra){
+        String sql = "INSERT INTO RelObraAutor (codigo_autor, codigo_obra) VALUES (SELECT codigo FROM Autor WHERE nome = ?, ?) ";
 
         try{
             Connection conn = this.getConnection();
@@ -52,7 +54,7 @@ public class AutorDAO extends GenericDAO{
     }
 
     public void update(Autor autor) {
-        String sql = "UPDATE Autor SET nome = ?, iniciais = ? WHERE id = ?";
+        String sql = "UPDATE Autor SET nome = ?, iniciais = ? WHERE codigo = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -72,7 +74,7 @@ public class AutorDAO extends GenericDAO{
 
 
     public void delete(Autor autor){
-        String sql = "DELETE FROM Autor where id = ?";
+        String sql = "DELETE FROM Autor where codigo = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -88,11 +90,29 @@ public class AutorDAO extends GenericDAO{
         }
     }
 
+    public void deleteAutorInObra(Autor autor, Obra obra){
+        String sql = "DELETE FROM RelObraAutor where codigo_autor = ? and codigo_obra = ?";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setLong(1, autor.getId());
+            statement.setLong(2, obra.getCodigo());
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public Autor getById(Long id){
         Autor autor = null;
 
-        String sql = "SELECT * from Autor WHERE id = ?";
+        String sql = "SELECT * from Autor WHERE codigo = ?";
 
         try{
             Connection conn = this.getConnection();

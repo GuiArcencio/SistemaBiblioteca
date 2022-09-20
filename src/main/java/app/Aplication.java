@@ -5,9 +5,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
-//import app.Controllers.ControllerEmprestimo;
+import app.Controllers.ControllerEmprestimo;
+import app.Controllers.ControllerFuncionario;
+import app.Controllers.ControllerLeitor;
 import app.Controllers.ControllerObras;
 import app.Exception.ControllerException;
+import app.Controllers.ControllerAutor;
 import app.Controllers.ControllerCategoriaLeitor;
 import app.Controllers.ControllerUsuario;
 import app.Controllers.ControllerEndereco;
@@ -51,14 +54,23 @@ public class Aplication {
             post("/categoria/leitor",     ControllerCategoriaLeitor.criarCategoria, gson::toJson);
             delete("/categoria/leitor/:id", ControllerCategoriaLeitor.removerCategoria, gson::toJson);
             put("/categoria/leitor/:id",  ControllerCategoriaLeitor.alterarCategoria, gson::toJson);
+            
+            // Rotas de ControllerAutor
+            get("/autor",      ControllerAutor.getAutores, gson::toJson);
+            post("/autor",     ControllerAutor.criarAutor, gson::toJson);
+            delete("/autor/:id", ControllerAutor.removerAutor, gson::toJson);
+            put("/autor/:id",  ControllerAutor.alterarAutor, gson::toJson);
 
-            //Rotas de ControllerUsuario
-            post("/usuario/:id/leitor", ControllerUsuario.criarLeitor, gson::toJson);
-            post("/usuario/:id/funcionario", ControllerUsuario.criarFuncionario, gson::toJson);
-            delete("/usuario/:id/leitor", ControllerUsuario.removerLeitor, gson::toJson);
-            delete("/usuario/:id/funcionario", ControllerUsuario.removerFuncionario, gson::toJson);
-            put("/usuario/:id/leitor", ControllerUsuario.alterarLeitor, gson::toJson);
-            put("/usuario/:id/leitor", ControllerUsuario.alterarFuncionario, gson::toJson);
+            // TODO: 
+            // Rotas de ControllerLeitor
+            post("/usuario/leitor", ControllerLeitor.criarLeitor, gson::toJson);
+            delete("/usuario/leitor/:id", ControllerLeitor.removerLeitor, gson::toJson);
+            put("/usuario/leitor/:id", ControllerLeitor.alterarLeitor, gson::toJson);
+
+            // Rotas de ControllerFuncionario
+            post("/usuario/funcionario", ControllerFuncionario.criarFuncionario, gson::toJson);
+            delete("/usuario/funcionario/:id", ControllerFuncionario.removerFuncionario, gson::toJson);
+            put("/usuario/funcionario/:id", ControllerFuncionario.alterarFuncionario, gson::toJson);
 
             //Rotas de Endereço
             get("/enderecos", ControllerEndereco.getEnderecos, gson::toJson);
