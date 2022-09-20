@@ -3,6 +3,8 @@ package app.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.ResultSet;
 
 
@@ -10,91 +12,106 @@ import app.Domain.PacoteObras.CategoriaObra;
 
 public class CategoriaObraDAO extends GenericDAO{
 
-    public void insert(CategoriaObra categoriaObra){
+    public void insert(CategoriaObra categoriaObra) throws SQLException{ 
         String sql = "INSERT INTO CategoriaObra (descricao, maximoDiasEmprestimo, taxaMulta) VALUES (?, ?, ?) ";
 
-        try{
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+        
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement = conn.prepareStatement(sql);
-            statement.setString(2, categoriaObra.getDescricao());
-            statement.setInt(3, categoriaObra.getMaximoDiasEmprestimo());
-            statement.setDouble(4, categoriaObra.getTaxaMulta());
-            statement.executeUpdate();
+        statement = conn.prepareStatement(sql);
+        statement.setString(1, categoriaObra.getDescricao());
+        statement.setInt(2, categoriaObra.getMaximoDiasEmprestimo());
+        statement.setDouble(3, categoriaObra.getTaxaMulta());
+        statement.executeUpdate();
 
-            statement.close();
-            conn.close();
-        }catch(SQLException e){
-            throw new RuntimeException(e);
-        }
+        statement.close();
+        conn.close();
+        
     }
 
 
-    public void update(CategoriaObra categoriaObra) {
+    public void update(CategoriaObra categoriaObra) throws SQLException{
         String sql = "UPDATE CategoriaObra SET descricao = ?, maximoDiasEmprestimo = ?, taxaMulta = ? WHERE codigo = ?";
 
-        try {
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+        
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setString(1, categoriaObra.getDescricao());
-            statement.setInt(2, categoriaObra.getMaximoDiasEmprestimo());
-            statement.setDouble(3, categoriaObra.getTaxaMulta());
-            statement.setInt(4, categoriaObra.getCodigo());
-            statement.executeUpdate();
+        statement.setString(1, categoriaObra.getDescricao());
+        statement.setInt(2, categoriaObra.getMaximoDiasEmprestimo());
+        statement.setDouble(3, categoriaObra.getTaxaMulta());
+        statement.setLong(4, categoriaObra.getCodigo());
+        statement.executeUpdate();
 
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        statement.close();
+        conn.close();
+        
     }
 
-    public void delete(CategoriaObra categoriaObra){
+    public void delete(CategoriaObra categoriaObra) throws SQLException{
         String sql = "DELETE FROM CategoriaObra WHERE codigo = ?";
 
-        try{
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1, categoriaObra.getCodigo());
-            statement.executeUpdate();
+        statement.setLong(1, categoriaObra.getCodigo());
+        statement.executeUpdate();
 
-            statement.close();
-            conn.close();
-        } catch (SQLException e){
-            throw new RuntimeException(e);
-        }
+        statement.close();
+        conn.close();
     }
 
 
-    public CategoriaObra getByCodigo(int codigo){
+    public CategoriaObra getByCodigo(Long codigo) throws SQLException{
         CategoriaObra categoriaObra = null;
 
         String sql = "SELECT * from CategoriaObra WHERE codigo = ?";
 
-        try{
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1, codigo);
+        statement.setLong(1, codigo);
+        ResultSet resultSet = statement.executeQuery();
+        if(resultSet.next()){
+            String descricao = resultSet.getString("descricao");
+            int maximoDiasEmprestimo = resultSet.getInt("maximoDiasEmprestimo");
+            double taxaMulta = resultSet.getDouble("taxaMulta");
+
+            categoriaObra = new CategoriaObra(codigo, descricao, maximoDiasEmprestimo, taxaMulta);
+        }
+        resultSet.close();
+        statement.close();
+        conn.close();
+        
+        return categoriaObra;
+    }
+
+    public List<CategoriaObra> getAll() throws SQLException{
+
+    	List<CategoriaObra>  listaCategoriasObra = new ArrayList<>();
+
+        String sql = "SELECT * from CategoriaObra";
+
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
+
             ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next()){
+            while (resultSet.next()) {
+                Long codigo = resultSet.getLong("codigo");
                 String descricao = resultSet.getString("descricao");
                 int maximoDiasEmprestimo = resultSet.getInt("maximoDiasEmprestimo");
                 double taxaMulta = resultSet.getDouble("taxaMulta");
 
-                categoriaObra = new CategoriaObra(codigo, descricao, maximoDiasEmprestimo, taxaMulta);
+                CategoriaObra categoriaObra = new CategoriaObra(codigo, descricao, maximoDiasEmprestimo, taxaMulta);
+                listaCategoriasObra.add(categoriaObra);
             }
-            resultSet.close();
-            statement.close();
-            conn.close();
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-        return categoriaObra;
 
+        resultSet.close();
+        statement.close();
+        conn.close();
+
+        return listaCategoriasObra;
     }
 
 }

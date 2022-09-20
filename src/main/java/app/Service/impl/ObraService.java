@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-import app.Domain.PacoteObras.Autor;
+//import app.Domain.PacoteObras.Autor;
 import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.Obra;
 import app.Service.spec.IObraService;
@@ -15,17 +15,17 @@ import app.dao.CopiaDAO;
 
 public class ObraService implements IObraService{
     private ObraDAO odao;
-    private AutorDAO adao;
+    //private AutorDAO adao;
     private CopiaDAO cdao;
 
     public ObraService() {
         this.odao = new ObraDAO();
-        this.adao = new AutorDAO();
+        //this.adao = new AutorDAO();
         this.cdao = new CopiaDAO();
     }
 
     @Override
-    public List<Obra> buscaObra(Long isbn) {
+    public List<Obra> buscaObraPorIsbn(Long isbn) {
        try{
             return odao.getAllByIsbn(isbn);
        } catch(Exception e){
@@ -33,8 +33,9 @@ public class ObraService implements IObraService{
             return null;
        }
     }
+
     @Override
-    public Obra buscaObra(String titulo) {
+    public Obra buscaObraPorTitulo(String titulo) {
        try{
             return odao.getByTitulo(titulo);
        } catch(Exception e){
@@ -42,8 +43,9 @@ public class ObraService implements IObraService{
             return null;
        }
     }
+
     @Override
-    public Obra buscaObraByCodigo(Long codigo) {
+    public Obra buscaObraPorCodigo(Long codigo) {
        try{
             return odao.getByCodigo(codigo);
        } catch(Exception e){
@@ -53,7 +55,7 @@ public class ObraService implements IObraService{
     }
 
     @Override
-    public boolean adicionarObra(Obra obra) {
+    public boolean adicionaObra(Obra obra) {
         try {
             odao.insert(obra);
             return true;
@@ -63,7 +65,7 @@ public class ObraService implements IObraService{
     }
 
     @Override
-    public boolean removerObra(Obra obra) {
+    public boolean removeObra(Obra obra) {
         try {
             odao.delete(obra);
             return true;
@@ -72,6 +74,7 @@ public class ObraService implements IObraService{
         }
     }
 
+    /*
     @Override
     public List<Autor> buscarAutores() {
         try {
@@ -82,6 +85,7 @@ public class ObraService implements IObraService{
             return new ArrayList<Autor>();
         }
     }
+    
 
     @Override
     public Autor buscarAutor(Long id){
@@ -92,11 +96,12 @@ public class ObraService implements IObraService{
             return null;
         }
     }
+    
 
     @Override
     public boolean adicionarAutor(Long codigo, Autor autor) {
         try {
-            Obra obra = buscaObraByCodigo(codigo);
+            Obra obra = buscaObraPorCodigo(codigo);
             if(obra==null){
                 System.out.println("[ERRO] Obra não contrada! Verifique o código informado. Se for uma nova Obra, adicione-a primeiro.");
                 return false;
@@ -138,6 +143,7 @@ public class ObraService implements IObraService{
         }  
         
     }
+    */
 
     @Override
     public List<Obra> buscarObrasPPC(String palavra) {
@@ -152,7 +158,7 @@ public class ObraService implements IObraService{
     @Override
     public boolean adicionarPalavraChave(Long codigo, String palavra) {
        try{
-            Obra obra = buscaObraByCodigo(codigo);
+            Obra obra = buscaObraPorCodigo(codigo);
             if(obra == null){
                 System.out.println("[ERRO] Obra não encontrada! Verifique o código informado.");
                 return false;
@@ -171,7 +177,7 @@ public class ObraService implements IObraService{
     @Override
     public boolean removerPalavraChave(Long codigo, String palavra) {
         try{
-            Obra obra = buscaObraByCodigo(codigo);
+            Obra obra = buscaObraPorCodigo(codigo);
             if(obra == null){
                 System.out.println("[ERRO] Obra não encontrada! Verifique o código informado.");
                 return false;
@@ -215,7 +221,7 @@ public class ObraService implements IObraService{
     @Override
     public boolean adicionarCopia(Long codigo, Copia copia) {
         try{
-            Obra obra = buscaObraByCodigo(codigo);
+            Obra obra = buscaObraPorCodigo(codigo);
             if(obra == null){
                 System.out.println("[ERRO] Obra não encontrada! Verifique o codigo informado.");
                 return false;
@@ -224,10 +230,6 @@ public class ObraService implements IObraService{
                 copia.setObraId(codigo);
                 cdao.insert(copia);
             }
-            List<Copia> listaCopias = new ArrayList<>();
-            listaCopias = obra.getCopias();
-            listaCopias.add(copia);
-            obra.setCopias(listaCopias);
             obra.notifyAllObservers();
             return true; 
         }catch(Exception e){

@@ -12,8 +12,6 @@ import java.util.Date;
 
 
 import app.Domain.PacoteObras.Editora;
-import app.Domain.PacoteObras.Autor;
-import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.CategoriaObra;
 import app.Domain.PacoteObras.Obra;
 
@@ -21,272 +19,263 @@ import app.Domain.PacoteObras.Obra;
 public class ObraDAO extends GenericDAO{
 
     private CategoriaObraDAO catdao;
-    private CopiaDAO copdao;
     private EditoraDAO edao;
-    private AutorDAO adao;
     
 
-    public void insert(Obra obra){
-        String sql = "INSERT INTO Obra (isbn, titulo, categoria, palavraChave, dataPublicacao, Edicao, editora_id, numPaginas) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
+    public void insert(Obra obra) throws SQLException{
+        String sql = "INSERT INTO Obra (isbn, titulo, categoriaObra_id, palavrasChave, dataPublicacao, edicao, editora_id, numPaginas) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
+ 
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
 
-        try{
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setLong(1, obra.getIsbn());
+        statement.setString(2, obra.getTitulo());
+        statement.setLong(3, obra.getCategoria().getCodigo());
+    
+        String keywords = "";
+        for (String palavra : obra.getPalavrasChave()) {
+            keywords = keywords + palavra + ";";
+        }
+        statement.setString(4, keywords);
 
-            statement.setLong(1, obra.getIsbn());
-            statement.setString(2, obra.getTitulo());
-            statement.setInt(3, obra.getCategoria().getCodigo());
+        java.sql.Date mySQLDate = new java.sql.Date(obra.getDataPublicacao().getTime());
+        statement.setDate(5, mySQLDate);
+        statement.setString(6, obra.getEdicao());
+        statement.setLong(7, obra.getEditora().getId());
+        statement.setInt(8, obra.getNumPaginas());
+
+        statement.executeUpdate();
+
+        statement.close();
+        conn.close();
         
-            String keywords = "";
-            for (String palavra : obra.getPalavrasChave()) {
-                keywords = keywords + palavra + ";";
-            }
-            statement.setString(4, keywords);
-
-            java.sql.Date mySQLDate = new java.sql.Date(obra.getDataPublicacao().getTime());
-            statement.setDate(5, mySQLDate);
-            statement.setString(6, obra.getEdicao());
-            statement.setLong(7, obra.getEditora().getId());
-            statement.setInt(8, obra.getNumeroPaginas());
-
-            statement.executeUpdate();
-
-            statement.close();
-            conn.close();
-        }catch(SQLException e){
-            throw new RuntimeException(e);
-        }
     }
 
-    public void update(Obra obra) {
-        String sql = "UPDATE Obra SET isbn = ?, titulo = ?, categoria = ?, palavraChave = ?, dataPublicacao = ?, Edicao = ?, editora_id = ?, numPaginas = ? WHERE codigo = ?";
+    public void update(Obra obra) throws SQLException{
+        String sql = "UPDATE Obra SET isbn = ?, titulo = ?, categoriaObra_id = ?, palavraChave = ?, dataPublicacao = ?, edicao = ?, editora_id = ?, numPaginas = ? WHERE codigo = ?";
+        
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
 
-        try {
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
 
+        statement.setLong(1, obra.getIsbn());
+        statement.setString(2, obra.getTitulo());
+        statement.setLong(3, obra.getCategoria().getCodigo());
 
-            statement.setLong(1, obra.getIsbn());
-            statement.setString(2, obra.getTitulo());
-            statement.setInt(3, obra.getCategoria().getCodigo());
-
-            String keywords = "";
-            for (String palavra : obra.getPalavrasChave()) {
-                keywords = keywords + palavra + ";";
-            }
-            statement.setString(4, keywords);
-
-            java.sql.Date mySQLDate = new java.sql.Date(obra.getDataPublicacao().getTime());
-            statement.setDate(5, mySQLDate);
-            statement.setString(6, obra.getEdicao());
-            statement.setLong(7, obra.getEditora().getId());
-            statement.setInt(8, obra.getNumeroPaginas());
-
-            statement.setLong(9, obra.getCodigo());
-            statement.executeUpdate();
-
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        String keywords = "";
+        for (String palavra : obra.getPalavrasChave()) {
+            keywords = keywords + palavra + ";";
         }
+        statement.setString(4, keywords);
+
+        java.sql.Date mySQLDate = new java.sql.Date(obra.getDataPublicacao().getTime());
+        statement.setDate(5, mySQLDate);
+        statement.setString(6, obra.getEdicao());
+        statement.setLong(7, obra.getEditora().getId());
+        statement.setInt(8, obra.getNumPaginas());
+
+        statement.setLong(9, obra.getCodigo());
+        statement.executeUpdate();
+
+        statement.close();
+        conn.close();
+        
     }
 
 
-    public void delete(Obra obra){
+    public void delete(Obra obra) throws SQLException{
         String sql = "DELETE FROM Obra where codigo = ?";
 
-        try{
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setLong(1, obra.getCodigo());
-            statement.executeUpdate();
+        statement.setLong(1, obra.getCodigo());
+        statement.executeUpdate();
 
-            statement.close();
-            conn.close();
-        } catch (SQLException e){
-            throw new RuntimeException(e);
-        }
+        statement.close();
+        conn.close();
     }
 
 
-    public Obra getByCodigo(Long codigo){
+    public Obra getByCodigo(Long codigo) throws SQLException{
         Obra obra = null;
 
         String sql = "SELECT * from Obra WHERE codigo = ?";
 
-        try{
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setLong(1, codigo);
-            ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next()){
-                Long isbn = resultSet.getLong("isbn");
-                CategoriaObra categoria = catdao.getByCodigo(resultSet.getInt("categoria"));
-                List<Autor> lista = adao.getAllByObraId(codigo);
-                
-                List<String> palavrasChave = new ArrayList<String>(Arrays.asList(resultSet.getString("palavraChave").split(";")));
-                Date dataPublicacao = resultSet.getDate("dataPublicacao");
-                String Edicao = resultSet.getString("Edicao");
-                Editora editora = edao.getById(resultSet.getLong("editora_id"));
-                String titulo = resultSet.getString("titulo");
-                int numPaginas = resultSet.getInt("numPaginas");
+        statement.setLong(1, codigo);
+        ResultSet resultSet = statement.executeQuery();
+        if(resultSet.next()){
+            Long isbn = resultSet.getLong("isbn");
+            String titulo = resultSet.getString("titulo");
+            CategoriaObra categoria = catdao.getByCodigo(resultSet.getLong("categoriaObra_id"));
+            List<String> palavrasChave = new ArrayList<String>(Arrays.asList(resultSet.getString("palavrasChave").split(";")));
+            Date dataPublicacao = resultSet.getDate("dataPublicacao");
+            String edicao = resultSet.getString("edicao");
+            Editora editora = edao.getById(resultSet.getLong("editora_id"));
+            int numPaginas = resultSet.getInt("numPaginas");
 
-                obra = new Obra(codigo, isbn, categoria, lista, palavrasChave, dataPublicacao, Edicao, editora, titulo, numPaginas);
-                
-                
-                
-            }
-            resultSet.close();
-            statement.close();
-            conn.close();
-        }catch (SQLException e){
-            throw new RuntimeException(e);
+            obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas);
+            
+            
+            
         }
+        resultSet.close();
+        statement.close();
+        conn.close();
         return obra;
 
     }
 
-    public Obra getByIsbn(Long isbn){
-        Obra obra = null;
+    public Obra getByIsbn(Long isbn) throws SQLException{
+        Obra obra = null; 
 
         String sql = "SELECT * from Obra WHERE isbn = ?";
 
-        try{
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setLong(1, isbn);
-            ResultSet resultSet = statement.executeQuery();
+        statement.setLong(1, isbn);
+        ResultSet resultSet = statement.executeQuery();
 
-            if(resultSet.next()){
-                Long codigo = resultSet.getLong("codigo");
-                CategoriaObra categoria = catdao.getByCodigo(resultSet.getInt("categoria"));
-                List<Autor> lista = adao.getAllByObraId(codigo);
-                
-                List<String> palavrasChave = new ArrayList<String>(Arrays.asList(resultSet.getString("palavraChave").split(";")));
-                Date dataPublicacao = resultSet.getDate("dataPublicacao");
-                String Edicao = resultSet.getString("Edicao");
-                Editora editora = edao.getById(resultSet.getLong("editora_id"));
-                String titulo = resultSet.getString("titulo");
-                int numPaginas = resultSet.getInt("numPaginas");
+        if(resultSet.next()){
+            Long codigo = resultSet.getLong("codigo");
+            String titulo = resultSet.getString("titulo");
+            CategoriaObra categoria = catdao.getByCodigo(resultSet.getLong("categoriaObra_id"));                
+            List<String> palavrasChave = new ArrayList<String>(Arrays.asList(resultSet.getString("palavrasChave").split(";")));
+            Date dataPublicacao = resultSet.getDate("dataPublicacao");
+            String edicao = resultSet.getString("edicao");
+            Editora editora = edao.getById(resultSet.getLong("editora_id"));
+            int numPaginas = resultSet.getInt("numPaginas");
 
-                obra = new Obra(codigo, isbn, categoria, lista, palavrasChave, dataPublicacao, Edicao, editora, titulo, numPaginas);
-            }
-            resultSet.close();
-            statement.close();
-            conn.close();
-        }catch (SQLException e){
-            throw new RuntimeException(e);
+            obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas);
         }
+        resultSet.close();
+        statement.close();
+        conn.close();
         return obra;
     }
 
-    public List<Obra> getAllByIsbn(Long isbn){
+    public List<Obra> getAllByIsbn(Long isbn) throws SQLException{
         List<Obra> listaObras = new ArrayList<>();
 
         String sql = "SELECT * from Obra WHERE isbn = ?";
 
-        try{
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setLong(1, isbn);
-            ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()){
-                Long codigo = resultSet.getLong("codigo");
-                CategoriaObra categoria = catdao.getByCodigo(resultSet.getInt("categoria"));
-                List<Autor> lista = adao.getAllByObraId(codigo);
-                
-                List<String> palavrasChave = new ArrayList<String>(Arrays.asList(resultSet.getString("palavraChave").split(";")));
-                Date dataPublicacao = resultSet.getDate("dataPublicacao");
-                String Edicao = resultSet.getString("Edicao");
-                Editora editora = edao.getById(resultSet.getLong("editora_id"));
-                String titulo = resultSet.getString("titulo");
-                int numPaginas = resultSet.getInt("numPaginas");
+        statement.setLong(1, isbn);
+        ResultSet resultSet = statement.executeQuery();
+        while(resultSet.next()){
+            Long codigo = resultSet.getLong("codigo");
+            String titulo = resultSet.getString("titulo");
+            CategoriaObra categoria = catdao.getByCodigo(resultSet.getLong("categoriaObra_id"));                
+            List<String> palavrasChave = new ArrayList<String>(Arrays.asList(resultSet.getString("palavrasChave").split(";")));
+            Date dataPublicacao = resultSet.getDate("dataPublicacao");
+            String edicao = resultSet.getString("edicao");
+            Editora editora = edao.getById(resultSet.getLong("editora_id"));
+            int numPaginas = resultSet.getInt("numPaginas");
 
-                Obra obra = new Obra(codigo, isbn, categoria, lista, palavrasChave, dataPublicacao, Edicao, editora, titulo, numPaginas); 
-                listaObras.add(obra);
-            }
-            resultSet.close();
-            statement.close();
-            conn.close();
-        }catch (SQLException e){
-            throw new RuntimeException(e);
+            Obra obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas); 
+            listaObras.add(obra);
         }
+        resultSet.close();
+        statement.close();
+        conn.close();
         return listaObras;
     }
 
-    public Obra getByTitulo(String titulo){
+    public Obra getByTitulo(String titulo) throws SQLException{
         Obra obra = null;
 
         String sql = "SELECT * from Obra WHERE titulo = ?";
+   
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
 
-        try{
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, titulo);
+        ResultSet resultSet = statement.executeQuery();
+        if(resultSet.next()){
+            Long codigo = resultSet.getLong("codigo");
+            Long isbn = resultSet.getLong("isbn");
+            CategoriaObra categoria = catdao.getByCodigo(resultSet.getLong("categoriaObra_id"));                
+            List<String> palavrasChave = new ArrayList<String>(Arrays.asList(resultSet.getString("palavrasChave").split(";")));
+            Date dataPublicacao = resultSet.getDate("dataPublicacao");
+            String edicao = resultSet.getString("edicao");
+            Editora editora = edao.getById(resultSet.getLong("editora_id"));
+            int numPaginas = resultSet.getInt("numPaginas");
 
-            statement.setString(1, titulo);
-            ResultSet resultSet = statement.executeQuery();
-            if(resultSet.next()){
-                Long codigo = resultSet.getLong("codigo");
-                Long isbn = resultSet.getLong("isbn");
-                CategoriaObra categoria = catdao.getByCodigo(resultSet.getInt("categoria"));
-                List<Autor> lista = adao.getAllByObraId(codigo);
-                
-                List<String> palavrasChave = new ArrayList<String>(Arrays.asList(resultSet.getString("palavraChave").split(";")));
-                Date dataPublicacao = resultSet.getDate("dataPublicacao");
-                String Edicao = resultSet.getString("Edicao");
-                Editora editora = edao.getById(resultSet.getLong("editora_id"));
-                int numPaginas = resultSet.getInt("numPaginas");
-
-                obra = new Obra(codigo, isbn, categoria, lista, palavrasChave, dataPublicacao, Edicao, editora, titulo, numPaginas); 
-            }
-            resultSet.close();
-            statement.close();
-            conn.close();
-        }catch (SQLException e){
-            throw new RuntimeException(e);
+            obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas); 
         }
+        resultSet.close();
+        statement.close();
+        conn.close();
+        
         return obra;
     }
 
-    public List<Obra> getAllByKeyWord(String palavra){
+    public List<Obra> getAllByKeyWord(String palavra) throws SQLException{
         List<Obra> listaObras = new ArrayList<>();
 
         String sql = "SELECT * from Obra";
 
-        try{
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
 
-            ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()){
-                Long codigo = resultSet.getLong("codigo");
-                Long isbn = resultSet.getLong("isbn");
-                CategoriaObra categoria = catdao.getByCodigo(resultSet.getInt("categoria"));
-                List<Autor> lista = adao.getAllByObraId(codigo);
-                
-                List<String> palavrasChave = new ArrayList<String>(Arrays.asList(resultSet.getString("palavraChave").split(";")));
-                Date dataPublicacao = resultSet.getDate("dataPublicacao");
-                String Edicao = resultSet.getString("Edicao");
-                Editora editora = edao.getById(resultSet.getLong("editora_id"));
-                String titulo = resultSet.getString("titulo");
-                int numPaginas = resultSet.getInt("numPaginas");
-                
-                if(palavrasChave.contains(palavra)){
-                    Obra obra = new Obra(codigo, isbn, categoria, lista, palavrasChave, dataPublicacao, Edicao, editora, titulo, numPaginas); 
-                    listaObras.add(obra);
-                }
+        ResultSet resultSet = statement.executeQuery();
+        while(resultSet.next()){
+            Long codigo = resultSet.getLong("codigo");
+            Long isbn = resultSet.getLong("isbn");
+            String titulo = resultSet.getString("titulo");
+            CategoriaObra categoria = catdao.getByCodigo(resultSet.getLong("categoriaObra_id"));                
+            List<String> palavrasChave = new ArrayList<String>(Arrays.asList(resultSet.getString("palavrasChave").split(";")));
+            Date dataPublicacao = resultSet.getDate("dataPublicacao");
+            String edicao = resultSet.getString("edicao");
+            Editora editora = edao.getById(resultSet.getLong("editora_id"));
+            int numPaginas = resultSet.getInt("numPaginas");
+            
+            if(palavrasChave.contains(palavra)){
+                Obra obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas); 
+                listaObras.add(obra);
             }
-            resultSet.close();
-            statement.close();
-            conn.close();
-        }catch (SQLException e){
-            throw new RuntimeException(e);
         }
+        resultSet.close();
+        statement.close();
+        conn.close();
+        
+        return listaObras;
+    }
+
+    public List<Obra> getAll() throws SQLException{
+        List<Obra> listaObras = new ArrayList<>();
+
+        String sql = "SELECT * from Obra";
+
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
+
+        ResultSet resultSet = statement.executeQuery();
+        while(resultSet.next()){
+            Long codigo = resultSet.getLong("codigo");
+            Long isbn = resultSet.getLong("isbn");
+            String titulo = resultSet.getString("titulo");
+            CategoriaObra categoria = catdao.getByCodigo(resultSet.getLong("categoriaObra_id"));                
+            List<String> palavrasChave = new ArrayList<String>(Arrays.asList(resultSet.getString("palavrasChave").split(";")));
+            Date dataPublicacao = resultSet.getDate("dataPublicacao");
+            String edicao = resultSet.getString("edicao");
+            Editora editora = edao.getById(resultSet.getLong("editora_id"));
+            int numPaginas = resultSet.getInt("numPaginas");
+            
+            Obra obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas); 
+            listaObras.add(obra);
+            
+        }
+        resultSet.close();
+        statement.close();
+        conn.close();
+        
         return listaObras;
     }
 

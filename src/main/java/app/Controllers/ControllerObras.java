@@ -38,7 +38,7 @@ public class ControllerObras {
     public static Route buscaObra = (Request req, Response res) -> {
         res.type("application/json");
         Long codigo = Long.parseLong(req.params(":codigo"));
-        Obra obra = service.buscaObraByCodigo(codigo);
+        Obra obra = service.buscaObraPorCodigo(codigo);
         return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
     };
 
@@ -49,7 +49,7 @@ public class ControllerObras {
         res.type("application/json");
         Gson gson = gsonObra();
         Obra obra = gson.fromJson(req.body(), Obra.class);
-        service.adicionarObra(obra);
+        service.adicionaObra(obra);
         return new StandardResponse(StatusResponse.SUCCESS);
     };
 
@@ -59,14 +59,15 @@ public class ControllerObras {
     public static Route removerObra = (Request req, Response res) -> {
         res.type("application/json");
         Long codigo = Long.parseLong(req.params(":codigo"));
-        Obra obra = service.buscaObraByCodigo(codigo);
-        service.removerObra(obra);
+        Obra obra = service.buscaObraPorCodigo(codigo);
+        service.removeObra(obra);
         return new StandardResponse(StatusResponse.SUCCESS);
     };
 
     /*
      * Adiciona um autor
      */
+    /*
     public static Route adicionarAutor = (Request req, Response res) -> {
         res.type("application/json");
         Gson gson = gsonAutor();
@@ -76,9 +77,9 @@ public class ControllerObras {
         return new StandardResponse(StatusResponse.SUCCESS);
     };
 
-    /*
+    
      * Remove um autor por nome
-     */
+    
     public static Route removerAutor = (Request req, Response res) -> {
         res.type("application/json");
         Long codigo = Long.parseLong(req.params(":codigo"));
@@ -86,6 +87,7 @@ public class ControllerObras {
         service.removerAutor(codigo, autor);
         return new StandardResponse(StatusResponse.SUCCESS);
     };
+    */
 
     /*
      * Adiciona uma palavra chave a uma obra

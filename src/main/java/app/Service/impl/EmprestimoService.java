@@ -1,4 +1,4 @@
-package app.Service.impl;
+/*package app.Service.impl;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -146,7 +146,7 @@ public class EmprestimoService implements IEmprestimoService {
             return null;
         }
         */
-    
+        /*
         
         LocalDate dataDevolucao = obra.getCategoria().calculaDataDevolucao().plusDays(0L);
         java.util.Date dataPrevistaDevolucao = java.util.Date.from(dataDevolucao.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -194,3 +194,4 @@ public class EmprestimoService implements IEmprestimoService {
     }
     
 }
+*/

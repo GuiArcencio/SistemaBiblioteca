@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import app.Domain.SubjectObserver.Subject;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
-import app.Domain.PacoteObras.Estados.*;
+//import app.Domain.PacoteObras.Estados.*;
 
 
 public class Obra extends Subject {
@@ -14,32 +14,26 @@ public class Obra extends Subject {
 	@JsonRequired
 	Long isbn;
 
-	@JsonRequired
-	CategoriaObra categoria;
+    @JsonRequired
+	String titulo;
 
 	@JsonRequired
-	List<Autor> autores;
+	CategoriaObra categoria;
 
 	@JsonRequired
 	List<String> palavrasChave;
 
 	@JsonRequired
 	Date dataPublicacao;
-	
-	@JsonRequired
-	String titulo;
 
 	@JsonRequired
-	String Edicao;
+	String edicao;
 
 	@JsonRequired
 	Editora editora;
 
 	@JsonRequired
-	int numeroPaginas;
-
-	@JsonRequired
-	List<Copia> copias;
+	int numPaginas;
 	
 	public Obra(){
 
@@ -49,10 +43,9 @@ public class Obra extends Subject {
 		Long codigo,
 		Long isbn,
 		CategoriaObra categoria,
-		List<Autor> autores,
 		List<String> palavrasChave,
 		Date dataPublicacao,
-		String Edicao,
+		String edicao,
 		Editora editora,
         String titulo,
 		int numeroPaginas
@@ -60,13 +53,12 @@ public class Obra extends Subject {
 		this.codigo = codigo;
 		this.isbn = isbn;
 		this.categoria = categoria;
-		this.autores = autores;
 		this.palavrasChave = palavrasChave;
 		this.dataPublicacao = dataPublicacao;
-		this.Edicao = Edicao;
+		this.edicao = edicao;
 		this.editora = editora;
         this.titulo = titulo;
-		this.numeroPaginas = numeroPaginas;
+		this.numPaginas = numeroPaginas;
 	}
 
     public void setCodigo(Long codigo) {
@@ -93,14 +85,6 @@ public class Obra extends Subject {
         return this.categoria;
     }
 
-    public void setAutores(List<Autor> autores) {
-        this.autores = autores;
-    }
-    
-    public List<Autor> getAutores() {
-        return this.autores;
-    }
-
     public void setPalavrasChave(List<String> palavrasChave) {
         this.palavrasChave = palavrasChave;
     }
@@ -117,12 +101,12 @@ public class Obra extends Subject {
         return this.dataPublicacao;
     }
 
-    public void setEdicao(String Edicao) {
-        this.Edicao = Edicao;
+    public void setEdicao(String edicao) {
+        this.edicao = edicao;
     }
     
     public String getEdicao() {
-        return this.Edicao;
+        return this.edicao;
     }
 
     public void setEditora(Editora editora) {
@@ -141,20 +125,12 @@ public class Obra extends Subject {
         return this.titulo;
     }
 
-    public void setNumeroPaginas(int numeroPaginas) {
-        this.numeroPaginas = numeroPaginas;
+    public void setNumPaginas(int numeroPaginas) {
+        this.numPaginas = numeroPaginas;
     }
 
-    public int getNumeroPaginas() {
-        return this.numeroPaginas;
-    }
-
-    public void setCopias(List<Copia> copias) {
-        this.copias = copias;
-    }
-
-    public List<Copia> getCopias() {
-        return this.copias;
+    public int getNumPaginas() {
+        return this.numPaginas;
     }
 
 	

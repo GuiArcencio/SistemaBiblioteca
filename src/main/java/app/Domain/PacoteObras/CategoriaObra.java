@@ -5,29 +5,31 @@ import app.Exception.AnnotatedDeserializer.JsonRequired;
 import java.time.LocalDate;
 
 public class CategoriaObra {
-	int codigo;
+	private Long codigo;
 
     @JsonRequired
-	String descricao;
+	private String descricao;
 
     @JsonRequired
-	int maximoDiasEmprestimo;
+	private int maximoDiasEmprestimo;
 
     @JsonRequired
-	double taxaMulta;
+	private double taxaMulta;
 	
-	public CategoriaObra(int codigo, String descricao, int maximoDiasEmprestimo, double taxaMulta) {
+	public CategoriaObra(Long codigo, String descricao, int maximoDiasEmprestimo, double taxaMulta) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 		this.maximoDiasEmprestimo = maximoDiasEmprestimo;
 		this.taxaMulta = taxaMulta;
 	}
+
+    public CategoriaObra(){}
     
-    public void setCodigo(int codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
-    public int getCodigo() {
+    public Long getCodigo() {
         return this.codigo;
     }
 

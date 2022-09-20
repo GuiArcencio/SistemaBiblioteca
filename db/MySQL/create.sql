@@ -4,17 +4,33 @@ create database Biblioteca;
 
 use Biblioteca;
 
+CREATE TABLE Editora(
+    id bigint not NULL auto_increment,
+    nome varchar(100) not NULL,
+    CONSTRAINT editora_pk PRIMARY KEY(id)
+);
+
+CREATE TABLE CategoriaObra(
+    codigo bigint not NULL auto_increment,
+    descricao varchar(256),
+    maximoDiasEmprestimo int not null,
+    taxaMulta decimal(10,6) not NULL,
+    CONSTRAINT codigo_pk PRIMARY KEY (codigo)
+);
+
 CREATE TABLE Obra(
     codigo bigint not NULL auto_increment,
     isbn bigint not NULL,
     titulo varchar(256) not NULL,
-    categoria int,
-    palavraChave varchar(256),
+    categoriaObra_id bigint not NULL,
+    palavrasChave varchar(256),
     dataPublicacao date not NULL,
-    Edicao varchar(50) not NULL,
+    edicao varchar(50) not NULL,
     editora_id bigint not NULL,
-    numPaginas bigint not NULL,
-    CONSTRAINT obra_pk PRIMARY KEY (codigo)
+    numPaginas int not NULL,
+    CONSTRAINT obra_pk PRIMARY KEY (codigo),
+    CONSTRAINT categoriaObra_id_fk FOREIGN kEY(categoriaObra_id) REFERENCES CategoriaObra(codigo),
+    CONSTRAINT editora_id_fk FOREIGN KEY(editora_id) REFERENCES Editora(id)
 );
 
 
@@ -33,20 +49,6 @@ CREATE TABLE RelObraAutor(
     CONSTRAINT obraAutor_pk PRIMARY KEY(id),
     CONSTRAINT relAutor_fk FOREIGN KEY (codigo_autor) REFERENCES Autor(codigo),
     CONSTRAINT relObra_fk FOREIGN KEY (codigo_obra) REFERENCES Obra(codigo)
-);
-
-CREATE TABLE Editora(
-    id bigint not NULL auto_increment,
-    nome varchar(100) not NULL,
-    CONSTRAINT editora_pk PRIMARY KEY(id)
-);
-
-CREATE TABLE CategoriaObra(
-    codigo int not NULL auto_increment,
-    descricao varchar(256),
-    maximoDiasEmprestado bigint not null,
-    taxaMulta decimal(10,6) not NULL,
-    CONSTRAINT codigo_pk PRIMARY KEY (codigo)
 );
 
 CREATE TABLE Copia(
