@@ -2,6 +2,8 @@ package app.Controllers;
 
 import java.util.List;
 
+import javax.net.ssl.SSLEngineResult.Status;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -9,8 +11,8 @@ import app.Domain.PacoteUsuarios.Usuario;
 import app.Exception.AnnotatedDeserializer;
 import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.PacoteUsuarios.Funcionario;
-import app.Service.impl.UsuarioService;
-import app.Service.spec.IUsuarioService;
+import app.Service.impl.FuncionarioService;
+import app.Service.spec.IFuncionarioService;
 import app.StandardResponse.StandardResponse;
 import app.StandardResponse.StatusResponse;
 import spark.Request;
@@ -19,8 +21,7 @@ import spark.Route;
 
 public class ControllerFuncionario {
 
-    // TODO: Alterar para usar service específico
-    private static IUsuarioService service = new UsuarioService();
+    private static IFuncionarioService service = new FuncionarioService();
 
     private static Gson gsonFuncionario() {
         return new GsonBuilder()
@@ -29,23 +30,30 @@ public class ControllerFuncionario {
     }
 
     /*
-     * Busca um Funcionarios
+     * Busca Funcionarios
      */
-    // TODO: Implementar
     public static Route buscaFuncionarios = (Request req, Response res) -> {
         res.type("application/json");
-        res.status(501);
-        return new StandardResponse(StatusResponse.ERROR, "Implementar");
+        List<Funcionario> funcionarios = service.getFuncionarios();
+        if (funcionarios != null){
+            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(funcionarios));
+        } else {
+            return new StandardResponse(StatusResponse.ERROR, "Erro ao obter funcionários");
+        }
     };
 
     /*
      * Busca um Funcionario
      */
-    // TODO: Implementar
     public static Route buscaFuncionario = (Request req, Response res) -> {
         res.type("application/json");
-        res.status(501);
-        return new StandardResponse(StatusResponse.ERROR, "Implementar");
+        Long id = Long.parseLong(req.params(":id"));
+        Funcionario funcionario = service.getFuncionario(id);
+        if (funcionario != null){
+            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(funcionario));
+        } else {
+            return new StandardResponse(StatusResponse.ERROR, "Erro ao obter funcionário de ID: " + id + ". Ele existe?");
+        }
     };
 
     /*
@@ -64,7 +72,6 @@ public class ControllerFuncionario {
         }
     };
 
-
     /*
      * Remove um Funcionario
      */
@@ -78,20 +85,6 @@ public class ControllerFuncionario {
             return new StandardResponse(StatusResponse.ERROR, "Erro na remoção do funcionário, o ID é válido?");
         }
     };
-     /*
-     * Remove um Leitor
-     */
-    public static Route removerLeitor = (Request req, Response res) -> {
-        res.type("application/json");
-        Long id = Long.parseLong(req.params(":id"));
-        System.out.println("Removendo Leitor de ID: " + id);
-        if (service.removeLeitor(id)) {
-            return new StandardResponse(StatusResponse.SUCCESS);
-        } else {
-            return new StandardResponse(StatusResponse.ERROR, "Erro na remoção do leitor, o ID é válido?");
-        }
-    };
-
 
     /*
      * Altera um Funcionario
@@ -106,18 +99,5 @@ public class ControllerFuncionario {
             return new StandardResponse(StatusResponse.ERROR, "Erro na alteração do funcionário. o ID é válido?");
         }
     };
-    /*
-     * Altera um Leitor
-     */
-    public static Route alterarLeitor = (Request req, Response res) -> {
-        res.type("application/json");
-        Leitor leitor = new Gson().fromJson(req.body(), Leitor.class);
-        Long id = Long.parseLong(req.params(":id"));
-        if (service.alteraLeitor(id, leitor)) {
-            return new StandardResponse(StatusResponse.SUCCESS);
-        } else {
-            return new StandardResponse(StatusResponse.ERROR, "Erro na alteração do leitor. o ID é válido?");
-        }
-    };
-    
+
 }

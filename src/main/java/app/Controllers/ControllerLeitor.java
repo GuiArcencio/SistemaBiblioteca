@@ -6,14 +6,13 @@ import java.util.Properties;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import app.Domain.PacoteUsuarios.Usuario;
 import app.Exception.AnnotatedDeserializer;
 import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.PacoteUsuarios.Funcionario;
 import app.Service.impl.CategoriaLeitorService;
-import app.Service.impl.UsuarioService;
+import app.Service.impl.LeitorService;
 import app.Service.spec.ICategoriaLeitorService;
-import app.Service.spec.IUsuarioService;
+import app.Service.spec.ILeitorService;
 import app.StandardResponse.StandardResponse;
 import app.StandardResponse.StatusResponse;
 import spark.Request;
@@ -23,8 +22,7 @@ import spark.Route;
 public class ControllerLeitor {
 
     // TODO: Alterar para usar service específico
-    private static IUsuarioService service = new UsuarioService();
-    private static ICategoriaLeitorService clService = new CategoriaLeitorService();
+    private static ILeitorService service = new LeitorService();
 
     private static Gson gsonLeitor() {
         return new GsonBuilder()
@@ -37,7 +35,7 @@ public class ControllerLeitor {
      */
     public static Route buscaLeitores = (Request req, Response res) -> {
         res.type("application/json");
-        List<Usuario> usuarios = service.getUsuarios();
+        List<Leitor> usuarios = service.getLeitores();
         return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(usuarios));
     };
 
@@ -46,8 +44,9 @@ public class ControllerLeitor {
      */
     public static Route buscaLeitor = (Request req, Response res) -> {
         res.type("application/json");
-        List<Usuario> usuarios = service.getUsuarios();
-        return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(usuarios));
+        Long id = Long.parseLong(req.params(":id"));
+        Leitor leitor = service.getLeitor(id);
+        return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(leitor));
     };
 
     /*

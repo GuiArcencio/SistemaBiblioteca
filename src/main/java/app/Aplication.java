@@ -5,7 +5,16 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
+<<<<<<< HEAD
 
+=======
+import app.Controllers.ControllerFuncionario;
+import app.Controllers.ControllerLeitor;
+import app.Controllers.ControllerObras;
+import app.Exception.ControllerException;
+import app.Controllers.ControllerAutor;
+import app.Controllers.ControllerCategoriaLeitor;
+>>>>>>> b1f2cd2ea4c0f155b8fb6d7d2512fdf20c7c47c7
 import app.Controllers.*;
 import app.Exception.ControllerException;
 
@@ -57,11 +66,14 @@ public class Aplication {
 
             // TODO: 
             // Rotas de ControllerLeitor
+            get("/usuario/leitor", ControllerLeitor.buscaLeitores, gson::toJson);
             post("/usuario/leitor", ControllerLeitor.criarLeitor, gson::toJson);
             delete("/usuario/leitor/:id", ControllerLeitor.removerLeitor, gson::toJson);
             put("/usuario/leitor/:id", ControllerLeitor.alterarLeitor, gson::toJson);
 
             // Rotas de ControllerFuncionario
+            get("/usuario/funcionario", ControllerFuncionario.buscaFuncionarios, gson::toJson);
+            get("/usuario/funcionario/:id", ControllerFuncionario.buscaFuncionario, gson::toJson);
             post("/usuario/funcionario", ControllerFuncionario.criarFuncionario, gson::toJson);
             delete("/usuario/funcionario/:id", ControllerFuncionario.removerFuncionario, gson::toJson);
             put("/usuario/funcionario/:id", ControllerFuncionario.alterarFuncionario, gson::toJson);

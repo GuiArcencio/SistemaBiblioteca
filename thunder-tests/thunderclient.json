@@ -355,6 +355,7 @@
     "tests": []
   },
   {
+<<<<<<< HEAD
     "_id": "5432b1dc-5b64-4368-9b51-3f8994260d0f",
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
@@ -574,6 +575,39 @@
     "modified": "2022-09-21T00:35:13.161Z",
     "headers": [],
     "params": [],
+=======
+    "_id": "27d0c4b1-6ab2-428a-9d37-e1931a096b12",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "b9b283ee-63e4-442f-b619-2734197dd334",
+    "name": "Busca todos os funcionários",
+    "url": "localhost:4567/api/usuario/funcionario",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-20T22:44:18.670Z",
+    "modified": "2022-09-20T23:05:20.863Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "7cf3a523-5b69-4641-b502-af9c97c4fed1",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "b9b283ee-63e4-442f-b619-2734197dd334",
+    "name": "Busca funcionario por ID",
+    "url": "localhost:4567/api/usuario/funcionario/{id}",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2022-09-20T23:28:28.614Z",
+    "modified": "2022-09-20T23:29:24.536Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "id",
+        "value": "1",
+        "isPath": true
+      }
+    ],
+>>>>>>> b1f2cd2ea4c0f155b8fb6d7d2512fdf20c7c47c7
     "tests": []
   }
 ]

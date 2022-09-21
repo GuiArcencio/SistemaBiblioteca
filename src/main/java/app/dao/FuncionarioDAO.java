@@ -4,17 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import app.Domain.PacoteUsuarios.Funcionario;
+import app.Domain.PacoteUsuarios.CategoriaLeitor;
 import app.Domain.PacoteUsuarios.Endereco;
 //import app.Domain.PacoteUsuarios.Usuario;
 
 public class FuncionarioDAO extends GenericDAO {
     
     public void insert(Funcionario funcionario){
-        String sql = "INSERT INTO Usuario (nome, telefone, dataNascimento, endereco, role) VALUES (?, ?, ?, ?, funcionario) ";
+        String sql = "INSERT INTO Usuario (nome, telefone, dataNascimento, endereco_id, role) VALUES (?, ?, ?, ?, FUNC)";
 
         try{
             Connection conn = this.getConnection();
@@ -73,11 +75,40 @@ public class FuncionarioDAO extends GenericDAO {
         }
     }
 
+    public List<Funcionario> getAll() throws SQLException{
+        List<Funcionario> listaFuncionarios = new ArrayList<>();
+
+        String sql = "SELECT * from Usuario WHERE role = 'FUNC'";
+        try{   
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                Long id = Long.parseLong(resultSet.getString("id"));
+                System.out.println("Id: " + id);
+                String nome = resultSet.getString("nome");
+                String telefone = resultSet.getString("telefone");
+                Date dataNascimento = resultSet.getDate("dataNascimento");
+
+                Long enderecoId = resultSet.getLong("endereco_id");
+                Endereco endereco = new EnderecoDAO().getById(enderecoId);
+
+                Funcionario funcionario = new Funcionario(id, nome, telefone, dataNascimento, endereco);
+                listaFuncionarios.add(funcionario);
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+            return listaFuncionarios;
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 
     public Funcionario getById(Long id){
         Funcionario funcionario = null;
 
-        String sql = "SELECT * from Usuario WHERE id = ?";
+        String sql = "SELECT * from Usuario WHERE id = ? AND role = 'FUNC'";
 
         try{   
             Connection conn = this.getConnection();
@@ -89,13 +120,11 @@ public class FuncionarioDAO extends GenericDAO {
                 String nome = resultSet.getString("nome");
                 String telefone = resultSet.getString("telefone");
                 Date dataNascimento = resultSet.getDate("dataNascimento");
-                String role = "funcionario";
 
                 Long enderecoId = resultSet.getLong("id");
                 Endereco endereco = new EnderecoDAO().getById(enderecoId);
 
-
-                funcionario = new Funcionario(id, nome, telefone, dataNascimento, endereco, role);
+                funcionario = new Funcionario(id, nome, telefone, dataNascimento, endereco);
             }
             resultSet.close();
             statement.close();
