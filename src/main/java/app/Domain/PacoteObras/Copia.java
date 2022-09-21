@@ -71,17 +71,25 @@ public class Copia {
     public Long getObraId() {
         return this.obraId;
     }
+
+    public boolean mudouEstado(State state2){
+        if(this.state.getState() != state2.getState()){
+            this.state = state2;
+            return true;
+        }
+        return false;
+    }
 	
-	public void emprestar() {
-        
+	public boolean emprestar() {
+        return mudouEstado(this.state.emprestar());
 	}
 	
-	public void devolver() {
-		
+	public boolean devolver() {
+		return mudouEstado(this.state.disponibilizar());
 	}
 	
-	public void reservar() {
-		
+	public boolean reservar() {
+		return mudouEstado(this.state.reservar());
 	}
 	
 	public State estadoAtual() {
