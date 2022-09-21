@@ -30,8 +30,9 @@ public class Emprestado extends State {
 
 	@Override
 	public State reservar() {
-        System.out.println("obra emprestada, não é possível reservar");
-        return this;
+		//metodo utilizado para quando uma cópia emprestada é devolvida e já existe uma
+		//reserva feita para a mesma cópia
+        return Reservado.getInstancia();
 	}
 
 	@Override
