@@ -7,9 +7,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import app.Domain.PacoteObras.Autor;
+import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.Obra;
+import app.Domain.PacoteObras.Estados.Disponivel;
 import app.Exception.AnnotatedDeserializer;
+import app.Service.impl.CopiaService;
 import app.Service.impl.ObraService;
+import app.Service.spec.ICopiaService;
 import app.Service.spec.IObraService;
 import app.StandardResponse.StandardResponse;
 import app.StandardResponse.StatusResponse;
@@ -20,6 +24,7 @@ import spark.Route;
 public class ControllerObras {
 
     private static IObraService service = new ObraService();
+    private static ICopiaService cservice = new CopiaService();
 
     private static Gson gsonObra() {
         return new GsonBuilder()
@@ -30,6 +35,12 @@ public class ControllerObras {
     private static Gson gsonAutor() {
         return new GsonBuilder()
         .registerTypeAdapter(Autor.class, new AnnotatedDeserializer<Autor>())
+        .create();
+    }
+
+    private static Gson gsonCopia(){
+        return new GsonBuilder()
+        .registerTypeAdapter(Copia.class, new AnnotatedDeserializer<Copia>())
         .create();
     }
 
@@ -139,10 +150,51 @@ public class ControllerObras {
     };
 
     /*
-     * Altera disponibilidade de uma cópia por código
+     * Insere uma cópia de uma obra
      */
-    // TODO: Faz como aqui?
-    // public static Route mudarDisponibilidadeCopia = (Request req, Response res) -> {
-    //     res.type("application/json");
-    // };
+    public static Route adicionarCopiaDeObra = (Request req, Response res) -> {
+        res.type("application/json");
+        Long codigo = Long.parseLong(req.params(":codigo"));
+        Gson gson = gsonCopia();
+        Copia copia = gson.fromJson(req.body(), Copia.class);
+
+        //Uma nova cópia está sempre disponível
+        copia.setState(Disponivel.getInstancia());
+        copia.setObraId(codigo);
+        if(cservice.insereCopia(copia)){
+            System.out.println("Copia inserida com sucesso!");
+            System.out.println(new Gson().toJsonTree(copia));
+            return new StandardResponse(StatusResponse.SUCCESS);
+        }
+        else{
+            return new StandardResponse(StatusResponse.ERROR, "Erro na inserção de copia");
+        }
+    };
+
+    /*
+     * Remove uma cópia, com o id passado como parâmetro
+     */
+    public static Route removerCopiaDeObra = (Request req, Response res) -> {
+        res.type("application/json");
+        Long id = Long.parseLong(req.params(":id"));
+        Long codigo = Long.parseLong(req.params(":codigo"));
+
+        Copia c = cservice.buscaCopia(id);
+        if (c.getObraId() == codigo && cservice.removerCopia(id)) {
+            return new StandardResponse(StatusResponse.SUCCESS);
+        }
+        else {
+            return new StandardResponse(StatusResponse.ERROR, "Erro na remoção de cópia");
+        }
+    };
+
+    /*
+     * Busca as cópias disponiveis de uma obra, com o codigo da obra como parâmetro
+     */
+    public static Route buscarCopiasDisponiveis = (Request req, Response res) -> {
+        res.type("application/json");
+        Long obraId = Long.parseLong(req.params(":codigo"));
+        List<Copia> lista = cservice.buscarDisponiveisByObraId(obraId);
+        return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(lista));
+    };
 }
