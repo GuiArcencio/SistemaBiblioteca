@@ -23,6 +23,11 @@ public class PessoaInteressada implements Observer{
         this.obraCodigo = oc;
     }
 
+    public PessoaInteressada(Long li, Long oc){
+        this.leitorId = li;
+        this.obraCodigo = oc;
+    }
+
     @Override
     public void update(Observable obra, Object status) {
         this.status = (String)status;

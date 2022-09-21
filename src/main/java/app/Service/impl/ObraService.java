@@ -10,7 +10,7 @@ import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.Obra;
 import app.Service.spec.IObraService;
 import app.dao.ObraDAO;
-import app.dao.AutorDAO;
+//import app.dao.AutorDAO;
 import app.dao.CopiaDAO;
 
 
@@ -24,6 +24,7 @@ public class ObraService implements IObraService{
         //this.adao = new AutorDAO();
         this.cdao = new CopiaDAO();
     }
+
 
     @Override
     public List<Obra> buscaObraPorIsbn(Long isbn) {
@@ -83,6 +84,22 @@ public class ObraService implements IObraService{
             odao.delete(obra);
             return true;
         } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean atualizaObra(Long codigo, Obra obra){
+        try{
+            if(odao.getByCodigo(codigo) == null){
+                System.out.println("Obra de codigo:" + codigo + " não foi encontrada.");
+                return false;
+            }
+            obra.setCodigo(codigo);
+            odao.update(obra);
+            return true;
+        }catch (SQLException ex){
+            System.out.println(ex.getMessage());
             return false;
         }
     }

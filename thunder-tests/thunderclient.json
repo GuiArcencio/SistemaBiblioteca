@@ -100,11 +100,11 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
     "name": "Busca Obra",
-    "url": "localhost:4567/api/obra/1",
+    "url": "localhost:4567/api/obra/2",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-09-15T12:31:24.487Z",
-    "modified": "2022-09-20T22:44:27.927Z",
+    "modified": "2022-09-21T20:24:02.977Z",
     "headers": [],
     "params": [],
     "body": {
@@ -355,7 +355,20 @@
     "tests": []
   },
   {
-<<<<<<< HEAD
+    "_id": "27d0c4b1-6ab2-428a-9d37-e1931a096b12",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "b9b283ee-63e4-442f-b619-2734197dd334",
+    "name": "Busca todos os funcionários",
+    "url": "localhost:4567/api/usuario/funcionario",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-20T22:44:18.670Z",
+    "modified": "2022-09-20T23:05:20.863Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
     "_id": "5432b1dc-5b64-4368-9b51-3f8994260d0f",
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
@@ -391,6 +404,26 @@
       "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "7cf3a523-5b69-4641-b502-af9c97c4fed1",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "b9b283ee-63e4-442f-b619-2734197dd334",
+    "name": "Busca funcionario por ID",
+    "url": "localhost:4567/api/usuario/funcionario/{id}",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2022-09-20T23:28:28.614Z",
+    "modified": "2022-09-20T23:29:24.536Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "id",
+        "value": "1",
+        "isPath": true
+      }
+    ],
     "tests": []
   },
   {
@@ -574,40 +607,143 @@
     "created": "2022-09-21T00:20:33.056Z",
     "modified": "2022-09-21T00:35:13.161Z",
     "headers": [],
-    "params": [],
-=======
-    "_id": "27d0c4b1-6ab2-428a-9d37-e1931a096b12",
+    "params": []
+  },
+  {
+    "_id": "13657512-99ec-4b9f-9c0a-9cf398017855",
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
-    "containerId": "b9b283ee-63e4-442f-b619-2734197dd334",
-    "name": "Busca todos os funcionários",
-    "url": "localhost:4567/api/usuario/funcionario",
+    "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
+    "name": "Busca Copia",
+    "url": "localhost:4567/api/obra/1/copias",
     "method": "GET",
-    "sortNum": 10000,
-    "created": "2022-09-20T22:44:18.670Z",
-    "modified": "2022-09-20T23:05:20.863Z",
+    "sortNum": 25000,
+    "created": "2022-09-21T18:36:40.685Z",
+    "modified": "2022-09-21T18:37:25.184Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "f3c80428-dffe-4314-91c1-d3ae2fd5e319",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
+    "name": "Insere Copia",
+    "url": "localhost:4567/api/obra/copia",
+    "method": "POST",
+    "sortNum": 12500,
+    "created": "2022-09-21T19:44:30.340Z",
+    "modified": "2022-09-21T20:45:22.842Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"obraId\": 2,\n  \"tipoEstado\": \"Disponivel\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "dd265090-8ee6-430c-9fe6-7313c053bc33",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
+    "name": "Remove Copia",
+    "url": "localhost:4567/api/obra/2/copia/11",
+    "method": "DELETE",
+    "sortNum": 45000,
+    "created": "2022-09-21T20:18:52.562Z",
+    "modified": "2022-09-21T20:40:34.675Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "de09cc3b-b900-493b-8fe9-c1ee6f9263fc",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "0471be48-6603-4ff7-a817-411206853f7d",
+    "name": "Busca todas PessoasInteressadas",
+    "url": "localhost:4567/api/pessoasInteressadas",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-09-21T21:39:57.100Z",
+    "modified": "2022-09-21T21:42:04.967Z",
     "headers": [],
     "params": [],
     "tests": []
   },
   {
-    "_id": "7cf3a523-5b69-4641-b502-af9c97c4fed1",
+    "_id": "d69df883-5a77-443c-8be9-24fcdd2402c2",
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
-    "containerId": "b9b283ee-63e4-442f-b619-2734197dd334",
-    "name": "Busca funcionario por ID",
-    "url": "localhost:4567/api/usuario/funcionario/{id}",
+    "containerId": "0471be48-6603-4ff7-a817-411206853f7d",
+    "name": "Busca Pessoas interessadas em uma obra específica",
+    "url": "localhost:4567/api/pessoaInteressada/2",
     "method": "GET",
-    "sortNum": 20000,
-    "created": "2022-09-20T23:28:28.614Z",
-    "modified": "2022-09-20T23:29:24.536Z",
+    "sortNum": 65000,
+    "created": "2022-09-21T21:39:57.101Z",
+    "modified": "2022-09-21T21:43:10.068Z",
     "headers": [],
-    "params": [
-      {
-        "name": "id",
-        "value": "1",
-        "isPath": true
-      }
-    ],
->>>>>>> b1f2cd2ea4c0f155b8fb6d7d2512fdf20c7c47c7
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "23ab35ca-df24-445e-b1b6-e0faf56f1ed1",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "0471be48-6603-4ff7-a817-411206853f7d",
+    "name": "Atualiza PessoaInteressada",
+    "url": "localhost:4567/api/pessoaInteressada/1",
+    "method": "PUT",
+    "sortNum": 67500,
+    "created": "2022-09-21T21:39:57.102Z",
+    "modified": "2022-09-21T21:43:43.719Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"descricao\": \"Jornal\",\n  \"maximoDiasEmprestimo\": 10,\n  \"taxaMulta\": 5.00\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "bf041a98-5c47-471b-9e05-271cdf9c6d71",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "0471be48-6603-4ff7-a817-411206853f7d",
+    "name": "Insere PessoaInteressada",
+    "url": "localhost:4567/api/pessoaInteressada",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-09-21T21:39:57.103Z",
+    "modified": "2022-09-21T22:09:15.624Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"leitorId\": 2,\n  \"obraCodigo\": 2\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "ec630b3f-7559-4e26-a102-a7fd13782960",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "0471be48-6603-4ff7-a817-411206853f7d",
+    "name": "Remove PessoaInteressada",
+    "url": "localhost:4567/api/pessoaInteressada/2",
+    "method": "DELETE",
+    "sortNum": 80000,
+    "created": "2022-09-21T21:39:57.104Z",
+    "modified": "2022-09-21T21:44:13.863Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]

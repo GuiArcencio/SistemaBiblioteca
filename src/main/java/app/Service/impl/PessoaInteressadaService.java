@@ -4,17 +4,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.Domain.PacoteObras.Obra;
 import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.PacoteUsuarios.PessoaInteressada;
 import app.Service.spec.IPessoaInteressadaService;
 import app.dao.PessoaInteressadaDAO;
+import app.dao.ObraDAO;
 
 public class PessoaInteressadaService implements IPessoaInteressadaService{
 
     private PessoaInteressadaDAO dao;
+    private ObraDAO odao;
 
     public PessoaInteressadaService(){
         this.dao = new PessoaInteressadaDAO();
+        this.odao = new ObraDAO();
     }
 
     @Override
@@ -41,7 +45,9 @@ public class PessoaInteressadaService implements IPessoaInteressadaService{
     @Override
     public boolean insere(PessoaInteressada pi){
         try{
+            Obra obra = odao.getByCodigo(pi.getObraCodigo());
             dao.insert(pi);
+            obra.registrar(pi);
             return true;
         }catch(SQLException e){
             System.out.println(e.getMessage());

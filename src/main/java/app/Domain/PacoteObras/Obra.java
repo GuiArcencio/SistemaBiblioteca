@@ -102,7 +102,7 @@ public class Obra extends Observable{
     public void registrar(Observer observer) {
         canaisComunicacao.add(observer);
     }
-
+    /*
     public void atualizaStatus(){
         if(this.status == "DISPONIVEL"){
             this.status = "INDISPONIVEL";
@@ -113,6 +113,7 @@ public class Obra extends Observable{
             notifyObservers(this.status);
         }
     }
+    */
 
     //Setters e Getters//
     public void setCodigo(Long codigo) {
@@ -189,10 +190,11 @@ public class Obra extends Observable{
 
     public void setStatus(String status){
         this.status = status;
+        notifyObservers(status);
     }
 
     public String getStatus(){
         return this.status;
     }
-	
+
 }

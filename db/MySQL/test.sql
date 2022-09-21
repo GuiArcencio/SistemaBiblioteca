@@ -25,13 +25,13 @@ INSERT INTO Obra (codigo, isbn, titulo, categoriaObra_id, palavrasChave, dataPub
           VALUES (3, 9788516122393, 'Esopo: Fábulas Completas', 2, 'Esopo, Fábulas, Lebre, Tartaruga', '2022-02-13', '3', 2, 191, 'DISPONIVEL');
 
 -- Cópias
-INSERT INTO Copia (id, estado, obra_id) VALUES (1, 'Disponível', 1);
-INSERT INTO Copia (id, estado, obra_id) VALUES (2, 'Disponível', 1);
+INSERT INTO Copia (id, estado, obra_id) VALUES (1, 'Disponivel', 1);
+INSERT INTO Copia (id, estado, obra_id) VALUES (2, 'Disponivel', 1);
 INSERT INTO Copia (id, estado, obra_id) VALUES (3, 'Emprestado', 1);
-INSERT INTO Copia (id, estado, obra_id) VALUES (4, 'Disponível', 2);
-INSERT INTO Copia (id, estado, obra_id) VALUES (5, 'Disponível', 3);
-INSERT INTO Copia (id, estado, obra_id) VALUES (6, 'Disponível', 3);
-INSERT INTO Copia (id, estado, obra_id) VALUES (7, 'Disponível', 3);
+INSERT INTO Copia (id, estado, obra_id) VALUES (4, 'Disponivel', 2);
+INSERT INTO Copia (id, estado, obra_id) VALUES (5, 'Disponivel', 3);
+INSERT INTO Copia (id, estado, obra_id) VALUES (6, 'Disponivel', 3);
+INSERT INTO Copia (id, estado, obra_id) VALUES (7, 'Disponivel', 3);
 
 -- Endereços
 INSERT INTO Endereco (id, logradouro, numero, cep, cidade, estado)
@@ -58,10 +58,10 @@ INSERT INTO CategoriaLeitor (id, maximoDiasEmprestimo, descricao)
                      VALUES (3, 1, 'Leitor com pendências');
 
 -- Leitores
-INSERT INTO Leitor (idUsuario, email, categoria_id, grupoAcademico)
-            VALUES (1, 'isadora.jessica@estudante.ufscar.br', 1, true);
-INSERT INTO Leitor (idUsuario, email, categoria_id, grupoAcademico)
-            VALUES (2, 'yuri.calebe@estudante.ufscar.br', 3, true);
+INSERT INTO Leitor (idUsuario, email, documentoId, categoria_id, grupoAcademico)
+            VALUES (1, 'isadora.jessica@estudante.ufscar.br', "MG-123.456.789", 1, true);
+INSERT INTO Leitor (idUsuario, email, documentoId, categoria_id, grupoAcademico)
+            VALUES (2, 'yuri.calebe@estudante.ufscar.br', "SP-987.654.321", 3, true);
 
 -- Empréstimos
 INSERT INTO Emprestimo (id, dataEmprestimo, dataPrevistaDevolucao, funcionarioResponsavel, leitor, codigoCopia, atrasado)

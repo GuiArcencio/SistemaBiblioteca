@@ -13,6 +13,7 @@ public interface IObraService {
     Obra buscaObraPorTitulo(String titulo);
     boolean adicionaObra(Obra obra);
     boolean removeObra(Obra obra);
+    boolean atualizaObra(Long codigo, Obra obra);
     
     //List<Autor> buscarAutores();
     //Autor buscarAutor(Long id);

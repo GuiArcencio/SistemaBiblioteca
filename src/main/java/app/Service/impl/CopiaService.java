@@ -1,5 +1,6 @@
 package app.Service.impl;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class CopiaService implements ICopiaService {
         try {
             dao.insert(Copia);
             return true;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
         }

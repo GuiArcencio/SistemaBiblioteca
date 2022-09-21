@@ -15,27 +15,25 @@ import app.Domain.PacoteObras.Estados.*;
 
 public class CopiaDAO extends GenericDAO{
 
-    public void insert(Copia copia){
-        String sql = "INSERT INTO Copia (state, obra_id) VALUES (?, ?) ";
+    public void insert(Copia copia) throws SQLException{
+        String sql = "INSERT INTO Copia (estado, obra_id) VALUES (?, ?) ";
 
-        try{
+        
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement = conn.prepareStatement(sql);
-            statement.setString(1, copia.getState().getState());
+            statement.setString(1, copia.getTipoEstado());
             statement.setLong(2, copia.getObraId());
             statement.executeUpdate();
 
             statement.close();
             conn.close();
-        }catch(SQLException e){
-            throw new RuntimeException(e);
-        }
+        
     }
 
     public void update(Copia copia) {
-        String sql = "UPDATE Copia SET state = ?, obra_id = ? WHERE id = ?";
+        String sql = "UPDATE Copia SET estado = ?, obra_id = ? WHERE id = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -84,7 +82,7 @@ public class CopiaDAO extends GenericDAO{
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
-                String statestr = resultSet.getString("state");
+                String statestr = resultSet.getString("estado");
                 Long obraId = resultSet.getLong("obra_id");
             
                 State state = null;
@@ -125,7 +123,7 @@ public class CopiaDAO extends GenericDAO{
             statement.setLong(1, obraId);
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
-                String statestr = resultSet.getString("state");
+                String statestr = resultSet.getString("estado");
                 Long id = resultSet.getLong("id");
 
                 State state = null;
@@ -158,7 +156,7 @@ public class CopiaDAO extends GenericDAO{
     public List<Copia> getAllDisponivelByObraId(Long obraId){
         List<Copia> copias = new ArrayList<>();
 
-        String sql = "SELECT * from Copia WHERE obra_id = ? AND state = ?";
+        String sql = "SELECT * from Copia WHERE obra_id = ? AND estado = ?";
 
         try{
             Connection conn = this.getConnection();

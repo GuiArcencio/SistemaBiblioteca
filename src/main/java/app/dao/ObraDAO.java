@@ -80,7 +80,7 @@ public class ObraDAO extends GenericDAO{
         statement.setInt(8, obra.getNumPaginas());
         statement.setString(9, obra.getStatus());
 
-        statement.setLong(9, obra.getCodigo());
+        statement.setLong(10, obra.getCodigo());
         statement.executeUpdate();
         statement.close();
         conn.close();

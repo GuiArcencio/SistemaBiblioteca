@@ -10,6 +10,7 @@ import app.Domain.PacoteObras.Autor;
 import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.Obra;
 import app.Domain.PacoteObras.Estados.Disponivel;
+import app.Domain.SubjectObserver.Observer;
 import app.Exception.AnnotatedDeserializer;
 import app.Service.impl.CopiaService;
 import app.Service.impl.ObraService;
@@ -43,6 +44,22 @@ public class ControllerObras {
         .registerTypeAdapter(Copia.class, new AnnotatedDeserializer<Copia>())
         .create();
     }
+
+    private static void atualizaStatus(Long codigo){
+        List<Copia> disponiveis = cservice.buscarDisponiveisByObraId(codigo);
+        Obra obra = service.buscaObraPorCodigo(codigo);
+        if(disponiveis.isEmpty()){
+            System.out.println("Atualizando status da obra para indisponivel...");
+            obra.setStatus("INDISPONIVEL");
+            service.atualizaObra(codigo, obra);
+        }
+        else{
+            System.out.println("Atualizando status da obra para disponivel...");
+            obra.setStatus("DISPONIVEL");
+            service.atualizaObra(codigo, obra);
+        }
+    }
+
 
     /*
      * Busca uma obra por codigo
@@ -154,18 +171,19 @@ public class ControllerObras {
      */
     public static Route adicionarCopiaDeObra = (Request req, Response res) -> {
         res.type("application/json");
-        Long codigo = Long.parseLong(req.params(":codigo"));
+        //Long codigo = Long.parseLong(req.params(":codigo"));
         Gson gson = gsonCopia();
         Copia copia = gson.fromJson(req.body(), Copia.class);
 
         //Uma nova cópia está sempre disponível
-        copia.setState(Disponivel.getInstancia());
-        copia.setObraId(codigo);
+        //copia.setState(Disponivel.getInstancia());
+        //copia.setObraId(copia.getId());
         if(cservice.insereCopia(copia)){
             System.out.println("Copia inserida com sucesso!");
             System.out.println(new Gson().toJsonTree(copia));
+            atualizaStatus(copia.getObraId());
             return new StandardResponse(StatusResponse.SUCCESS);
-        }
+        } 
         else{
             return new StandardResponse(StatusResponse.ERROR, "Erro na inserção de copia");
         }
@@ -181,6 +199,7 @@ public class ControllerObras {
 
         Copia c = cservice.buscaCopia(id);
         if (c.getObraId() == codigo && cservice.removerCopia(id)) {
+            atualizaStatus(codigo);
             return new StandardResponse(StatusResponse.SUCCESS);
         }
         else {

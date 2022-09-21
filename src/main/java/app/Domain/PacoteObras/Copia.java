@@ -88,5 +88,15 @@ public class Copia {
 		return this.state;
 	}
 
+    public String getTipoEstado() {
+        return tipoEstado;
+    }
+
+    public void setTipoEstado(String tipoEstado) {
+        this.tipoEstado = tipoEstado;
+    }
+
+    
+
     
 }

@@ -7,6 +7,7 @@ import app.Domain.PacoteUsuarios.PessoaInteressada;
 
 public interface IPessoaInteressadaService {
 
+    
     List<Leitor> buscaPessoasPorObra(Long obraCodigo);
     boolean insere(PessoaInteressada pi);
     boolean remove(Long id);

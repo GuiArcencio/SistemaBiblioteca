@@ -21,7 +21,7 @@ public class LeitorDAO extends GenericDAO {
     public void insert(Leitor leitor){
         Usuario usuario = new Leitor(leitor.getNome(), leitor.getTelefone(), leitor.getDataNascimento(), leitor.getEndereco());
         dao.insert(usuario);
-        String sql = "INSERT INTO Leitor (idUsuario, email, documentoId, grupoAcademico, categoria) VALUES (?, ?, ?, ?, ?) ";
+        String sql = "INSERT INTO Leitor (idUsuario, email, documentoId, categoria_id, grupoAcademico) VALUES (?, ?, ?, ?, ?) ";
 
         try{
             Connection conn = this.getConnection();
@@ -46,7 +46,7 @@ public class LeitorDAO extends GenericDAO {
     public void update(Leitor leitor) {
         Usuario usuario = new Leitor(leitor.getNome(), leitor.getTelefone(), leitor.getDataNascimento(), leitor.getEndereco());
         dao.update(usuario);
-        String sql = "UPDATE Leitor SET email = ?, documentoId = ?, grupoAcademico = ?, categoria_id = ? WHERE id = ?";
+        String sql = "UPDATE Leitor SET email = ?, documentoId = ?, grupoAcademico = ?, categoria_id = ? WHERE idUsuario = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -104,7 +104,7 @@ public class LeitorDAO extends GenericDAO {
                 String documentoId = resultSet.getString("documentoId");
                 boolean grupoAcademico = resultSet.getBoolean("grupoAcademico");
 
-                Long categoriaId = resultSet.getLong("id");
+                Long categoriaId = resultSet.getLong("categoria_id");
                 CategoriaLeitor categoria = new CategoriaLeitorDAO().getById(categoriaId);
 
 
@@ -117,9 +117,7 @@ public class LeitorDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
 
-        Leitor leitorF = new Leitor(dao.getById(id), leitor);
-
-        return leitorF;
+        return leitor;
 
     }
 }
