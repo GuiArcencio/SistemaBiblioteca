@@ -5,16 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
-<<<<<<< HEAD
-
-=======
-import app.Controllers.ControllerFuncionario;
-import app.Controllers.ControllerLeitor;
-import app.Controllers.ControllerObras;
 import app.Exception.ControllerException;
-import app.Controllers.ControllerAutor;
-import app.Controllers.ControllerCategoriaLeitor;
->>>>>>> b1f2cd2ea4c0f155b8fb6d7d2512fdf20c7c47c7
 import app.Controllers.*;
 
 public class Aplication {

@@ -3,7 +3,6 @@ package app.Domain.PacoteObras;
 
 import java.util.Date;
 import java.util.List;
-import app.Domain.SubjectObserver.Subject;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
 //import app.Domain.PacoteObras.Estados.*;
 

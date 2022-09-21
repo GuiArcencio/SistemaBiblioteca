@@ -26,6 +26,10 @@ public class Copia {
         this.id = id;
     }
 
+    public Copia(State state){
+        this.state = state;
+    }
+
     public void setId(Long id){
         this.id = id;
     }

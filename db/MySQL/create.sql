@@ -54,8 +54,9 @@ CREATE TABLE RelObraAutor(
 CREATE TABLE Copia(
     id bigint not NULL auto_increment,
     state varchar(50) not NULL,
-    obra_id bigint not NULL,
-    CONSTRAINT copia_pk PRIMARY KEY(id)
+    obraId bigint not NULL,
+    CONSTRAINT copia_pk PRIMARY KEY(id),
+    CONSTRAINT copia_fk FOREIGN KEY(obraId) REFERENCES Obra(codigo)
 );
 
 CREATE TABLE Reserva(
