@@ -67,6 +67,7 @@ public class Aplication {
 
             // Rotas de ControllerFuncionario
             get("/usuario/funcionario", ControllerFuncionario.buscaFuncionarios, gson::toJson);
+            get("/usuario/funcionario/:id", ControllerFuncionario.buscaFuncionario, gson::toJson);
             post("/usuario/funcionario", ControllerFuncionario.criarFuncionario, gson::toJson);
             delete("/usuario/funcionario/:id", ControllerFuncionario.removerFuncionario, gson::toJson);
             put("/usuario/funcionario/:id", ControllerFuncionario.alterarFuncionario, gson::toJson);

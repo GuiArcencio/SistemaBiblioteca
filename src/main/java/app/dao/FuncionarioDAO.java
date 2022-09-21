@@ -108,7 +108,7 @@ public class FuncionarioDAO extends GenericDAO {
     public Funcionario getById(Long id){
         Funcionario funcionario = null;
 
-        String sql = "SELECT * from Usuario WHERE id = ?";
+        String sql = "SELECT * from Usuario WHERE id = ? AND role = 'FUNC'";
 
         try{   
             Connection conn = this.getConnection();

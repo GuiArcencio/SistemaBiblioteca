@@ -45,11 +45,15 @@ public class ControllerFuncionario {
     /*
      * Busca um Funcionario
      */
-    // TODO: Implementar
     public static Route buscaFuncionario = (Request req, Response res) -> {
         res.type("application/json");
-        res.status(501);
-        return new StandardResponse(StatusResponse.ERROR, "Implementar");
+        Long id = Long.parseLong(req.params(":id"));
+        Funcionario funcionario = service.getFuncionario(id);
+        if (funcionario != null){
+            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(funcionario));
+        } else {
+            return new StandardResponse(StatusResponse.ERROR, "Erro ao obter funcionário de ID: " + id + ". Ele existe?");
+        }
     };
 
     /*
