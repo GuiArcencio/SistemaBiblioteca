@@ -55,10 +55,10 @@ CREATE TABLE RelObraAutor(
 
 CREATE TABLE Copia(
     id bigint not NULL auto_increment,
-    state varchar(50) not NULL,
-    obraId bigint not NULL,
+    estado varchar(50) not NULL,
+    obra_id bigint not NULL,
     CONSTRAINT copia_pk PRIMARY KEY(id),
-    CONSTRAINT copia_fk FOREIGN KEY(obraId) REFERENCES Obra(codigo)
+    CONSTRAINT copia_fk FOREIGN KEY(obra_id) REFERENCES Obra(codigo)
 );
 
 CREATE TABLE Reserva(
@@ -72,16 +72,6 @@ CREATE TABLE Reserva(
     CONSTRAINT reserva_pk PRIMARY KEY(id)
 );
 
-CREATE TABLE Usuario(
-    id bigint not NULL auto_increment,
-    nome varchar(50) not NULL,
-    telefone varchar(20) not NULL,
-    dataNascimento date not null,
-    endereco_id bigint,
-    role varchar(20) not NULL,
-    CONSTRAINT usuario_pk PRIMARY KEY(id)
-);
-
 CREATE TABLE Endereco(
     id bigint not NULL auto_increment,
     logradouro varchar(50) not NULL,
@@ -92,13 +82,15 @@ CREATE TABLE Endereco(
     CONSTRAINT endereco_pk PRIMARY KEY(id)
 );
 
-CREATE TABLE Leitor(
-    idUsuario bigint not null,
-    email varchar(50) not NULL,
-    categoria_id bigint,
-    grupoAcademico boolean not NULL,
-    CONSTRAINT leitor_fk FOREIGN KEY (idUsuario) REFERENCES Usuario(id),
-    CONSTRAINT leitor_pk PRIMARY KEY(idUsuario)
+CREATE TABLE Usuario(
+    id bigint not NULL auto_increment,
+    nome varchar(50) not NULL,
+    telefone varchar(20) not NULL,
+    dataNascimento date not null,
+    endereco_id bigint,
+    role varchar(20) not NULL,
+    CONSTRAINT usuario_pk PRIMARY KEY(id),
+    CONSTRAINT endereco_fk FOREIGN KEY(endereco_id) REFERENCES Endereco(id)
 );
 
 CREATE TABLE CategoriaLeitor(
@@ -106,6 +98,16 @@ CREATE TABLE CategoriaLeitor(
     maximoDiasEmprestimo int not NULL,
     descricao varchar(50),
     CONSTRAINT categoriaLeitor_pk PRIMARY KEY(id)
+);
+
+CREATE TABLE Leitor(
+    idUsuario bigint not null,
+    email varchar(50) not NULL,
+    categoria_id bigint,
+    grupoAcademico boolean not NULL,
+    CONSTRAINT leitor_fk FOREIGN KEY (idUsuario) REFERENCES Usuario(id),
+    CONSTRAINT categoia_fk FOREIGN KEY (categoria_id) REFERENCES CategoriaLeitor(id),
+    CONSTRAINT leitor_pk PRIMARY KEY(idUsuario)
 );
 
 CREATE TABLE Emprestimo(
@@ -117,8 +119,10 @@ CREATE TABLE Emprestimo(
     codigoCopia bigint not NULL,
     atrasado boolean not NULL,
     CONSTRAINT emprestimo_pk PRIMARY KEY(id),
-    CONSTRAINT emprestmo_leitor_fk FOREIGN KEY (leitor) REFERENCES Leitor(idUsuario),
-    CONSTRAINT emrestimo_copia_fk FOREIGN KEY (codigoCopia) REFERENCES Copia(id)
+    -- Um funcionário pode ser um leitor aqui, como conserta isso?
+    CONSTRAINT funcionario_fk FOREIGN KEY (funcionarioResponsavel) REFERENCES Usuario(id),
+    CONSTRAINT emprestimo_leitor_fk FOREIGN KEY (leitor) REFERENCES Leitor(idUsuario),
+    CONSTRAINT emprestimo_copia_fk FOREIGN KEY (codigoCopia) REFERENCES Copia(id)
 );
 
 CREATE TABLE Devolucao(
