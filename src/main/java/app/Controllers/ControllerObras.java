@@ -10,7 +10,6 @@ import app.Domain.PacoteObras.Autor;
 import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.Obra;
 import app.Domain.PacoteObras.Estados.Disponivel;
-import app.Domain.SubjectObserver.Observer;
 import app.Exception.AnnotatedDeserializer;
 import app.Service.impl.CopiaService;
 import app.Service.impl.ObraService;
@@ -69,6 +68,7 @@ public class ControllerObras {
         Long codigo = Long.parseLong(req.params(":codigo"));
         Obra obra = service.buscaObraPorCodigo(codigo);
         if(obra != null){
+            System.out.println(obra.getCanaisComunicacao());
             return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
         }
         else{

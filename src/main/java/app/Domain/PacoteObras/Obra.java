@@ -197,4 +197,13 @@ public class Obra extends Observable{
         return this.status;
     }
 
+    public List<Observer> getCanaisComunicacao() {
+        return canaisComunicacao;
+    }
+
+    public void setCanaisComunicacao(List<Observer> canaisComunicacao) {
+        this.canaisComunicacao = canaisComunicacao;
+    }
+
+    
 }
