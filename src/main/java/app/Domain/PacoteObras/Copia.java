@@ -11,6 +11,10 @@ public class Copia {
 
     @JsonRequired
     private Long obraId;
+
+    public Copia(Long id) {
+        this.id = id;
+    }
 	
 	public Copia(State state, Long obraId) {
 		this.state = state;

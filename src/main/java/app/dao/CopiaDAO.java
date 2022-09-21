@@ -154,5 +154,33 @@ public class CopiaDAO extends GenericDAO{
         return copias;
 
     }
+
+    public List<Copia> getAllDisponivelByObraId(Long obraId){
+        List<Copia> copias = new ArrayList<>();
+
+        String sql = "SELECT * from Copia WHERE obra_id = ? AND state = ?";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setLong(1, obraId);
+            statement.setString(2, "Disponivel");
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                Long id = resultSet.getLong("id");
+            
+                Copia copia = new Copia(id, Disponivel.getInstancia(), obraId);
+                copias.add(copia);
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return copias;
+
+    }
 }
 
