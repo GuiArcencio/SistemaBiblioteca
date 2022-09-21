@@ -118,8 +118,7 @@ CREATE TABLE Emprestimo(
     leitor bigint not NULL,
     codigoCopia bigint not NULL,
     atrasado boolean not NULL,
-    CONSTRAINT emprestimo_pk PRIMARY KEY(id),
-    -- Um funcionário pode ser um leitor aqui, como conserta isso?
+    CONSTRAINT emprestimo_pk PRIMARY KEY(id),   
     CONSTRAINT funcionario_fk FOREIGN KEY (funcionarioResponsavel) REFERENCES Usuario(id),
     CONSTRAINT emprestimo_leitor_fk FOREIGN KEY (leitor) REFERENCES Leitor(idUsuario),
     CONSTRAINT emprestimo_copia_fk FOREIGN KEY (codigoCopia) REFERENCES Copia(id)
@@ -135,7 +134,7 @@ CREATE TABLE Devolucao(
 
 CREATE TABLE PessoaInteressada(
     id bigint not null auto_increment,
-    status varchar(12),
+    status varchar(12) default null,
     leitorId bigint not null,
     obraCodigo bigint not null,
     CONSTRAINT pi_pk PRIMARY KEY(id),

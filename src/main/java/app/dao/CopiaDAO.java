@@ -16,7 +16,7 @@ import app.Domain.PacoteObras.Estados.*;
 public class CopiaDAO extends GenericDAO{
 
     public void insert(Copia copia){
-        String sql = "INSERT INTO Copia (state, obraId) VALUES (?, ?) ";
+        String sql = "INSERT INTO Copia (state, obra_id) VALUES (?, ?) ";
 
         try{
             Connection conn = this.getConnection();
