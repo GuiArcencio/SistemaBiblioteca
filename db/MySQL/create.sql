@@ -141,4 +141,4 @@ CREATE TABLE PessoaInteressada(
     CONSTRAINT pi_pk PRIMARY KEY(id),
     CONSTRAINT pi_li_fk FOREIGN KEY(leitorId) REFERENCES Leitor(idUsuario),
     CONSTRAINT pi_oc_fk FOREIGN KEY(obraCodigo) REFERENCES Obra(codigo)
-)
+);
