@@ -28,6 +28,8 @@ CREATE TABLE Obra(
     edicao varchar(50) not NULL,
     editora_id bigint not NULL,
     numPaginas int not NULL,
+    status varchar(12) not NULL,
+    CONSTRAINT obra_check CHECK (status IN('DISPONIVEL', 'INDISPONIVEL')),
     CONSTRAINT obra_pk PRIMARY KEY (codigo),
     CONSTRAINT categoriaObra_id_fk FOREIGN kEY(categoriaObra_id) REFERENCES CategoriaObra(codigo),
     CONSTRAINT editora_id_fk FOREIGN KEY(editora_id) REFERENCES Editora(id)
@@ -126,3 +128,13 @@ CREATE TABLE Devolucao(
     codigo_emprestimo bigint not NULL,
     CONSTRAINT devolucao_pk PRIMARY KEY(id)
 );
+
+CREATE TABLE PessoaInteressada(
+    id bigint not null auto_increment,
+    status varchar(12),
+    leitorId bigint not null,
+    obraCodigo bigint not null,
+    CONSTRAINT pi_pk PRIMARY KEY(id),
+    CONSTRAINT pi_li_fk FOREIGN KEY(leitorId) REFERENCES Leitor(idUsuario),
+    CONSTRAINT pi_oc_fk FOREIGN KEY(obraCodigo) REFERENCES Obra(codigo)
+)

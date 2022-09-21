@@ -28,7 +28,7 @@ public class ObraDAO extends GenericDAO{
     
 
     public void insert(Obra obra) throws SQLException{
-        String sql = "INSERT INTO Obra (isbn, titulo, categoriaObra_id, palavrasChave, dataPublicacao, edicao, editora_id, numPaginas) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
+        String sql = "INSERT INTO Obra (isbn, titulo, categoriaObra_id, palavrasChave, dataPublicacao, edicao, editora_id, numPaginas, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
 
@@ -47,6 +47,7 @@ public class ObraDAO extends GenericDAO{
         statement.setString(6, obra.getEdicao());
         statement.setLong(7, obra.getEditora().getId());
         statement.setInt(8, obra.getNumPaginas());
+        statement.setString(9, "DISPONIVEL");
 
         statement.executeUpdate();
 
@@ -56,7 +57,7 @@ public class ObraDAO extends GenericDAO{
     }
 
     public void update(Obra obra) throws SQLException{
-        String sql = "UPDATE Obra SET isbn = ?, titulo = ?, categoriaObra_id = ?, palavrasChave = ?, dataPublicacao = ?, edicao = ?, editora_id = ?, numPaginas = ? WHERE codigo = ?";
+        String sql = "UPDATE Obra SET isbn = ?, titulo = ?, categoriaObra_id = ?, palavrasChave = ?, dataPublicacao = ?, edicao = ?, editora_id = ?, numPaginas = ?, status = ? WHERE codigo = ?";
         
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -77,6 +78,7 @@ public class ObraDAO extends GenericDAO{
         statement.setString(6, obra.getEdicao());
         statement.setLong(7, obra.getEditora().getId());
         statement.setInt(8, obra.getNumPaginas());
+        statement.setString(9, obra.getStatus());
 
         statement.setLong(9, obra.getCodigo());
         statement.executeUpdate();
@@ -119,8 +121,9 @@ public class ObraDAO extends GenericDAO{
             String edicao = resultSet.getString("edicao");
             Editora editora = edao.getById(resultSet.getLong("editora_id"));
             int numPaginas = resultSet.getInt("numPaginas");
+            String status = resultSet.getString("status");
 
-            obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas);
+            obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas, status);
             
             
             
@@ -152,8 +155,9 @@ public class ObraDAO extends GenericDAO{
             String edicao = resultSet.getString("edicao");
             Editora editora = edao.getById(resultSet.getLong("editora_id"));
             int numPaginas = resultSet.getInt("numPaginas");
+            String status = resultSet.getString("status");
 
-            obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas);
+            obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas, status);
         }
         resultSet.close();
         statement.close();
@@ -180,8 +184,9 @@ public class ObraDAO extends GenericDAO{
             String edicao = resultSet.getString("edicao");
             Editora editora = edao.getById(resultSet.getLong("editora_id"));
             int numPaginas = resultSet.getInt("numPaginas");
+            String status = resultSet.getString("status");
 
-            Obra obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas); 
+            Obra obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas, status); 
             listaObras.add(obra);
         }
         resultSet.close();
@@ -209,8 +214,9 @@ public class ObraDAO extends GenericDAO{
             String edicao = resultSet.getString("edicao");
             Editora editora = edao.getById(resultSet.getLong("editora_id"));
             int numPaginas = resultSet.getInt("numPaginas");
+            String status = resultSet.getString("status");
 
-            obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas); 
+            obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas, status); 
         }
         resultSet.close();
         statement.close();
@@ -238,9 +244,10 @@ public class ObraDAO extends GenericDAO{
             String edicao = resultSet.getString("edicao");
             Editora editora = edao.getById(resultSet.getLong("editora_id"));
             int numPaginas = resultSet.getInt("numPaginas");
+            String status = resultSet.getString("status");
             
             if(palavrasChave.contains(palavra)){
-                Obra obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas); 
+                Obra obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas, status); 
                 listaObras.add(obra);
             }
         }
@@ -270,8 +277,9 @@ public class ObraDAO extends GenericDAO{
             String edicao = resultSet.getString("edicao");
             Editora editora = edao.getById(resultSet.getLong("editora_id"));
             int numPaginas = resultSet.getInt("numPaginas");
+            String status = resultSet.getString("status");
             
-            Obra obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas); 
+            Obra obra = new Obra(codigo, isbn, categoria, palavrasChave, dataPublicacao, edicao, editora, titulo, numPaginas, status); 
             listaObras.add(obra);
             
         }

@@ -1,38 +1,45 @@
 package app.Domain.PacoteObras;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
+import java.util.Observable;
+import java.util.Observer;
 //import app.Domain.PacoteObras.Estados.*;
 
 
-public class Obra {
-	Long codigo;
+public class Obra extends Observable{
+    private List<Observer> canaisComunicacao = new ArrayList<>();
+	private Long codigo;
 
 	@JsonRequired
-	Long isbn;
+	private Long isbn;
 
     @JsonRequired
-	String titulo;
+	private String titulo;
 
 	@JsonRequired
-	CategoriaObra categoria;
+	private CategoriaObra categoria;
 
 	@JsonRequired
-	List<String> palavrasChave;
+	private List<String> palavrasChave;
 
 	@JsonRequired
-	Date dataPublicacao;
+	private Date dataPublicacao;
 
 	@JsonRequired
-	String edicao;
+	private String edicao;
 
 	@JsonRequired
-	Editora editora;
+	private Editora editora;
 
 	@JsonRequired
-	int numPaginas;
+	private int numPaginas;
+
+    @JsonRequired
+    private String status;
 	
 	public Obra(){
 
@@ -48,6 +55,7 @@ public class Obra {
 		Editora editora,
         String titulo,
 		int numeroPaginas
+        //String status
 	) {
 		this.codigo = codigo;
 		this.isbn = isbn;
@@ -58,8 +66,55 @@ public class Obra {
 		this.editora = editora;
         this.titulo = titulo;
 		this.numPaginas = numeroPaginas;
+        //this.status = status;
 	}
 
+    public Obra(
+		Long codigo,
+		Long isbn,
+		CategoriaObra categoria,
+		List<String> palavrasChave,
+		Date dataPublicacao,
+		String edicao,
+		Editora editora,
+        String titulo,
+		int numeroPaginas,
+        String status
+	) {
+		this.codigo = codigo;
+		this.isbn = isbn;
+		this.categoria = categoria;
+		this.palavrasChave = palavrasChave;
+		this.dataPublicacao = dataPublicacao;
+		this.edicao = edicao;
+		this.editora = editora;
+        this.titulo = titulo;
+		this.numPaginas = numeroPaginas;
+        this.status = status;
+	}
+
+    public void notifyObservers(String status) {
+        for (Observer observer : this.canaisComunicacao) {
+            observer.update(this, status);
+        }
+    }
+
+    public void registrar(Observer observer) {
+        canaisComunicacao.add(observer);
+    }
+
+    public void atualizaStatus(){
+        if(this.status == "DISPONIVEL"){
+            this.status = "INDISPONIVEL";
+            notifyObservers(this.status);
+        }
+        else{
+            this.status = "DISPONIVEL";
+            notifyObservers(this.status);
+        }
+    }
+
+    //Setters e Getters//
     public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
@@ -132,5 +187,12 @@ public class Obra {
         return this.numPaginas;
     }
 
+    public void setStatus(String status){
+        this.status = status;
+    }
+
+    public String getStatus(){
+        return this.status;
+    }
 	
 }

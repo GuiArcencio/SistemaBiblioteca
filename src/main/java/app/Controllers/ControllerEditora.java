@@ -65,7 +65,7 @@ public class ControllerEditora {
             System.out.println(new Gson().toJsonTree(editora));
             return new StandardResponse(StatusResponse.SUCCESS);
         } else {
-            return new StandardResponse(StatusResponse.ERROR, "Erro na inserção do endereço");
+            return new StandardResponse(StatusResponse.ERROR, "Erro na inserção da editora");
         }
     };
 
