@@ -6,11 +6,13 @@ import app.Exception.AnnotatedDeserializer.JsonRequired;
 public class Copia {
 	private Long id;
 
-    @JsonRequired
 	private State state;
 
     @JsonRequired
     private Long obraId;
+
+    @JsonRequired
+    private String tipoEstado;
 
     public Copia(Long id) {
         this.id = id;
@@ -19,15 +21,31 @@ public class Copia {
 	public Copia(State state, Long obraId) {
 		this.state = state;
         this.obraId = obraId;
+        this.tipoEstado = state.getState();
 	}
 
     public Copia(Long id, State state, Long obraId) {
         this(state, obraId);
         this.id = id;
+        this.tipoEstado = state.getState();
     }
 
     public Copia(State state){
         this.state = state;
+    }
+
+    public Copia(Long obraId, String tipoEstado){
+        this.obraId = obraId;
+        if(tipoEstado == "Disponivel"){
+            this.state = Disponivel.getInstancia();
+        }
+        else if(tipoEstado == "Emprestado") {
+            this.state = Emprestado.getInstancia();
+        }
+        else if(tipoEstado == "Reservado") {
+            this.state = Reservado.getInstancia();
+        }
+        this.tipoEstado = state.getState();
     }
 
     public void setId(Long id){
