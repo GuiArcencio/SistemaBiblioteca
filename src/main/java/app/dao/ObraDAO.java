@@ -20,11 +20,15 @@ public class ObraDAO extends GenericDAO{
 
     private CategoriaObraDAO catdao;
     private EditoraDAO edao;
+
+    public ObraDAO(){
+        this.catdao = new CategoriaObraDAO();
+        this.edao = new EditoraDAO();
+    }
     
 
     public void insert(Obra obra) throws SQLException{
         String sql = "INSERT INTO Obra (isbn, titulo, categoriaObra_id, palavrasChave, dataPublicacao, edicao, editora_id, numPaginas) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
- 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
 
@@ -52,7 +56,7 @@ public class ObraDAO extends GenericDAO{
     }
 
     public void update(Obra obra) throws SQLException{
-        String sql = "UPDATE Obra SET isbn = ?, titulo = ?, categoriaObra_id = ?, palavraChave = ?, dataPublicacao = ?, edicao = ?, editora_id = ?, numPaginas = ? WHERE codigo = ?";
+        String sql = "UPDATE Obra SET isbn = ?, titulo = ?, categoriaObra_id = ?, palavrasChave = ?, dataPublicacao = ?, edicao = ?, editora_id = ?, numPaginas = ? WHERE codigo = ?";
         
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -76,7 +80,6 @@ public class ObraDAO extends GenericDAO{
 
         statement.setLong(9, obra.getCodigo());
         statement.executeUpdate();
-
         statement.close();
         conn.close();
         

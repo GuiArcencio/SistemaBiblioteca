@@ -5,16 +5,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSyntaxException;
 
-import app.Controllers.ControllerEmprestimo;
-import app.Controllers.ControllerFuncionario;
-import app.Controllers.ControllerLeitor;
-import app.Controllers.ControllerObras;
-import app.Exception.ControllerException;
-import app.Controllers.ControllerAutor;
-import app.Controllers.ControllerCategoriaLeitor;
-import app.Controllers.ControllerUsuario;
-import app.Controllers.ControllerEndereco;
+
 import app.Controllers.*;
+import app.Exception.ControllerException;
 
 public class Aplication {
 
@@ -26,6 +19,7 @@ public class Aplication {
             before("/*", (q, a) -> System.out.println("Chamada API recebida"));
 
             // Rotas do ControllerObras
+            get("/obras", ControllerObras.buscaObras, gson::toJson);
             get("/obra/:codigo",             ControllerObras.buscaObra, gson::toJson);
             post("/obra",                  ControllerObras.adicionarObra, gson::toJson);
             delete("/obra/:codigo",          ControllerObras.removerObra, gson::toJson);

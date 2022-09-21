@@ -7,6 +7,7 @@ import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.Obra;
 
 public interface IObraService {
+    List<Obra> buscaObras();
     List<Obra> buscaObraPorIsbn(Long isbn);
     Obra buscaObraPorCodigo(Long codigo);
     Obra buscaObraPorTitulo(String titulo);

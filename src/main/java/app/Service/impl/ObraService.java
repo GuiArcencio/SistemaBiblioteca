@@ -1,6 +1,7 @@
 package app.Service.impl;
 
 import java.util.List;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -55,11 +56,23 @@ public class ObraService implements IObraService{
     }
 
     @Override
+    public List<Obra> buscaObras() {
+       try{
+            return odao.getAll();
+       } catch(Exception e){
+            System.out.println("Falha na busca das obras! Retornando NULL.");
+            return null;
+       }
+    }
+
+    @Override
     public boolean adicionaObra(Obra obra) {
         try {
             odao.insert(obra);
             return true;
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("ERRO AO ADICIONAR OBRA NO SERVICE");
             return false;
         }
     }
@@ -167,8 +180,10 @@ public class ObraService implements IObraService{
             palavrasChave = obra.getPalavrasChave();
             palavrasChave.add(palavra);
             obra.setPalavrasChave(palavrasChave);
+            odao.update(obra);
             return true;
-       }catch(Exception e){
+       }catch(SQLException e){
+            System.out.println(e.getMessage());
             return false;
        }
         
@@ -190,6 +205,7 @@ public class ObraService implements IObraService{
             }
             palavrasChave.remove(palavra);
             obra.setPalavrasChave(palavrasChave);
+            odao.update(obra);
             return true;
         }catch(Exception e){
             return false;
@@ -230,7 +246,7 @@ public class ObraService implements IObraService{
                 copia.setObraId(codigo);
                 cdao.insert(copia);
             }
-            obra.notifyAllObservers();
+            //obra.notifyAllObservers();
             return true; 
         }catch(Exception e){
             return false;

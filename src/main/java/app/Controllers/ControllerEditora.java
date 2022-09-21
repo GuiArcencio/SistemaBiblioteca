@@ -31,7 +31,12 @@ public class ControllerEditora {
     public static Route getEditoras = (Request req, Response res) -> {
         res.type("application/json");
         List<Editora> editoras = service.buscaEditoras();
-        return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(editoras));
+        if(editoras != null){
+            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(editoras));
+        }
+        else{
+            return new StandardResponse(StatusResponse.ERROR, "Erro na busca das editoras.");
+        }
     };
 
     /*
@@ -56,7 +61,7 @@ public class ControllerEditora {
         Gson gson = gsonEditora();
         Editora editora = gson.fromJson(req.body(), Editora.class);
         if (service.insereEditora(editora)) {
-            System.out.println("Endereço novo inserido:");
+            System.out.println("Editora nova inserida:");
             System.out.println(new Gson().toJsonTree(editora));
             return new StandardResponse(StatusResponse.SUCCESS);
         } else {

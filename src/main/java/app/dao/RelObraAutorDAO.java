@@ -17,6 +17,11 @@ public class RelObraAutorDAO extends GenericDAO{
     private ObraDAO odao;
     private AutorDAO adao;
 
+    public RelObraAutorDAO(){
+        this.odao = new ObraDAO();
+        this.adao = new AutorDAO();
+    }
+
     public void insert(RelObraAutor roa) throws SQLException{
         String sql = "INSERT INTO RelObraAutor (codigo_autor, codigo_obra) VALUES (?, ?)";
 

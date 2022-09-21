@@ -1,6 +1,7 @@
 package app.Controllers;
 
-import java.math.BigInteger;
+
+import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -39,7 +40,26 @@ public class ControllerObras {
         res.type("application/json");
         Long codigo = Long.parseLong(req.params(":codigo"));
         Obra obra = service.buscaObraPorCodigo(codigo);
-        return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
+        if(obra != null){
+            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
+        }
+        else{
+            return new StandardResponse(StatusResponse.ERROR, "Erro na busca da obra.");
+        }
+    };
+
+    /*
+     * Busca todas as obras
+     */
+    public static Route buscaObras = (Request req, Response res) -> {
+        res.type("application/json");
+        List<Obra> obras = service.buscaObras();
+        if(obras != null){
+            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obras));
+        }
+        else{
+            return new StandardResponse(StatusResponse.ERROR, "Erro na busca das obras.");
+        }
     };
 
     /*
@@ -49,8 +69,14 @@ public class ControllerObras {
         res.type("application/json");
         Gson gson = gsonObra();
         Obra obra = gson.fromJson(req.body(), Obra.class);
-        service.adicionaObra(obra);
-        return new StandardResponse(StatusResponse.SUCCESS);
+        if(service.adicionaObra(obra)){
+            System.out.println("Obra inserida com sucesso!");
+            System.out.println(new Gson().toJsonTree(obra));
+            return new StandardResponse(StatusResponse.SUCCESS);
+        }
+        else{
+            return new StandardResponse(StatusResponse.ERROR, "Erro na inserção da obra");
+        }
     };
 
     /*
@@ -97,6 +123,7 @@ public class ControllerObras {
         String palavra = new Gson().fromJson(req.body(), String.class);
         Long codigo = Long.parseLong(req.params(":codigo"));
         service.adicionarPalavraChave(codigo, palavra);
+        
         return new StandardResponse(StatusResponse.SUCCESS);
     };
 

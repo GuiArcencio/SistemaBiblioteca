@@ -8,7 +8,7 @@ import app.Exception.AnnotatedDeserializer.JsonRequired;
 //import app.Domain.PacoteObras.Estados.*;
 
 
-public class Obra extends Subject {
+public class Obra {
 	Long codigo;
 
 	@JsonRequired
