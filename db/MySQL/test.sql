@@ -17,12 +17,12 @@ INSERT INTO CategoriaObra (codigo, descricao, maximoDiasEmprestimo, taxaMulta)
                    VALUES (3, 'Obra especial', 1, 4.5);
 
 -- Obras
-INSERT INTO Obra (codigo, isbn, titulo, categoriaObra_id, palavrasChave, dataPublicacao, edicao, editora_id, numPaginas)
-          VALUES (1, 9786559790883, 'Fundamentos da Psicanálise de Freud a Lacan', 1, 'Sigmund, Freud, Lacan, Psicanálise', '2022-11-09', '4', 1, 360);
-INSERT INTO Obra (codigo, isbn, titulo, categoriaObra_id, palavrasChave, dataPublicacao, edicao, editora_id, numPaginas)
-          VALUES (2, 9788535909555, 'A Revolução dos Bichos', 1, 'Orwell, 1984, Revolução', '2007-01-10', '9', 1, 152);
-INSERT INTO Obra (codigo, isbn, titulo, categoriaObra_id, palavrasChave, dataPublicacao, edicao, editora_id, numPaginas)
-          VALUES (3, 9788516122393, 'Esopo: Fábulas Completas', 2, 'Esopo, Fábulas, Lebre, Tartaruga', '2022-02-13', '3', 2, 191);
+INSERT INTO Obra (codigo, isbn, titulo, categoriaObra_id, palavrasChave, dataPublicacao, edicao, editora_id, numPaginas, status)
+          VALUES (1, 9786559790883, 'Fundamentos da Psicanálise de Freud a Lacan', 1, 'Sigmund, Freud, Lacan, Psicanálise', '2022-11-09', '4', 1, 360, 'DISPONIVEL');
+INSERT INTO Obra (codigo, isbn, titulo, categoriaObra_id, palavrasChave, dataPublicacao, edicao, editora_id, numPaginas, status)
+          VALUES (2, 9788535909555, 'A Revolução dos Bichos', 1, 'Orwell, 1984, Revolução', '2007-01-10', '9', 1, 152, 'DISPONIVEL');
+INSERT INTO Obra (codigo, isbn, titulo, categoriaObra_id, palavrasChave, dataPublicacao, edicao, editora_id, numPaginas, status)
+          VALUES (3, 9788516122393, 'Esopo: Fábulas Completas', 2, 'Esopo, Fábulas, Lebre, Tartaruga', '2022-02-13', '3', 2, 191, 'DISPONIVEL');
 
 -- Cópias
 INSERT INTO Copia (id, estado, obra_id) VALUES (1, 'Disponível', 1);
