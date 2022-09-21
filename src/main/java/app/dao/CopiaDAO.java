@@ -35,7 +35,7 @@ public class CopiaDAO extends GenericDAO{
     }
 
     public void update(Copia copia) {
-        String sql = "UPDATE Copia SET state = ?, obraId = ? WHERE id = ?";
+        String sql = "UPDATE Copia SET state = ?, obra_id = ? WHERE id = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -85,7 +85,7 @@ public class CopiaDAO extends GenericDAO{
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
                 String statestr = resultSet.getString("state");
-                Long obraId = resultSet.getLong("obraId");
+                Long obraId = resultSet.getLong("obra_id");
             
                 State state = null;
 
@@ -116,7 +116,7 @@ public class CopiaDAO extends GenericDAO{
     public List<Copia> getAllByObraId(Long obraId){
         List<Copia> copias = new ArrayList<>();
 
-        String sql = "SELECT * from Copia WHERE obraId = ?";
+        String sql = "SELECT * from Copia WHERE obra_id = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -158,7 +158,7 @@ public class CopiaDAO extends GenericDAO{
     public List<Copia> getAllDisponivelByObraId(Long obraId){
         List<Copia> copias = new ArrayList<>();
 
-        String sql = "SELECT * from Copia WHERE obraId = ? AND state = ?";
+        String sql = "SELECT * from Copia WHERE obra_id = ? AND state = ?";
 
         try{
             Connection conn = this.getConnection();
