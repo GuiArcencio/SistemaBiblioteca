@@ -133,7 +133,7 @@ public class EmprestimoDAO extends GenericDAO {
         List<Emprestimo> listaEmprestimo = new ArrayList<>();
         
         
-        String sql = "select * from emprestimo where id = (select id from leitor where documentoId = ?)";
+        String sql = "select * from emprestimo where id = (select idUsuario from leitor where documentoId = ?)";
 
         try{
             Connection conn = this.getConnection();

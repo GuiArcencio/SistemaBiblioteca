@@ -13,11 +13,11 @@ import spark.Response;
 public class ControllerException {
 
     public static ExceptionHandler<NumberFormatException> numberFormatException = (NumberFormatException e, Request req, Response res) -> {
-        System.out.println("[ERRO] É possível que o usuário tenha digitado um número inválido (isbn):");
+        System.out.println("[ERRO] É possível que o usuário tenha digitado um número inválido:");
         System.out.println(e.getMessage());
         res.status(400);
         res.body(
-            new Gson().toJson(new StandardResponse(StatusResponse.ERROR, "ISBN inválido"))
+            new Gson().toJson(new StandardResponse(StatusResponse.ERROR, "Número inválido"))
         );
     };
 

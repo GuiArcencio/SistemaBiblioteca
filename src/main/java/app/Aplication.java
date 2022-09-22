@@ -46,11 +46,11 @@ public class Aplication {
             put("/autor&obra/:id", ControllerRelObraAutor.putROA, gson::toJson);
 
             // Rotas de ControllerEmprestimo
-            get("/usuario/:id/emprestimo",        ControllerEmprestimos.buscaEmprestimosPorUsuario, gson::toJson);
+            get("/usuario/:cpf/emprestimo",        ControllerEmprestimos.buscaEmprestimosPorUsuario, gson::toJson);
             // get("/usuario/:id/devolucao",         ControllerEmprestimo.consultarDevolucao, gson::toJson);
-            post("/usuario/:id/emprestimo/:idCopia",ControllerEmprestimos.emprestarObra, gson::toJson);
-            get("/usuario/:id/reservas", ControllerReserva.buscarReservasPorUsuario, gson::toJson);
-            post("/usuario/:id/reserva/:isbn",   ControllerReserva.reservarObra, gson::toJson);
+            post("/usuario/:cpf/emprestimo/:idCopia",ControllerEmprestimos.emprestarObra, gson::toJson);
+            get("/usuario/:cpf/reservas", ControllerReserva.buscarReservasPorUsuario, gson::toJson);
+            post("/usuario/:cpf/reserva/:isbn",   ControllerReserva.reservarObra, gson::toJson);
             // patch("/usuario/:id/devolucao/:isbn", ControllerEmprestimo.devolverObra, gson::toJson);
             get("/usuario/:cpf/pendencias", ControllerEmprestimos.buscaPendenciasPorUsuario, gson::toJson);
 

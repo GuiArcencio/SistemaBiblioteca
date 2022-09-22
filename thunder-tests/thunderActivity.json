@@ -57,29 +57,29 @@
     "tests": []
   },
   {
-    "_id": "e95385c1-89f2-4f60-814b-5b51377501bd",
+    "_id": "d5b1706f-1ed1-4ecb-8d6c-c711ba1a323f",
     "colId": "history",
     "containerId": "",
-    "name": "pooa-sist-biblioteca.herokuapp.com/api/categoria/leitor",
-    "url": "pooa-sist-biblioteca.herokuapp.com/api/categoria/leitor",
+    "name": "147.182.136.29:3000/auth",
+    "url": "147.182.136.29:3000/auth",
     "method": "GET",
     "sortNum": 0,
-    "created": "2022-09-22T01:13:27.910Z",
-    "modified": "2022-09-22T01:13:28.718Z",
+    "created": "2022-09-22T11:37:29.860Z",
+    "modified": "2022-09-22T11:37:30.193Z",
     "headers": [],
     "params": [],
     "tests": []
   },
   {
-    "_id": "34ad6722-ffc9-4cac-99a7-02662c9ee87f",
+    "_id": "cb95aed4-953f-4b6f-9af5-27a1f778a999",
     "colId": "history",
     "containerId": "",
-    "name": "http://147.182.136.29:3000/auth",
-    "url": "http://147.182.136.29:3000/auth",
+    "name": "147.182.136.29:3000/auth",
+    "url": "147.182.136.29:3000/auth",
     "method": "POST",
     "sortNum": 0,
-    "created": "2022-09-22T04:06:18.373Z",
-    "modified": "2022-09-22T04:06:18.633Z",
+    "created": "2022-09-22T11:37:53.506Z",
+    "modified": "2022-09-22T11:37:53.945Z",
     "headers": [],
     "params": [],
     "body": {
@@ -87,6 +87,64 @@
       "raw": "{\n\t\"cpf\": \"00000\",\n\t\"password\": \"123mudar\"\n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "42308481-2f1c-4abc-b4b4-63dc943adc0e",
+    "colId": "history",
+    "containerId": "",
+    "name": "pooa-sist-biblioteca.herokuapp.com/api/usuario/{cpf}/pendencias",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/usuario/{cpf}/pendencias",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-22T11:45:55.297Z",
+    "modified": "2022-09-22T12:07:14.891Z",
+    "headers": [
+      {
+        "name": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNzM4NWE4MzgtZWNkNi00M2EzLTg1OWMtMWExMGQxNGIyZDVjIiwiY3BmIjoiMDAwMDAiLCJpYXQiOjE2NjM4NDY2NzksImV4cCI6MTY2MzkzMzA3OX0.DG7fYuRohB8BKFXjeonhnM6SRCysPp8n26nVCciPGkg"
+      }
+    ],
+    "params": [
+      {
+        "name": "cpf",
+        "value": "987654321",
+        "isPath": true
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "6b4693cb-dfbd-48de-9ee6-1672d7743d7f",
+    "colId": "history",
+    "containerId": "",
+    "name": "pooa-sist-biblioteca.herokuapp.com/api/usuario/MG-123.456.789/pendencias",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/usuario/MG-123.456.789/pendencias",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-22T11:46:06.910Z",
+    "modified": "2022-09-22T11:50:13.093Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "44ccd23e-cadd-4421-818b-9ce62827321b",
+    "colId": "history",
+    "containerId": "",
+    "name": "pooa-sist-biblioteca.herokuapp.com/api/usuario/123456789/pendencias",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/usuario/123456789/pendencias",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-22T12:03:05.994Z",
+    "modified": "2022-09-22T12:03:06.449Z",
+    "headers": [
+      {
+        "name": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNzM4NWE4MzgtZWNkNi00M2EzLTg1OWMtMWExMGQxNGIyZDVjIiwiY3BmIjoiMDAwMDAiLCJpYXQiOjE2NjM4NDY2NzksImV4cCI6MTY2MzkzMzA3OX0.DG7fYuRohB8BKFXjeonhnM6SRCysPp8n26nVCciPGkg"
+      }
+    ],
+    "params": [],
     "tests": []
   }
 ]

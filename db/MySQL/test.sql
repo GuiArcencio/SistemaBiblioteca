@@ -59,9 +59,9 @@ INSERT INTO categorialeitor (id, maximoDiasEmprestimo, descricao)
 
 -- Leitores
 INSERT INTO leitor (idUsuario, email, documentoId, categoria_id, grupoAcademico)
-            VALUES (1, 'isadora.jessica@estudante.ufscar.br', "MG-123.456.789", 1, true);
+            VALUES (1, 'isadora.jessica@estudante.ufscar.br', 123456789, 1, true);
 INSERT INTO leitor (idUsuario, email, documentoId, categoria_id, grupoAcademico)
-            VALUES (2, 'yuri.calebe@estudante.ufscar.br', "SP-987.654.321", 3, true);
+            VALUES (2, 'yuri.calebe@estudante.ufscar.br', 987654321, 3, true);
 
 -- Empréstimos
 INSERT INTO emprestimo (id, dataEmprestimo, dataPrevistaDevolucao, funcionarioResponsavel, leitor, codigoCopia, atrasado)

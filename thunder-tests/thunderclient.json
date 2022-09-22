@@ -4,12 +4,17 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "e495e304-b02e-4437-a8bc-2080c54eb9ed",
     "name": "Busca todas as categorias",
-    "url": "pooa-sist-biblioteca.herokuapp.com/api/usuario/2/pendencias",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/categoria/leitor",
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-08-31T20:14:49.303Z",
-    "modified": "2022-09-22T11:30:44.051Z",
-    "headers": [],
+    "modified": "2022-09-22T11:38:56.370Z",
+    "headers": [
+      {
+        "name": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNzM4NWE4MzgtZWNkNi00M2EzLTg1OWMtMWExMGQxNGIyZDVjIiwiY3BmIjoiMDAwMDAiLCJpYXQiOjE2NjM4NDY2NzksImV4cCI6MTY2MzkzMzA3OX0.DG7fYuRohB8BKFXjeonhnM6SRCysPp8n26nVCciPGkg"
+      }
+    ],
     "params": [],
     "tests": []
   },
@@ -22,8 +27,13 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-08-31T20:16:39.363Z",
-    "modified": "2022-09-21T23:32:51.943Z",
-    "headers": [],
+    "modified": "2022-09-22T11:39:57.150Z",
+    "headers": [
+      {
+        "name": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNzM4NWE4MzgtZWNkNi00M2EzLTg1OWMtMWExMGQxNGIyZDVjIiwiY3BmIjoiMDAwMDAiLCJpYXQiOjE2NjM4NDY2NzksImV4cCI6MTY2MzkzMzA3OX0.DG7fYuRohB8BKFXjeonhnM6SRCysPp8n26nVCciPGkg"
+      }
+    ],
     "params": [],
     "body": {
       "type": "json",
@@ -37,16 +47,21 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "e495e304-b02e-4437-a8bc-2080c54eb9ed",
     "name": "Deleta categoria",
-    "url": "localhost:4567/api/categoria/leitor/{id}",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/categoria/leitor/{id}",
     "method": "DELETE",
     "sortNum": 30000,
     "created": "2022-08-31T20:17:57.897Z",
-    "modified": "2022-09-15T11:45:29.349Z",
-    "headers": [],
+    "modified": "2022-09-22T11:41:55.445Z",
+    "headers": [
+      {
+        "name": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNzM4NWE4MzgtZWNkNi00M2EzLTg1OWMtMWExMGQxNGIyZDVjIiwiY3BmIjoiMDAwMDAiLCJpYXQiOjE2NjM4NDY2NzksImV4cCI6MTY2MzkzMzA3OX0.DG7fYuRohB8BKFXjeonhnM6SRCysPp8n26nVCciPGkg"
+      }
+    ],
     "params": [
       {
         "name": "id",
-        "value": "2",
+        "value": "14",
         "isPath": true
       }
     ],
@@ -712,6 +727,31 @@
     "modified": "2022-09-21T23:03:01.759Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "c1df4ade-fda4-4221-8d6f-4469c22174ad",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "a7704187-70d1-4c1a-b8b5-134256520b8c",
+    "name": "Consulta pendências de um usuário",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/usuario/{cpf}/pendencias",
+    "method": "GET",
+    "sortNum": 90000,
+    "created": "2022-09-22T12:08:32.198Z",
+    "modified": "2022-09-22T12:08:32.198Z",
+    "headers": [
+      {
+        "name": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNzM4NWE4MzgtZWNkNi00M2EzLTg1OWMtMWExMGQxNGIyZDVjIiwiY3BmIjoiMDAwMDAiLCJpYXQiOjE2NjM4NDY2NzksImV4cCI6MTY2MzkzMzA3OX0.DG7fYuRohB8BKFXjeonhnM6SRCysPp8n26nVCciPGkg"
+      }
+    ],
+    "params": [
+      {
+        "name": "cpf",
+        "value": "987654321",
+        "isPath": true
+      }
+    ],
     "tests": []
   }
 ]

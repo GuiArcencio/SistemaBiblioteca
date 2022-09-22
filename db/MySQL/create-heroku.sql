@@ -103,7 +103,7 @@ CREATE TABLE categorialeitor(
 CREATE TABLE leitor(
     idUsuario bigint not null,
     email varchar(50) not NULL,
-    documentoId varchar(20) not null,
+    documentoId bigint not null,
     categoria_id bigint,
     grupoAcademico boolean not NULL,
     CONSTRAINT leitor_fk FOREIGN KEY (idUsuario) REFERENCES usuario(id),
