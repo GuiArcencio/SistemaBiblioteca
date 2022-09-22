@@ -15,9 +15,15 @@ public class Aplication {
         get("/hello", (req, res) -> "Olá Heroku");
 
         Gson gson = new Gson();
+        boolean autenticacao = true;
         
         path("/api", () -> {
             before("/*", (q, a) -> System.out.println("Chamada API recebida"));
+            /*
+             * Middleware de autenticação
+             */
+            if (autenticacao)
+                before("/*", (req, res) -> { ControllerAutenticacao.middlewareAutenticacao(req, res); });
 
             // Rotas do ControllerObras
             get("/obras", ControllerObras.buscaObras, gson::toJson);
