@@ -12,6 +12,7 @@ public class EmprestimoAtrasado extends Observer {
     private Leitor leitor;
 
     public EmprestimoAtrasado(Subject subject, Leitor leitor){
+        
         this.subject = subject;
         this.leitor = leitor;
         this.subject.attach(this);

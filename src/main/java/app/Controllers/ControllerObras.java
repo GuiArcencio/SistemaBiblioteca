@@ -68,7 +68,6 @@ public class ControllerObras {
         Long codigo = Long.parseLong(req.params(":codigo"));
         Obra obra = service.buscaObraPorCodigo(codigo);
         if(obra != null){
-            System.out.println(obra.getCanaisComunicacao());
             return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(obra));
         }
         else{

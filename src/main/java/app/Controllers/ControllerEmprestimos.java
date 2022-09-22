@@ -20,6 +20,7 @@ import app.Domain.PacoteUsuarios.Funcionario;
 import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.SubjectObserver.EmprestimoAtrasado;
 import app.Domain.SubjectObserver.ReservaExpirada;
+import app.Domain.SubjectObserver.Subject;
 import app.Exception.AnnotatedDeserializer;
 import app.Service.impl.CopiaService;
 import app.Service.impl.DevolucaoService;
@@ -50,6 +51,7 @@ public class ControllerEmprestimos {
     private static ILeitorService lservice = new LeitorService();
     private static ICopiaService cservice = new CopiaService();
     private static IObraService oservice = new ObraService();
+    private static Subject listaEmprestimos = new Subject();
 
     private static Gson gsonEmprestimo() {
         return new GsonBuilder()
@@ -59,7 +61,7 @@ public class ControllerEmprestimos {
 
     
     public static Route buscaEmprestimosPorUsuario = (Request req, Response res) -> {
-        Long idUsuario = Long.parseLong(req.params(":idUsuario"));
+        Long idUsuario = Long.parseLong(req.params(":id"));
         List<Emprestimo> lista = emservice.buscaEmprestimos(idUsuario);
         if(lista != null){
             return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(lista));
@@ -73,7 +75,7 @@ public class ControllerEmprestimos {
      * Busca por emprestimos atrasados e retorna a quantidade de pendencias
      */
     public static Route buscaPendenciasPorUsuario = (Request req, Response res) -> {
-        Long idUsuario = Long.parseLong(req.params(":idUsuario"));
+        Long idUsuario = Long.parseLong(req.params(":id"));
         List<Emprestimo> lista = emservice.buscaEmprestimos(idUsuario);
         int acm = 0;
         for (Emprestimo emprestimo : lista){
@@ -92,12 +94,11 @@ public class ControllerEmprestimos {
         res.type("application/json");
         Gson gson = gsonEmprestimo();
         Emprestimo emprestimo = gson.fromJson(req.body(), Emprestimo.class);
-        Long idUsuario = Long.parseLong(req.params(":idUsuario"));
-        Long idFuncionario = Long.parseLong(req.params(":idFuncionario"));
-
+        Long idUsuario = Long.parseLong(req.params(":id"));
+        
         Copia copia = emprestimo.getCopia();
         Leitor leitor = emprestimo.getLeitor();
-        Funcionario funcionario = new Funcionario(idFuncionario);
+        Funcionario funcionario = new Funcionario(emprestimo.getFuncionarioResponsavel().getId());
         Obra obra = oservice.buscaObraPorCodigo(emprestimo.getCopia().getObraId());
         copia = cservice.buscaCopia(copia.getId());
         leitor = lservice.getLeitor(idUsuario);
@@ -108,15 +109,19 @@ public class ControllerEmprestimos {
             return new StandardResponse(StatusResponse.ERROR, "[ERRO] Dados inválidos! Retornando NULL.");
 
         }
-
+        
         LocalDate dataDevolucao = obra.getCategoria().calculaDataDevolucao();
         java.util.Date dataPrevistaDevolucao = java.util.Date.from(dataDevolucao.atStartOfDay(ZoneId.systemDefault()).toInstant());
         java.util.Date dataEmprestimo = java.util.Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        
 
         //obs o id do emprestimo nao é usado, o bd gera um
         emprestimo.setDataEmprestimo(dataEmprestimo);
         emprestimo.setDataPrevistaDevolucao(dataPrevistaDevolucao);
         emprestimo.setAtrasado(false);
+        
+
+        
         //verifica se há uma reserva antes de realizar o emprestimo
         Reserva reserva = rservice.buscarPorLeitorECopia(idUsuario, copia.getId());
         if(reserva != null){
@@ -137,18 +142,22 @@ public class ControllerEmprestimos {
                 emservice.realizarEmprestimo(emprestimo);
                 copia.emprestar();
                 cservice.alterarCopia(copia.getId(), copia);
+                new EmprestimoAtrasado(listaEmprestimos, leitor);
                 return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(emprestimo));
             }
         }
+        
 
         if(copia.getState().getState() != "Disponivel") {
             return new StandardResponse(StatusResponse.ERROR, "[ERRO] Copia não está disponível, impossível emprestar!");
         }
         
-        new EmprestimoAtrasado(emprestimo, leitor);
+        
         emservice.realizarEmprestimo(emprestimo);
         copia.emprestar();
         cservice.alterarCopia(copia.getId(), copia);
+        new EmprestimoAtrasado(listaEmprestimos, leitor);
+        listaEmprestimos.notifyAllObservers();
         return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(emprestimo));
     };
 
