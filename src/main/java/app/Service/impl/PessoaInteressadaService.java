@@ -47,7 +47,6 @@ public class PessoaInteressadaService implements IPessoaInteressadaService{
         try{
             Obra obra = odao.getByCodigo(pi.getObraCodigo());
             dao.insert(pi);
-            obra.registrar(pi);
             return true;
         }catch(SQLException e){
             System.out.println(e.getMessage());

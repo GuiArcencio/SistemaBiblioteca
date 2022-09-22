@@ -20,7 +20,7 @@ public class CategoriaLeitorService implements ICategoriaLeitorService{
     public List<CategoriaLeitor> buscaCategorias() {
         try {
             return dao.getAll();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             // Retorna lista vazia no caso de erro
             System.out.println("[ERRO] A busca de todas as categorias falhou, retornando lista vazia");
             return new ArrayList<CategoriaLeitor>();

@@ -1,5 +1,6 @@
 package app.Controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -30,7 +31,12 @@ public class ControllerCategoriaLeitor {
      */
     public static Route getCategorias = (Request req, Response res) -> {
         res.type("application/json");
-        List<CategoriaLeitor> categorias = service.buscaCategorias();
+        List<CategoriaLeitor> categorias = new ArrayList<CategoriaLeitor>();
+        try {
+            categorias = service.buscaCategorias();
+        } catch (Exception e){
+            System.out.println("AAAAAAAAAAAA");
+        }
         return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(categorias));
     };
 

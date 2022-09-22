@@ -80,21 +80,21 @@ public class CategoriaLeitorDAO extends GenericDAO {
     }
 
     public List<CategoriaLeitor> getAll() throws SQLException{
-
+        System.out.println("leiotrdao");
     	List<CategoriaLeitor>  listaCategoriasLeitor = new ArrayList<>();
 
         String sql = "SELECT * from categorialeitor";
-
+        System.out.println("leiotrdao");
         Connection conn = this.getConnection();
+        System.out.println("leiotrdao");
         PreparedStatement statement = conn.prepareStatement(sql);
-
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Long id = resultSet.getLong("id");
                 int maximoDiasEmprestimo = resultSet.getInt("maximoDiasEmprestimo");
                 String descricao = resultSet.getString("descricao");
 
-               
+                System.out.println("leiotrdao");    
                 CategoriaLeitor categoriaLeitor = new CategoriaLeitor(id, maximoDiasEmprestimo, descricao);
                 listaCategoriasLeitor.add(categoriaLeitor);
             }
@@ -102,7 +102,7 @@ public class CategoriaLeitorDAO extends GenericDAO {
         resultSet.close();
         statement.close();
         conn.close();
-
+        
         return listaCategoriasLeitor;
     }
 }
