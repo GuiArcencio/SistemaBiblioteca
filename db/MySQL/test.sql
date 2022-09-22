@@ -30,7 +30,7 @@ INSERT INTO copia (id, estado, obra_id) VALUES (2, 'Disponivel', 1);
 INSERT INTO copia (id, estado, obra_id) VALUES (3, 'Emprestado', 1);
 INSERT INTO copia (id, estado, obra_id) VALUES (4, 'Disponivel', 2);
 INSERT INTO copia (id, estado, obra_id) VALUES (5, 'Disponivel', 3);
-INSERT INTO copia (id, estado, obra_id) VALUES (6, 'Disponivel', 3);
+INSERT INTO copia (id, estado, obra_id) VALUES (6, 'Emprestado', 3);
 INSERT INTO copia (id, estado, obra_id) VALUES (7, 'Disponivel', 3);
 
 -- Endereços
@@ -66,3 +66,11 @@ INSERT INTO leitor (idUsuario, email, documentoId, categoria_id, grupoAcademico)
 -- Empréstimos
 INSERT INTO emprestimo (id, dataEmprestimo, dataPrevistaDevolucao, funcionarioResponsavel, leitor, codigoCopia, atrasado)
                 VALUES (1, '2022-09-21', '2022-09-26', 3, 1, 3, false);
+INSERT INTO emprestimo (id, dataEmprestimo, dataPrevistaDevolucao, funcionarioResponsavel, leitor, codigoCopia, atrasado)
+                VALUES (2, '2022-09-22', '2022-09-27', 3, 2, 6, false);
+
+-- Devoluções
+INSERT INTO devolucao(id, dataDevolucao, multaTotal, codigo_emprestimo)
+               VALUES(1, '2022-09-30', 20.00, 1);
+INSERT INTO devolucao(id, dataDevolucao, multaTotal, codigo_emprestimo)
+               VALUES(2, '2022-09-30', 15.00, 2);

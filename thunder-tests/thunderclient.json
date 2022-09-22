@@ -8,7 +8,7 @@
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-08-31T20:14:49.303Z",
-    "modified": "2022-09-21T23:12:27.311Z",
+    "modified": "2022-09-22T02:04:13.405Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -18,11 +18,11 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "e495e304-b02e-4437-a8bc-2080c54eb9ed",
     "name": "Insere categoria",
-    "url": "pooa-sist-biblioteca.herokuapp.com/api/categoria/leitor",
+    "url": "localhost:4567/api/categoria/leitor",
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-08-31T20:16:39.363Z",
-    "modified": "2022-09-21T23:32:51.943Z",
+    "modified": "2022-09-15T11:51:54.101Z",
     "headers": [],
     "params": [],
     "body": {
@@ -85,12 +85,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-09-15T12:30:34.688Z",
-    "modified": "2022-09-15T12:31:11.915Z",
+    "modified": "2022-09-20T22:30:49.438Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
+      "raw": "{\n  \"isbn\": 9780066238500,\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"categoria\": { \"codigo\": 3,\"descricao\": \"Livro\", \"maximoDiasEmprestimo\": 10, \"taxaMulta\": 5.00},\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"edicao\": \"7\",\n  \"editora\": {\"id\": 2,\"nome\": \"HarperCollins\"},\n  \"numPaginas\": 600\n}",
       "form": []
     },
     "tests": []
@@ -99,20 +99,14 @@
     "_id": "29e21b24-4507-425d-8443-5e11a8649e33",
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
-    "name": "Insere Obra Copy",
-    "url": "localhost:4567/api/obra/{codigo}",
+    "name": "Busca Obra",
+    "url": "localhost:4567/api/obra/2",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-09-15T12:31:24.487Z",
-    "modified": "2022-09-15T12:46:32.813Z",
+    "modified": "2022-09-21T20:24:02.977Z",
     "headers": [],
-    "params": [
-      {
-        "name": "codigo",
-        "value": "1",
-        "isPath": true
-      }
-    ],
+    "params": [],
     "body": {
       "type": "json",
       "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
@@ -256,12 +250,12 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-09-17T20:20:20.666Z",
-    "modified": "2022-09-17T20:44:41.847Z",
+    "modified": "2022-09-20T20:26:47.410Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"nome\": \"Aleph\"\n}",
+      "raw": "{\n  \"nome\": \"Teste\"\n}",
       "form": []
     },
     "tests": []
@@ -299,11 +293,11 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "9a631dc4-6e6f-4547-9996-e9330c554f52",
     "name": "Busca Categoria por Id",
-    "url": "localhost:4567/api/categoriaObra/1",
+    "url": "localhost:4567/api/categoriaObra/3",
     "method": "GET",
     "sortNum": 65000,
     "created": "2022-09-17T21:26:40.251Z",
-    "modified": "2022-09-17T21:27:35.723Z",
+    "modified": "2022-09-20T23:08:44.601Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -372,6 +366,44 @@
     "modified": "2022-09-20T23:05:20.863Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "5432b1dc-5b64-4368-9b51-3f8994260d0f",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
+    "name": "Busca Todas Obra ",
+    "url": "localhost:4567/api/obras",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2022-09-20T23:26:42.887Z",
+    "modified": "2022-09-20T23:27:06.109Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "e6fdc2d5-f0e0-411a-bc17-914ed25eaa2e",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
+    "name": "Remove Obra",
+    "url": "localhost:4567/api/obra/3",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2022-09-20T23:27:12.566Z",
+    "modified": "2022-09-20T23:39:53.683Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
+      "form": []
+    },
     "tests": []
   },
   {
@@ -601,11 +633,11 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
     "name": "Insere Copia",
-    "url": "localhost:4567/api/obra/copia",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/obra/copia",
     "method": "POST",
     "sortNum": 12500,
     "created": "2022-09-21T19:44:30.340Z",
-    "modified": "2022-09-21T20:45:22.842Z",
+    "modified": "2022-09-22T02:22:00.928Z",
     "headers": [],
     "params": [],
     "body": {
@@ -639,11 +671,11 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "0471be48-6603-4ff7-a817-411206853f7d",
     "name": "Busca todas PessoasInteressadas",
-    "url": "localhost:4567/api/pessoasInteressadas",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/pessoasInteressadas",
     "method": "GET",
     "sortNum": 60000,
     "created": "2022-09-21T21:39:57.100Z",
-    "modified": "2022-09-21T21:42:04.967Z",
+    "modified": "2022-09-22T02:27:03.738Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -686,11 +718,11 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "0471be48-6603-4ff7-a817-411206853f7d",
     "name": "Insere PessoaInteressada",
-    "url": "localhost:4567/api/pessoaInteressada",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/pessoaInteressada",
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-09-21T21:39:57.103Z",
-    "modified": "2022-09-21T22:57:28.877Z",
+    "modified": "2022-09-22T02:26:34.156Z",
     "headers": [],
     "params": [],
     "body": {
@@ -710,6 +742,86 @@
     "sortNum": 80000,
     "created": "2022-09-21T21:39:57.104Z",
     "modified": "2022-09-21T23:03:01.759Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "2cb736de-0487-4072-b3f2-a414ea368502",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "3ff5ebad-1bec-4878-be34-4ff3bd739ace",
+    "name": "Busca todas Devoluções de um Usuário",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/usuario/1/devolucoes",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-09-22T02:45:52.902Z",
+    "modified": "2022-09-22T02:46:54.387Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "ba79c2ac-9dc1-469b-a541-3838157f1f70",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "3ff5ebad-1bec-4878-be34-4ff3bd739ace",
+    "name": "Busca Devolução",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/usuario/devolucao/1",
+    "method": "GET",
+    "sortNum": 65000,
+    "created": "2022-09-22T02:45:52.903Z",
+    "modified": "2022-09-22T02:47:32.222Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "91e0f64f-d467-4156-aa10-3082774223ba",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "3ff5ebad-1bec-4878-be34-4ff3bd739ace",
+    "name": "Atualiza Devolução",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/usuario/devolucao/1",
+    "method": "PUT",
+    "sortNum": 67500,
+    "created": "2022-09-22T02:45:52.904Z",
+    "modified": "2022-09-22T02:49:13.278Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"descricao\": \"Jornal\",\n  \"maximoDiasEmprestimo\": 10,\n  \"taxaMulta\": 5.00\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "b7a46263-d336-4949-9560-bd3871e0bb1d",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "3ff5ebad-1bec-4878-be34-4ff3bd739ace",
+    "name": "Insere Devolução",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/devolucao",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-09-22T02:45:52.905Z",
+    "modified": "2022-09-22T02:54:46.123Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"dataDevolucao\": 2,\n  \"multaTotal\": 2\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "f213a079-4fbf-4450-9866-41dd3b05cc42",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "3ff5ebad-1bec-4878-be34-4ff3bd739ace",
+    "name": "Remove Devolucao",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/usuario/devolucao/1",
+    "method": "DELETE",
+    "sortNum": 80000,
+    "created": "2022-09-22T02:45:52.906Z",
+    "modified": "2022-09-22T02:49:48.974Z",
     "headers": [],
     "params": [],
     "tests": []

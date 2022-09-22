@@ -35,7 +35,7 @@ public class Aplication {
             post("/obra/:codigo/palavras",   ControllerObras.adicionarPalavraChave, gson::toJson);
             delete("/obra/:codigo/palavras", ControllerObras.removerPalavraChave, gson::toJson);
             get("/obra/:codigo/copias", ControllerObras.buscarCopiasDisponiveis, gson::toJson);
-            post("/obra/:codigo/copia", ControllerObras.adicionarCopiaDeObra, gson::toJson);
+            post("/obra/copia", ControllerObras.adicionarCopiaDeObra, gson::toJson);
             delete("/obra/:codigo/copia/:id", ControllerObras.removerCopiaDeObra, gson::toJson);
 
             //Rotas do ControllerRelObraAutor
@@ -101,6 +101,20 @@ public class Aplication {
             delete("/categoriaObra/:codigo", ControllerCategoriaObra.removerCategoriaObra, gson::toJson);
             put("/categoriaObra/:codigo", ControllerCategoriaObra.alterarCategoriaObra, gson::toJson);
             
+            //Rotas de PessoaInteressada
+            get("/pessoasInteressadas", ControllerPessoaInteressada.getPessoasInteressadas, gson::toJson);
+            get("/pessoaInteressada/:obraCodigo", ControllerPessoaInteressada.getPessoaInteressada, gson::toJson);
+            post("/pessoaInteressada", ControllerPessoaInteressada.criarPessoaInteressada, gson::toJson);
+            delete("/pessoaInteressada/:id", ControllerPessoaInteressada.removerPessoaInteressada, gson::toJson);
+            put("/pessoaInteressada/:id", ControllerPessoaInteressada.alterarPessoaInteressada, gson::toJson);
+
+            //Rotas de Devolução
+            get("/usuario/:idUsuario/devolucoes", ControllerDevolucao.getDevolucoes, gson::toJson);
+            get("/usuario/devolucao/:id", ControllerDevolucao.getDevolucao, gson::toJson);
+            post("/devolucao", ControllerDevolucao.criarDevolucao, gson::toJson);
+            delete("/usuario/devolucao/:id", ControllerDevolucao.removerDevolucao, gson::toJson);
+            put("/usuario/devolucao/:id", ControllerDevolucao.alterarDevolucao, gson::toJson);
+
             // Exceptions
             exception(NumberFormatException.class, ControllerException.numberFormatException);
             exception(JsonSyntaxException.class, ControllerException.jsonSyntaxException);
