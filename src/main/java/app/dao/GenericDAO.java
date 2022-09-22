@@ -18,9 +18,9 @@ abstract public class GenericDAO {
     protected Connection getConnection() throws SQLException{
 
         Dotenv dotenv = Dotenv.load();
-        String url = "jdbc:" + dotenv.get("CLEARDB_DATABASE_URL");
-        String user = dotenv.get("MYSQL_USER");
-        String pass = dotenv.get("MYSQL_PASS");
+        String url = "jdbc:" + System.getenv("CLEARDB_DATABASE_URL");
+        String user = System.getenv("MYSQL_USER");
+        String pass = System.getenv("MYSQL_PASS");
 
         return DriverManager.getConnection(url, user, pass);
     }

@@ -19,6 +19,7 @@ public class EmprestimoDAO extends GenericDAO {
     private CopiaDAO cdao = new CopiaDAO();
     private LeitorDAO ldao = new LeitorDAO();
     private FuncionarioDAO fdao = new FuncionarioDAO();
+    
 
     public void insert(Emprestimo emprestimo){
         String sql = "INSERT INTO emprestimo (dataEmprestimo, dataPrevistaDevolucao, funcionarioResponsavel, leitor, codigoCopia, atrasado) VALUES (?, ?, ?, ?, ?, ?) ";
