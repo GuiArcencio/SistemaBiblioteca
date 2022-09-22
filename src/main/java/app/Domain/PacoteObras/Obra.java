@@ -1,17 +1,14 @@
 package app.Domain.PacoteObras;
 
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
-import java.util.Observable;
-import java.util.Observer;
+import app.Domain.SubjectObserver.Subject;
 //import app.Domain.PacoteObras.Estados.*;
 
 
-public class Obra extends Observable{
-    private List<Observer> canaisComunicacao = new ArrayList<>();
+public class Obra extends Subject{
 	private Long codigo;
 
 	@JsonRequired
@@ -93,15 +90,6 @@ public class Obra extends Observable{
         this.status = status;
 	}
 
-    public void notifyObservers(String status) {
-        for (Observer observer : this.canaisComunicacao) {
-            observer.update(this, status);
-        }
-    }
-
-    public void registrar(Observer observer) {
-        canaisComunicacao.add(observer);
-    }
     /*
     public void atualizaStatus(){
         if(this.status == "DISPONIVEL"){
@@ -190,20 +178,11 @@ public class Obra extends Observable{
 
     public void setStatus(String status){
         this.status = status;
-        notifyObservers(status);
+        this.notifyAllObservers();
     }
 
     public String getStatus(){
         return this.status;
     }
-
-    public List<Observer> getCanaisComunicacao() {
-        return canaisComunicacao;
-    }
-
-    public void setCanaisComunicacao(List<Observer> canaisComunicacao) {
-        this.canaisComunicacao = canaisComunicacao;
-    }
-
     
 }

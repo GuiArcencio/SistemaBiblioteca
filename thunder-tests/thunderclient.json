@@ -4,11 +4,11 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "e495e304-b02e-4437-a8bc-2080c54eb9ed",
     "name": "Busca todas as categorias",
-    "url": "localhost:4567/api/categoria/leitor",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/categoria/leitor",
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-08-31T20:14:49.303Z",
-    "modified": "2022-08-31T20:14:58.195Z",
+    "modified": "2022-09-21T23:12:27.311Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -18,11 +18,11 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "e495e304-b02e-4437-a8bc-2080c54eb9ed",
     "name": "Insere categoria",
-    "url": "localhost:4567/api/categoria/leitor",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/categoria/leitor",
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-08-31T20:16:39.363Z",
-    "modified": "2022-09-15T11:51:54.101Z",
+    "modified": "2022-09-21T23:32:51.943Z",
     "headers": [],
     "params": [],
     "body": {
@@ -85,12 +85,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-09-15T12:30:34.688Z",
-    "modified": "2022-09-20T22:30:49.438Z",
+    "modified": "2022-09-15T12:31:11.915Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"isbn\": 9780066238500,\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"categoria\": { \"codigo\": 3,\"descricao\": \"Livro\", \"maximoDiasEmprestimo\": 10, \"taxaMulta\": 5.00},\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"edicao\": \"7\",\n  \"editora\": {\"id\": 2,\"nome\": \"HarperCollins\"},\n  \"numPaginas\": 600\n}",
+      "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
       "form": []
     },
     "tests": []
@@ -99,14 +99,20 @@
     "_id": "29e21b24-4507-425d-8443-5e11a8649e33",
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
-    "name": "Busca Obra",
-    "url": "localhost:4567/api/obra/2",
+    "name": "Insere Obra Copy",
+    "url": "localhost:4567/api/obra/{codigo}",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-09-15T12:31:24.487Z",
-    "modified": "2022-09-21T20:24:02.977Z",
+    "modified": "2022-09-15T12:46:32.813Z",
     "headers": [],
-    "params": [],
+    "params": [
+      {
+        "name": "codigo",
+        "value": "1",
+        "isPath": true
+      }
+    ],
     "body": {
       "type": "json",
       "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
@@ -250,12 +256,12 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-09-17T20:20:20.666Z",
-    "modified": "2022-09-20T20:26:47.410Z",
+    "modified": "2022-09-17T20:44:41.847Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"nome\": \"Teste\"\n}",
+      "raw": "{\n  \"nome\": \"Aleph\"\n}",
       "form": []
     },
     "tests": []
@@ -293,11 +299,11 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "9a631dc4-6e6f-4547-9996-e9330c554f52",
     "name": "Busca Categoria por Id",
-    "url": "localhost:4567/api/categoriaObra/3",
+    "url": "localhost:4567/api/categoriaObra/1",
     "method": "GET",
     "sortNum": 65000,
     "created": "2022-09-17T21:26:40.251Z",
-    "modified": "2022-09-20T23:08:44.601Z",
+    "modified": "2022-09-17T21:27:35.723Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -369,44 +375,6 @@
     "tests": []
   },
   {
-    "_id": "5432b1dc-5b64-4368-9b51-3f8994260d0f",
-    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
-    "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
-    "name": "Busca Todas Obra ",
-    "url": "localhost:4567/api/obras",
-    "method": "GET",
-    "sortNum": 30000,
-    "created": "2022-09-20T23:26:42.887Z",
-    "modified": "2022-09-20T23:27:06.109Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
-    "_id": "e6fdc2d5-f0e0-411a-bc17-914ed25eaa2e",
-    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
-    "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
-    "name": "Remove Obra",
-    "url": "localhost:4567/api/obra/3",
-    "method": "DELETE",
-    "sortNum": 40000,
-    "created": "2022-09-20T23:27:12.566Z",
-    "modified": "2022-09-20T23:39:53.683Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
     "_id": "7cf3a523-5b69-4641-b502-af9c97c4fed1",
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "b9b283ee-63e4-442f-b619-2734197dd334",
@@ -425,6 +393,8 @@
       }
     ],
     "tests": []
+<<<<<<< HEAD
+=======
   },
   {
     "_id": "43a67409-3403-4e1e-85e2-6de67f5f5015",
@@ -745,5 +715,6 @@
     "headers": [],
     "params": [],
     "tests": []
+>>>>>>> 6fb8055938929a0fcd3ae3db00e72e2c7bc3ad7f
   }
 ]

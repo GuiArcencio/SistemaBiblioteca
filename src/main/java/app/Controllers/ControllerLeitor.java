@@ -3,6 +3,8 @@ package app.Controllers;
 import java.util.List;
 import java.util.Properties;
 
+import javax.lang.model.util.ElementScanner6;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -46,7 +48,10 @@ public class ControllerLeitor {
         res.type("application/json");
         Long id = Long.parseLong(req.params(":id"));
         Leitor leitor = service.getLeitor(id);
-        return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(leitor));
+        if (leitor!= null)
+            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(leitor));
+        else
+            return new StandardResponse(StatusResponse.ERROR, "Leitor nao encontrado");
     };
 
     /*

@@ -5,13 +5,10 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import app.Domain.PacoteObras.Obra;
 import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.PacoteUsuarios.PessoaInteressada;
 import app.Exception.AnnotatedDeserializer;
-import app.Service.impl.ObraService;
 import app.Service.impl.PessoaInteressadaService;
-import app.Service.spec.IObraService;
 import app.Service.spec.IPessoaInteressadaService;
 import app.StandardResponse.StandardResponse;
 import app.StandardResponse.StatusResponse;
@@ -22,7 +19,6 @@ import spark.Route;
 public class ControllerPessoaInteressada {
     
     private static IPessoaInteressadaService service = new PessoaInteressadaService();
-    private static IObraService oservice = new ObraService();
 
     private static Gson gsonPessoaInteressada() {
         return new GsonBuilder()
@@ -37,9 +33,6 @@ public class ControllerPessoaInteressada {
         res.type("application/json");
         List<PessoaInteressada> pessoaInteressadas = service.buscaTodos();
         if(pessoaInteressadas != null){
-            for(int i =0; i< pessoaInteressadas.size(); i++){
-                System.out.println(pessoaInteressadas.get(i).getStatus());
-            }
             return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(pessoaInteressadas));
         }
         else{
@@ -71,9 +64,6 @@ public class ControllerPessoaInteressada {
         if (service.insere(pessoaInteressada)) {
             System.out.println("PessoaInteressada inserida:");
             System.out.println(new Gson().toJsonTree(pessoaInteressada));
-            Obra obra = oservice.buscaObraPorCodigo(pessoaInteressada.getObraCodigo());
-            System.out.println("Add pi no canal de comunicação observer");
-            obra.registrar(pessoaInteressada);
             return new StandardResponse(StatusResponse.SUCCESS);
         } else {
             return new StandardResponse(StatusResponse.ERROR, "Erro na inserção.");
