@@ -198,5 +198,39 @@ public class EmprestimoDAO extends GenericDAO {
         return emprestimo;
     }
 
+
+    public Emprestimo getByCopia(Long idCopia){
+        Emprestimo emprestimo = null;
+
+        String sql = "SELECT * from emprestimo WHERE codigoCopia = ?";
+
+        try{
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setLong(1, idCopia);
+            ResultSet resultSet = statement.executeQuery();
+            if(resultSet.next()){
+                Long id = resultSet.getLong("id");
+                Long idLeitor = resultSet.getLong("leitor");
+                Date dataEmprestimo = resultSet.getDate("dataEmprestimo");
+                Date dataPrevistaDevolucao = resultSet.getDate("dataPrevistaDevolucao");
+                Funcionario funcionarioResponsavel = fdao.getById(resultSet.getLong("funcionarioResponsavel"));
+
+                Leitor leitor = ldao.getById(idLeitor);
+                Copia copia = cdao.getById(idCopia);
+                boolean atrasado = resultSet.getBoolean("atrasado");
+
+                emprestimo = new Emprestimo(id, dataEmprestimo, dataPrevistaDevolucao, funcionarioResponsavel, copia, leitor, atrasado);
+
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return emprestimo;
+    }
 }
 

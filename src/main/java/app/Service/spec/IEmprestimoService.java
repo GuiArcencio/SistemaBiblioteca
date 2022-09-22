@@ -10,4 +10,5 @@ public interface IEmprestimoService {
     boolean realizarEmprestimo(Emprestimo emprestimo);
     boolean alterarEmprestimo(Long id, Emprestimo emprestimo);
     boolean removerEmprestimo(Long id);
+    Emprestimo buscaEmprestimoPorCopia(Long idCopia);
 }

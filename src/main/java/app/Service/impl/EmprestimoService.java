@@ -26,6 +26,16 @@ public class EmprestimoService implements IEmprestimoService{
     }
 
     @Override
+    public Emprestimo buscaEmprestimoPorCopia(Long idCopia){
+        try{
+            return dao.getByCopia(idCopia);
+        }catch(Exception e){
+            System.out.println("[ERRO] A busca do Emprestimo falhou, retornando vazio.");
+            return null;
+        }
+    }
+
+    @Override
     public boolean realizarEmprestimo(Emprestimo Emprestimo){
         try{
             dao.insert(Emprestimo);
