@@ -15,7 +15,7 @@ public class Aplication {
         get("/hello", (req, res) -> "Olá Heroku");
 
         Gson gson = new Gson();
-        boolean autenticacao = true;
+        boolean autenticacao = false;
         
         path("/api", () -> {
             before("/*", (q, a) -> System.out.println("Chamada API recebida"));
