@@ -60,8 +60,9 @@ public class ObraService implements IObraService{
     public List<Obra> buscaObras() {
        try{
             return odao.getAll();
-       } catch(Exception e){
+       } catch(SQLException e){
             System.out.println("Falha na busca das obras! Retornando NULL.");
+            System.out.println(e.getMessage());
             return null;
        }
     }
