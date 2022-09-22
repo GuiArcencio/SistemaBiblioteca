@@ -16,9 +16,9 @@ public class EmprestimoService implements IEmprestimoService{
     }
     
     @Override
-    public List<Emprestimo> buscaEmprestimos(Long idUsuario){
+    public List<Emprestimo> buscaEmprestimos(Long cpf){
         try{
-            return dao.getByLeitor(idUsuario);
+            return dao.getByLeitor(cpf);
         }catch(Exception e){
             System.out.println("[ERRO] A busca de todos os Emprestimos falhou, retornando lista vazia.");
             return new ArrayList<Emprestimo>();
@@ -34,6 +34,8 @@ public class EmprestimoService implements IEmprestimoService{
             return null;
         }
     }
+
+    
 
     @Override
     public boolean realizarEmprestimo(Emprestimo Emprestimo){

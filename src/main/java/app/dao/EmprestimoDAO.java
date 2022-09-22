@@ -129,17 +129,17 @@ public class EmprestimoDAO extends GenericDAO {
 
     }
 
-    public List<Emprestimo> getByLeitor(Long idLeitor){
+    public List<Emprestimo> getByLeitor(Long cpf){
         List<Emprestimo> listaEmprestimo = new ArrayList<>();
         
         
-        String sql = "select * from emprestimo where leitor = ?";
+        String sql = "select * from emprestimo where id = (select id from leitor where documentoId = ?)";
 
         try{
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             
-            statement.setLong(1, idLeitor);
+            statement.setLong(1, cpf);
             ResultSet resultSet = statement.executeQuery();
             
             while(resultSet.next()){
@@ -150,7 +150,7 @@ public class EmprestimoDAO extends GenericDAO {
                 
                 Funcionario funcionarioResponsavel = fdao.getById(resultSet.getLong("funcionarioResponsavel"));
                 
-                Leitor leitor = ldao.getById(idLeitor);
+                Leitor leitor = ldao.getById(resultSet.getLong("leitor"));
                 Copia copia = cdao.getById(resultSet.getLong("codigoCopia"));
                 boolean atrasado = resultSet.getBoolean("atrasado");
 
