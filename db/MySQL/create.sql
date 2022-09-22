@@ -130,6 +130,7 @@ CREATE TABLE devolucao(
     dataDevolucao date not NULL,
     multaTotal decimal(10,6) not NULL,
     codigo_emprestimo bigint not NULL,
+    CONSTRAINT devolucao_fk FOREIGN KEY(codigo_emprestimo) REFERENCES emprestimo(id),
     CONSTRAINT devolucao_pk PRIMARY KEY(id)
 );
 

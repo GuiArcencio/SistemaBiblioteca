@@ -55,5 +55,19 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "e95385c1-89f2-4f60-814b-5b51377501bd",
+    "colId": "history",
+    "containerId": "",
+    "name": "pooa-sist-biblioteca.herokuapp.com/api/categoria/leitor",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/categoria/leitor",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-22T01:13:27.910Z",
+    "modified": "2022-09-22T01:13:28.718Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
