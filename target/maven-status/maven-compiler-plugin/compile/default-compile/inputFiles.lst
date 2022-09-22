@@ -82,6 +82,7 @@
 /home/enio/pooa/SistemaBiblioteca/src/main/java/app/Domain/PacoteObras/Autor.java
 /home/enio/pooa/SistemaBiblioteca/src/main/java/app/dao/CategoriaLeitorDAO.java
 /home/enio/pooa/SistemaBiblioteca/src/main/java/app/Service/spec/ICategoriaObraService.java
+/home/enio/pooa/SistemaBiblioteca/src/main/java/app/Controllers/ControllerAutenticacao.java
 /home/enio/pooa/SistemaBiblioteca/src/main/java/app/dao/ObraDAO.java
 /home/enio/pooa/SistemaBiblioteca/src/main/java/app/Service/impl/CopiaService.java
 /home/enio/pooa/SistemaBiblioteca/src/main/java/app/Domain/SubjectObserver/ObraDesejadaObserver.java

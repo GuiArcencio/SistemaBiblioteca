@@ -100,11 +100,11 @@
     "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
     "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
     "name": "Busca Obra",
-    "url": "localhost:4567/api/obra/2",
+    "url": "pooa-sist-biblioteca.herokuapp.com/api/obra/2",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-09-15T12:31:24.487Z",
-    "modified": "2022-09-21T20:24:02.977Z",
+    "modified": "2022-09-22T04:38:08.139Z",
     "headers": [],
     "params": [],
     "body": {

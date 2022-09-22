@@ -69,5 +69,24 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "34ad6722-ffc9-4cac-99a7-02662c9ee87f",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://147.182.136.29:3000/auth",
+    "url": "http://147.182.136.29:3000/auth",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2022-09-22T04:06:18.373Z",
+    "modified": "2022-09-22T04:06:18.633Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n\t\"cpf\": \"00000\",\n\t\"password\": \"123mudar\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

@@ -16,7 +16,7 @@ abstract public class GenericDAO {
     }
 
     protected Connection getConnection() throws SQLException{ 
-        String url = "jdbc:" + System.getenv("CLEARDB_DATABASE_URL");
+        String url = System.getenv("CLEARDB_DATABASE_URL");
         String user = System.getenv("MYSQL_USER");
         String pass = System.getenv("MYSQL_PASS");
 

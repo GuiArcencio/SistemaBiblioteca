@@ -16,6 +16,10 @@ public class DevolucaoDAO extends GenericDAO {
 
     private EmprestimoDAO edao;
 
+    public DevolucaoDAO(){
+        this.edao = new EmprestimoDAO();
+    }
+
     public void insert(Devolucao devolucao){
         String sql = "INSERT INTO devolucao (dataDevolucao, multaTotal, codigo_emprestimo) VALUES (?, ?, ?) ";
 

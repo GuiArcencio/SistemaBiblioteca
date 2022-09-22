@@ -7,6 +7,7 @@ app/Exception/ControllerException.class
 app/Service/impl/EnderecoService.class
 app/Domain/SubjectObserver/Subject.class
 app/Service/impl/CopiaService.class
+app/Controllers/ControllerAutenticacao.class
 app/Domain/SubjectObserver/ObraDesejadaObserver.class
 app/Domain/PacoteObras/Estados/Reservado.class
 app/Domain/PacoteUsuarios/Usuario.class
