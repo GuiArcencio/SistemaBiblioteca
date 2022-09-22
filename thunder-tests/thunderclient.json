@@ -393,5 +393,328 @@
       }
     ],
     "tests": []
+<<<<<<< HEAD
+=======
+  },
+  {
+    "_id": "43a67409-3403-4e1e-85e2-6de67f5f5015",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
+    "name": "Adicionar PalavraChave",
+    "url": "localhost:4567/api/obra/1/palavras",
+    "method": "POST",
+    "sortNum": 15000,
+    "created": "2022-09-20T23:28:40.118Z",
+    "modified": "2022-09-20T23:51:06.420Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "\"nova\"",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "f4046112-6241-4338-852b-d3e86a622885",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
+    "name": "Remove PalavraChave",
+    "url": "localhost:4567/api/obra/1/palavras",
+    "method": "DELETE",
+    "sortNum": 50000,
+    "created": "2022-09-20T23:35:18.443Z",
+    "modified": "2022-09-21T00:08:08.978Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "\"a\"",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "b2c49a7a-9787-40b0-9b37-c06ed8bb5e28",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "5d2efdb0-33b3-44e2-ab18-502a138768e5",
+    "name": "Busca Autores de uma Obra",
+    "url": "localhost:4567/api/obra/1/autores",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-09-21T00:10:34.029Z",
+    "modified": "2022-09-21T00:14:58.806Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "7f755595-9571-4b65-9934-559ac9be7524",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "5d2efdb0-33b3-44e2-ab18-502a138768e5",
+    "name": "Busca Obras de um Autor",
+    "url": "localhost:4567/api/autor/2/obras",
+    "method": "GET",
+    "sortNum": 65000,
+    "created": "2022-09-21T00:10:34.030Z",
+    "modified": "2022-09-21T00:51:07.397Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "d2f0d282-77e0-487f-8003-51a494c47bf4",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "5d2efdb0-33b3-44e2-ab18-502a138768e5",
+    "name": "Atualiza Relacionamento entre Obra e Autor",
+    "url": "localhost:4567/api/autor&obra/1",
+    "method": "PUT",
+    "sortNum": 67500,
+    "created": "2022-09-21T00:10:34.031Z",
+    "modified": "2022-09-21T00:50:45.422Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"autor\":{\"id\": 2,\n      \"nome\": \"C.S.Lewis\",\n      \"iniciais\": \"C.S.L\"},\n  \"obra\":{\n      \"codigo\": 2,\n      \"isbn\": 9780066238500,\n      \"titulo\": \"The Chronicles of Narnia\",\n      \"categoria\": {\n        \"codigo\": 3,\n        \"descricao\": \"Livro\",\n        \"maximoDiasEmprestimo\": 10,\n        \"taxaMulta\": 5.0\n      },\n      \"palavrasChave\": [\n        \"a\"\n      ],\n      \"dataPublicacao\": \"1111-01-01\",\n      \"edicao\": \"7\",\n      \"editora\": {\n        \"id\": 2,\n        \"nome\": \"HarperCollins\"\n      },\n      \"numPaginas\": 600\n    }\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "7d5ea2fe-14d9-4000-b0d8-838fb2fd46d5",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "5d2efdb0-33b3-44e2-ab18-502a138768e5",
+    "name": "Insere Relacionamento Obra&Autor",
+    "url": "localhost:4567/api/autor&obra",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-09-21T00:10:34.032Z",
+    "modified": "2022-09-21T00:41:21.705Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"autor\":{\"id\": 3,\n    \"nome\": \"J.K. Rowling\",\n    \"iniciais\": \"J.K.R.\"},\n  \"obra\":{\n      \"codigo\": 2,\n      \"isbn\": 9780066238500,\n      \"titulo\": \"The Chronicles of Narnia\",\n      \"categoria\": {\n        \"codigo\": 3,\n        \"descricao\": \"Livro\",\n        \"maximoDiasEmprestimo\": 10,\n        \"taxaMulta\": 5.0\n      },\n      \"palavrasChave\": [\n        \"a\"\n      ],\n      \"dataPublicacao\": \"1111-01-01\",\n      \"edicao\": \"7\",\n      \"editora\": {\n        \"id\": 2,\n        \"nome\": \"HarperCollins\"\n      },\n      \"numPaginas\": 600\n    }\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "22e6c54f-8957-4506-b9f3-22a36aee8bd6",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "5d2efdb0-33b3-44e2-ab18-502a138768e5",
+    "name": "Remove Relacionamento Obra&Autor",
+    "url": "localhost:4567/api/autor&obra/2",
+    "method": "DELETE",
+    "sortNum": 80000,
+    "created": "2022-09-21T00:10:34.033Z",
+    "modified": "2022-09-21T00:15:39.327Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "1b09c5e2-9b5b-43c2-bc57-41ecb4f230c9",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "06381c15-5496-4a2c-9992-b8626fd7382a",
+    "name": "Busca Autores",
+    "url": "localhost:4567/api/autor",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-09-21T00:20:33.052Z",
+    "modified": "2022-09-21T00:28:17.213Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "f54dd5f4-0c3d-448e-948d-16b033d8a34e",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "06381c15-5496-4a2c-9992-b8626fd7382a",
+    "name": "Atualiza Autor",
+    "url": "localhost:4567/api/autor/1",
+    "method": "PUT",
+    "sortNum": 67500,
+    "created": "2022-09-21T00:20:33.054Z",
+    "modified": "2022-09-21T00:34:49.593Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"nome\": \"J.K. Rowling\",\n  \"iniciais\": \"J.K.R.\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "62bb5ee2-ff9c-455b-b03b-4c675e598d2b",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "06381c15-5496-4a2c-9992-b8626fd7382a",
+    "name": "Insere Autor",
+    "url": "localhost:4567/api/autor",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-09-21T00:20:33.055Z",
+    "modified": "2022-09-21T00:35:43.374Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"nome\": \"J.K. Rowling\",\n  \"iniciais\": \"J.K.R.\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "e67994bf-b731-47f9-8f8a-e8598a40b981",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "06381c15-5496-4a2c-9992-b8626fd7382a",
+    "name": "Remove Autor",
+    "url": "localhost:4567/api/autor/1",
+    "method": "DELETE",
+    "sortNum": 80000,
+    "created": "2022-09-21T00:20:33.056Z",
+    "modified": "2022-09-21T00:35:13.161Z",
+    "headers": [],
+    "params": []
+  },
+  {
+    "_id": "13657512-99ec-4b9f-9c0a-9cf398017855",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
+    "name": "Busca Copia",
+    "url": "localhost:4567/api/obra/1/copias",
+    "method": "GET",
+    "sortNum": 25000,
+    "created": "2022-09-21T18:36:40.685Z",
+    "modified": "2022-09-21T18:37:25.184Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "f3c80428-dffe-4314-91c1-d3ae2fd5e319",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
+    "name": "Insere Copia",
+    "url": "localhost:4567/api/obra/copia",
+    "method": "POST",
+    "sortNum": 12500,
+    "created": "2022-09-21T19:44:30.340Z",
+    "modified": "2022-09-21T20:45:22.842Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"obraId\": 2,\n  \"tipoEstado\": \"Disponivel\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "dd265090-8ee6-430c-9fe6-7313c053bc33",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "30cd69db-e7bd-496b-b0e3-4c488d5d0fdf",
+    "name": "Remove Copia",
+    "url": "localhost:4567/api/obra/2/copia/8",
+    "method": "DELETE",
+    "sortNum": 45000,
+    "created": "2022-09-21T20:18:52.562Z",
+    "modified": "2022-09-21T22:52:39.390Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"isbn\": 9780066238500,\n  \"categoria\": {\"maximoDiasEmprestimo\": 1,\n                  \"descricao\": \"Raiva\"\n                },\n  \"palavrasChave\": [\"a\"],\n  \"dataPublicacao\": \"1111-01-01\",\n  \"titulo\": \"The Chronicles of Narnia\",\n  \"Edicao\": \"7\",\n  \"editora\": {\"nome\": \"HarperCollins\"},\n  \"numeroPaginas\": 600\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "de09cc3b-b900-493b-8fe9-c1ee6f9263fc",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "0471be48-6603-4ff7-a817-411206853f7d",
+    "name": "Busca todas PessoasInteressadas",
+    "url": "localhost:4567/api/pessoasInteressadas",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-09-21T21:39:57.100Z",
+    "modified": "2022-09-21T21:42:04.967Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "d69df883-5a77-443c-8be9-24fcdd2402c2",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "0471be48-6603-4ff7-a817-411206853f7d",
+    "name": "Busca Pessoas interessadas em uma obra específica",
+    "url": "localhost:4567/api/pessoaInteressada/2",
+    "method": "GET",
+    "sortNum": 65000,
+    "created": "2022-09-21T21:39:57.101Z",
+    "modified": "2022-09-21T21:43:10.068Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "23ab35ca-df24-445e-b1b6-e0faf56f1ed1",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "0471be48-6603-4ff7-a817-411206853f7d",
+    "name": "Atualiza PessoaInteressada",
+    "url": "localhost:4567/api/pessoaInteressada/1",
+    "method": "PUT",
+    "sortNum": 67500,
+    "created": "2022-09-21T21:39:57.102Z",
+    "modified": "2022-09-21T21:43:43.719Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"descricao\": \"Jornal\",\n  \"maximoDiasEmprestimo\": 10,\n  \"taxaMulta\": 5.00\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "bf041a98-5c47-471b-9e05-271cdf9c6d71",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "0471be48-6603-4ff7-a817-411206853f7d",
+    "name": "Insere PessoaInteressada",
+    "url": "localhost:4567/api/pessoaInteressada",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-09-21T21:39:57.103Z",
+    "modified": "2022-09-21T22:57:28.877Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"leitorId\": 2,\n  \"obraCodigo\": 2\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "ec630b3f-7559-4e26-a102-a7fd13782960",
+    "colId": "e442b8b1-d60a-4450-b3ef-40ac01845f28",
+    "containerId": "0471be48-6603-4ff7-a817-411206853f7d",
+    "name": "Remove PessoaInteressada",
+    "url": "localhost:4567/api/pessoaInteressada/5",
+    "method": "DELETE",
+    "sortNum": 80000,
+    "created": "2022-09-21T21:39:57.104Z",
+    "modified": "2022-09-21T23:03:01.759Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+>>>>>>> 6fb8055938929a0fcd3ae3db00e72e2c7bc3ad7f
   }
 ]

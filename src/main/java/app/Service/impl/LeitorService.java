@@ -21,8 +21,12 @@ public class LeitorService implements ILeitorService{
 
     @Override
     public Leitor getLeitor(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+        try{
+            return ldao.getById(id);
+        } catch (Exception e){
+            return null;
+        }
+
     }
 
     @Override
