@@ -1,92 +1,135 @@
 package app.Controllers;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.checkerframework.checker.formatter.qual.ReturnsFormat;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import app.Domain.PacoteEntradaSaidaObras.Devolucao;
+import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
+import app.Domain.PacoteEntradaSaidaObras.Reserva;
+import app.Domain.PacoteObras.Copia;
+import app.Domain.PacoteObras.Obra;
+import app.Domain.PacoteUsuarios.Funcionario;
+import app.Domain.PacoteUsuarios.Leitor;
+import app.Domain.SubjectObserver.EmprestimoAtrasado;
+import app.Domain.SubjectObserver.ReservaExpirada;
+import app.Domain.SubjectObserver.Subject;
+import app.Exception.AnnotatedDeserializer;
+import app.Service.impl.CopiaService;
+import app.Service.impl.DevolucaoService;
+import app.Service.impl.EmprestimoService;
+import app.Service.impl.ReservaService;
+import app.Service.impl.FuncionarioService;
+import app.Service.impl.LeitorService;
+import app.Service.impl.ObraService;
+import app.Service.spec.ICopiaService;
+import app.Service.spec.IDevolucaoService;
+import app.Service.spec.IEmprestimoService;
+import app.Service.spec.IFuncionarioService;
+import app.Service.spec.IReservaService;
+import app.Service.spec.ILeitorService;
+import app.Service.spec.IObraService;
+import app.StandardResponse.StandardResponse;
+import app.StandardResponse.StatusResponse;
+import spark.Request;
+import spark.Response;
+import spark.Route;
+
 public class ControllerReserva {
-    /*
-    @Override
-    public Copia devolverObra(Long idUsuario, Long codigoCopia) {
-        Emprestimo emprestimo = edao.getByLeitorAndCopia(idUsuario, codigoCopia);
 
-        if(emprestimo == null){
-            System.out.println("Emprestimo não encontrado");
-            return null;
-        }
-        Obra obra = odao.getByCodigo(emprestimo.getCopia().getId());
-        
+    private static IEmprestimoService emservice = new EmprestimoService();
+    private static IReservaService rservice = new ReservaService();
+    private static IFuncionarioService fservice = new FuncionarioService();
+    private static ILeitorService lservice = new LeitorService();
+    private static ICopiaService cservice = new CopiaService();
+    private static IObraService oservice = new ObraService();
+    private static Subject listaEmprestimos = new Subject();
 
-        java.util.Date dataDevolucao = java.util.Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
-
-        Devolucao devolucao = new Devolucao(1L, dataDevolucao, multaTotal, emprestimoCorrespondente)
+    private static Gson gsonReserva() {
+        return new GsonBuilder()
+        .registerTypeAdapter(Reserva.class, new AnnotatedDeserializer<Reserva>())
+        .create();
     }
 
-    @Override
-    public Copia reservarObra(Long idUsuario, Long isbn, java.util.Date dataRetirada, Funcionario funcionarioResponsavel) {
-        Obra obra = odao.getByIsbn(isbn);
-        if (obra == null) {
-            //não há obras com esse isbn
-            System.out.println("Obra não encontrada! Retornando NULL.");
-            return null;
+    
+    public static Route buscarReservasPorUsuario = (Request req, Response res) -> {
+        Long idUsuario = Long.parseLong(req.params(":id"));
+        List<Reserva> lista = rservice.buscarReservaPorUsuario(idUsuario);
+        
+        return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(lista));    
+    };
+    
+    public static Route reservarObra = (Request req, Response res) -> {
+        res.type("application/json");
+        Gson gson = gsonReserva();
+        Reserva reserva = gson.fromJson(req.body(), Reserva.class);
+        Long idUsuario = Long.parseLong(req.params(":id"));
+        Long idCopia = Long.parseLong(req.params(":idCopia"));
+
+        Copia copia = cservice.buscaCopia(idCopia);
+        Leitor leitor = lservice.getLeitor(idUsuario);
+        Funcionario funcionario = fservice.getFuncionario(reserva.getFuncionarioResponsavel().getId());
+
+        //verifica se as informações são válidas
+        if (copia == null || (copia.getObraId() != reserva.getCopia().getObraId()) || leitor == null || funcionario == null){
+            return new StandardResponse(StatusResponse.ERROR, "[ERRO] Dados inválidos! Retornando NULL.");
+
         }
+        Obra obra = oservice.buscaObraPorCodigo(copia.getObraId());
 
-        obra.setCopias(cdao.getAllByObraId(obra.getCodigo()));
-        obra.setAutores(adao.getAllByObraId(obra.getCodigo()));
-
+        java.util.Date dataPrevistaRetirada = reserva.getDataPrevistaRetirada();
+        java.util.Date dataPrevistaDevolucao = reserva.getDataPrevistaDevolucao();
         java.util.Date dataReserva = java.util.Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
-
         
-        long diffInMillies = Math.abs(dataRetirada.getTime() - dataReserva.getTime());
-        long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS)   
-
-        long daysBetween = ChronoUnit.DAYS.between(dataReserva, dataRetirada);
-        if (daysBetween < 0 && daysBetween > 7) {
-            System.out.println("[ERRO] data de Retirada deve ser em até 1 semana depois de hoje , retornando null");
-            return null;
+        long diffInMillies = dataPrevistaDevolucao.getTime() - dataPrevistaRetirada.getTime();
+        if (diffInMillies < 0){
+            return new StandardResponse(StatusResponse.ERROR, "Data de devolução não pode ser anterior a data de retirada");
+        }
+        long daysBetween = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);  
+        int maxdias = obra.getCategoria().getMaximoDiasEmprestimo();
+        if (daysBetween > maxdias ) {
+            System.out.print("[ERRO] data prevista de Retirada ultrapassa o máximo de ");
+            System.out.print(maxdias);
+            System.out.print("depois de "+ dataPrevistaRetirada.toString() +" , retornando null");
+            return new StandardResponse(StatusResponse.ERROR, "Data de devolução ultrapassa máximo");
         }
         
-        
-        
-        LocalDate dataDevolucao = obra.getCategoria().calculaDataDevolucao().plusDays(0L);
-        java.util.Date dataPrevistaDevolucao = java.util.Date.from(dataDevolucao.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-        Copia copia = null;
-        //percorre todas as copias por uma disponivel
-        for (Copia copia_i : obra.getCopias()) {
-            Reserva reserva = rdao.getByLeitorAndCopia(idUsuario, copia_i.getId());
+        Reserva temp = rservice.buscarPorCopia(copia.getId());
 
-            if (reserva != null){
-                System.out.println("[Erro] Já há uma reserva feita para esse usuário e ess obra");
-                return null;
+        if (temp != null){
+            System.out.println("[Erro] Já há uma reserva feita para essa cópia");
+            return new StandardResponse(StatusResponse.ERROR, "[Erro] Já há uma reserva feita para essa cópia");
+        }
+
+        if (copia.getState().getState() == "Emprestado") {
+            Emprestimo emprestimo = emservice.buscaEmprestimoPorCopia(idCopia);
+            java.util.Date dataPrevistaDevolucaoEmpr = emprestimo.getDataPrevistaDevolucao();
+            diffInMillies = dataPrevistaRetirada.getTime() - dataPrevistaDevolucaoEmpr.getTime();
+            if (diffInMillies < 0){
+                return new StandardResponse(StatusResponse.ERROR, "[Erro] Há um empréstimo durante a data prevista de retirada");
             }
-            if (copia_i.getState().getState() == "Disponivel") {
-                copia = copia_i;
-            }
         }
- 
-
-        if(copia == null){
-            //não há copias disponiveis
-            System.out.println("Não há cópias disponíveis para reserva! Retornando NULL.");
-            return null;
-        }
-
 
         copia.setState(copia.getState().reservar());
 
-        cdao.update(copia);
-        Leitor leitor = ldao.getById(idUsuario);
-        if(leitor == null){
-            System.out.println("[ERRO] leitor não encontrado! Retornando NULL");
-            return null;
-        }
+        cservice.alterarCopia(copia.getId(), copia);
 
         //obs o id da reserva nao é usado, o bd gera um
-        Reserva reserva = new Reserva(1L, dataReserva, dataRetirada, dataPrevistaDevolucao, funcionarioResponsavel, leitor, copia);
+        reserva.setDataReserva(dataReserva);
 
         new ReservaExpirada(reserva, leitor);
 
-        rdao.insert(reserva);
+        rservice.realizarReserva(reserva);
 
-        return copia;
-
-    }
-     */
+        return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(reserva));    
+    };
 }

@@ -49,7 +49,8 @@ public class Aplication {
             get("/usuario/:id/emprestimo",        ControllerEmprestimos.buscaEmprestimosPorUsuario, gson::toJson);
             // get("/usuario/:id/devolucao",         ControllerEmprestimo.consultarDevolucao, gson::toJson);
             post("/usuario/:id/emprestimo/:idCopia",ControllerEmprestimos.emprestarObra, gson::toJson);
-            // patch("/usuario/:id/reserva/:isbn",   ControllerEmprestimo.reservarObra, gson::toJson);
+            get("/usuario/:id/reservas", ControllerReserva.buscarReservasPorUsuario, gson::toJson);
+            post("/usuario/:id/reserva/:isbn",   ControllerReserva.reservarObra, gson::toJson);
             // patch("/usuario/:id/devolucao/:isbn", ControllerEmprestimo.devolverObra, gson::toJson);
             get("/usuario/:id/pendencias", ControllerEmprestimos.buscaPendenciasPorUsuario, gson::toJson);
 
