@@ -20,7 +20,7 @@ public class PessoaInteressadaDAO extends GenericDAO{
     }
 
     public void insert(PessoaInteressada pi) throws SQLException{
-        String sql = "INSERT INTO PessoaInteressada (leitorId, obraCodigo) VALUES (?, ?) ";
+        String sql = "INSERT INTO pessoainteressada (leitorId, obraCodigo) VALUES (?, ?) ";
 
         
         Connection conn = this.getConnection();
@@ -36,7 +36,7 @@ public class PessoaInteressadaDAO extends GenericDAO{
     }
 
     public void update(PessoaInteressada pi) throws SQLException{
-        String sql = "UPDATE PessoaInteressada SET leitorId = ?, obraCodigo = ? WHERE id = ?";
+        String sql = "UPDATE pessoainteressada SET leitorId = ?, obraCodigo = ? WHERE id = ?";
 
         
         Connection conn = this.getConnection();
@@ -54,7 +54,7 @@ public class PessoaInteressadaDAO extends GenericDAO{
 
 
     public void delete(PessoaInteressada pi) throws SQLException{
-        String sql = "DELETE FROM PessoaInteressada where id = ?";
+        String sql = "DELETE FROM pessoainteressada where id = ?";
 
         
         Connection conn = this.getConnection();
@@ -72,7 +72,7 @@ public class PessoaInteressadaDAO extends GenericDAO{
     public PessoaInteressada getById(Long id) throws SQLException{
         PessoaInteressada pi = null;
 
-        String sql = "SELECT * from PessoaInteressada WHERE id = ?";
+        String sql = "SELECT * from pessoainteressada WHERE id = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -96,7 +96,7 @@ public class PessoaInteressadaDAO extends GenericDAO{
         
         List<PessoaInteressada> listaPessoaInteressadas = new ArrayList<>();
 
-        String sql = "SELECT * from PessoaInteressada";
+        String sql = "SELECT * from pessoainteressada";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -120,7 +120,7 @@ public class PessoaInteressadaDAO extends GenericDAO{
         
         List<Leitor> listaPessoaInteressadas = new ArrayList<>();
 
-        String sql = "SELECT * from PessoaInteressada WHERE obraCodigo = ?";
+        String sql = "SELECT * from pessoainteressada WHERE obraCodigo = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);

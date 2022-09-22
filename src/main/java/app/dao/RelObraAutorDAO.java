@@ -23,7 +23,7 @@ public class RelObraAutorDAO extends GenericDAO{
     }
 
     public void insert(RelObraAutor roa) throws SQLException{
-        String sql = "INSERT INTO RelObraAutor (codigo_autor, codigo_obra) VALUES (?, ?)";
+        String sql = "INSERT INTO relobraautor (codigo_autor, codigo_obra) VALUES (?, ?)";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -37,7 +37,7 @@ public class RelObraAutorDAO extends GenericDAO{
     }
 
     public void update(RelObraAutor roa) throws SQLException{
-        String sql = "UPDATE RelObraAutor SET codigo_autor = ?, codigo_obra = ? WHERE id = ?";
+        String sql = "UPDATE relobraautor SET codigo_autor = ?, codigo_obra = ? WHERE id = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -52,7 +52,7 @@ public class RelObraAutorDAO extends GenericDAO{
     }
 
     public void delete(RelObraAutor reo) throws SQLException{
-        String sql = "DELETE FROM RelObraAutor WHERE id = ?";
+        String sql = "DELETE FROM relobraautor WHERE id = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -66,7 +66,7 @@ public class RelObraAutorDAO extends GenericDAO{
 
     public RelObraAutor getById(Long id) throws SQLException{
         RelObraAutor roa = null;
-        String sql = "SELECT * FROM RelObraAutor WHERE id = ?";
+        String sql = "SELECT * FROM relobraautor WHERE id = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -86,7 +86,7 @@ public class RelObraAutorDAO extends GenericDAO{
 
     public List<Obra> getAllByAutor(Long codigo_autor) throws SQLException{
         List<Obra> lista = new ArrayList<>();
-        String sql = "SELECT * FROM RelObraAutor WHERE codigo_autor = ?";
+        String sql = "SELECT * FROM relobraautor WHERE codigo_autor = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -106,7 +106,7 @@ public class RelObraAutorDAO extends GenericDAO{
 
     public List<Autor> getAllByObra(Long codigo_obra) throws SQLException{
         List<Autor> lista = new ArrayList<>();
-        String sql = "SELECT * FROM RelObraAutor WHERE codigo_obra = ?";
+        String sql = "SELECT * FROM relobraautor WHERE codigo_obra = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);

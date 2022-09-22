@@ -13,7 +13,7 @@ import app.Domain.PacoteObras.CategoriaObra;
 public class CategoriaObraDAO extends GenericDAO{
 
     public void insert(CategoriaObra categoriaObra) throws SQLException{ 
-        String sql = "INSERT INTO CategoriaObra (descricao, maximoDiasEmprestimo, taxaMulta) VALUES (?, ?, ?) ";
+        String sql = "INSERT INTO categoriaobra (descricao, maximoDiasEmprestimo, taxaMulta) VALUES (?, ?, ?) ";
 
         
         Connection conn = this.getConnection();
@@ -32,7 +32,7 @@ public class CategoriaObraDAO extends GenericDAO{
 
 
     public void update(CategoriaObra categoriaObra) throws SQLException{
-        String sql = "UPDATE CategoriaObra SET descricao = ?, maximoDiasEmprestimo = ?, taxaMulta = ? WHERE codigo = ?";
+        String sql = "UPDATE categoriaobra SET descricao = ?, maximoDiasEmprestimo = ?, taxaMulta = ? WHERE codigo = ?";
 
         
         Connection conn = this.getConnection();
@@ -50,7 +50,7 @@ public class CategoriaObraDAO extends GenericDAO{
     }
 
     public void delete(CategoriaObra categoriaObra) throws SQLException{
-        String sql = "DELETE FROM CategoriaObra WHERE codigo = ?";
+        String sql = "DELETE FROM categoriaobra WHERE codigo = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -66,7 +66,7 @@ public class CategoriaObraDAO extends GenericDAO{
     public CategoriaObra getByCodigo(Long codigo) throws SQLException{
         CategoriaObra categoriaObra = null;
 
-        String sql = "SELECT * from CategoriaObra WHERE codigo = ?";
+        String sql = "SELECT * from categoriaobra WHERE codigo = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -91,7 +91,7 @@ public class CategoriaObraDAO extends GenericDAO{
 
     	List<CategoriaObra>  listaCategoriasObra = new ArrayList<>();
 
-        String sql = "SELECT * from CategoriaObra";
+        String sql = "SELECT * from categoriaobra";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);

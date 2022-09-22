@@ -15,7 +15,7 @@ import app.Domain.PacoteObras.Obra;
 public class AutorDAO extends GenericDAO{
 
     public void insert(Autor autor){
-        String sql = "INSERT INTO Autor (nome, iniciais) VALUES (?, ?)";
+        String sql = "INSERT INTO autor (nome, iniciais) VALUES (?, ?)";
 
         try{
             Connection conn = this.getConnection();
@@ -34,7 +34,7 @@ public class AutorDAO extends GenericDAO{
     }
 
     public void insertAutorInObra(Autor autor, Obra obra){
-        String sql = "INSERT INTO RelObraAutor (codigo_autor, codigo_obra) VALUES (SELECT codigo FROM Autor WHERE nome = ?, ?) ";
+        String sql = "INSERT INTO relobraautor (codigo_autor, codigo_obra) VALUES (SELECT codigo FROM Autor WHERE nome = ?, ?) ";
 
         try{
             Connection conn = this.getConnection();
@@ -54,7 +54,7 @@ public class AutorDAO extends GenericDAO{
     }
 
     public void update(Autor autor) {
-        String sql = "UPDATE Autor SET nome = ?, iniciais = ? WHERE codigo = ?";
+        String sql = "UPDATE autor SET nome = ?, iniciais = ? WHERE codigo = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -74,7 +74,7 @@ public class AutorDAO extends GenericDAO{
 
 
     public void delete(Autor autor){
-        String sql = "DELETE FROM Autor where codigo = ?";
+        String sql = "DELETE FROM autor where codigo = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -91,7 +91,7 @@ public class AutorDAO extends GenericDAO{
     }
 
     public void deleteAutorInObra(Autor autor, Obra obra){
-        String sql = "DELETE FROM RelObraAutor where codigo_autor = ? and codigo_obra = ?";
+        String sql = "DELETE FROM relobraautor where codigo_autor = ? and codigo_obra = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -112,7 +112,7 @@ public class AutorDAO extends GenericDAO{
     public Autor getById(Long id){
         Autor autor = null;
 
-        String sql = "SELECT * from Autor WHERE codigo = ?";
+        String sql = "SELECT * from autor WHERE codigo = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -139,7 +139,7 @@ public class AutorDAO extends GenericDAO{
     public List<Autor> getAllByObraId(Long id) {
         List<Autor> lista = new ArrayList<>();
 
-        String sql = "SELECT * from RelObraAutor WHERE codigo_obra = ?";
+        String sql = "SELECT * from relobraautor WHERE codigo_obra = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -178,7 +178,7 @@ public class AutorDAO extends GenericDAO{
 
     	List<Autor>  listaAutores = new ArrayList<>();
 
-        String sql = "SELECT * from Autor";
+        String sql = "SELECT * from autor";
 
         try{
             Connection conn = this.getConnection();

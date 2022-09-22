@@ -14,7 +14,7 @@ import app.Domain.PacoteObras.Editora;
 public class EditoraDAO extends GenericDAO{
 
     public void insert(Editora editora) throws SQLException{
-        String sql = "INSERT INTO Editora (nome) VALUES (?) ";
+        String sql = "INSERT INTO editora (nome) VALUES (?) ";
 
         
         Connection conn = this.getConnection();
@@ -29,7 +29,7 @@ public class EditoraDAO extends GenericDAO{
     }
 
     public void update(Editora editora) throws SQLException{
-        String sql = "UPDATE Editora SET nome = ? WHERE id = ?";
+        String sql = "UPDATE editora SET nome = ? WHERE id = ?";
 
         
         Connection conn = this.getConnection();
@@ -46,7 +46,7 @@ public class EditoraDAO extends GenericDAO{
 
 
     public void delete(Editora editora) throws SQLException{
-        String sql = "DELETE FROM Editora where id = ?";
+        String sql = "DELETE FROM editora where id = ?";
 
         
         Connection conn = this.getConnection();
@@ -64,7 +64,7 @@ public class EditoraDAO extends GenericDAO{
     public Editora getById(Long id) throws SQLException{
         Editora editora = null;
 
-        String sql = "SELECT * from Editora WHERE id = ?";
+        String sql = "SELECT * from editora WHERE id = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -87,7 +87,7 @@ public class EditoraDAO extends GenericDAO{
         
         List<Editora> listaEditoras = new ArrayList<>();
 
-        String sql = "SELECT * from Editora";
+        String sql = "SELECT * from editora";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);

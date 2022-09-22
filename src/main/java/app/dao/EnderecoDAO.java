@@ -13,7 +13,7 @@ import app.Domain.PacoteUsuarios.Endereco;
 public class EnderecoDAO extends GenericDAO{
 
     public void insert(Endereco endereco) throws SQLException{
-        String sql = "INSERT INTO Endereco (logradouro, numero, cep, cidade, estado) VALUES (?, ?, ?, ?, ?) ";
+        String sql = "INSERT INTO endereco (logradouro, numero, cep, cidade, estado) VALUES (?, ?, ?, ?, ?) ";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -32,7 +32,7 @@ public class EnderecoDAO extends GenericDAO{
     }
 
     public void update(Endereco endereco) throws SQLException{
-        String sql = "UPDATE Endereco SET logradouro = ?, numero = ?, cep = ?, cidade = ?, estado = ? WHERE id = ?";
+        String sql = "UPDATE endereco SET logradouro = ?, numero = ?, cep = ?, cidade = ?, estado = ? WHERE id = ?";
         
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -51,7 +51,7 @@ public class EnderecoDAO extends GenericDAO{
     }
 
     public void delete(Endereco endereco) throws SQLException{
-        String sql = "DELETE FROM Endereco where id = ?";
+        String sql = "DELETE FROM endereco where id = ?";
 
         
         Connection conn = this.getConnection();
@@ -69,7 +69,7 @@ public class EnderecoDAO extends GenericDAO{
     public Endereco getById(Long id) throws SQLException{
         Endereco endereco = null;
 
-        String sql = "SELECT * from Endereco WHERE id = ?";
+        String sql = "SELECT * from endereco WHERE id = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -95,7 +95,7 @@ public class EnderecoDAO extends GenericDAO{
 
     public List<Endereco> getAll() throws SQLException{
         List<Endereco> listaEnderecos = new ArrayList<>();
-        String sql = "SELECT * FROM Endereco";
+        String sql = "SELECT * FROM endereco";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);

@@ -21,7 +21,7 @@ public class EmprestimoDAO extends GenericDAO {
     private FuncionarioDAO fdao;
 
     public void insert(Emprestimo emprestimo){
-        String sql = "INSERT INTO Emprestimo (dataEmprestimo, dataPrevistaDevolucao, funcionarioResponsavel, leitor, codigoCopia, atrasado) VALUES (?, ?, ?, ?, ?, ?) ";
+        String sql = "INSERT INTO emprestimo (dataEmprestimo, dataPrevistaDevolucao, funcionarioResponsavel, leitor, codigoCopia, atrasado) VALUES (?, ?, ?, ?, ?, ?) ";
 
         try{
             Connection conn = this.getConnection();
@@ -47,7 +47,7 @@ public class EmprestimoDAO extends GenericDAO {
     }
 
     public void update(Emprestimo emprestimo) {
-        String sql = "UPDATE Emprestimo SET dataEmprestimo = ?, dataPrevistaDevolucao = ?, funcionarioResponsavel = ?, leitor = ?, codigoCopia = ?, atrasado = ? WHERE id = ?";
+        String sql = "UPDATE emprestimo SET dataEmprestimo = ?, dataPrevistaDevolucao = ?, funcionarioResponsavel = ?, leitor = ?, codigoCopia = ?, atrasado = ? WHERE id = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -73,7 +73,7 @@ public class EmprestimoDAO extends GenericDAO {
     }
 
     public void delete(Emprestimo emprestimo){
-        String sql = "DELETE FROM Emprestimo where id = ?";
+        String sql = "DELETE FROM emprestimo where id = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -93,7 +93,7 @@ public class EmprestimoDAO extends GenericDAO {
     public Emprestimo getById(Long id){
         Emprestimo emprestimo = null;
 
-        String sql = "SELECT * from Emprestimo WHERE id = ?";
+        String sql = "SELECT * from emprestimo WHERE id = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -132,7 +132,7 @@ public class EmprestimoDAO extends GenericDAO {
         List<Emprestimo> listaEmprestimo = new ArrayList<>();
         Emprestimo emprestimo = null;
 
-        String sql = "SELECT * from Emprestimo WHERE leitor = ?";
+        String sql = "SELECT * from emprestimo WHERE leitor = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -167,7 +167,7 @@ public class EmprestimoDAO extends GenericDAO {
     public Emprestimo getByLeitorAndCopia(Long idLeitor, Long idCopia){
         Emprestimo emprestimo = null;
 
-        String sql = "SELECT * from Emprestimo WHERE leitor = ? AND codigoCopia = ?";
+        String sql = "SELECT * from emprestimo WHERE leitor = ? AND codigoCopia = ?";
 
         try{
             Connection conn = this.getConnection();

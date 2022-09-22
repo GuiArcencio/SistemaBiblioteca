@@ -21,7 +21,7 @@ public class LeitorDAO extends GenericDAO {
     public void insert(Leitor leitor){
         Usuario usuario = new Leitor(leitor.getNome(), leitor.getTelefone(), leitor.getDataNascimento(), leitor.getEndereco());
         dao.insert(usuario);
-        String sql = "INSERT INTO Leitor (idUsuario, email, documentoId, categoria_id, grupoAcademico) VALUES (?, ?, ?, ?, ?) ";
+        String sql = "INSERT INTO leitor (idUsuario, email, documentoId, categoria_id, grupoAcademico) VALUES (?, ?, ?, ?, ?) ";
 
         try{
             Connection conn = this.getConnection();
@@ -46,7 +46,7 @@ public class LeitorDAO extends GenericDAO {
     public void update(Leitor leitor) {
         Usuario usuario = new Leitor(leitor.getNome(), leitor.getTelefone(), leitor.getDataNascimento(), leitor.getEndereco());
         dao.update(usuario);
-        String sql = "UPDATE Leitor SET email = ?, documentoId = ?, grupoAcademico = ?, categoria_id = ? WHERE idUsuario = ?";
+        String sql = "UPDATE leitor SET email = ?, documentoId = ?, grupoAcademico = ?, categoria_id = ? WHERE idUsuario = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -70,7 +70,7 @@ public class LeitorDAO extends GenericDAO {
         Usuario usuario = new Leitor(leitor.getNome(), leitor.getTelefone(), leitor.getDataNascimento(), leitor.getEndereco());
 
         dao.delete(usuario);
-        String sql = "DELETE FROM Leitor where idUsuario = ?";
+        String sql = "DELETE FROM leitor where idUsuario = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -91,7 +91,7 @@ public class LeitorDAO extends GenericDAO {
 
         Leitor leitor = null;
 
-        String sql = "SELECT * from Leitor WHERE idUsuario = ?";
+        String sql = "SELECT * from leitor WHERE idUsuario = ?";
 
         try{   
             Connection conn = this.getConnection();

@@ -16,7 +16,7 @@ import app.Domain.PacoteObras.Estados.*;
 public class CopiaDAO extends GenericDAO{
 
     public void insert(Copia copia) throws SQLException{
-        String sql = "INSERT INTO Copia (estado, obra_id) VALUES (?, ?) ";
+        String sql = "INSERT INTO copia (estado, obra_id) VALUES (?, ?) ";
 
         
             Connection conn = this.getConnection();
@@ -33,7 +33,7 @@ public class CopiaDAO extends GenericDAO{
     }
 
     public void update(Copia copia) {
-        String sql = "UPDATE Copia SET estado = ?, obra_id = ? WHERE id = ?";
+        String sql = "UPDATE copia SET estado = ?, obra_id = ? WHERE id = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -53,7 +53,7 @@ public class CopiaDAO extends GenericDAO{
 
 
     public void delete(Copia copia){
-        String sql = "DELETE FROM Copia where id = ?";
+        String sql = "DELETE FROM copia where id = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -73,7 +73,7 @@ public class CopiaDAO extends GenericDAO{
     public Copia getById(Long id){
         Copia copia = null;
 
-        String sql = "SELECT * from Copia WHERE id = ?";
+        String sql = "SELECT * from copia WHERE id = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -114,7 +114,7 @@ public class CopiaDAO extends GenericDAO{
     public List<Copia> getAllByObraId(Long obraId){
         List<Copia> copias = new ArrayList<>();
 
-        String sql = "SELECT * from Copia WHERE obra_id = ?";
+        String sql = "SELECT * from copia WHERE obra_id = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -156,7 +156,7 @@ public class CopiaDAO extends GenericDAO{
     public List<Copia> getAllDisponivelByObraId(Long obraId){
         List<Copia> copias = new ArrayList<>();
 
-        String sql = "SELECT * from Copia WHERE obra_id = ? AND estado = ?";
+        String sql = "SELECT * from copia WHERE obra_id = ? AND estado = ?";
 
         try{
             Connection conn = this.getConnection();

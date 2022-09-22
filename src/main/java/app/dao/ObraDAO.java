@@ -28,7 +28,7 @@ public class ObraDAO extends GenericDAO{
     
 
     public void insert(Obra obra) throws SQLException{
-        String sql = "INSERT INTO Obra (isbn, titulo, categoriaObra_id, palavrasChave, dataPublicacao, edicao, editora_id, numPaginas, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+        String sql = "INSERT INTO obra (isbn, titulo, categoriaObra_id, palavrasChave, dataPublicacao, edicao, editora_id, numPaginas, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
 
@@ -57,7 +57,7 @@ public class ObraDAO extends GenericDAO{
     }
 
     public void update(Obra obra) throws SQLException{
-        String sql = "UPDATE Obra SET isbn = ?, titulo = ?, categoriaObra_id = ?, palavrasChave = ?, dataPublicacao = ?, edicao = ?, editora_id = ?, numPaginas = ?, status = ? WHERE codigo = ?";
+        String sql = "UPDATE obra SET isbn = ?, titulo = ?, categoriaObra_id = ?, palavrasChave = ?, dataPublicacao = ?, edicao = ?, editora_id = ?, numPaginas = ?, status = ? WHERE codigo = ?";
         
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -89,7 +89,7 @@ public class ObraDAO extends GenericDAO{
 
 
     public void delete(Obra obra) throws SQLException{
-        String sql = "DELETE FROM Obra where codigo = ?";
+        String sql = "DELETE FROM obra where codigo = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -105,7 +105,7 @@ public class ObraDAO extends GenericDAO{
     public Obra getByCodigo(Long codigo) throws SQLException{
         Obra obra = null;
 
-        String sql = "SELECT * from Obra WHERE codigo = ?";
+        String sql = "SELECT * from obra WHERE codigo = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -138,7 +138,7 @@ public class ObraDAO extends GenericDAO{
     public Obra getByIsbn(Long isbn) throws SQLException{
         Obra obra = null; 
 
-        String sql = "SELECT * from Obra WHERE isbn = ?";
+        String sql = "SELECT * from obra WHERE isbn = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -168,7 +168,7 @@ public class ObraDAO extends GenericDAO{
     public List<Obra> getAllByIsbn(Long isbn) throws SQLException{
         List<Obra> listaObras = new ArrayList<>();
 
-        String sql = "SELECT * from Obra WHERE isbn = ?";
+        String sql = "SELECT * from obra WHERE isbn = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -198,7 +198,7 @@ public class ObraDAO extends GenericDAO{
     public Obra getByTitulo(String titulo) throws SQLException{
         Obra obra = null;
 
-        String sql = "SELECT * from Obra WHERE titulo = ?";
+        String sql = "SELECT * from obra WHERE titulo = ?";
    
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -228,7 +228,7 @@ public class ObraDAO extends GenericDAO{
     public List<Obra> getAllByKeyWord(String palavra) throws SQLException{
         List<Obra> listaObras = new ArrayList<>();
 
-        String sql = "SELECT * from Obra";
+        String sql = "SELECT * from obra";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -261,7 +261,7 @@ public class ObraDAO extends GenericDAO{
     public List<Obra> getAll() throws SQLException{
         List<Obra> listaObras = new ArrayList<>();
 
-        String sql = "SELECT * from Obra";
+        String sql = "SELECT * from obra";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);

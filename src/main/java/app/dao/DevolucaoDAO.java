@@ -17,7 +17,7 @@ public class DevolucaoDAO extends GenericDAO {
     private EmprestimoDAO edao;
 
     public void insert(Devolucao devolucao){
-        String sql = "INSERT INTO Devolucao (dataDevolucao, multaTotal, codigo_emprestimo) VALUES (?, ?, ?) ";
+        String sql = "INSERT INTO devolucao (dataDevolucao, multaTotal, codigo_emprestimo) VALUES (?, ?, ?) ";
 
         try{
             Connection conn = this.getConnection();
@@ -38,7 +38,7 @@ public class DevolucaoDAO extends GenericDAO {
     }
 
     public void update(Devolucao devolucao) {
-        String sql = "UPDATE Devolucao SET dataDevolucao = ?, multaTotal = ?, codigo_emprestimo = ? WHERE id = ?";
+        String sql = "UPDATE devolucao SET dataDevolucao = ?, multaTotal = ?, codigo_emprestimo = ? WHERE id = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -61,7 +61,7 @@ public class DevolucaoDAO extends GenericDAO {
     }
 
     public void delete(Devolucao devolucao){
-        String sql = "DELETE FROM Devolucao where id = ?";
+        String sql = "DELETE FROM devolucao where id = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -81,7 +81,7 @@ public class DevolucaoDAO extends GenericDAO {
     public Devolucao getById(Long id){
         Devolucao devolucao = null;
 
-        String sql = "SELECT * from Devolucao WHERE id = ?";
+        String sql = "SELECT * from devolucao WHERE id = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -109,7 +109,7 @@ public class DevolucaoDAO extends GenericDAO {
     public Devolucao getByEmprestimoId(Long idEmprestimo){
         Devolucao devolucao = null;
 
-        String sql = "SELECT * from Devolucao WHERE codigo_emprestimo = ?";
+        String sql = "SELECT * from devolucao WHERE codigo_emprestimo = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -139,7 +139,7 @@ public class DevolucaoDAO extends GenericDAO {
     public List<Devolucao> getAllByLeitorId(Long leitorId){
         List<Devolucao> listaDevolucao = new ArrayList<>();
 
-        String sql = "SELECT * from Devolucao WHERE codigo_emprestimo in (SELECT id FROM Emprestimo WHERE leitor = ?)";
+        String sql = "SELECT * from devolucao WHERE codigo_emprestimo in (SELECT id FROM Emprestimo WHERE leitor = ?)";
 
         try{
             Connection conn = this.getConnection();

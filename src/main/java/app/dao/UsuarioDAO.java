@@ -15,7 +15,7 @@ import app.Domain.PacoteUsuarios.Endereco;
 public class UsuarioDAO extends GenericDAO {
     
     public void insert(Usuario usuario){
-        String sql = "INSERT INTO Usuario (nome, telefone, dataNascimento, endereco, role) VALUES (?, ?, ?, ?, ?) ";
+        String sql = "INSERT INTO usuario (nome, telefone, dataNascimento, endereco, role) VALUES (?, ?, ?, ?, ?) ";
 
         try{
             Connection conn = this.getConnection();
@@ -38,7 +38,7 @@ public class UsuarioDAO extends GenericDAO {
     }
 
     public void update(Usuario usuario) {
-        String sql = "UPDATE Usuario SET nome = ?, telefone = ?, dataNascimento = ?, role = ? WHERE id = ?";
+        String sql = "UPDATE usuario SET nome = ?, telefone = ?, dataNascimento = ?, role = ? WHERE id = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -60,7 +60,7 @@ public class UsuarioDAO extends GenericDAO {
     }
 
     public void delete(Usuario usuario){
-        String sql = "DELETE FROM Usuario where id = ?";
+        String sql = "DELETE FROM usuario where id = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -79,7 +79,7 @@ public class UsuarioDAO extends GenericDAO {
     public List<Usuario> getAll(){
         Usuario usuario = null;
 
-        String sql = "SELECT * from Usuario";
+        String sql = "SELECT * from usuario";
         List<Usuario> listaUsuarios = new ArrayList<>();
 
         try{   
@@ -113,7 +113,7 @@ public class UsuarioDAO extends GenericDAO {
     public Usuario getById(Long id){
         Usuario usuario = null;
 
-        String sql = "SELECT * from Usuario WHERE id = ?";
+        String sql = "SELECT * from usuario WHERE id = ?";
 
         try{   
             Connection conn = this.getConnection();

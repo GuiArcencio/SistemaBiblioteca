@@ -9,14 +9,14 @@ import java.util.Date;
 import java.util.List;
 
 import app.Domain.PacoteUsuarios.Funcionario;
-import app.Domain.PacoteUsuarios.CategoriaLeitor;
+//import app.Domain.PacoteUsuarios.CategoriaLeitor;
 import app.Domain.PacoteUsuarios.Endereco;
 //import app.Domain.PacoteUsuarios.Usuario;
 
 public class FuncionarioDAO extends GenericDAO {
     
     public void insert(Funcionario funcionario){
-        String sql = "INSERT INTO Usuario (nome, telefone, dataNascimento, endereco_id, role) VALUES (?, ?, ?, ?, FUNC)";
+        String sql = "INSERT INTO usuario (nome, telefone, dataNascimento, endereco_id, role) VALUES (?, ?, ?, ?, FUNC)";
 
         try{
             Connection conn = this.getConnection();
@@ -38,7 +38,7 @@ public class FuncionarioDAO extends GenericDAO {
     }
 
     public void update(Funcionario funcionario) {
-        String sql = "UPDATE Usuario SET nome = ?, telefone = ?, dataNascimento = ? WHERE id = ?";
+        String sql = "UPDATE usuario SET nome = ?, telefone = ?, dataNascimento = ? WHERE id = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -59,7 +59,7 @@ public class FuncionarioDAO extends GenericDAO {
     }
 
     public void delete(Funcionario funcionario){
-        String sql = "DELETE FROM Usuario where id = ?";
+        String sql = "DELETE FROM usuario where id = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -78,7 +78,7 @@ public class FuncionarioDAO extends GenericDAO {
     public List<Funcionario> getAll() throws SQLException{
         List<Funcionario> listaFuncionarios = new ArrayList<>();
 
-        String sql = "SELECT * from Usuario WHERE role = 'FUNC'";
+        String sql = "SELECT * from usuario WHERE role = 'FUNC'";
         try{   
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -108,7 +108,7 @@ public class FuncionarioDAO extends GenericDAO {
     public Funcionario getById(Long id){
         Funcionario funcionario = null;
 
-        String sql = "SELECT * from Usuario WHERE id = ? AND role = 'FUNC'";
+        String sql = "SELECT * from usuario WHERE id = ? AND role = 'FUNC'";
 
         try{   
             Connection conn = this.getConnection();

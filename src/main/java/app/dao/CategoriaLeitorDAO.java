@@ -13,7 +13,7 @@ import app.Domain.PacoteUsuarios.CategoriaLeitor;
 public class CategoriaLeitorDAO extends GenericDAO {
     
     public void insert(CategoriaLeitor categoriaLeitor) throws SQLException{
-        String sql = "INSERT INTO CategoriaLeitor (maximoDiasEmprestimo, descricao) VALUES (?, ?) ";
+        String sql = "INSERT INTO categorialeitor (maximoDiasEmprestimo, descricao) VALUES (?, ?) ";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -27,7 +27,7 @@ public class CategoriaLeitorDAO extends GenericDAO {
     }
 
     public void update(CategoriaLeitor categoriaLeitor) throws SQLException {
-        String sql = "UPDATE CategoriaLeitor SET maximoDiasEmprestimo = ?, descricao = ? WHERE id = ?";
+        String sql = "UPDATE categorialeitor SET maximoDiasEmprestimo = ?, descricao = ? WHERE id = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -42,7 +42,7 @@ public class CategoriaLeitorDAO extends GenericDAO {
     }
 
     public void delete(CategoriaLeitor categoriaLeitor) throws SQLException{
-        String sql = "DELETE FROM CategoriaLeitor where id = ?";
+        String sql = "DELETE FROM categorialeitor where id = ?";
 
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -58,7 +58,7 @@ public class CategoriaLeitorDAO extends GenericDAO {
     public CategoriaLeitor getById(Long id) throws SQLException{
         CategoriaLeitor categoriaLeitor = null;
 
-        String sql = "SELECT * from CategoriaLeitor WHERE id = ?";
+        String sql = "SELECT * from categorialeitor WHERE id = ?";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -83,7 +83,7 @@ public class CategoriaLeitorDAO extends GenericDAO {
 
     	List<CategoriaLeitor>  listaCategoriasLeitor = new ArrayList<>();
 
-        String sql = "SELECT * from CategoriaLeitor";
+        String sql = "SELECT * from categorialeitor";
 
         Connection conn = this.getConnection();
         PreparedStatement statement = conn.prepareStatement(sql);

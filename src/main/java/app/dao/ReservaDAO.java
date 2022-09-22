@@ -19,7 +19,7 @@ public class ReservaDAO extends GenericDAO {
     private FuncionarioDAO fdao;
 
     public void insert(Reserva reserva){
-        String sql = "INSERT INTO Reserva (dataReserva, dataPrevistaRetirada, dataPrevistaDevolucao, funcionarioResponsavel, leitor, copiaReservada) VALUES (?, ?, ?, ?, ?, ?) ";
+        String sql = "INSERT INTO reserva (dataReserva, dataPrevistaRetirada, dataPrevistaDevolucao, funcionarioResponsavel, leitor, copiaReservada) VALUES (?, ?, ?, ?, ?, ?) ";
 
         try{
             Connection conn = this.getConnection();
@@ -48,7 +48,7 @@ public class ReservaDAO extends GenericDAO {
     }
 
     public void update(Reserva reserva) {
-        String sql = "UPDATE Reserva SET dataReserva = ?, dataPrevistaRetirada = ?, dataPrevistaDevolucao = ?, funcionarioResponsavel = ?, leitor = ?, copiaReservada = ? WHERE id = ?";
+        String sql = "UPDATE reserva SET dataReserva = ?, dataPrevistaRetirada = ?, dataPrevistaDevolucao = ?, funcionarioResponsavel = ?, leitor = ?, copiaReservada = ? WHERE id = ?";
 
         try {
             Connection conn = this.getConnection();
@@ -78,7 +78,7 @@ public class ReservaDAO extends GenericDAO {
     }
 
     public void delete(Reserva reserva){
-        String sql = "DELETE FROM Reserva where id = ?";
+        String sql = "DELETE FROM reserva where id = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -98,7 +98,7 @@ public class ReservaDAO extends GenericDAO {
     public Reserva getById(Long id){
         Reserva reserva = null;
 
-        String sql = "SELECT * from Reserva WHERE id = ?";
+        String sql = "SELECT * from reserva WHERE id = ?";
 
         try{
             Connection conn = this.getConnection();
@@ -135,7 +135,7 @@ public class ReservaDAO extends GenericDAO {
      public Reserva getByLeitorAndCopia(Long idLeitor, Long idCopia){
         Reserva reserva = null;
 
-        String sql = "SELECT * from Reserva WHERE leitor = ? AND copiaReservada = ?";
+        String sql = "SELECT * from reserva WHERE leitor = ? AND copiaReservada = ?";
 
         try{
             Connection conn = this.getConnection();
