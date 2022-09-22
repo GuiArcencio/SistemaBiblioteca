@@ -81,6 +81,7 @@ public class ControllerEmprestimos {
         for (Emprestimo emprestimo : lista){
             if (emprestimo.getAtrasado()){
                 //emprestimo atrasado
+                System.out.println("aqui");
                 acm += 1;
             }
         }

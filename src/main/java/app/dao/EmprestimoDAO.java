@@ -140,6 +140,7 @@ public class EmprestimoDAO extends GenericDAO {
 
             statement.setLong(1, idLeitor);
             ResultSet resultSet = statement.executeQuery();
+            
             while(resultSet.next()){
                 Long id = resultSet.getLong("id");
                 Date dataEmprestimo = resultSet.getDate("dataEmprestimo");
@@ -159,6 +160,7 @@ public class EmprestimoDAO extends GenericDAO {
             statement.close();
             conn.close();
         }catch (SQLException e){
+            System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
         return listaEmprestimo;
