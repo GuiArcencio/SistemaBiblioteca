@@ -15,7 +15,7 @@ public class Aplication {
         get("/hello", (req, res) -> "Olá Heroku");
 
         Gson gson = new Gson();
-        boolean autenticacao = false;
+        boolean autenticacao = true;
         
         path("/api", () -> {
             before("/*", (q, a) -> System.out.println("Chamada API recebida"));
@@ -52,7 +52,7 @@ public class Aplication {
             get("/usuario/:id/reservas", ControllerReserva.buscarReservasPorUsuario, gson::toJson);
             post("/usuario/:id/reserva/:isbn",   ControllerReserva.reservarObra, gson::toJson);
             // patch("/usuario/:id/devolucao/:isbn", ControllerEmprestimo.devolverObra, gson::toJson);
-            get("/usuario/:id/pendencias", ControllerEmprestimos.buscaPendenciasPorUsuario, gson::toJson);
+            get("/usuario/:cpf/pendencias", ControllerEmprestimos.buscaPendenciasPorUsuario, gson::toJson);
 
             // Rotas de ControllerCategoriaLeitor
             get("/categoria/leitor",      ControllerCategoriaLeitor.getCategorias, gson::toJson);

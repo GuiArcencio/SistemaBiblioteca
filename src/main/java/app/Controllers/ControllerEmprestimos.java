@@ -75,7 +75,7 @@ public class ControllerEmprestimos {
      * Busca por emprestimos atrasados e retorna a quantidade de pendencias
      */
     public static Route buscaPendenciasPorUsuario = (Request req, Response res) -> {
-        Long idUsuario = Long.parseLong(req.params(":id"));
+        Long idUsuario = Long.parseLong(req.params(":cpf"));
         List<Emprestimo> lista = emservice.buscaEmprestimos(idUsuario);
         int acm = 0;
         for (Emprestimo emprestimo : lista){
