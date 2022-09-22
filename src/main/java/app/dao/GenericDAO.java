@@ -16,9 +16,9 @@ abstract public class GenericDAO {
     }
 
     protected Connection getConnection() throws SQLException{
-        String url = "jdbc:mysql://localhost:3306/Biblioteca";
-
         Dotenv dotenv = Dotenv.load();
+        
+        String url = dotenv.get("CLEARDB_DATABASE_URL");
         String user = dotenv.get("MYSQL_USER");
         String pass = dotenv.get("MYSQL_PASS");
 

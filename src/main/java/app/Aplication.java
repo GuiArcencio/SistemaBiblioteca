@@ -11,10 +11,11 @@ import app.Controllers.*;
 public class Aplication {
 
     public static void main(String[] args) {
-
+        port(getHerokuAssignedPort());
+        get("/hello", (req, res) -> "Olá Heroku");
 
         Gson gson = new Gson();
-
+        
         path("/api", () -> {
             before("/*", (q, a) -> System.out.println("Chamada API recebida"));
 
@@ -28,7 +29,7 @@ public class Aplication {
             post("/obra/:codigo/palavras",   ControllerObras.adicionarPalavraChave, gson::toJson);
             delete("/obra/:codigo/palavras", ControllerObras.removerPalavraChave, gson::toJson);
             get("/obra/:codigo/copias", ControllerObras.buscarCopiasDisponiveis, gson::toJson);
-            post("/obra/copia", ControllerObras.adicionarCopiaDeObra, gson::toJson);
+            post("/obra/:codigo/copia", ControllerObras.adicionarCopiaDeObra, gson::toJson);
             delete("/obra/:codigo/copia/:id", ControllerObras.removerCopiaDeObra, gson::toJson);
 
             //Rotas do ControllerRelObraAutor
@@ -91,17 +92,18 @@ public class Aplication {
             delete("/categoriaObra/:codigo", ControllerCategoriaObra.removerCategoriaObra, gson::toJson);
             put("/categoriaObra/:codigo", ControllerCategoriaObra.alterarCategoriaObra, gson::toJson);
             
-            //Rotas de PessoaInteressada
-            get("/pessoasInteressadas", ControllerPessoaInteressada.getPessoasInteressadas, gson::toJson);
-            get("/pessoaInteressada/:obraCodigo", ControllerPessoaInteressada.getPessoaInteressada, gson::toJson);
-            post("/pessoaInteressada", ControllerPessoaInteressada.criarPessoaInteressada, gson::toJson);
-            delete("/pessoaInteressada/:id", ControllerPessoaInteressada.removerPessoaInteressada, gson::toJson);
-            put("/pessoaInteressadaq:id", ControllerPessoaInteressada.alterarPessoaInteressada, gson::toJson);
-
             // Exceptions
             exception(NumberFormatException.class, ControllerException.numberFormatException);
             exception(JsonSyntaxException.class, ControllerException.jsonSyntaxException);
             exception(JsonParseException.class, ControllerException.jsonParseException);
         });
+    }
+
+    static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
     }
 }
