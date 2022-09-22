@@ -4,13 +4,13 @@ create database heroku_bf372fa1eb54a7a;
 
 use heroku_bf372fa1eb54a7a;
 
-CREATE TABLE Editora(
+CREATE TABLE editora(
     id bigint not NULL auto_increment,
     nome varchar(100) not NULL,
     CONSTRAINT editora_pk PRIMARY KEY(id)
 );
 
-CREATE TABLE CategoriaObra(
+CREATE TABLE categoriaobra(
     codigo bigint not NULL auto_increment,
     descricao varchar(256),
     maximoDiasEmprestimo int not null,
@@ -18,7 +18,7 @@ CREATE TABLE CategoriaObra(
     CONSTRAINT codigo_pk PRIMARY KEY (codigo)
 );
 
-CREATE TABLE Obra(
+CREATE TABLE obra(
     codigo bigint not NULL auto_increment,
     isbn bigint not NULL,
     titulo varchar(256) not NULL,
@@ -31,12 +31,12 @@ CREATE TABLE Obra(
     status varchar(12) not NULL,
     CONSTRAINT obra_check CHECK (status IN('DISPONIVEL', 'INDISPONIVEL')),
     CONSTRAINT obra_pk PRIMARY KEY (codigo),
-    CONSTRAINT categoriaObra_id_fk FOREIGN kEY(categoriaObra_id) REFERENCES CategoriaObra(codigo),
-    CONSTRAINT editora_id_fk FOREIGN KEY(editora_id) REFERENCES Editora(id)
+    CONSTRAINT categoriaObra_id_fk FOREIGN kEY(categoriaObra_id) REFERENCES categoriaobra(codigo),
+    CONSTRAINT editora_id_fk FOREIGN KEY(editora_id) REFERENCES editora(id)
 );
 
 
-CREATE TABLE Autor(
+CREATE TABLE autor(
     codigo bigint not NULL auto_increment,
     nome varchar(256) not NULL,
     iniciais varchar(30),
@@ -44,24 +44,24 @@ CREATE TABLE Autor(
 );
 
 
-CREATE TABLE RelObraAutor(
+CREATE TABLE relobraautor(
     id bigint not NULL auto_increment,
     codigo_autor bigint not NULL,
     codigo_obra bigint not NULL,
     CONSTRAINT obraAutor_pk PRIMARY KEY(id),
-    CONSTRAINT relAutor_fk FOREIGN KEY (codigo_autor) REFERENCES Autor(codigo),
-    CONSTRAINT relObra_fk FOREIGN KEY (codigo_obra) REFERENCES Obra(codigo)
+    CONSTRAINT relAutor_fk FOREIGN KEY (codigo_autor) REFERENCES autor(codigo),
+    CONSTRAINT relObra_fk FOREIGN KEY (codigo_obra) REFERENCES obra(codigo)
 );
 
-CREATE TABLE Copia(
+CREATE TABLE copia(
     id bigint not NULL auto_increment,
     estado varchar(50) not NULL,
     obra_id bigint not NULL,
     CONSTRAINT copia_pk PRIMARY KEY(id),
-    CONSTRAINT copia_fk FOREIGN KEY(obra_id) REFERENCES Obra(codigo)
+    CONSTRAINT copia_fk FOREIGN KEY(obra_id) REFERENCES obra(codigo)
 );
 
-CREATE TABLE Reserva(
+CREATE TABLE reserva(
     id bigint not NULL auto_increment,
     dataReserva date not NULL,
     dataPrevistaRetirada date not NULL,
@@ -72,7 +72,7 @@ CREATE TABLE Reserva(
     CONSTRAINT reserva_pk PRIMARY KEY(id)
 );
 
-CREATE TABLE Endereco(
+CREATE TABLE endereco(
     id bigint not NULL auto_increment,
     logradouro varchar(50) not NULL,
     numero int not NULL,
@@ -82,7 +82,7 @@ CREATE TABLE Endereco(
     CONSTRAINT endereco_pk PRIMARY KEY(id)
 );
 
-CREATE TABLE Usuario(
+CREATE TABLE usuario(
     id bigint not NULL auto_increment,
     nome varchar(50) not NULL,
     telefone varchar(20) not NULL,
@@ -90,28 +90,28 @@ CREATE TABLE Usuario(
     endereco_id bigint,
     role varchar(20) not NULL,
     CONSTRAINT usuario_pk PRIMARY KEY(id),
-    CONSTRAINT endereco_fk FOREIGN KEY(endereco_id) REFERENCES Endereco(id)
+    CONSTRAINT endereco_fk FOREIGN KEY(endereco_id) REFERENCES endereco(id)
 );
 
-CREATE TABLE CategoriaLeitor(
+CREATE TABLE categorialeitor(
     id bigint not NULL auto_increment,
     maximoDiasEmprestimo int not NULL,
     descricao varchar(50),
     CONSTRAINT categoriaLeitor_pk PRIMARY KEY(id)
 );
 
-CREATE TABLE Leitor(
+CREATE TABLE leitor(
     idUsuario bigint not null,
     email varchar(50) not NULL,
     documentoId varchar(20) not null,
     categoria_id bigint,
     grupoAcademico boolean not NULL,
-    CONSTRAINT leitor_fk FOREIGN KEY (idUsuario) REFERENCES Usuario(id),
-    CONSTRAINT categoia_fk FOREIGN KEY (categoria_id) REFERENCES CategoriaLeitor(id),
+    CONSTRAINT leitor_fk FOREIGN KEY (idUsuario) REFERENCES usuario(id),
+    CONSTRAINT categoia_fk FOREIGN KEY (categoria_id) REFERENCES categorialeitor(id),
     CONSTRAINT leitor_pk PRIMARY KEY(idUsuario)
 );
 
-CREATE TABLE Emprestimo(
+CREATE TABLE emprestimo(
     id bigint not NULL auto_increment,
     dataEmprestimo date not NULL,
     dataPrevistaDevolucao date not NULL,
@@ -120,12 +120,12 @@ CREATE TABLE Emprestimo(
     codigoCopia bigint not NULL,
     atrasado boolean not NULL,
     CONSTRAINT emprestimo_pk PRIMARY KEY(id),   
-    CONSTRAINT funcionario_fk FOREIGN KEY (funcionarioResponsavel) REFERENCES Usuario(id),
-    CONSTRAINT emprestimo_leitor_fk FOREIGN KEY (leitor) REFERENCES Leitor(idUsuario),
-    CONSTRAINT emprestimo_copia_fk FOREIGN KEY (codigoCopia) REFERENCES Copia(id)
+    CONSTRAINT funcionario_fk FOREIGN KEY (funcionarioResponsavel) REFERENCES usuario(id),
+    CONSTRAINT emprestimo_leitor_fk FOREIGN KEY (leitor) REFERENCES leitor(idUsuario),
+    CONSTRAINT emprestimo_copia_fk FOREIGN KEY (codigoCopia) REFERENCES copia(id)
 );
 
-CREATE TABLE Devolucao(
+CREATE TABLE devolucao(
     id bigint not NULL auto_increment,
     dataDevolucao date not NULL,
     multaTotal decimal(10,6) not NULL,
@@ -133,12 +133,12 @@ CREATE TABLE Devolucao(
     CONSTRAINT devolucao_pk PRIMARY KEY(id)
 );
 
-CREATE TABLE PessoaInteressada(
+CREATE TABLE pessoainteressada(
     id bigint not null auto_increment,
     status varchar(12) default null,
     leitorId bigint not null,
     obraCodigo bigint not null,
     CONSTRAINT pi_pk PRIMARY KEY(id),
-    CONSTRAINT pi_li_fk FOREIGN KEY(leitorId) REFERENCES Leitor(idUsuario),
-    CONSTRAINT pi_oc_fk FOREIGN KEY(obraCodigo) REFERENCES Obra(codigo)
+    CONSTRAINT pi_li_fk FOREIGN KEY(leitorId) REFERENCES leitor(idUsuario),
+    CONSTRAINT pi_oc_fk FOREIGN KEY(obraCodigo) REFERENCES obra(codigo)
 );
