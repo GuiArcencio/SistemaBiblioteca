@@ -16,9 +16,9 @@ import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
 
 public class EmprestimoDAO extends GenericDAO {
 
-    private CopiaDAO cdao;
-    private LeitorDAO ldao;
-    private FuncionarioDAO fdao;
+    private CopiaDAO cdao = new CopiaDAO();
+    private LeitorDAO ldao = new LeitorDAO();
+    private FuncionarioDAO fdao = new FuncionarioDAO();
 
     public void insert(Emprestimo emprestimo){
         String sql = "INSERT INTO emprestimo (dataEmprestimo, dataPrevistaDevolucao, funcionarioResponsavel, leitor, codigoCopia, atrasado) VALUES (?, ?, ?, ?, ?, ?) ";
@@ -130,30 +130,31 @@ public class EmprestimoDAO extends GenericDAO {
 
     public List<Emprestimo> getByLeitor(Long idLeitor){
         List<Emprestimo> listaEmprestimo = new ArrayList<>();
-        Emprestimo emprestimo = null;
-
-        String sql = "SELECT * from emprestimo WHERE leitor = ?";
+        
+        
+        String sql = "select * from emprestimo where leitor = ?";
 
         try{
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-
+            
             statement.setLong(1, idLeitor);
             ResultSet resultSet = statement.executeQuery();
             
             while(resultSet.next()){
                 Long id = resultSet.getLong("id");
+                
                 Date dataEmprestimo = resultSet.getDate("dataEmprestimo");
                 Date dataPrevistaDevolucao = resultSet.getDate("dataPrevistaDevolucao");
+                
                 Funcionario funcionarioResponsavel = fdao.getById(resultSet.getLong("funcionarioResponsavel"));
-
+                
                 Leitor leitor = ldao.getById(idLeitor);
                 Copia copia = cdao.getById(resultSet.getLong("codigoCopia"));
                 boolean atrasado = resultSet.getBoolean("atrasado");
 
-                emprestimo = new Emprestimo(id, dataEmprestimo, dataPrevistaDevolucao, funcionarioResponsavel, copia, leitor, atrasado);
+                Emprestimo emprestimo = new Emprestimo(id, dataEmprestimo, dataPrevistaDevolucao, funcionarioResponsavel, copia, leitor, atrasado);
                 listaEmprestimo.add(emprestimo);
-                emprestimo = null;
 
             }
             resultSet.close();
