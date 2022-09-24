@@ -7,6 +7,7 @@ import app.Domain.PacoteUsuarios.Leitor;
 public interface ILeitorService {
     List<Leitor> getLeitores();
     Leitor getLeitor(Long id);
+    Leitor buscaPorDocumento(Long documento);
 
     boolean insereLeitor(Leitor leitor);
     boolean removeLeitor(Long id);

@@ -10,10 +10,7 @@ import com.google.gson.GsonBuilder;
 
 import app.Exception.AnnotatedDeserializer;
 import app.Domain.PacoteUsuarios.Leitor;
-import app.Domain.PacoteUsuarios.Funcionario;
-import app.Service.impl.CategoriaLeitorService;
 import app.Service.impl.LeitorService;
-import app.Service.spec.ICategoriaLeitorService;
 import app.Service.spec.ILeitorService;
 import app.StandardResponse.StandardResponse;
 import app.StandardResponse.StatusResponse;
@@ -23,7 +20,7 @@ import spark.Route;
 
 public class ControllerLeitor {
 
-    // TODO: Alterar para usar service específico
+    
     private static ILeitorService service = new LeitorService();
 
     private static Gson gsonLeitor() {
@@ -55,6 +52,19 @@ public class ControllerLeitor {
     };
 
     /*
+     * Busca um Leitor pelo documento
+     */
+    public static Route getLeitorPorDocumento = (Request req, Response res) -> {
+        res.type("application/json");
+        Long id = Long.parseLong(req.params(":documentoId"));
+        Leitor leitor = service.buscaPorDocumento(id);
+        if (leitor!= null)
+            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(leitor));
+        else
+            return new StandardResponse(StatusResponse.ERROR, "Leitor nao encontrado");
+    };
+
+    /*
      * Cria um Leitor
      */
     public static Route criarLeitor = (Request req, Response res) -> {
@@ -63,8 +73,7 @@ public class ControllerLeitor {
         Leitor leitor = gson.fromJson(req.body(), Leitor.class);
         Long cLeitorId = Long.parseLong(gson.fromJson(req.body(), Properties.class).getProperty("categoriaLeitor"));
         System.out.println(cLeitorId);
-        // TODO: buscaCategoriaLeitor(id)
-        // Implementar no service de categoria
+       
         if(service.insereLeitor(leitor)){
             System.out.println("Novo Leitor inserido:");
             System.out.println(new Gson().toJsonTree(leitor));

@@ -11,7 +11,7 @@ public class Leitor extends Usuario {
     private String email;
 
     @JsonRequired
-    private String documentoId;
+    private Long documentoId;
 
     // @JsonRequired
     //private Disciplina disciplina;
@@ -47,7 +47,7 @@ public class Leitor extends Usuario {
         this.role = "LEITOR";
     }
 
-    public Leitor(Long id, String email, String documentoId, boolean grupoAcademico, CategoriaLeitor categoria){
+    public Leitor(Long id, String email, Long documentoId, boolean grupoAcademico, CategoriaLeitor categoria){
         this.id = id;
         this.email = email;
         this.documentoId = documentoId;
@@ -78,11 +78,11 @@ public class Leitor extends Usuario {
         return this.email;
     }
 
-    public void setDocumentoId(String documentoId) {
+    public void setDocumentoId(Long documentoId) {
         this.documentoId = documentoId;
     }
 
-    public String getDocumentoId() {
+    public Long getDocumentoId() {
         return this.documentoId;
     }
 

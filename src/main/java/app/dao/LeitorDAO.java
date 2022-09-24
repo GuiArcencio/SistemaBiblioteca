@@ -3,6 +3,8 @@ package app.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.ResultSet;
 
 import app.Domain.PacoteUsuarios.Leitor;
@@ -31,7 +33,7 @@ public class LeitorDAO extends GenericDAO {
             Long idUsuario = usuario.getId();
             statement.setLong(1, idUsuario);
             statement.setString(2, leitor.getEmail());
-            statement.setString(3, leitor.getDocumentoId());
+            statement.setLong(3, leitor.getDocumentoId());
             statement.setBoolean(4, leitor.getGrupoAcademico());
             statement.setLong(5, leitor.getCategoria().getId());
             statement.executeUpdate();
@@ -53,7 +55,7 @@ public class LeitorDAO extends GenericDAO {
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement.setString(1, leitor.getEmail());
-            statement.setString(2, leitor.getDocumentoId());
+            statement.setLong(2, leitor.getDocumentoId());
             statement.setBoolean(3, leitor.getGrupoAcademico());
             statement.setLong(4, leitor.getCategoria().getId());
             statement.setLong(5, leitor.getId());
@@ -101,7 +103,7 @@ public class LeitorDAO extends GenericDAO {
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
                 String email = resultSet.getString("email");
-                String documentoId = resultSet.getString("documentoId");
+                Long documentoId = resultSet.getLong("documentoId");
                 boolean grupoAcademico = resultSet.getBoolean("grupoAcademico");
 
                 Long categoriaId = resultSet.getLong("categoria_id");
@@ -120,4 +122,59 @@ public class LeitorDAO extends GenericDAO {
         return leitor;
 
     }
+
+    public Leitor getByDocumentId(Long documentoId) throws SQLException{
+
+        Leitor leitor = null;
+
+        String sql = "SELECT * from leitor WHERE documentoId = ?";
+
+        
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
+
+        statement.setLong(1, documentoId);
+        ResultSet resultSet = statement.executeQuery();
+        if(resultSet.next()){
+            String email = resultSet.getString("email");
+            Long idUsuario = resultSet.getLong("idUsuario");
+            boolean grupoAcademico = resultSet.getBoolean("grupoAcademico");
+
+            Long categoriaId = resultSet.getLong("categoria_id");
+            CategoriaLeitor categoria = new CategoriaLeitorDAO().getById(categoriaId);
+
+
+            leitor = new Leitor(idUsuario, email, documentoId, grupoAcademico, categoria);
+        }
+        resultSet.close();
+        statement.close();
+        conn.close();
+       
+        return leitor;
+    }
+
+    public List<Leitor> getAll() throws SQLException{
+        List<Leitor> leitores = new ArrayList<>();
+        String sql = "SELECT * FROM leitor";
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
+        ResultSet resultSet = statement.executeQuery();
+
+        while(resultSet.next()){
+            Long idUsuario = resultSet.getLong("idUsuario");
+            String email = resultSet.getString("email");
+            Long documentoId = resultSet.getLong("documentoId");
+            Long categoriaId = resultSet.getLong("categoria_id");
+            CategoriaLeitor categoria = new CategoriaLeitorDAO().getById(categoriaId);
+            Boolean grupoAcademico = resultSet.getBoolean("grupoAcademico");
+
+            Leitor leitor = new Leitor(idUsuario, email, documentoId, grupoAcademico, categoria);
+            leitores.add(leitor);
+        }
+        resultSet.close();
+        statement.close();
+        conn.close();
+        return leitores;
+    }
+
 }

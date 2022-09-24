@@ -1,5 +1,7 @@
 package app.Service.impl;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import app.Domain.PacoteUsuarios.Leitor;
@@ -15,8 +17,14 @@ public class LeitorService implements ILeitorService{
 
     @Override
     public List<Leitor> getLeitores() {
-        // TODO Auto-generated method stub
-        return null;
+        try{
+            return ldao.getAll();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            System.out.println("[ERRO] Falha na busca de todos os leitores");
+            return new ArrayList<Leitor>();
+        }
+        
     }
 
     @Override
@@ -26,7 +34,17 @@ public class LeitorService implements ILeitorService{
         } catch (Exception e){
             return null;
         }
+    }
 
+    @Override
+    public Leitor buscaPorDocumento(Long documento){
+        try{
+            return ldao.getByDocumentId(documento);
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+            System.out.println("[ERRO] Falaha na busca do leitor. Verifique o documento informado.");
+            return null;
+        }
     }
 
     @Override
