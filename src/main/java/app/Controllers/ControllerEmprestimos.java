@@ -58,7 +58,6 @@ public class ControllerEmprestimos {
         .registerTypeAdapter(Emprestimo.class, new AnnotatedDeserializer<Emprestimo>())
         .create();
     }
-
     
     public static Route buscaEmprestimosPorUsuario = (Request req, Response res) -> {
         Long idUsuario = Long.parseLong(req.params(":id"));
@@ -161,7 +160,5 @@ public class ControllerEmprestimos {
         listaEmprestimos.notifyAllObservers();
         return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(emprestimo));
     };
-
-    
     
 }
