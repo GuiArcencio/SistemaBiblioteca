@@ -52,7 +52,7 @@ public class Aplication {
             get("/usuario/:cpf/reservas", ControllerReserva.buscarReservasPorUsuario, gson::toJson);
             post("/usuario/:cpf/reserva/:isbn",   ControllerReserva.reservarObra, gson::toJson);
             // patch("/usuario/:id/devolucao/:isbn", ControllerEmprestimo.devolverObra, gson::toJson);
-            get("/usuario/:cpf/pendencias", ControllerEmprestimos.buscaPendenciasPorUsuario, gson::toJson);
+            get("/usuario/:ra/pendencias", ControllerEmprestimos.buscaPendenciasPorUsuario, gson::toJson);
 
             // Rotas de ControllerCategoriaLeitor
             get("/categoria/leitor",      ControllerCategoriaLeitor.getCategorias, gson::toJson);

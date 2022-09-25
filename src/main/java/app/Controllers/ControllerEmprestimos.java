@@ -75,8 +75,14 @@ public class ControllerEmprestimos {
      * Busca por emprestimos atrasados e retorna a quantidade de pendencias
      */
     public static Route buscaPendenciasPorUsuario = (Request req, Response res) -> {
-        Long idUsuario = Long.parseLong(req.params(":cpf"));
-        List<Emprestimo> lista = emservice.buscaEmprestimos(idUsuario);
+        Long ra = Long.parseLong(req.params(":ra"));
+        Leitor leitor = lservice.buscaPorDocumento(ra);
+        if(leitor == null){
+            //retorna 0 caso o usuario não esteja no banco de dados da biblioteca
+            int i = 0;
+            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(i));
+        }
+        List<Emprestimo> lista = emservice.buscaEmprestimos(leitor.getId());
         int acm = 0;
         for (Emprestimo emprestimo : lista){
             if (emprestimo.getAtrasado()){
@@ -111,7 +117,7 @@ public class ControllerEmprestimos {
 
         }
 
-        int numDisciplina = Integracao.getDisciplina(idUsuario);
+        int numDisciplina = Integracao.getDisciplina(leitor.getDocumentoId());
         if(numDisciplina == -1){
             return new StandardResponse(StatusResponse.ERROR, "[ERRO] Não foi possível consultar disciplinas para este RA");
         }

@@ -86,7 +86,7 @@ public class ControllerReserva {
         }
         Obra obra = oservice.buscaObraPorCodigo(copia.getObraId());
 
-        int numDisciplina = Integracao.getDisciplina(idUsuario);
+        int numDisciplina = Integracao.getDisciplina(leitor.getDocumentoId());
         if(numDisciplina == -1){
             return new StandardResponse(StatusResponse.ERROR, "[ERRO] Não foi possível consultar disciplinas para este RA");
         }
