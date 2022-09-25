@@ -61,14 +61,15 @@ public class ControllerEmprestimos {
     }
     
     public static Route buscaEmprestimosPorUsuario = (Request req, Response res) -> {
-        Long idUsuario = Long.parseLong(req.params(":id"));
-        List<Emprestimo> lista = emservice.buscaEmprestimos(idUsuario);
-        if(lista != null){
-            return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(lista));
+        Long documento = Long.parseLong(req.params(":cpf"));
+        Leitor leitor = lservice.buscaPorDocumento(documento);
+        if (leitor == null){
+            return new StandardResponse(StatusResponse.ERROR, "Usuario não encontrado");
         }
-        else{
-            return new StandardResponse(StatusResponse.ERROR, "Não há empréstimos ou Usuario não encontrado");
-        }
+        List<Emprestimo> lista = emservice.buscaEmprestimos(leitor.getId());
+        
+        return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(lista));
+        
     };
 
     /*
@@ -101,14 +102,13 @@ public class ControllerEmprestimos {
         res.type("application/json");
         Gson gson = gsonEmprestimo();
         Emprestimo emprestimo = gson.fromJson(req.body(), Emprestimo.class);
-        Long idUsuario = Long.parseLong(req.params(":id"));
+        Long documento = Long.parseLong(req.params(":cpf"));
         
-        Copia copia = emprestimo.getCopia();
+        Copia copia = cservice.buscaCopia(Long.parseLong(req.params(":idCopia")));
         Leitor leitor = emprestimo.getLeitor();
         Funcionario funcionario = new Funcionario(emprestimo.getFuncionarioResponsavel().getId());
         Obra obra = oservice.buscaObraPorCodigo(emprestimo.getCopia().getObraId());
-        copia = cservice.buscaCopia(copia.getId());
-        leitor = lservice.getLeitor(idUsuario);
+        leitor = lservice.buscaPorDocumento(documento);
         funcionario = fservice.getFuncionario(funcionario.getId());
         
         //verifica se as informações são válidas
@@ -135,7 +135,7 @@ public class ControllerEmprestimos {
         LocalDate dataDevolucao = obra.getCategoria().calculaDataDevolucao();
         java.util.Date dataPrevistaDevolucao = java.util.Date.from(dataDevolucao.atStartOfDay(ZoneId.systemDefault()).toInstant());
         java.util.Date dataEmprestimo = java.util.Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
-        
+        Long idUsuario = leitor.getId();
 
         //obs o id do emprestimo nao é usado, o bd gera um
         emprestimo.setDataEmprestimo(dataEmprestimo);

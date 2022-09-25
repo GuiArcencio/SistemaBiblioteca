@@ -62,8 +62,11 @@ public class ControllerReserva {
 
     
     public static Route buscarReservasPorUsuario = (Request req, Response res) -> {
-        Long idUsuario = Long.parseLong(req.params(":id"));
-        List<Reserva> lista = rservice.buscarReservaPorUsuario(idUsuario);
+        Long documento = Long.parseLong(req.params(":cpf"));
+        Leitor leitor = lservice.buscaPorDocumento(documento);
+        if (leitor == null)
+            return new StandardResponse(StatusResponse.ERROR, "Usuario não encontrado");
+        List<Reserva> lista = rservice.buscarReservaPorUsuario(leitor.getId());
         
         return new StandardResponse(StatusResponse.SUCCESS, new Gson().toJsonTree(lista));    
     };
@@ -72,11 +75,11 @@ public class ControllerReserva {
         res.type("application/json");
         Gson gson = gsonReserva();
         Reserva reserva = gson.fromJson(req.body(), Reserva.class);
-        Long idUsuario = Long.parseLong(req.params(":id"));
+        Long documento = Long.parseLong(req.params(":cpf"));
         Long idCopia = Long.parseLong(req.params(":idCopia"));
 
         Copia copia = cservice.buscaCopia(idCopia);
-        Leitor leitor = lservice.getLeitor(idUsuario);
+        Leitor leitor = lservice.buscaPorDocumento(documento);
         Funcionario funcionario = fservice.getFuncionario(reserva.getFuncionarioResponsavel().getId());
 
         //verifica se as informações são válidas
