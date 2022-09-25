@@ -2,6 +2,8 @@
 
 Sistema de biblioteca implementado para a disciplina de Programação Orientada a Objetos Avançada.
 
+Acesse o README versão do professor em [READMEPROF.md](READMEPROF.md)
+
 1. Instalar o Heroku CLI
 curl https://cli-assets.heroku.com/install.sh | sh
 
