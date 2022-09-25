@@ -15,13 +15,25 @@ public class Integracao {
 
 	private static final String GET_DISCIPLINAS = "https://evening-tor-20872.herokuapp.com/alunos/";
 
-	private static final String GET_GRUPO = "http://147.182.136.29:3000/students/deactivatedGroups?ra=";
+	private static final String GET_GRUPODESATIVADO = "http://147.182.136.29:3000/students/deactivatedGroups?ra=";
+	private static final String GET_GRUPOATUAL = "http://147.182.136.29:3000/students/";
+	private static final String GET_GRUPOATUAL2 = "/activeGroups" ;
 
 
 
-	public static int getGrupoDesativado(Long ra) {
-		String url = GET_GRUPO + ra.toString();
+	public static int getGrupo(Long ra, int mode) {
+		//mode define se procura por grupos atuais ou desativados
+		//0 para desativados
+		//1 para atuais
+		String url = "";
+		if (mode == 0){
+			url = GET_GRUPODESATIVADO + ra.toString();
+		}
+		else {
+			url = GET_GRUPOATUAL + ra.toString() + GET_GRUPOATUAL2;
+		}
 		String response = "";
+
 		try{
 			response = sendGET(url);
 		} catch (IOException e){
@@ -29,7 +41,16 @@ public class Integracao {
 		}
 		if (response == "")
 			return -1;
-		return 0;
+		
+		//divide a string para ler o número de disciplinas retornado
+		String[] divisao = response.split("count\":");
+		String str = divisao[1];
+	
+		str = str.substring(0, str.length() - 1); //remove o character } no final
+		int l = Integer.parseInt(str); //converte para inteiro
+
+		
+		return l;
 	}
 
 	public static int getDisciplina(Long ra){

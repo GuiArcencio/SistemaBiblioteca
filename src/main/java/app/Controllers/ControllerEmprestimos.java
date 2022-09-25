@@ -117,12 +117,18 @@ public class ControllerEmprestimos {
 
         }
 
+        //verifica se o leitor está inscrito em alguma disciplina e se está ou esteve em algum grupo acadêmico
         int numDisciplina = Integracao.getDisciplina(leitor.getDocumentoId());
-        if(numDisciplina == -1){
-            return new StandardResponse(StatusResponse.ERROR, "[ERRO] Não foi possível consultar disciplinas para este RA");
+        int grupoAtual = Integracao.getGrupo(leitor.getDocumentoId(), 1);
+        int grupoDesativado = Integracao.getGrupo(leitor.getDocumentoId(), 0);
+        if(numDisciplina == -1 || grupoAtual == -1 || grupoDesativado == -1){
+            return new StandardResponse(StatusResponse.ERROR, "[ERRO] Não foi possível consultar disciplinas/grupos para este RA");
         }
         if(numDisciplina == 0){
             return new StandardResponse(StatusResponse.ERROR, "[EROO] Estudante não está inscrito em disciplinas, não é possível emprestar");
+        }
+        if(grupoAtual == 0 && grupoDesativado == 0){
+            return new StandardResponse(StatusResponse.ERROR, "[EROO] Estudante nunca participou de um grupo acadêmico, não é possível emprestar");
         }
     
         

@@ -86,12 +86,17 @@ public class ControllerReserva {
         }
         Obra obra = oservice.buscaObraPorCodigo(copia.getObraId());
 
+        //verifica se o leitor está inscrito em alguma disciplina e se está em algum grupo acadêmico
         int numDisciplina = Integracao.getDisciplina(leitor.getDocumentoId());
-        if(numDisciplina == -1){
-            return new StandardResponse(StatusResponse.ERROR, "[ERRO] Não foi possível consultar disciplinas para este RA");
+        int grupoAtual = Integracao.getGrupo(leitor.getDocumentoId(), 1);
+        if(numDisciplina == -1 || grupoAtual == -1){
+            return new StandardResponse(StatusResponse.ERROR, "[ERRO] Não foi possível consultar disciplinas/grupos para este RA");
         }
         if(numDisciplina == 0){
-            return new StandardResponse(StatusResponse.ERROR, "[EROO] Estudante não está inscrito em disciplinas, não é possível reservar");
+            return new StandardResponse(StatusResponse.ERROR, "[EROO] Estudante não está inscrito em disciplinas, não é possível emprestar");
+        }
+        if(grupoAtual == 0){
+            return new StandardResponse(StatusResponse.ERROR, "[EROO] Estudante não está em um grupo acadêmico, não é possível emprestar");
         }
 
         java.util.Date dataPrevistaRetirada = reserva.getDataPrevistaRetirada();
