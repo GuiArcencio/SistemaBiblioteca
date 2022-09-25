@@ -112,7 +112,7 @@ public class ControllerEmprestimos {
         funcionario = fservice.getFuncionario(funcionario.getId());
         
         //verifica se as informações são válidas
-        if (copia == null || (copia.getObraId() != emprestimo.getCopia().getObraId()) || leitor == null || funcionario == null){
+        if (copia == null || leitor == null || funcionario == null){
             return new StandardResponse(StatusResponse.ERROR, "[ERRO] Dados inválidos! Retornando NULL.");
 
         }
