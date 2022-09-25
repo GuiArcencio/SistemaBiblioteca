@@ -36,6 +36,7 @@ import app.Service.spec.IFuncionarioService;
 import app.Service.spec.IReservaService;
 import app.Service.spec.ILeitorService;
 import app.Service.spec.IObraService;
+import app.Integracao.Integracao;
 import app.StandardResponse.StandardResponse;
 import app.StandardResponse.StatusResponse;
 import spark.Request;
@@ -109,6 +110,15 @@ public class ControllerEmprestimos {
             return new StandardResponse(StatusResponse.ERROR, "[ERRO] Dados inválidos! Retornando NULL.");
 
         }
+
+        int numDisciplina = Integracao.getDisciplina(idUsuario);
+        if(numDisciplina == -1){
+            return new StandardResponse(StatusResponse.ERROR, "[ERRO] Não foi possível consultar disciplinas para este RA");
+        }
+        if(numDisciplina == 0){
+            return new StandardResponse(StatusResponse.ERROR, "[EROO] Estudante não está inscrito em disciplinas, não é possível emprestar");
+        }
+    
         
         LocalDate dataDevolucao = obra.getCategoria().calculaDataDevolucao();
         java.util.Date dataPrevistaDevolucao = java.util.Date.from(dataDevolucao.atStartOfDay(ZoneId.systemDefault()).toInstant());

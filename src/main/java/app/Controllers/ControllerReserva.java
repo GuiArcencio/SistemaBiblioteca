@@ -37,6 +37,7 @@ import app.Service.spec.IFuncionarioService;
 import app.Service.spec.IReservaService;
 import app.Service.spec.ILeitorService;
 import app.Service.spec.IObraService;
+import app.Integracao.Integracao;
 import app.StandardResponse.StandardResponse;
 import app.StandardResponse.StatusResponse;
 import spark.Request;
@@ -84,6 +85,14 @@ public class ControllerReserva {
 
         }
         Obra obra = oservice.buscaObraPorCodigo(copia.getObraId());
+
+        int numDisciplina = Integracao.getDisciplina(idUsuario);
+        if(numDisciplina == -1){
+            return new StandardResponse(StatusResponse.ERROR, "[ERRO] Não foi possível consultar disciplinas para este RA");
+        }
+        if(numDisciplina == 0){
+            return new StandardResponse(StatusResponse.ERROR, "[EROO] Estudante não está inscrito em disciplinas, não é possível reservar");
+        }
 
         java.util.Date dataPrevistaRetirada = reserva.getDataPrevistaRetirada();
         java.util.Date dataPrevistaDevolucao = reserva.getDataPrevistaDevolucao();
