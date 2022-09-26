@@ -2,36 +2,28 @@ package app.Controllers;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.checkerframework.checker.formatter.qual.ReturnsFormat;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import app.Domain.PacoteEntradaSaidaObras.Devolucao;
 import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
 import app.Domain.PacoteEntradaSaidaObras.Reserva;
 import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.Obra;
 import app.Domain.PacoteUsuarios.Funcionario;
 import app.Domain.PacoteUsuarios.Leitor;
-import app.Domain.SubjectObserver.EmprestimoAtrasado;
 import app.Domain.SubjectObserver.ReservaExpirada;
-import app.Domain.SubjectObserver.Subject;
 import app.Exception.AnnotatedDeserializer;
 import app.Service.impl.CopiaService;
-import app.Service.impl.DevolucaoService;
 import app.Service.impl.EmprestimoService;
 import app.Service.impl.ReservaService;
 import app.Service.impl.FuncionarioService;
 import app.Service.impl.LeitorService;
 import app.Service.impl.ObraService;
 import app.Service.spec.ICopiaService;
-import app.Service.spec.IDevolucaoService;
 import app.Service.spec.IEmprestimoService;
 import app.Service.spec.IFuncionarioService;
 import app.Service.spec.IReservaService;
@@ -52,7 +44,6 @@ public class ControllerReserva {
     private static ILeitorService lservice = new LeitorService();
     private static ICopiaService cservice = new CopiaService();
     private static IObraService oservice = new ObraService();
-    private static Subject listaEmprestimos = new Subject();
 
     private static Gson gsonReserva() {
         return new GsonBuilder()

@@ -1,7 +1,6 @@
 package app.Domain.PacoteEntradaSaidaObras;
 
 import java.util.Date;
-import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
 
 public class Devolucao {

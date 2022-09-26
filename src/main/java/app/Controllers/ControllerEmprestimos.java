@@ -2,16 +2,12 @@ package app.Controllers;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import org.checkerframework.checker.formatter.qual.ReturnsFormat;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import app.Domain.PacoteEntradaSaidaObras.Devolucao;
 import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
 import app.Domain.PacoteEntradaSaidaObras.Reserva;
 import app.Domain.PacoteObras.Copia;
@@ -19,18 +15,15 @@ import app.Domain.PacoteObras.Obra;
 import app.Domain.PacoteUsuarios.Funcionario;
 import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.SubjectObserver.EmprestimoAtrasado;
-import app.Domain.SubjectObserver.ReservaExpirada;
 import app.Domain.SubjectObserver.Subject;
 import app.Exception.AnnotatedDeserializer;
 import app.Service.impl.CopiaService;
-import app.Service.impl.DevolucaoService;
 import app.Service.impl.EmprestimoService;
 import app.Service.impl.ReservaService;
 import app.Service.impl.FuncionarioService;
 import app.Service.impl.LeitorService;
 import app.Service.impl.ObraService;
 import app.Service.spec.ICopiaService;
-import app.Service.spec.IDevolucaoService;
 import app.Service.spec.IEmprestimoService;
 import app.Service.spec.IFuncionarioService;
 import app.Service.spec.IReservaService;
@@ -46,7 +39,6 @@ import spark.Route;
 public class ControllerEmprestimos {
 
     private static IEmprestimoService emservice = new EmprestimoService();
-    private static IDevolucaoService deservice = new DevolucaoService();
     private static IReservaService rservice = new ReservaService();
     private static IFuncionarioService fservice = new FuncionarioService();
     private static ILeitorService lservice = new LeitorService();
@@ -141,8 +133,6 @@ public class ControllerEmprestimos {
         emprestimo.setDataEmprestimo(dataEmprestimo);
         emprestimo.setDataPrevistaDevolucao(dataPrevistaDevolucao);
         emprestimo.setAtrasado(false);
-        
-
         
         //verifica se há uma reserva antes de realizar o emprestimo
         Reserva reserva = rservice.buscarPorLeitorECopia(idUsuario, copia.getId());

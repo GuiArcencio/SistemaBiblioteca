@@ -94,7 +94,6 @@ public class RelObraAutorDAO extends GenericDAO{
         statement.setLong(1, codigo_autor);
         ResultSet resultSet = statement.executeQuery();
         while(resultSet.next()){
-            Long id = resultSet.getLong("id");
             Obra obra = odao.getByCodigo(resultSet.getLong("codigo_obra"));
             lista.add(obra);
         }
@@ -114,7 +113,6 @@ public class RelObraAutorDAO extends GenericDAO{
         statement.setLong(1, codigo_obra);
         ResultSet resultSet = statement.executeQuery();
         while(resultSet.next()){
-            Long id = resultSet.getLong("id");
             Autor autor = adao.getById(resultSet.getLong("codigo_autor"));
 
             lista.add(autor);

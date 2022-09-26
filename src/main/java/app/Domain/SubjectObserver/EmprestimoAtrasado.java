@@ -2,8 +2,6 @@ package app.Domain.SubjectObserver;
 
 
 import app.Domain.PacoteUsuarios.Leitor;
-import app.Domain.SubjectObserver.Subject;
-import app.Domain.PacoteEntradaSaidaObras.Emprestimo;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
 
 public class EmprestimoAtrasado extends Observer {

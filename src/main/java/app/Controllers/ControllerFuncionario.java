@@ -2,14 +2,11 @@ package app.Controllers;
 
 import java.util.List;
 
-import javax.net.ssl.SSLEngineResult.Status;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import app.Domain.PacoteUsuarios.Usuario;
 import app.Exception.AnnotatedDeserializer;
-import app.Domain.PacoteUsuarios.Leitor;
 import app.Domain.PacoteUsuarios.Funcionario;
 import app.Service.impl.FuncionarioService;
 import app.Service.spec.IFuncionarioService;

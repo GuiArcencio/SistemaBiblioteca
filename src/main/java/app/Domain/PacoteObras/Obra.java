@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
 import app.Domain.SubjectObserver.Subject;
-//import app.Domain.PacoteObras.Estados.*;
 
 
 public class Obra extends Subject{
@@ -52,7 +51,6 @@ public class Obra extends Subject{
 		Editora editora,
         String titulo,
 		int numeroPaginas
-        //String status
 	) {
 		this.codigo = codigo;
 		this.isbn = isbn;
@@ -63,7 +61,7 @@ public class Obra extends Subject{
 		this.editora = editora;
         this.titulo = titulo;
 		this.numPaginas = numeroPaginas;
-        //this.status = status;
+
 	}
 
     public Obra(
@@ -90,18 +88,6 @@ public class Obra extends Subject{
         this.status = status;
 	}
 
-    /*
-    public void atualizaStatus(){
-        if(this.status == "DISPONIVEL"){
-            this.status = "INDISPONIVEL";
-            notifyObservers(this.status);
-        }
-        else{
-            this.status = "DISPONIVEL";
-            notifyObservers(this.status);
-        }
-    }
-    */
 
     //Setters e Getters//
     public void setCodigo(Long codigo) {

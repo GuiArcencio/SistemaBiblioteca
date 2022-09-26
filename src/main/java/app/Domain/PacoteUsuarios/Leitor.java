@@ -1,8 +1,6 @@
 package app.Domain.PacoteUsuarios;
 
 import java.util.Date;
-//import app.Domain.PacoteUsuarios.CategoriaLeitor;
-//import app.Disciplina;
 import app.Exception.AnnotatedDeserializer.JsonRequired;
 
 
@@ -12,9 +10,6 @@ public class Leitor extends Usuario {
 
     @JsonRequired
     private Long documentoId;
-
-    // @JsonRequired
-    //private Disciplina disciplina;
 
     @JsonRequired
     private boolean grupoAcademico;
@@ -86,15 +81,6 @@ public class Leitor extends Usuario {
         return this.documentoId;
     }
 
-    /*
-    public Disciplina getDisciplina() {
-        return this.disciplina;
-    }
-
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
-    }
-    */
 
     public boolean getGrupoAcademico() {
         return this.grupoAcademico;

@@ -6,10 +6,8 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import app.Domain.PacoteObras.Autor;
 import app.Domain.PacoteObras.Copia;
 import app.Domain.PacoteObras.Obra;
-import app.Domain.PacoteObras.Estados.Disponivel;
 import app.Exception.AnnotatedDeserializer;
 import app.Service.impl.CopiaService;
 import app.Service.impl.ObraService;
@@ -32,11 +30,6 @@ public class ControllerObras {
         .create();
     }
 
-    private static Gson gsonAutor() {
-        return new GsonBuilder()
-        .registerTypeAdapter(Autor.class, new AnnotatedDeserializer<Autor>())
-        .create();
-    }
 
     private static Gson gsonCopia(){
         return new GsonBuilder()
@@ -116,31 +109,6 @@ public class ControllerObras {
         service.removeObra(obra);
         return new StandardResponse(StatusResponse.SUCCESS);
     };
-
-    /*
-     * Adiciona um autor
-     */
-    /*
-    public static Route adicionarAutor = (Request req, Response res) -> {
-        res.type("application/json");
-        Gson gson = gsonAutor();
-        Autor autor = gson.fromJson(req.body(), Autor.class);
-        Long codigo = Long.parseLong(req.params(":codigo"));
-        service.adicionarAutor(codigo, autor);
-        return new StandardResponse(StatusResponse.SUCCESS);
-    };
-
-    
-     * Remove um autor por nome
-    
-    public static Route removerAutor = (Request req, Response res) -> {
-        res.type("application/json");
-        Long codigo = Long.parseLong(req.params(":codigo"));
-        Autor autor = new Gson().fromJson(req.body(), Autor.class);
-        service.removerAutor(codigo, autor);
-        return new StandardResponse(StatusResponse.SUCCESS);
-    };
-    */
 
     /*
      * Adiciona uma palavra chave a uma obra

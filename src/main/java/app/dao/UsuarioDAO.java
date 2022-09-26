@@ -92,7 +92,6 @@ public class UsuarioDAO extends GenericDAO {
                 String nome = resultSet.getString("nome");
                 String telefone = resultSet.getString("telefone");
                 Date dataNascimento = resultSet.getDate("dataNascimento");
-                String role = resultSet.getString("role");
 
                 Long enderecoId = resultSet.getLong("id");
                 Endereco endereco = new EnderecoDAO().getById(enderecoId);
@@ -125,7 +124,6 @@ public class UsuarioDAO extends GenericDAO {
                 String nome = resultSet.getString("nome");
                 String telefone = resultSet.getString("telefone");
                 Date dataNascimento = resultSet.getDate("dataNascimento");
-                String role = resultSet.getString("role");
 
                 Long enderecoId = resultSet.getLong("id");
                 Endereco endereco = new EnderecoDAO().getById(enderecoId);
