@@ -7,8 +7,10 @@ Acesse o README versão do professor em [READMEPROF.md](READMEPROF.md)
 1. Instalar o Heroku CLI
 curl https://cli-assets.heroku.com/install.sh | sh
 
-2. Compile e Deploy
-mvn clean compile assembly:single && mvn heroku:deploy
+2. Compile e faça o deploy
+
+`mvn clean compile assembly:single && mvn heroku:deploy`
+
 Ele deve pedir autenticação com o heroku, logue no navegador
 
 3. Acesse em https://pooa-sist-biblioteca.herokuapp.com
